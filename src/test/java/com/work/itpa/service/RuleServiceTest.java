@@ -27,7 +27,7 @@ public class RuleServiceTest extends ItpaBaseTest{
 		FinPersonResult result =   dService.calculateBenefits(fPerson );		
 		assertEquals(1, result.getMessages().size());
 		
-		
+		System.out.println(result);
 	}
 
 }

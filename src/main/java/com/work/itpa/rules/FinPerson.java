@@ -57,6 +57,9 @@ public class FinPerson extends Person {
 	List<Loan> loans;
 
 	List<Donation> donations;
+	
+	List<Investment> investments;
+	
 
 	List<Income> otherIncomes;
 
@@ -412,7 +415,12 @@ public class FinPerson extends Person {
 		family.add(p);
 	}
 
-
+	public void addInvestment(Investment investment) {
+		if (this.investments == null) {
+			this.investments = new ArrayList<Investment>();
+		}
+		this.investments.add(investment);
+	}
 
 	/**
 	 * @return the family

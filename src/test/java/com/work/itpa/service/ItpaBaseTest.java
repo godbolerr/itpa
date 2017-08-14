@@ -8,6 +8,7 @@ import com.work.itpa.rules.Donation;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.Income;
+import com.work.itpa.rules.Investment;
 import com.work.itpa.rules.Loan;
 import com.work.itpa.rules.Person;
 import com.work.itpa.rules.PropertyDetails;
@@ -34,6 +35,10 @@ public class ItpaBaseTest {
 		fPerson.setDearnessAllowancePerMonth(BigDecimal.valueOf(4949));
 		fPerson.setPensionContributionPerMonth(BigDecimal.valueOf(9695));
 
+		fPerson.addInvestment(new Investment(BigDecimal.valueOf(35000), "LIC", "LIC 1"));
+		fPerson.addInvestment(new Investment(BigDecimal.valueOf(20000), "LIC", "LIC 2"));
+		fPerson.addInvestment(new Investment(BigDecimal.valueOf(35000), "LIC", "LIC 4"));
+		
 		fPerson.addDonation(new Donation(BigDecimal.valueOf(1000), "XX", "Money Given to charity 1"));
 		fPerson.addDonation(new Donation(BigDecimal.valueOf(500), "YY", "PM Relief Fund"));
 		fPerson.addIncome(new Income(BigDecimal.valueOf(1939), "Book", "Income from books"));

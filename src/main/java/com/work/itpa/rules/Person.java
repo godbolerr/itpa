@@ -80,6 +80,12 @@ public class Person implements Serializable {
 	boolean hasDisease;
 	
 	
+	/**
+	 * Represents the validity of the data provided.
+	 */
+	boolean valid;
+	
+	
 	public Person(){}
 
 	/**
@@ -243,6 +249,20 @@ public class Person implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the valid
+	 */
+	public boolean isValid() {
+		return valid;
+	}
+
+	/**
+	 * @param valid the valid to set
+	 */
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	
 	

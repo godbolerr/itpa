@@ -7,12 +7,9 @@ public class FinPersonResult {
 
 	boolean status;
 
-	List<String> messages;
+	List<String> messages = new ArrayList<String>();;
 
 	public void addMessage(String message) {
-		if (messages == null) {
-			messages = new ArrayList<String>();
-		}
 		messages.add(message);
 	}
 
