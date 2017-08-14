@@ -101,6 +101,7 @@ end
 
 18. Use of ruleflow-group to sequence the execution of rules.
 
+19. insertLogical ?
 
 
 

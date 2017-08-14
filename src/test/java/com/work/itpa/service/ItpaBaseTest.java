@@ -37,7 +37,7 @@ public class ItpaBaseTest {
 
 		fPerson.addInvestment(new Investment(BigDecimal.valueOf(35000), "LIC", "LIC 1"));
 		fPerson.addInvestment(new Investment(BigDecimal.valueOf(20000), "LIC", "LIC 2"));
-		fPerson.addInvestment(new Investment(BigDecimal.valueOf(35000), "LIC", "LIC 4"));
+		fPerson.addInvestment(new Investment(BigDecimal.valueOf(35000), "PPF", "PPF 1"));
 		
 		fPerson.addDonation(new Donation(BigDecimal.valueOf(1000), "XX", "Money Given to charity 1"));
 		fPerson.addDonation(new Donation(BigDecimal.valueOf(500), "YY", "PM Relief Fund"));

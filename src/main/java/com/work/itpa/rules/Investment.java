@@ -17,19 +17,19 @@ public class Investment {
 	 * Amount invested per year.
 	 * 
 	 */
-	BigDecimal amount;
+	public BigDecimal amount;
 	
 	/**
 	 * Type of institution to which amount is invested
 	 */
 	
-	String type;
+	public String type;
 	
 	/**
 	 * Other details about an investment.
 	 */
 	
-	String details;
+	public String details;
 	
 	
 	

@@ -422,6 +422,26 @@ public class FinPerson extends Person {
 		this.investments.add(investment);
 	}
 
+	
+	
+	/**
+	 * @return the investments
+	 */
+	public List<Investment> getInvestments() {
+		return investments;
+	}
+
+
+
+	/**
+	 * @param investments the investments to set
+	 */
+	public void setInvestments(List<Investment> investments) {
+		this.investments = investments;
+	}
+
+
+
 	/**
 	 * @return the family
 	 */
