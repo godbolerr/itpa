@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.work.itpa.DroolsConfig;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
-
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +24,10 @@ public class RuleServiceTest extends ItpaBaseTest{
 		FinPerson fPerson = getPerson();
 		fPerson.setAge(40);
 		fPerson.setDisabilityPercent(20);
-		FinPersonResult result =   dService.calculateBenefits(fPerson );
+		FinPersonResult result =   dService.calculateBenefits(fPerson );		
+		assertEquals(1, result.getMessages().size());
+		
+		
 	}
 
 }

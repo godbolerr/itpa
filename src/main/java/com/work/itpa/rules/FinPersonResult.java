@@ -46,4 +46,12 @@ public class FinPersonResult {
 		this.messages = messages;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FinPersonResult [status=" + status + ", messages=" + messages + "]";
+	}
+
 }

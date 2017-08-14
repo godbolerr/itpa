@@ -55,5 +55,17 @@ public class ItpaBaseTest {
 		return fPerson;
 
 	}
+	
+	public void addDonation(FinPerson person, double amount, String orgName, String note){
+		person.addDonation(new Donation(BigDecimal.valueOf(amount),orgName,note));
+	}
+	
+	public void addIncome(FinPerson person, double amount, String reasonCode, String note){
+		person.addIncome(new Income(BigDecimal.valueOf(amount),reasonCode,note));
+	}
+	
+
+	
+	
 
 }

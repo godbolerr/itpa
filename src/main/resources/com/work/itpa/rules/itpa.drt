@@ -12,10 +12,11 @@ disabilityPercent
 deduction
 reason
 
-rule "Exemption bracket_xxx@{row.rowNumber}"
+rule "Disability_Deduction@{row.rowNumber}"
     when
         FinPerson(age == @{age} , disabilityPercent == @{disabilityPercent}  )
+        result : FinPersonResult( )
     then
-        System.out.println("@{reason} " + " @{deduction} ");
+        result.addMessage("@{reason} " + " @{deduction} ");
 end
 end template
