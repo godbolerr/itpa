@@ -13,11 +13,8 @@ deduction
 reason
 
 rule "Exemption bracket_xxx@{row.rowNumber}"
-
     when
-        FinPerson(age == @{age},
-            , disabilityPercent == @{disabilityPercent}
-        )
+        FinPerson(age == @{age} , disabilityPercent == @{disabilityPercent}  )
     then
         System.out.println("@{reason} " + " @{deduction} ");
 end

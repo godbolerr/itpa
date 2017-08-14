@@ -7,19 +7,24 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.DroolsConfig;
+import com.work.itpa.rules.FinPerson;
+import com.work.itpa.rules.FinPersonResult;
+
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DroolsConfig.class)
-public class RuleServiceTest {
+public class RuleServiceTest extends ItpaBaseTest{
 	
 	@Autowired
 	RuleService dService;
 
 	@Test
-	public void testCalculateBenefit() {
-
-		System.out.println("Starting test ");
+	public void testCalculateBenefit() {		
+		FinPerson fPerson = getPerson();
+		fPerson.setAge(40);
+		fPerson.setDisabilityPercent(20);
+		FinPersonResult result =   dService.calculateBenefits(fPerson );
 	}
 
 }

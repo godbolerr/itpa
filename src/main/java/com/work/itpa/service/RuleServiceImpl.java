@@ -26,15 +26,16 @@ public class RuleServiceImpl implements RuleService {
 
 	@Override
 	public FinPersonResult calculateBenefits(FinPerson person) {
+		
 
-		KieSession ksession = kc.newKieSession("ItpaDecisionTable");
+    	KieSession kSession = kc.newKieSession("ItpaDataKs");
 
 		FinPersonResult result = new FinPersonResult();
 
-		ksession.insert(person);
-		ksession.insert(result);
+		kSession.insert(person);
+		kSession.insert(result);
 
-		ksession.fireAllRules();
+		kSession.fireAllRules();
 
 		return result;
 	}
