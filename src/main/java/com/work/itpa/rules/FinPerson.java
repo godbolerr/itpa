@@ -437,6 +437,70 @@ public class FinPerson extends Person {
 	public void setFamily(List<Person> family) {
 		this.family = family;
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((aadharNumber == null) ? 0 : aadharNumber.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((panNumber == null) ? 0 : panNumber.hashCode());
+		result = prime * result + ((residentialStatus == null) ? 0 : residentialStatus.hashCode());
+		return result;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		FinPerson other = (FinPerson) obj;
+		if (aadharNumber == null) {
+			if (other.aadharNumber != null) {
+				return false;
+			}
+		} else if (!aadharNumber.equals(other.aadharNumber)) {
+			return false;
+		}
+		if (email == null) {
+			if (other.email != null) {
+				return false;
+			}
+		} else if (!email.equals(other.email)) {
+			return false;
+		}
+		if (panNumber == null) {
+			if (other.panNumber != null) {
+				return false;
+			}
+		} else if (!panNumber.equals(other.panNumber)) {
+			return false;
+		}
+		if (residentialStatus == null) {
+			if (other.residentialStatus != null) {
+				return false;
+			}
+		} else if (!residentialStatus.equals(other.residentialStatus)) {
+			return false;
+		}
+		return true;
+	}
 	
 	
 	

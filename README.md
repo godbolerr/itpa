@@ -85,6 +85,23 @@ drools.kbuilder.severity.duplicateFunction = <INFO|WARNING|ERROR>
 16. Stateful and stateless. - keywords related to rules.
 
 
+17. Negative salience for rules which we want to fire in the end.
+
+salience -50
+
+rule "Print balance for AccountPeriod"
+        salience -50
+    when
+        ap : AccountPeriod()
+        acc : Account()
+    then
+        System.out.println( acc.accountNo + " : " + acc.balance );
+end
+
+
+18. Use of ruleflow-group to sequence the execution of rules.
+
+
 
 
 
