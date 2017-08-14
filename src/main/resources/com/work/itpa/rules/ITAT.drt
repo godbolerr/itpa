@@ -1,0 +1,24 @@
+template header
+age
+disabilityPercent
+deduction
+reason
+
+package com.work.itpa.rules;
+
+template "AT T Rules"
+age
+disabilityPercent
+deduction
+reason
+
+rule "Exemption bracket_xxx@{row.rowNumber}"
+
+    when
+        FinPerson(age == @{age},
+            , disabilityPercent == @{disabilityPercent}
+        )
+    then
+        System.out.println("@{reason} " + " @{deduction} ");
+end
+end template
