@@ -40,7 +40,7 @@ public class FinPerson extends Person {
 	 */
 	String employmentType;
 	
-	String assesseeType;
+	public String assesseeType;
 	
 
 	BigDecimal salaryPerAnum;

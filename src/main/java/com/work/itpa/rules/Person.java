@@ -37,7 +37,7 @@ public class Person implements Serializable {
 	 * Age of the person. 
 	 * This is derived field.
 	 */
-	int age;
+	public int age;
 	
 	/**
 	 * Gender of a person. [ Male/Female ]

@@ -24,8 +24,10 @@ public class RuleServiceTest extends ItpaBaseTest{
 		FinPerson fPerson = getPerson();
 		fPerson.setAge(40);
 		fPerson.setDisabilityPercent(20);
+		fPerson.setAssesseeType("Individual");
+		fPerson.setRelationShipCode("Self");
 		FinPersonResult result =   dService.calculateBenefits(fPerson );		
-		assertEquals(1, result.getMessages().size());
+		assertEquals(2, result.getMessages().size());
 		
 		System.out.println(result);
 	}

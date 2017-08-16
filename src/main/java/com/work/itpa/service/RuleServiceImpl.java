@@ -40,18 +40,15 @@ public class RuleServiceImpl implements RuleService {
     	KieRuntimeLogger logger =
   			  KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
   	
-    	kSession.addEventListener( new DebugRuleRuntimeEventListener() );
+    	//kSession.addEventListener( new DebugRuleRuntimeEventListener() );
     	
-    	kSession.addEventListener( new DefaultAgendaEventListener() {
-    	    public void afterMatchFired(AfterMatchFiredEvent event) {
-    	        super.afterMatchFired( event );
-    	        System.out.println( " ### " +  event );
-    	    }
-    	});
-    	
-    	
-    	
-    	
+//    	kSession.addEventListener( new DefaultAgendaEventListener() {
+//    	    public void afterMatchFired(AfterMatchFiredEvent event) {
+//    	        super.afterMatchFired( event );
+//    	        System.out.println( " ### " +  event );
+//    	    }
+//    	});
+//    	
     	
     	List<String> messages = new ArrayList<String>();
     	
@@ -59,7 +56,6 @@ public class RuleServiceImpl implements RuleService {
 
 		kSession.insert(person);
 		kSession.insert(result);
-		kSession.setGlobal("messages", messages);
 
 		kSession.fireAllRules();
 

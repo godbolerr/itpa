@@ -1,8 +1,10 @@
 template header
-age
-disabilityPercent
-deduction
-reason
+assesseeType
+deductionType
+relationShipCode
+minAge
+maxAge
+maxDeduction
 
 package com.work.itpa.rules;
 
@@ -10,9 +12,13 @@ template "AT D Rules"
 
 rule "ATD@{row.rowNumber}"
     when
-        FinPerson(age == @{age} , disabilityPercent == @{disabilityPercent}  )
-        result : FinPersonResult( )
+        $fp : FinPerson( age > @{minAge} , 
+
+        		 	relationShipCode == "@{relationShipCode}",
+        		 	assesseeType == "@{assesseeType}"  
+        		 )        		 
+        $result : FinPersonResult( )
     then
-        result.addMessage("@{reason} " + " @{deduction} ");
+        $result.addMessage("80D " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template
