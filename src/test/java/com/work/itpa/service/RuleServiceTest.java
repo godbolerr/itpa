@@ -26,7 +26,7 @@ public class RuleServiceTest extends ItpaBaseTest{
 		FinPersonResult result =   dService.calculateBenefits(fPerson );		
 		assertEquals(2, result.getMessages().size());
 		
-		System.out.println(result);
+		//System.out.println(result);
 	}
 
 	@Test
@@ -34,7 +34,17 @@ public class RuleServiceTest extends ItpaBaseTest{
 		FinPerson fPerson = getMarriedMale();
 		fPerson.setAssesseeType("Individual");
 		FinPersonResult result =   dService.calculateBenefits(fPerson );		
-		assertEquals(2, result.getMessages().size());
+		assertEquals(4, result.getMessages().size());
+		
+		System.out.println(result);
+	}
+
+	@Test
+	public void test80DForMarriedMaleWithOneDaughter() {		
+		FinPerson fPerson = getMarriedMaleWithOneDaughter();
+		fPerson.setAssesseeType("Individual");
+		FinPersonResult result =   dService.calculateBenefits(fPerson );		
+		assertEquals(6, result.getMessages().size());
 		
 		System.out.println(result);
 	}

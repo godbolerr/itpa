@@ -80,14 +80,21 @@ public class ItpaBaseTest {
 	public FinPerson getMarriedMale() {
 		FinPerson person = getPerson() ;	
 		person.setMaritalStatus("Married");
-		Person wife = new Person("Lata", LocalDate.of(1990, Month.AUGUST, 01), "Female", "WIFE", 0, "");
+		Person wife = new Person("Lata", LocalDate.of(1990, Month.AUGUST, 01), "Female", "Wife", 0, "");
 		wife.setAge(37);
 		person.addChildren(wife);
 		return person;		
 	}
 	
 	
-	
+	public FinPerson getMarriedMaleWithOneDaughter(){
+		
+		FinPerson person = getMarriedMale() ;
+		Person daughter = new Person("Aasha", LocalDate.of(2000, Month.AUGUST, 01), "Female", "Daughter", 0, "");
+		daughter.setAge(17);
+		person.addChildren(daughter);
+		return person;
+	}
 	
 	
 
