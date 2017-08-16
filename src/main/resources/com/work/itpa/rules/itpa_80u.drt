@@ -21,7 +21,7 @@ rule "ATD@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	$fp.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
         $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
 end
 end template
@@ -39,7 +39,7 @@ rule "ATDFamily@{row.rowNumber}"
         ) from $fp.family 
         $result : FinPersonResult( )
     then
-    	$fp.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
         $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
 end
 end template

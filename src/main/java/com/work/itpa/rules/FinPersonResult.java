@@ -7,12 +7,21 @@ public class FinPersonResult {
 
 	boolean status;
 
-	List<String> messages = new ArrayList<String>();;
+	List<String> messages = new ArrayList<String>();
+	
+	List<Deduction> deductions = new ArrayList<Deduction>();
+	
+	List<Deduction> plannedDeductions = new ArrayList<Deduction>();
 
 	public void addMessage(String message) {
 		messages.add(message);
 	}
 
+	public void addDeduction(Deduction deduction) {
+		deductions.add(deduction);
+	}
+
+	
 	/**
 	 * @return the status
 	 */
@@ -41,6 +50,37 @@ public class FinPersonResult {
 	 */
 	public void setMessages(List<String> messages) {
 		this.messages = messages;
+	}
+	
+	
+	
+
+	/**
+	 * @return the deductions
+	 */
+	public List<Deduction> getDeductions() {
+		return deductions;
+	}
+
+	/**
+	 * @param deductions the deductions to set
+	 */
+	public void setDeductions(List<Deduction> deductions) {
+		this.deductions = deductions;
+	}
+
+	/**
+	 * @return the plannedDeductions
+	 */
+	public List<Deduction> getPlannedDeductions() {
+		return plannedDeductions;
+	}
+
+	/**
+	 * @param plannedDeductions the plannedDeductions to set
+	 */
+	public void setPlannedDeductions(List<Deduction> plannedDeductions) {
+		this.plannedDeductions = plannedDeductions;
 	}
 
 	/* (non-Javadoc)

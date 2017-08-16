@@ -64,8 +64,6 @@ public class FinPerson extends Person {
 	
 	List<Investment> investments;
 	
-	List<Deduction> deductions;
-
 	List<Income> otherIncomes;
 
 	public FinPerson() {
@@ -471,33 +469,6 @@ public class FinPerson extends Person {
 	public String getAssesseeType() {
 		return assesseeType;
 	}
-
-	
-	public void addDeduction(Deduction deduction){
-		if (this.deductions == null) {
-			this.deductions = new ArrayList<Deduction>();
-		}
-		deductions.add(deduction);
-		
-	}
-
-
-	/**
-	 * @return the deductions
-	 */
-	public List<Deduction> getDeductions() {
-		return deductions;
-	}
-
-
-
-	/**
-	 * @param deductions the deductions to set
-	 */
-	public void setDeductions(List<Deduction> deductions) {
-		this.deductions = deductions;
-	}
-
 
 
 	/**
