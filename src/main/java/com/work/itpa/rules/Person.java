@@ -60,7 +60,7 @@ public class Person implements Serializable {
 	 * Percent of disability 
 	 * 
 	 */
-	int disabilityPercent;
+	public int disabilityPercent;
 	
 	
 	/**

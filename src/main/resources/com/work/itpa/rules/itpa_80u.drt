@@ -1,0 +1,46 @@
+template header
+assesseeType
+relationShipCode
+minDisabilityPercent
+maxDisabilityPercent
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "AT D Rules"
+
+rule "ATD@{row.rowNumber}"
+    when
+        $fp : FinPerson( disabilityPercent > @{minDisabilityPercent} , 
+						disabilityPercent <= @{maxDisabilityPercent} ,
+        		 	relationShipCode == "@{relationShipCode}",
+        		 	assesseeType == "@{assesseeType}"  
+        		 )        		 
+        $result : FinPersonResult( )
+    then
+    	$fp.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+        $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+end
+end template
+
+/**
+template "AT D for family members"
+
+rule "ATDFamily@{row.rowNumber}"
+    when
+        $fp : FinPerson( )
+        $fpPerson :  Person   (	 disabilityPercent > @{minDisabilityPercent} , 
+						disabilityPercent <= @{maxDisabilityPercent} ,
+        		 	relationShipCode == "@{relationShipCode}"
+        		 	          
+        ) from $fp.family 
+        $result : FinPersonResult( )
+    then
+    	$fp.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+        $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+end
+end template
+**/

@@ -49,4 +49,23 @@ public class RuleServiceTest extends ItpaBaseTest{
 		System.out.println(result);
 	}
 	
+	@Test
+	public void test80UForMarriedMaleWithOneDaughter() {		
+		FinPerson fPerson = getMarriedMaleWithOneDaughter();
+		fPerson.setDisabilityPercent(43);
+		fPerson.setAssesseeType("Individual");
+		FinPersonResult result =   dService.calculateBenefits(fPerson );		
+		//assertEquals(6, result.getMessages().size());
+		System.out.println(result);
+	}
+		
+	@Test
+	public void test80UForMarriedMaleWithOneDaughterForHigherDisability() {		
+		FinPerson fPerson = getMarriedMaleWithOneDaughter();
+		fPerson.setDisabilityPercent(85);
+		fPerson.setAssesseeType("Individual");
+		FinPersonResult result =   dService.calculateBenefits(fPerson );		
+		//assertEquals(6, result.getMessages().size());
+		System.out.println(result);
+	}
 }

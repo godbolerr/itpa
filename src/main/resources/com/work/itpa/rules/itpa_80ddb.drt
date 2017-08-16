@@ -11,9 +11,9 @@ package com.work.itpa.rules;
 import java.util.List;
 import java.math.BigDecimal;
 
-template "AT D Rules"
+template "AT DDDB Rules"
 
-rule "ATD@{row.rowNumber}"
+rule "ATDDB@{row.rowNumber}"
     when
         $fp : FinPerson( age > @{minAge} , 
 						age <= @{maxAge} ,
