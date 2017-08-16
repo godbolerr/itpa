@@ -6,13 +6,9 @@ reason
 
 package com.work.itpa.rules;
 
-template "AT T Rules"
-age
-disabilityPercent
-deduction
-reason
+template "AT D Rules"
 
-rule "Disability_Deduction@{row.rowNumber}"
+rule "ATD@{row.rowNumber}"
     when
         FinPerson(age == @{age} , disabilityPercent == @{disabilityPercent}  )
         result : FinPersonResult( )

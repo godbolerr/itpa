@@ -39,6 +39,9 @@ public class FinPerson extends Person {
 	 * 
 	 */
 	String employmentType;
+	
+	String assesseeType;
+	
 
 	BigDecimal salaryPerAnum;
 
@@ -456,6 +459,24 @@ public class FinPerson extends Person {
 	 */
 	public void setFamily(List<Person> family) {
 		this.family = family;
+	}
+
+
+
+	/**
+	 * @return the assesseeType
+	 */
+	public String getAssesseeType() {
+		return assesseeType;
+	}
+
+
+
+	/**
+	 * @param assesseeType the assesseeType to set
+	 */
+	public void setAssesseeType(String assesseeType) {
+		this.assesseeType = assesseeType;
 	}
 
 
