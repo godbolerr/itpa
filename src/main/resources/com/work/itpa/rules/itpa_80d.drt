@@ -8,12 +8,14 @@ maxDeduction
 
 package com.work.itpa.rules;
 
+import java.util.List;
+
 template "AT D Rules"
 
 rule "ATD@{row.rowNumber}"
     when
         $fp : FinPerson( age > @{minAge} , 
-
+						age <= @{maxAge} ,
         		 	relationShipCode == "@{relationShipCode}",
         		 	assesseeType == "@{assesseeType}"  
         		 )        		 
@@ -22,3 +24,20 @@ rule "ATD@{row.rowNumber}"
         $result.addMessage("80D " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template
+
+template "AT D for family members"
+
+rule "ATDFamily@{row.rowNumber}"
+    when
+        $fp : FinPerson( assesseeType == "@{assesseeType}" )
+        items : List ( size > 0 ) 
+        from collect ( Person   ( 	age > @{minAge} , 
+									age <= @{maxAge} ,
+        		 					relationShipCode == "@{relationShipCode}"
+        						) from $fp.family )
+        $result : FinPersonResult( )
+    then
+        $result.addMessage("80D " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
+end
+end template
+

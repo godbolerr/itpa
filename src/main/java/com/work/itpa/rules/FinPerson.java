@@ -4,9 +4,10 @@
 package com.work.itpa.rules;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 
 /**
  * Contains information about the evaluator
@@ -78,7 +79,7 @@ public class FinPerson extends Person {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public FinPerson(String name,Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
+	public FinPerson(String name,LocalDate dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
 		super(name,dateOfBirth, gender, relationShipCode, disabilityPercent, disease);
 	}
 

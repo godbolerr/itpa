@@ -20,16 +20,23 @@ public class RuleServiceTest extends ItpaBaseTest{
 	RuleService dService;
 
 	@Test
-	public void testCalculateBenefit() {		
-		FinPerson fPerson = getPerson();
-		fPerson.setAge(40);
-		fPerson.setDisabilityPercent(20);
+	public void test80DForBachelorMale() {		
+		FinPerson fPerson = getBachelorMale();
 		fPerson.setAssesseeType("Individual");
-		fPerson.setRelationShipCode("Self");
 		FinPersonResult result =   dService.calculateBenefits(fPerson );		
 		assertEquals(2, result.getMessages().size());
 		
 		System.out.println(result);
 	}
 
+	@Test
+	public void test80DForMarriedMale() {		
+		FinPerson fPerson = getMarriedMale();
+		fPerson.setAssesseeType("Individual");
+		FinPersonResult result =   dService.calculateBenefits(fPerson );		
+		assertEquals(2, result.getMessages().size());
+		
+		System.out.println(result);
+	}
+	
 }

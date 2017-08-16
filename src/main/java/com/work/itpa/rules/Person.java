@@ -4,7 +4,7 @@
 package com.work.itpa.rules;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,12 +25,12 @@ public class Person implements Serializable {
 	String name;
 	
 	/**
-	 * Date of birth for a person
+	 * LocalDate of birth for a person
 	 */
 
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	Date dateOfBirth;
+	LocalDate dateOfBirth;
 	
 	
 	/**
@@ -95,7 +95,7 @@ public class Person implements Serializable {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public Person(String name, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
+	public Person(String name, LocalDate dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
 		super();
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -122,14 +122,14 @@ public class Person implements Serializable {
 	/**
 	 * @return the dateOfBirth
 	 */
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 	/**
 	 * @param dateOfBirth the dateOfBirth to set
 	 */
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -139,7 +139,7 @@ public class Person implements Serializable {
 	public int getAge() {
 		
 //		if ( age == 0 && dateOfBirth != null ){
-//			Date startDate = Date.of(2017, Month.AUGUST, 01);
+//			LocalDate startDate = LocalDate.of(2017, Month.AUGUST, 01);
 //			long numberOfYears = ChronoUnit.YEARS.between(dateOfBirth,startDate);
 //			age = new Long(numberOfYears).intValue();
 //		}
