@@ -21,7 +21,8 @@ rule "ATD@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  );
+		insert($deduction);
         $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
 end
 end template

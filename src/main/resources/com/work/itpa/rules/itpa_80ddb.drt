@@ -22,7 +22,8 @@ rule "ATDDB@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80T","@{relationShipCode}  Age: " + $fp.age  ));
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80DDB","@{relationShipCode}  Age: " + $fp.age  );
+    	insert($deduction);
         $result.addMessage("80D " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template
@@ -40,7 +41,7 @@ rule "ATDFamily@{row.rowNumber}"
         ) from $fp.family 
         $result : FinPersonResult( )
     then
-        $result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80T","@{relationShipCode}  Age: " + $fp.age  ));	
+        $result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80DDB","@{relationShipCode}  Age: " + $fp.age  ));	
         $result.addMessage("80D family " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fpPerson.age + " , Type : " + "@{deductionType}");
 end
 end template

@@ -1,6 +1,7 @@
 package com.work.itpa.rules;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FinPersonResult {
@@ -13,6 +14,35 @@ public class FinPersonResult {
 	
 	List<Deduction> plannedDeductions = new ArrayList<Deduction>();
 
+	public Deduction getDeductionForType(String type){
+		
+		Deduction deduction = null;
+		
+		boolean found = false;
+		
+		
+		for (Iterator iterator = plannedDeductions.iterator(); iterator.hasNext();) {
+			Deduction d1 = (Deduction) iterator.next();
+			if ( type.equals(d1.getSection()))
+				found = true; 
+				
+		}
+		
+		if ( found == false ){
+			deduction = new Deduction();
+			plannedDeductions.add(deduction);
+		}
+		
+		return deduction;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	public void addMessage(String message) {
 		messages.add(message);
 	}
