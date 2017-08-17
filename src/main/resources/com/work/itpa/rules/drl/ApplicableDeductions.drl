@@ -22,7 +22,7 @@ If
 
 rule "Get List of all deductions which can be availed for 80"   
     when
-        $deduction : Deduction ( section == "80U")
+        $deduction : Deduction ()
         $result : FinPersonResult( )
     then
     	$result.addDeduction($deduction);

@@ -31,7 +31,7 @@ end template
 
 template "AT D for family members"
 
-rule "ATDFamily@{row.rowNumber}"
+rule "ATDDBFamily@{row.rowNumber}"
     when
         $fp : FinPerson( )
         $fpPerson :  Person   (	
@@ -42,7 +42,8 @@ rule "ATDFamily@{row.rowNumber}"
         ) from $fp.family 
         $result : FinPersonResult( )
     then
-        $result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  ));	
+        Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  );
+        insert($deduction);	
         $result.addMessage("@{section}" + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fpPerson.age + " , Type : " + "@{deductionType}");
 end
 end template
