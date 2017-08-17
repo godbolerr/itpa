@@ -1,6 +1,7 @@
 template header
-assesseeType
+section
 deductionType
+assesseeType
 relationShipCode
 minAge
 maxAge
@@ -22,9 +23,9 @@ rule "ATDDB@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80DDB","@{relationShipCode}  Age: " + $fp.age  );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  );
     	insert($deduction);
-        $result.addMessage("80D " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
+        $result.addMessage("@{section}" + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template
 
@@ -41,8 +42,8 @@ rule "ATDFamily@{row.rowNumber}"
         ) from $fp.family 
         $result : FinPersonResult( )
     then
-        $result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","80DDB","@{relationShipCode}  Age: " + $fp.age  ));	
-        $result.addMessage("80D family " + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fpPerson.age + " , Type : " + "@{deductionType}");
+        $result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  ));	
+        $result.addMessage("@{section}" + "@{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fpPerson.age + " , Type : " + "@{deductionType}");
 end
 end template
 

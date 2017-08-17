@@ -1,4 +1,6 @@
 template header
+section
+deductionType
 assesseeType
 relationShipCode
 minDisabilityPercent
@@ -21,9 +23,9 @@ rule "ATD@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Disability: " + $fp.disabilityPercent  );
 		insert($deduction);
-        $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+        $result.addMessage("@{section} : @{relationShipCode}  Disability: " + $fp.disabilityPercent);
 end
 end template
 
@@ -40,8 +42,8 @@ rule "ATDFamily@{row.rowNumber}"
         ) from $fp.family 
         $result : FinPersonResult( )
     then
-    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","80U","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
-        $result.addMessage("80U " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+    	$result.addDeduction(new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Standard","@{section}","@{relationShipCode}  Disability: " + $fp.disabilityPercent  ));
+        $result.addMessage("@{section} " + " @{relationShipCode}  Disability: " + $fp.disabilityPercent);
 end
 end template
 **/
