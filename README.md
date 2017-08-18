@@ -1,109 +1,87 @@
 # itpa
+This application was generated using JHipster 4.6.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.6.2](https://jhipster.github.io/documentation-archive/v4.6.2).
+
+This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
+
+This application is configured for Service Discovery and Configuration with . On launch, it will refuse to start if it is not able to connect to .
+
+## Development
+
+To start your application in the dev profile, simply run:
+
+    ./mvnw
 
 
-TODO:
+For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
-1. Build Base class to create test data
-2. Add java.util.time instead of Date
-3. Build rules for collections
-4. Expand result object
+### Using angular-cli
 
-Types of Rules;
+You can also use [Angular CLI][] to generate some custom client code.
 
-1. Validation
-2. Calculation
-3. Filteration
+For example, the following command:
 
+    ng generate component my-component
 
+will generate few files:
 
-5. Test parallel invocation of rules
+    create src/main/webapp/app/my-component/my-component.component.html
+    create src/main/webapp/app/my-component/my-component.component.ts
+    update src/main/webapp/app/app.module.ts
 
-KieServices ks = KieServices.Factory.get();
-KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
-kieBaseConf.setOption(MultithreadEvaluationOption.YES);
-KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
+## Building for production
 
-drools.multithreadEvaluation = true // system property
+To optimize the itpa application for production, run:
 
+    ./mvnw -Pprod clean package
 
-5. Use of ReactiveList for notifications on modified fields.
+To ensure everything worked, run:
 
-<groupId>org.kie</groupId>
-<artifactId>kie-maven-plugin</artifactId>
-<extensions>true</extensions>
-<configuration>
-    <instrument-enabled>true</instrument-enabled> 
-</configuration>
-
-6. Usage of Rule Units [ Experimental feature ]
-
-7. accumulate function
-
-Long(...) from accumulate(..., sum($p.getLongWeight()))
-
-8. Update session to inform changes to the object
-
-Person me = new Person("me", 40);
-FactHandle meHandle = ksession.insert( me );
-
-me.setAge(41);
-me.setAddress("California Avenue");
-ksession.update( meHandle, me, "age", "address" );
+    java -jar target/*.war
 
 
-9. Usage of OOPath 
+Refer to [Using JHipster in production][] for more details.
 
+## Testing
 
+To launch your application's tests, run:
 
-Student( $grade: /plan/exams/grades{ result > ../averageResult } )
-Student( $grade: ?/plan/exams{ course == "Big Data" }/grades )
+    ./mvnw clean test
 
-rule "Find all grades for Big Data exam" when
-    Student( $grade: /plan/exams{course == "Big Data"}/grades )
-then /* RHS */ end
+For more information, refer to the [Running tests page][].
 
-10. Usage of queries
+## Using Docker to simplify development (optional)
 
-11. Usage of kiebases in one another.
+You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+For example, to start a mysql database in a docker container, run:
 
-12. agendaeventlistener in kiesession thru kmodule.xml
+    docker-compose -f src/main/docker/mysql.yml up -d
 
-13. Defining a KieModule programmatically
+To stop it and remove the container, run:
 
-14. severity of rules and functions for duplicate
+    docker-compose -f src/main/docker/mysql.yml down
 
-// sets the severity of rule updates
-drools.kbuilder.severity.duplicateRule = <INFO|WARNING|ERROR>
-// sets the severity of function updates
-drools.kbuilder.severity.duplicateFunction = <INFO|WARNING|ERROR>
+You can also fully dockerize your application and all the services that it depends on.
+To achieve this, first build a docker image of your app by running:
 
+    ./mvnw package -Pprod docker:build
 
-15. Globals and channels.
+Then run:
 
+    docker-compose -f src/main/docker/app.yml up -d
 
+For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
-16. Stateful and stateless. - keywords related to rules.
+## Continuous Integration (optional)
 
+To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
-17. Negative salience for rules which we want to fire in the end.
-
-salience -50
-
-rule "Print balance for AccountPeriod"
-        salience -50
-    when
-        ap : AccountPeriod()
-        acc : Account()
-    then
-        System.out.println( acc.accountNo + " : " + acc.balance );
-end
-
-
-18. Use of ruleflow-group to sequence the execution of rules.
-
-19. insertLogical ?
-
-
-
+[JHipster Homepage and latest documentation]: https://jhipster.github.io
+[JHipster 4.6.2 archive]: https://jhipster.github.io/documentation-archive/v4.6.2
+[Doing microservices with JHipster]: https://jhipster.github.io/documentation-archive/v4.6.2/microservices-architecture/
+[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.6.2/development/
+[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.6.2/docker-compose
+[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.6.2/production/
+[Running tests page]: https://jhipster.github.io/documentation-archive/v4.6.2/running-tests/
+[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.6.2/setting-up-ci/
 
 

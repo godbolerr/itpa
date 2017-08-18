@@ -29,7 +29,7 @@ public class Donation {
 	
 	String details;
 	
-	
+	public Donation(){}
 	
 
 	/**

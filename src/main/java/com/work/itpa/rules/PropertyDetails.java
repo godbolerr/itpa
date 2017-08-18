@@ -20,6 +20,7 @@ public class PropertyDetails {
 	 */
 	String status;
 
+	public PropertyDetails(){}
 	/**
 	 * @param name
 	 * @param city

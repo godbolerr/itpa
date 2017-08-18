@@ -29,6 +29,7 @@ public class Income {
 	String details;
 	
 	
+	public Income(){}
 
 	/**
 	 * @param amount

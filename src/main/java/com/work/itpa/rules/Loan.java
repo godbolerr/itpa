@@ -38,6 +38,8 @@ public class Loan {
 	
 	
 	
+	public Loan(){}
+	
 
 	/**
 	 * @param interestPaidPerAnum

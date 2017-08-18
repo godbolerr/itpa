@@ -1,4 +1,4 @@
-package com.work.itpa;
+package com.work.itpa.config;
 
 import java.io.IOException;
 

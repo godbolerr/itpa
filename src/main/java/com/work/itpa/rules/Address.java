@@ -53,6 +53,8 @@ public class Address {
 		this.landMark = landMark;
 		this.addressType = addressType;
 	}
+	
+	public Address(){}
 
 	/**
 	 * @return the addressLine1

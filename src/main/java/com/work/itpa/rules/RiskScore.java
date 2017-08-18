@@ -14,6 +14,8 @@ public class RiskScore {
 
 	
 	
+	public RiskScore(){}
+	
 	
 	/**
 	 * @param value

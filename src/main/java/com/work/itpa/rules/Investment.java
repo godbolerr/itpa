@@ -31,7 +31,7 @@ public class Investment {
 	
 	public String details;
 	
-	
+	public Investment(){}
 	
 
 	/**
