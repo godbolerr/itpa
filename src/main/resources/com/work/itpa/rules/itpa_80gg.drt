@@ -1,0 +1,26 @@
+template header
+section
+hra
+maxDeduction
+maxDeductionNote
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "AT E Rules"
+
+rule "ATE@{row.rowNumber}"
+    when
+        $fp : FinPerson( 
+        		 	relationShipCode == "@{relationShipCode}",
+        		 	assesseeType == "@{assesseeType}"  
+        		 )        		 
+        $result : FinPersonResult( )
+    then
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  );
+    	insert($deduction);
+        $result.addMessage("@{section} : @{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
+end
+end template

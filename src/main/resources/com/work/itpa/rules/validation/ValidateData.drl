@@ -1,0 +1,17 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.rules.FiConstants;
+
+/**
+All validations for the Financial person will go here
+
+**/
+
+rule "Validate age of the person"   
+    when
+        $fp : FinPerson( age < 41)
+    then
+        System.out.println("Person is too young to be validated");
+        $fp.setValid(false);
+end

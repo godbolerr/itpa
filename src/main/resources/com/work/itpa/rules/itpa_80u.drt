@@ -1,0 +1,29 @@
+template header
+section
+assesseeType
+relationShipCode
+minDisabilityPercent
+maxDisabilityPercent
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "AT U Rules"
+
+rule "ATU@{row.rowNumber}"
+    when
+        $fp : FinPerson( disabilityPercent > @{minDisabilityPercent} , 
+						disabilityPercent <= @{maxDisabilityPercent} ,
+        		 	relationShipCode == "@{relationShipCode}",
+        		 	assesseeType == "@{assesseeType}"  
+        		 )        		 
+        $result : FinPersonResult( )
+    then
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Regular","@{section}","@{relationShipCode}  Disability: " + $fp.disabilityPercent  );
+		insert($deduction);
+        $result.addMessage("@{section} : @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+end
+end template

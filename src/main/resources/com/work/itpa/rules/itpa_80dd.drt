@@ -1,0 +1,29 @@
+template header
+section
+assesseeType
+relationShipCode
+minDisability
+maxDisability
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "ATDD Rules"
+
+
+rule "ATDD@{row.rowNumber}"
+    when
+        $fp : FinPerson( assesseeType == "@{assesseeType}" )
+        $fpPerson :  Person   (	disabilityPercent  > @{minDisability} , 
+								disabilityPercent  <= @{maxDisability} ,
+        		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
+        $result : FinPersonResult( )
+    then
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"NA","@{section}","@{relationShipCode}  Age: " + $fp.age  );
+    	insert($deduction);
+        $result.addMessage("@{section} : @{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age );
+end
+end template
