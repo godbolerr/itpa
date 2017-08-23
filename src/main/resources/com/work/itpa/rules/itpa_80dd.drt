@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 template "ATDD Rules"
 
 
-rule "ATDD@{row.rowNumber}"
+rule "ATDDX@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" )
         $fpPerson :  Person   (	disabilityPercent  > @{minDisability} , 

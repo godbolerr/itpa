@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 
 template "AT DDDB Rules"
 
-rule "ATDDB@{row.rowNumber}"
+rule "ATDDBX@{row.rowNumber}"
     when
         $fp : FinPerson( age > @{minAge} , 
 						age <= @{maxAge} ,
