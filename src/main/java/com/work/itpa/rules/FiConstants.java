@@ -5,8 +5,8 @@ public class FiConstants {
 	public static final String GENDER_MALE = "Male";	
 	public static final String GENDER_FEMALE = "Female";
 
-	public static final String GENDER_MARRIED = "Married";	
-	public static final String GENDER_SINGLE = "Single";
+	public static final String MARITAL_MARRIED = "Married";	
+	public static final String MARITAL_SINGLE = "Single";
 
 	public static final String OWNERSHIP_OWN = "Own";	
 	public static final String OWNERSHIP_RENTAL = "Rental";

@@ -10,6 +10,7 @@ import com.work.itpa.rules.Donation;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.Income;
+import com.work.itpa.rules.Investment;
 import com.work.itpa.rules.Person;
 
 /**
@@ -103,20 +104,25 @@ public class PersonUtil {
 
 	public static FinPerson getMarriedMale() {
 		FinPerson person = getPerson();
-		person.setMaritalStatus("Married");
-		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), "Female", "Wife", 0, "");
+		person.setMaritalStatus(FiConstants.MARITAL_MARRIED);
+		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_WIFE, 0, "");
 		wife.setAge(37);
 		person.addChildren(wife);
 		return person;
 	}
 
 	public static FinPerson getMarriedMaleWithOneDaughter() {
-
 		FinPerson person = getMarriedMale();
-		Person daughter = new Person("Aasha", FiConstants.RESIDENT_RESIDENT, new Date(), "Female", "Daughter", 0, "");
+		Person daughter = new Person("Aasha", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_DAUGHTER, 0, "");
 		daughter.setAge(17);
 		person.addChildren(daughter);
 		return person;
 	}
+	
+	public static FinPerson addInvestment(FinPerson person, double amount, String type, String note) {
+		person.addInvestment(new Investment(BigDecimal.valueOf(amount), type, note));
+		return person;
+	}
+
 
 }
