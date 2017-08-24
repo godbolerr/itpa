@@ -3,15 +3,17 @@ section
 residentStatus
 donationName
 maxDeductionPercent
+maxGtiPercent
 
 package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
 
-template "AT G Rules"
+template "AT G  1 Rules"
 
-rule "ATG@{row.rowNumber}"
+
+rule "AT1GG@{row.rowNumber}"
     when
       $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"    		 

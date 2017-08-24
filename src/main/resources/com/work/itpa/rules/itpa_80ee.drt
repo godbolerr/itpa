@@ -1,9 +1,9 @@
 template header
 section
+residentStatus
 assesseeType
-maxPropertyValue
-maxLoanValue
-maxDeduction
+propertyValueMax
+loanValueMax
 
 package com.work.itpa.rules;
 
@@ -14,14 +14,13 @@ template "AT EE Rules"
 
 rule "ATEE@{row.rowNumber}"
     when
-        $fp : FinPerson( 
-        		 	relationShipCode == "@{relationShipCode}",
+        $fp : FinPerson(         		 	residentStatus == "@{residentStatus}"  ,
+         
         		 	assesseeType == "@{assesseeType}"  
         		 )        		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","");
     	insert($deduction);
-        $result.addMessage("@{section} : @{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template
