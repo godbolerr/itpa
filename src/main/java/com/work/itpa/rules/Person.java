@@ -57,6 +57,16 @@ public class Person implements Serializable {
 	
 	String relationShipCode;
 	
+	
+	String residentStatus;
+	
+	
+	String maritalStatus;
+	
+	
+	String employmentStatus;
+	
+	
 	/**
 	 * Percent of disability 
 	 * 
@@ -264,6 +274,52 @@ public class Person implements Serializable {
 	 */
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+	
+	
+
+	/**
+	 * @return the residentStatus
+	 */
+	public String getResidentStatus() {
+		return residentStatus;
+	}
+
+	/**
+	 * @param residentStatus the residentStatus to set
+	 */
+	public void setResidentStatus(String residentStatus) {
+		this.residentStatus = residentStatus;
+	}
+	
+	
+
+	/**
+	 * @return the employmentStatus
+	 */
+	public String getEmploymentStatus() {
+		return employmentStatus;
+	}
+
+	/**
+	 * @param employmentStatus the employmentStatus to set
+	 */
+	public void setEmploymentStatus(String employmentStatus) {
+		this.employmentStatus = employmentStatus;
+	}
+
+	/**
+	 * @return the maritalStatus
+	 */
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	/**
+	 * @param maritalStatus the maritalStatus to set
+	 */
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
 	}
 
 	/* (non-Javadoc)

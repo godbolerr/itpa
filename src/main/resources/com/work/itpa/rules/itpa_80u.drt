@@ -1,5 +1,6 @@
 template header
 section
+residentStatus
 assesseeType
 relationShipCode
 minDisabilityPercent
@@ -13,17 +14,19 @@ import java.math.BigDecimal;
 
 template "AT U Rules"
 
-rule "ATU@{row.rowNumber}"
+
+rule "ATUDisability@{row.rowNumber}"
     when
-        $fp : FinPerson( disabilityPercent > @{minDisabilityPercent} , 
-						disabilityPercent <= @{maxDisabilityPercent} ,
-        		 	relationShipCode == "@{relationShipCode}",
-        		 	assesseeType == "@{assesseeType}"  
-        		 )        		 
+        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
+        				residentStatus == "@{residentStatus}"
+        
+        			 	)
+        $fpPerson :  Person   ( disabilityPercent > @{minDisabilityPercent} , 
+								disabilityPercent <= @{maxDisabilityPercent} ,						
+        		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"Regular","@{section}","@{relationShipCode}  Disability: " + $fp.disabilityPercent  );
-		insert($deduction);
-        $result.addMessage("@{section} : @{relationShipCode}  Disability: " + $fp.disabilityPercent);
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fpPerson.age + ": Disability Percent " + $fpPerson.disabilityPercent );
+    	insert($deduction);
 end
 end template

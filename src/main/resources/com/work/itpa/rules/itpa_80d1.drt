@@ -6,6 +6,7 @@ relationShipCode
 deductionType
 minAge
 maxAge
+maritalStatus
 maxDeduction
 
 package com.work.itpa.rules;
@@ -13,9 +14,9 @@ package com.work.itpa.rules;
 import java.util.List;
 import java.math.BigDecimal;
 
-template "ATDRules"
+template "ATDRulesMarried"
 
-rule "ATD@{row.rowNumber}"
+rule "ATD1Marital@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"
@@ -23,10 +24,11 @@ rule "ATD@{row.rowNumber}"
         			 	)
         $fpPerson :  Person   (	age  >= @{minAge} , 
 								age  <= @{maxAge} ,
+								maritalStatus == "{@maritalStatus}" ,
         		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fpPerson.age  );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fpPerson.age + ":" + $fpPerson.maritalStatus );
     	insert($deduction);
 end
 end template

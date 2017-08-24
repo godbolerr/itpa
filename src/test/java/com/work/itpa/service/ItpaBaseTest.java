@@ -20,7 +20,7 @@ public class ItpaBaseTest {
 		fPerson.setContactNumber("+1 998 889 8888");
 		fPerson.setAadharNumber("9998887878");
 		fPerson.setPanNumber("OPDID9987A");
-		fPerson.setResidentialStatus("INDIAN");
+		//fPerson.setResidentialStatus("INDIAN");
 		fPerson.setAssesseeType("Individual");
 		fPerson.setAge(40);
 		fPerson.setEmploymentType("GOV");

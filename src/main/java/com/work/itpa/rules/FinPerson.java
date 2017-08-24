@@ -25,9 +25,7 @@ public class FinPerson extends Person {
 
 	String aadharNumber;
 
-	String residentialStatus;
-
-	String maritalStatus;
+	
 
 	Address address;
 
@@ -146,35 +144,6 @@ public class FinPerson extends Person {
 		this.aadharNumber = aadharNumber;
 	}
 
-	/**
-	 * @return the residentialStatus
-	 */
-	public String getResidentialStatus() {
-		return residentialStatus;
-	}
-
-	/**
-	 * @param residentialStatus
-	 *            the residentialStatus to set
-	 */
-	public void setResidentialStatus(String residentialStatus) {
-		this.residentialStatus = residentialStatus;
-	}
-
-	/**
-	 * @return the maritalStatus
-	 */
-	public String getMaritalStatus() {
-		return maritalStatus;
-	}
-
-	/**
-	 * @param maritalStatus
-	 *            the maritalStatus to set
-	 */
-	public void setMaritalStatus(String maritalStatus) {
-		this.maritalStatus = maritalStatus;
-	}
 
 	/**
 	 * @return the address
@@ -507,7 +476,7 @@ public class FinPerson extends Person {
 		result = prime * result + ((aadharNumber == null) ? 0 : aadharNumber.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((panNumber == null) ? 0 : panNumber.hashCode());
-		result = prime * result + ((residentialStatus == null) ? 0 : residentialStatus.hashCode());
+
 		return result;
 	}
 
@@ -549,13 +518,7 @@ public class FinPerson extends Person {
 		} else if (!panNumber.equals(other.panNumber)) {
 			return false;
 		}
-		if (residentialStatus == null) {
-			if (other.residentialStatus != null) {
-				return false;
-			}
-		} else if (!residentialStatus.equals(other.residentialStatus)) {
-			return false;
-		}
+
 		return true;
 	}
 	
