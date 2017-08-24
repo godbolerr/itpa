@@ -20,7 +20,7 @@ rule "ATEE@{row.rowNumber}"
         		 )        		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","");
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{loanValueMax}),"","@{section}","");
     	insert($deduction);
 end
 end template

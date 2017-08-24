@@ -1,26 +1,28 @@
 template header
 section
+residentStatus
+assesseeType
 hra
-maxDeduction
-maxDeductionNote
+maxRent
+rentPaidMinuGti
+gtiPercent
 
 package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
 
-template "AT E Rules"
+template "AT GG Rules"
 
-rule "ATE@{row.rowNumber}"
+rule "ATGG@{row.rowNumber}"
     when
         $fp : FinPerson( 
-        		 	relationShipCode == "@{relationShipCode}",
+        		 	residentStatus == "@{residentStatus}",
         		 	assesseeType == "@{assesseeType}"  
         		 )        		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"@{deductionType}","@{section}","@{relationShipCode}  Age: " + $fp.age  );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxRent}),"","@{section}",""  );
     	insert($deduction);
-        $result.addMessage("@{section} : @{relationShipCode},  Maximum Deduction : " + "@{maxDeduction} for age " + $fp.age + " , Type : " + "@{deductionType}");
 end
 end template

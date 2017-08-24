@@ -9,10 +9,10 @@ package com.work.itpa.rules;
 import java.util.List;
 import java.math.BigDecimal;
 
-template "ATGGC Donation to political parties"
+template "ATQQB Royalty income of authors "
 
 
-rule "ATGGC@{row.rowNumber}"
+rule "ATQQB@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"

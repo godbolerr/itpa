@@ -19,7 +19,7 @@ template "ATDRulesMarried"
 rule "ATD1Marital@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
+        				 residentStatus == "@{residentStatus}"
         
         			 	)
         $fpPerson :  Person   (	age  >= @{minAge} , 

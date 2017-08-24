@@ -78,8 +78,8 @@ public class FinPerson extends Person {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public FinPerson(String name,Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
-		super(name,dateOfBirth, gender, relationShipCode, disabilityPercent, disease);
+	public FinPerson(String name,String residentStatus, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
+		super(name, residentStatus, dateOfBirth, gender, relationShipCode, disabilityPercent, disease);
 	}
 
 

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 
 template "ATE Interest on loan for higher education"
 
-rule "ATD1Marital@{row.rowNumber}"
+rule "ATD1Interest@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"
@@ -21,7 +21,7 @@ rule "ATD1Marital@{row.rowNumber}"
         $fpPerson :  Person   ( relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","@{relationShipCode} " );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{deductionPercent}),"","@{section}","@{relationShipCode} " );
     	insert($deduction);
 end
 end template

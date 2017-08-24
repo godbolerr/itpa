@@ -106,9 +106,10 @@ public class Person implements Serializable {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public Person(String name, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
+	public Person(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
 		super();
 		this.name = name;
+		this.residentStatus = residentStatus;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.relationShipCode = relationShipCode;

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 
 template "ATDRules"
 
-rule "ATD@{row.rowNumber}"
+rule "ATD_@{row.rowNumber}"
     when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"

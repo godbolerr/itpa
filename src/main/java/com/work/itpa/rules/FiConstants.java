@@ -11,6 +11,16 @@ public class FiConstants {
 	public static final String OWNERSHIP_OWN = "Own";	
 	public static final String OWNERSHIP_RENTAL = "Rental";
 	
+	public static final String RESIDENT_NRI = "NRI";
+	public static final String RESIDENT_RESIDENT = "Resident";
+	
+	public static final String ASSESSEE_HUF = "HUF";
+	public static final String ASSESSEE_INDIVIDUAL = "Individual";
+	
+	
+	
+	
+	
 	public static final String RELATIONSHIP_SELF = "Self";
 	public static final String RELATIONSHIP_WIFE = "Wife";
 	public static final String RELATIONSHIP_HUSBAND = "Husband";	
