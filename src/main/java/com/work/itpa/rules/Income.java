@@ -14,19 +14,19 @@ public class Income {
 	/**
 	 * Amount received.
 	 */
-	BigDecimal amount;
+	public BigDecimal amount;
 	
 	/**
 	 * Type of income. 
 	 * 
 	 */
-	String type;
+	public String type;
 	
 	/**
 	 * Other details associated with income.
 	 * 
 	 */
-	String details;
+	public String details;
 	
 	
 	public Income(){}

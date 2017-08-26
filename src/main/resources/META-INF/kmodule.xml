@@ -108,7 +108,7 @@
         <!-- Rule 80 TTA  -->
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-                      template="com/work/itpa/rules/itpa_tta.drt"
+                      template="com/work/itpa/rules/itpa_80tta.drt"
                       row="216" col="4"/>
                       
         <ksession name="ItpaDataKs"/>

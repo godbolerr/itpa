@@ -5,7 +5,10 @@ package com.work.itpa.utils;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.Donation;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
@@ -20,14 +23,14 @@ import com.work.itpa.rules.Person;
  *
  */
 public class PersonUtil {
-	
+
 	public static String PERSON_NAME = "Ram Kumar";
 	public static String PERSON_EMAIL = "rkumartyty@gmail.com";
 
 	public static FinPerson getPerson() {
 
-		FinPerson fPerson = new FinPerson(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_MALE,
-				FiConstants.RELATIONSHIP_SELF, 0, "");
+		FinPerson fPerson = new FinPerson(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
+				FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF, 0, "");
 
 		fPerson.setEmail(PERSON_EMAIL);
 		fPerson.setContactNumber("+1 998 889 8888");
@@ -105,7 +108,8 @@ public class PersonUtil {
 	public static FinPerson getMarriedMale() {
 		FinPerson person = getPerson();
 		person.setMaritalStatus(FiConstants.MARITAL_MARRIED);
-		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_WIFE, 0, "");
+		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+				FiConstants.RELATIONSHIP_WIFE, 0, "");
 		wife.setAge(37);
 		person.addChildren(wife);
 		return person;
@@ -113,16 +117,33 @@ public class PersonUtil {
 
 	public static FinPerson getMarriedMaleWithOneDaughter() {
 		FinPerson person = getMarriedMale();
-		Person daughter = new Person("Aasha", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_DAUGHTER, 0, "");
+		Person daughter = new Person("Aasha", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+				FiConstants.RELATIONSHIP_DAUGHTER, 0, "");
 		daughter.setAge(17);
 		person.addChildren(daughter);
 		return person;
 	}
-	
+
 	public static FinPerson addInvestment(FinPerson person, double amount, String type, String note) {
 		person.addInvestment(new Investment(BigDecimal.valueOf(amount), type, note));
 		return person;
 	}
 
+	public static boolean hasSectionWithAmount(List<Deduction> deductions, String section, BigDecimal amount) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = (Deduction) iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection()) && deduction.getAmount().compareTo(amount) == 0) {
+				return true;
+			}
+
+		}
+		return false;
+	}
 
 }
