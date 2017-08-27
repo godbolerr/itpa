@@ -129,7 +129,9 @@ public class PersonUtil {
 		return person;
 	}
 
-	public static boolean hasSectionWithAmount(List<Deduction> deductions, String section, BigDecimal amount) {
+	public static boolean hasSectionWithAmount(List<Deduction> deductions, String section, double amount) {
+		
+		BigDecimal newAmount = BigDecimal.valueOf(amount);
 
 		if (deductions == null || deductions.size() == 0) {
 			return false;
@@ -138,7 +140,7 @@ public class PersonUtil {
 		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = (Deduction) iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection()) && deduction.getAmount().compareTo(amount) == 0) {
+			if (section.equalsIgnoreCase(deduction.getSection()) && deduction.getAmount().compareTo(newAmount) == 0) {
 				return true;
 			}
 

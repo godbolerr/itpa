@@ -148,10 +148,14 @@ public class ItpaService {
 
 				if (FiConstants.DEDUCTION_ADDITIVE.equals(xDeduction.getMode())) {
 
-					xDeduction.setNotes(""); // Blank the notes as these are
-												// more than 1 deductions
+					Deduction totalDeduction = new Deduction();
+					totalDeduction.setMode(xDeduction.getMode());
+					totalDeduction.setType(xDeduction.getType());
+					totalDeduction.setSection(xDeduction.getSection());
 					BigDecimal origDeduction = xDeduction.getAmount();
-					xDeduction.setAmount(origDeduction.add(deduction.getAmount()));
+					totalDeduction.setAmount(origDeduction.add(deduction.getAmount()));
+					dMap.put(key, totalDeduction);				
+					
 				}
 
 			}
