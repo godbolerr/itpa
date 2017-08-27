@@ -99,6 +99,22 @@ public class PersonUtil {
 		return person;
 	}
 
+	public static FinPerson getBachelorMaleWithWard() {
+		FinPerson person = getPerson();
+		Person ward = new Person("Sham", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+				FiConstants.RELATIONSHIP_WARD, 0, "");
+		person.addDependent(ward);
+		return person;
+	}
+
+	public static FinPerson getBachelorMaleWithHUFMember() {
+		FinPerson person = getPerson();
+		Person hufMember = new Person("Laxman", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+				FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
+		person.addDependent(hufMember);
+		return person;
+	}
+
 	public static FinPerson getBachelorMaleAbove60() {
 		FinPerson person = getPerson();
 		person.setAge(61);
@@ -130,7 +146,7 @@ public class PersonUtil {
 	}
 
 	public static boolean hasSectionWithAmount(List<Deduction> deductions, String section, double amount) {
-		
+
 		BigDecimal newAmount = BigDecimal.valueOf(amount);
 
 		if (deductions == null || deductions.size() == 0) {
@@ -144,6 +160,111 @@ public class PersonUtil {
 				return true;
 			}
 
+		}
+		return false;
+	}
+
+	public static boolean hasSection(List<Deduction> deductions, String section) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = (Deduction) iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection())) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public static boolean hasSectionNTimes(List<Deduction> deductions, String section, int noOfTimes) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		int count = 0;
+
+		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection())) {
+				count++;
+			}
+		}
+
+		if (count == noOfTimes) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean hasSectionWithDeductionTypeAndAmount(List<Deduction> deductions, String section,
+			String deductionType, double amount) {
+
+		BigDecimal newAmount = BigDecimal.valueOf(amount);
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = (Deduction) iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+					&& deduction.getAmount().compareTo(newAmount) == 0) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public static boolean hasSectionWithDeductionType(List<Deduction> deductions, String section,
+			String deductionType) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = (Deduction) iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+
+			) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public static boolean hasSectionWithDeductionTypeNTimes(List<Deduction> deductions, String section,
+			String deductionType, int noOfTimes) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		int count = 0;
+
+		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+
+			) {
+				count++;
+			}
+		}
+
+		if (count == noOfTimes) {
+			return true;
 		}
 		return false;
 	}

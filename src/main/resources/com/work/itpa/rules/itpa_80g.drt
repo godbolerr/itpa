@@ -18,12 +18,10 @@ rule "ATG@{row.rowNumber}"
         				residentStatus == "@{residentStatus}"
         			 	)
         			 	
-        $pfDonation :  Donation   (	type == "@{donationName}" ) from $fp.donations   
-        							
-         
+        $pfDonation :  Donation   (	type == "@{donationName}" ) from $fp.donations          
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction($pfDonation.amount,"","Additive","@{section}","Amount deducted for " + $pfDonation.details );
+    	Deduction $deduction = new Deduction($pfDonation.amount,"80G","Additive","@{section}","Amount deducted for " + $pfDonation.details );
     	insert($deduction);
 end
 end template

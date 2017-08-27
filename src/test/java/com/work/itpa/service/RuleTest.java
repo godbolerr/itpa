@@ -309,6 +309,174 @@ public class RuleTest {
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80G", 40000);
 
 		assertTrue(totalResult);
+	}
+	
+	@Test
+	public void test80ESelfResidentIndividual() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		
+		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",1);
+
+		assertTrue(result);
 	}		
+
+	@Test
+	public void test80ESelfResidentIndividualMarried() {
+		FinPerson fPerson = PersonUtil.getMarriedMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		
+		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+
+		assertTrue(result);
+	}	
+	
+	@Test
+	public void test80ESelfResidentIndividualWithWard() {
+		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		
+		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+
+		assertTrue(result);
+	}		
+	
+	@Test
+	public void test80ESelfResidentHuf() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		
+		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",1);
+
+		assertTrue(result);
+	}		
+
+	@Test
+	public void test80ESelfResidentHufWithHufMember() {
+		FinPerson fPerson = PersonUtil.getBachelorMaleWithHUFMember();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		
+		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+
+		assertTrue(result);
+	}	
+	
+	
+	@Test
+	public void test80DSelfResidentIndividualBetween1And59() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(45);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,1);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,25000);
+
+		assertTrue(result);	
+		
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+
+		assertTrue(result);	
+		
+		
+		
+		
+		
+		
+		
+	}		
+	
+	
+	@Test
+	public void test80DSelfResidentIndividualAboveSixty() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(61);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
+		
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,1);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,30000);
+
+		assertTrue(result);	
+		
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+
+		assertTrue(result);	
+		
+		
+		
+		
+		
+		
+		
+	}		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
