@@ -17,7 +17,16 @@ public class Deduction {
 	/**
 	 * Section under which it is allowed.
 	 */
+	
+	/**
+	 * Mode indicates if deduction is unique in the collection or it has to be added.
+	 */
+	public String mode = FiConstants.DEDUCTION_UNIQUE;
+	
+	
+	
 	public String section;
+	
 
 	public String notes;
 
@@ -80,18 +89,53 @@ public class Deduction {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	
+
+	/**
+	 * @return the mode
+	 */
+	public String getMode() {
+		return mode;
+	}
+
+	/**
+	 * @param mode the mode to set
+	 */
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
 
 	/**
 	 * @param amount
 	 * @param section
 	 * @param notes
 	 */
-	public Deduction(BigDecimal amount, String type, String section, String notes) {
+	public Deduction(BigDecimal amount, String type, String mode, String section, String notes) {
 		super();
 		this.amount = amount;
+		this.type = type;
+		this.mode = mode;
 		this.section = section;
 		this.notes = notes;
+		
+	}
+	
+	/**
+	 * Called when type is unique
+	 * 
+	 * @param amount
+	 * @param type
+	 * @param section
+	 * @param notes
+	 */
+	public Deduction(BigDecimal amount, String type,  String section, String notes) {
+		super();
+		this.amount = amount;
 		this.type = type;
+		this.section = section;
+		this.notes = notes;
+		
 	}
 
 	public Deduction() {

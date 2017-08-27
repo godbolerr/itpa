@@ -25,7 +25,7 @@ rule "ATTTA@{row.rowNumber}"
          
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction($pfIncome.amount,"","@{section}","Amount deducted for savings interest earned" );
+    	Deduction $deduction = new Deduction($pfIncome.amount,"","Additive", "@{section}","Amount deducted for savings interest earned" );
     	insert($deduction);
 end
 end template

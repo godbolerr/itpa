@@ -23,7 +23,7 @@ rule "ATRRB@{row.rowNumber}"
          
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction($pfIncome.amount,"","@{section}","Amount deducted for patent earning " );
+    	Deduction $deduction = new Deduction($pfIncome.amount,"","Additive","@{section}","Amount deducted for " + $pfIncome.details );
     	insert($deduction);
 end
 end template

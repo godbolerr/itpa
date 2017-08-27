@@ -3,6 +3,7 @@
  */
 package com.work.itpa.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.work.itpa.rules.Deduction;
+import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.rules.Person;
@@ -67,7 +69,7 @@ public class ItpaService {
 		kSession.addEventListener(new DefaultAgendaEventListener() {
 			public void afterMatchFired(AfterMatchFiredEvent event) {
 				super.afterMatchFired(event);
-				//System.out.println(" ### " + event);
+				// System.out.println(" ### " + event);
 			}
 		});
 
@@ -104,7 +106,7 @@ public class ItpaService {
 		kSession.insert(result);
 
 		kSession.fireAllRules();
-		
+
 		logger.close();
 
 		List<Deduction> plannedDeductions = calculateMaxPerCatetory(result.getDeductions());
@@ -135,9 +137,23 @@ public class ItpaService {
 				dMap.put(key, deduction);
 			} else {
 				Deduction xDeduction = dMap.get(key);
-				if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
-					dMap.put(key, deduction);
+
+				if (FiConstants.DEDUCTION_UNIQUE.equals(xDeduction.getMode())) {
+					
+					//TODO Add exact comparison
+					if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
+						dMap.put(key, deduction);
+					}
 				}
+
+				if (FiConstants.DEDUCTION_ADDITIVE.equals(xDeduction.getMode())) {
+
+					xDeduction.setNotes(""); // Blank the notes as these are
+												// more than 1 deductions
+					BigDecimal origDeduction = xDeduction.getAmount();
+					xDeduction.setAmount(origDeduction.add(deduction.getAmount()));
+				}
+
 			}
 		}
 

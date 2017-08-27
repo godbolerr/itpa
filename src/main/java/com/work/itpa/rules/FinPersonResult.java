@@ -12,6 +12,8 @@ public class FinPersonResult {
 	
 	List<Deduction> deductions = new ArrayList<Deduction>();
 	
+	//TODO Change this variable name
+	
 	List<Deduction> plannedDeductions = new ArrayList<Deduction>();
 
 	public Deduction getDeductionForType(String type){

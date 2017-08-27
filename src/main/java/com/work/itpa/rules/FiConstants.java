@@ -31,6 +31,11 @@ public class FiConstants {
 	public static final String RELATIONSHIP_FATHER = "Father";
 	public static final String RELATIONSHIP_OTHER = "Other";
 	
+	public static final String DEDUCTION_UNIQUE = "Unique";
+	public static final String DEDUCTION_ADDITIVE = "Additive";
+	
+	
+	
 	
 	
 	

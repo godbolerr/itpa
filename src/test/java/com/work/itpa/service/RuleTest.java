@@ -105,17 +105,20 @@ public class RuleTest {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", BigDecimal.valueOf(20000));
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", BigDecimal.valueOf(Double.valueOf(20000.0d)));
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", BigDecimal.valueOf(22000));
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", BigDecimal.valueOf(Double.valueOf(22000.0d)));
 
 		assertTrue(result);		
 		
 		//TODO : If there are more than 2 patents then final deduction should be sum of both . Confirm this.
 		
 		
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", BigDecimal.valueOf(Double.valueOf(42000.0d)));
+
+		assertTrue(totalResult);		
 		
 	}	
 	
