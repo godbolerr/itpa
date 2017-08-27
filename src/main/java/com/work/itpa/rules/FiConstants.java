@@ -19,6 +19,7 @@ public class FiConstants {
 	
 	public static final String INCOME_SAVINGINTEREST = "SavingsInterest";	
 	public static final String INCOME_PATENT = "Patent";
+	public static final String INCOME_AUTHOR = "Author";
 	
 	
 	

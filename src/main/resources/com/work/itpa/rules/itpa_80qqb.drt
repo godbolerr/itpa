@@ -13,13 +13,17 @@ template "ATQQB Royalty income of authors "
 
 
 rule "ATQQB@{row.rowNumber}"
-    when
+      when
         $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"
         			 	)
+        			 	
+        $pfIncome :  Income   (	type == "Author" ) from $fp.otherIncomes   
+        							
+         
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeductionPercent}),"","@{section}","" );
+    	Deduction $deduction = new Deduction($pfIncome.amount,"","Additive","@{section}","Amount deducted for " + $pfIncome.details );
     	insert($deduction);
 end
 end template

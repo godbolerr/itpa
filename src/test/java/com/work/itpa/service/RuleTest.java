@@ -18,7 +18,6 @@ import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.utils.PersonUtil;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItparulesApplication.class)
 public class RuleTest {
@@ -62,7 +61,7 @@ public class RuleTest {
 
 		assertTrue(result);
 	}
-	
+
 	@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeGreaterThan10K() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -76,9 +75,8 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80TTA", 10001);
 
 		assertFalse(result);
-	}	
-	
-	
+	}
+
 	@Test
 	public void test80RRBResidentIndividualOnePatentIncome() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -92,8 +90,8 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", 20000);
 
 		assertTrue(result);
-	}	
-	
+	}
+
 	@Test
 	public void test80RRBResidentIndividualTwoPatentIncome() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -108,17 +106,16 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", 20000);
 
 		assertTrue(result);
-		
+
 		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", 22000);
 
-		assertTrue(result);		
-		
+		assertTrue(result);
+
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", 42000);
 
-		assertTrue(totalResult);		
-		
-	}	
+		assertTrue(totalResult);
 
+	}
 
 	@Test
 	public void test80RRBResidentIndividualThreePatentIncomeFractions() {
@@ -134,16 +131,56 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", 20000.14);
 
 		assertTrue(result);
-		
+
 		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80RRB", 22000.13);
+
+		assertTrue(result);
+
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", 42000.27);
+
+		assertTrue(totalResult);
+
+	}
+
+	@Test
+	public void test80QQBResidentIndividualAuthorIncomeSingle() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addIncome(fPerson, 13000, FiConstants.INCOME_AUTHOR, "Income from Authoring book 1");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80QQB", 13000);
+
+		assertTrue(result);
+
+	}
+
+	
+	@Test
+	public void test80QQBResidentIndividualAuthorIncomeDouble() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addIncome(fPerson, 24000.20, FiConstants.INCOME_AUTHOR, "Income from Authoring book 1");
+		PersonUtil.addIncome(fPerson, 25000.50, FiConstants.INCOME_AUTHOR, "Income from Authoring book 2");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80QQB", 24000.20);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80QQB", 25000.50);
 
 		assertTrue(result);		
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", 42000.27);
+		
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80QQB", 49000.70);
 
 		assertTrue(totalResult);		
-		
-	}	
+
+	}
+	
 	
 	
 }
