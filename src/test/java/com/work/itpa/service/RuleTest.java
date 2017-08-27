@@ -181,6 +181,91 @@ public class RuleTest {
 
 	}
 	
+	@Test
+	public void test80GGCResidentIndividualPoliticalDonations() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_POLITICAL, "Donation to policical party xyz ");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 20000);
+
+		assertTrue(result);
+	}	
+	
+	
+	@Test
+	public void test80GGCResidentIndividualTwoPoliticalDonations() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_POLITICAL, "Donation to policical party xyz ");
+		PersonUtil.addDonation(fPerson, 40000, FiConstants.DONATION_POLITICAL, "Donation to policical party abc ");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 20000);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 40000);
+
+		assertTrue(result);
+		
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80GGC", 60000);
+
+		assertTrue(totalResult);		
+		
+	}	
+	
+	
+
+	@Test
+	public void test80GGCResidentIndividualResearchDonations() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for biology");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 20000);
+
+		assertTrue(result);
+	}	
+	
+	
+	@Test
+	public void test80GGCResidentIndividualTwoResearchDonations() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addDonation(fPerson, 2000000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for biology ");
+		PersonUtil.addDonation(fPerson, 4000000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for chemistry ");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 2000000);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 4000000);
+
+		assertTrue(result);
+		
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80GGA", 6000000);
+
+		assertTrue(totalResult);		
+		
+	}	
+	
+	
 	
 	
 }

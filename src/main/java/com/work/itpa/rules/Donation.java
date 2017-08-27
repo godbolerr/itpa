@@ -15,19 +15,19 @@ public class Donation {
 	 * Amount donated.
 	 * 
 	 */
-	BigDecimal amount;
+	public BigDecimal amount;
 	
 	/**
 	 * Type of institution to which amount is donated
 	 */
 	
-	String type;
+	public String type;
 	
 	/**
 	 * Other details about an institution.
 	 */
 	
-	String details;
+	public String details;
 	
 	public Donation(){}
 	

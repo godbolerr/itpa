@@ -21,7 +21,8 @@ public class FiConstants {
 	public static final String INCOME_PATENT = "Patent";
 	public static final String INCOME_AUTHOR = "Author";
 	
-	
+	public static final String DONATION_POLITICAL = "Political";
+	public static final String DONATION_RESEARCH = "Research";	
 	
 	public static final String RELATIONSHIP_SELF = "Self";
 	public static final String RELATIONSHIP_WIFE = "Wife";

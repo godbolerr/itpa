@@ -86,8 +86,8 @@ public class PersonUtil {
 
 	}
 
-	public static void addDonation(FinPerson person, double amount, String orgName, String note) {
-		person.addDonation(new Donation(BigDecimal.valueOf(amount), orgName, note));
+	public static void addDonation(FinPerson person, double amount, String type, String note) {
+		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
 	}
 
 	public static void addIncome(FinPerson person, double amount, String reasonCode, String note) {
