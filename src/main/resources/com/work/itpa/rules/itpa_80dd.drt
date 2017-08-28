@@ -21,7 +21,7 @@ rule "ATDDDisabilityOthers@{row.rowNumber}"
         				residentStatus == "@{residentStatus}"
         
         			 	)
-        $fpPerson :  Person   ( disabilityPercent > @{minDisabilityPercent} , 
+        $fpPerson :  Person   ( disabilityPercent >= @{minDisabilityPercent} , 
 								disabilityPercent <= @{maxDisabilityPercent} ,						
         		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
         $result : FinPersonResult( )

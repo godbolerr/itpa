@@ -16,6 +16,7 @@ import com.work.itpa.itparules.ItparulesApplication;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
+import com.work.itpa.rules.Person;
 import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -156,7 +157,6 @@ public class RuleTest {
 
 	}
 
-	
 	@Test
 	public void test80QQBResidentIndividualAuthorIncomeDouble() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -169,18 +169,17 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80QQB", 24000.20);
 
 		assertTrue(result);
-		
+
 		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80QQB", 25000.50);
 
-		assertTrue(result);		
-		
-		
+		assertTrue(result);
+
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80QQB", 49000.70);
 
-		assertTrue(totalResult);		
+		assertTrue(totalResult);
 
 	}
-	
+
 	@Test
 	public void test80GGCResidentIndividualPoliticalDonations() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -194,9 +193,8 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 20000);
 
 		assertTrue(result);
-	}	
-	
-	
+	}
+
 	@Test
 	public void test80GGCResidentIndividualTwoPoliticalDonations() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -211,25 +209,24 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 20000);
 
 		assertTrue(result);
-		
+
 		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGC", 40000);
 
 		assertTrue(result);
-		
+
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80GGC", 60000);
 
-		assertTrue(totalResult);		
-		
-	}	
-	
-	
+		assertTrue(totalResult);
+
+	}
 
 	@Test
 	public void test80GGCResidentIndividualResearchDonations() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for biology");
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_RESEARCH,
+				"Donation to scientific research for biology");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -237,16 +234,17 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 20000);
 
 		assertTrue(result);
-	}	
-	
-	
+	}
+
 	@Test
 	public void test80GGCResidentIndividualTwoResearchDonations() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 2000000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for biology ");
-		PersonUtil.addDonation(fPerson, 4000000, FiConstants.DONATION_RESEARCH, "Donation to scientific research for chemistry ");
+		PersonUtil.addDonation(fPerson, 2000000, FiConstants.DONATION_RESEARCH,
+				"Donation to scientific research for biology ");
+		PersonUtil.addDonation(fPerson, 4000000, FiConstants.DONATION_RESEARCH,
+				"Donation to scientific research for chemistry ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -254,23 +252,24 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 2000000);
 
 		assertTrue(result);
-		
+
 		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80GGA", 4000000);
 
 		assertTrue(result);
-		
+
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80GGA", 6000000);
 
-		assertTrue(totalResult);		
-		
-	}	
-	
+		assertTrue(totalResult);
+
+	}
+
 	@Test
 	public void test80GResidentIndividualDonation() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund", "Donation to Prime Minister’s National Relief Fund");
+		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+				"Donation to Prime Minister’s National Relief Fund");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -278,39 +277,39 @@ public class RuleTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), "80G", 20000);
 
 		assertTrue(result);
-	}	
-	
-	
+	}
+
 	@Test
 	public void test80GResidentIndividualDonationTwoTimesSameScheme() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund", "Donation to Prime Minister’s National Relief Fund");
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund", "Donation to Prime Minister’s National Relief Fund again");
+		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+				"Donation to Prime Minister’s National Relief Fund");
+		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+				"Donation to Prime Minister’s National Relief Fund again");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80G", 40000);
 
 		assertTrue(totalResult);
-	}		
-	
+	}
+
 	@Test
 	public void test80GResidentIndividualDonationTwoDifferentScheme() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund", "Donation to Prime Minister’s National Relief Fund");
+		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+				"Donation to Prime Minister’s National Relief Fund");
 		PersonUtil.addDonation(fPerson, 20000, "National Sports Fund", "Donation to National Sports Fund");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80G", 40000);
 
 		assertTrue(totalResult);
 	}
-	
+
 	@Test
 	public void test80ESelfResidentIndividual() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -319,15 +318,14 @@ public class RuleTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",1);
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80E");
 
 		assertTrue(result);
-	}		
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80E", 1);
+
+		assertTrue(result);
+	}
 
 	@Test
 	public void test80ESelfResidentIndividualMarried() {
@@ -337,16 +335,15 @@ public class RuleTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80E");
 
 		assertTrue(result);
-	}	
-	
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80E", 2);
+
+		assertTrue(result);
+	}
+
 	@Test
 	public void test80ESelfResidentIndividualWithWard() {
 		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
@@ -355,16 +352,15 @@ public class RuleTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80E");
 
 		assertTrue(result);
-	}		
-	
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80E", 2);
+
+		assertTrue(result);
+	}
+
 	@Test
 	public void test80ESelfResidentHuf() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
@@ -372,15 +368,15 @@ public class RuleTest {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-		
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",1);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80E");
 
 		assertTrue(result);
-	}		
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80E", 1);
+
+		assertTrue(result);
+	}
 
 	@Test
 	public void test80ESelfResidentHufWithHufMember() {
@@ -389,94 +385,226 @@ public class RuleTest {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-		
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),"80E",2);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80E");
 
 		assertTrue(result);
-	}	
-	
-	
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80E", 2);
+
+		assertTrue(result);
+	}
+
 	@Test
 	public void test80DSelfResidentIndividualBetween1And59() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setAge(45);
-		
+
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-		
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,1);
+
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE);
 
 		assertTrue(result);
-		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,25000);
 
-		assertTrue(result);	
-		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE, 1);
 
-		assertTrue(result);	
-		
-		
-		
-		
-		
-		
-		
-	}		
-	
-	
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE, 25000);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_HEALTH_CHECKUP, 5000);
+
+		assertTrue(result);
+
+	}
+
 	@Test
 	public void test80DSelfResidentIndividualAboveSixty() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setAge(61);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE, 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_MECICAL_INSURANCE, 30000);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), "80D",
+				FiConstants.DEDUCTION_HEALTH_CHECKUP, 5000);
+
+		assertTrue(result);
+
+	}
+
+	@Test
+	public void test80USelfResidentIndividualFiftyPercentDisability() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setDisabilityPercent(50);
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80U");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80U", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80U", 75000);
+
+		assertTrue(result);
+
+	}
+
+	@Test
+	public void test80USelfResidentIndividualEightyPercentDisability() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setDisabilityPercent(81);
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80U");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80U", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80U", 125000);
+
+		assertTrue(result);
+
+	}
+	
+	
+	@Test
+	public void test80DDResidentIndividualMarriedWithDisabledWifeOfFortyFivePercent() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		Person wife = PersonUtil.getPerson();
+		
+		wife.setDisabilityPercent(45);
+		wife.setGender(FiConstants.GENDER_FEMALE);
+		wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
+		wife.setName("Aasha");
+		wife.setAge(34);
+		
+		fPerson.addChildren(wife);
+		
+		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-		
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
-		
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,1);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DD");
 
 		assertTrue(result);
-		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,30000);
 
-		assertTrue(result);	
-		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DD", 1);
 
-		assertTrue(result);	
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DD", 75000);
+
+		assertTrue(result);
+
+	}	
+
+	@Test
+	public void test80DDResidentIndividualMarriedWithDisabledWifeOfEightyFivePercent() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
+		Person wife = PersonUtil.getPerson();
 		
+		wife.setDisabilityPercent(85);
+		wife.setGender(FiConstants.GENDER_FEMALE);
+		wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
+		wife.setName("Aasha");
+		wife.setAge(34);
 		
+		fPerson.addChildren(wife);
 		
+		// Associated disable wife with 45 percent disability
 		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DD");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DD", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DD", 125000);
+
+		assertTrue(result);
+
+	}	
+
+
+	@Test
+	public void test80DDResidentHUFMarriedWithDisabledWifeOfEightyFivePercent() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
+
+		Person hufMember = PersonUtil.getPerson();
 		
+		hufMember.setDisabilityPercent(85);
+		hufMember.setGender(FiConstants.GENDER_FEMALE);
+		hufMember.setRelationShipCode(FiConstants.RELATIONSHIP_HUFMEMBER);
+		hufMember.setName("Aasha");
+		hufMember.setAge(34);
 		
+		fPerson.addChildren(hufMember);
 		
-	}		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		// Associated disable wife with 45 percent disability
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DD");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DD", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DD", 125000);
+
+		assertTrue(result);
+
+	}	
 	
 }

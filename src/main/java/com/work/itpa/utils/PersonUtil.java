@@ -27,7 +27,7 @@ public class PersonUtil {
 	public static String PERSON_NAME = "Ram Kumar";
 	public static String PERSON_EMAIL = "rkumartyty@gmail.com";
 
-	public static FinPerson getPerson() {
+	public static FinPerson getFinPerson() {
 
 		FinPerson fPerson = new FinPerson(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
 				FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF, 0, "");
@@ -95,20 +95,26 @@ public class PersonUtil {
 	}
 
 	public static FinPerson getBachelorMale() {
-		FinPerson person = getPerson();
+		FinPerson person = getFinPerson();
 		return person;
 	}
 
 	public static FinPerson getBachelorMaleWithWard() {
-		FinPerson person = getPerson();
+		FinPerson person = getFinPerson();
 		Person ward = new Person("Sham", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
 				FiConstants.RELATIONSHIP_WARD, 0, "");
 		person.addDependent(ward);
 		return person;
 	}
+	
+	public static Person getPerson(){
+		
+		return  new Person("XXX", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+					FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
+	}
 
 	public static FinPerson getBachelorMaleWithHUFMember() {
-		FinPerson person = getPerson();
+		FinPerson person = getFinPerson();
 		Person hufMember = new Person("Laxman", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
 				FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
 		person.addDependent(hufMember);
@@ -116,13 +122,13 @@ public class PersonUtil {
 	}
 
 	public static FinPerson getBachelorMaleAbove60() {
-		FinPerson person = getPerson();
+		FinPerson person = getFinPerson();
 		person.setAge(61);
 		return person;
 	}
 
 	public static FinPerson getMarriedMale() {
-		FinPerson person = getPerson();
+		FinPerson person = getFinPerson();
 		person.setMaritalStatus(FiConstants.MARITAL_MARRIED);
 		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
 				FiConstants.RELATIONSHIP_WIFE, 0, "");
