@@ -606,5 +606,80 @@ public class RuleTest {
 		assertTrue(result);
 
 	}	
+
+	@Test
+	public void test80DDBResidentIndividualHasDisease() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(41);
+		fPerson.setDisease("ABCD");
+		// Associated disable wife with 45 percent disability
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DDB");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DDB", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DDB", 40000);
+
+		assertTrue(result);
+
+	}	
+	
+	@Test
+	public void test80DDBResidentIndividualHasDiseaseWithAgeSixtyOne() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(61);
+		fPerson.setDisease("ABCD");
+		// Associated disable wife with 45 percent disability
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DDB");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DDB", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DDB", 60000);
+
+		assertTrue(result);
+
+	}		
+
+	@Test
+	public void test80DDBResidentIndividualHasDiseaseWithAgeEightyOne() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(81);
+		fPerson.setDisease("ABCD");
+		// Associated disable wife with 45 percent disability
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DDB");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DDB", 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DDB", 80000);
+
+		assertTrue(result);
+
+	}		
 	
 }

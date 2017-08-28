@@ -78,7 +78,7 @@ public class Person implements Serializable {
 	 * Disease identified
 	 * 
 	 */
-	String disease;
+	String disease ;
 	
 	/**
 	 * Derived field. true if this person has disability greater than 0
@@ -88,7 +88,7 @@ public class Person implements Serializable {
 	/**
 	 * True if this person has any diseases.
 	 */
-	boolean hasDisease;
+	public boolean hasDisease;
 	
 	
 	/**
@@ -115,6 +115,10 @@ public class Person implements Serializable {
 		this.relationShipCode = relationShipCode;
 		this.disabilityPercent = disabilityPercent;
 		this.disease = disease;
+		
+		if ( disease != null && disease.length() > 0 ){
+			hasDisease = true;
+		}
 	}
 
 	/**
@@ -219,6 +223,7 @@ public class Person implements Serializable {
 	 */
 	public void setDisease(String disease) {
 		this.disease = disease;
+		hasDisease = true;
 	}
 
 	/**
