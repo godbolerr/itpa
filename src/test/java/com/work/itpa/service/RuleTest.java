@@ -756,5 +756,46 @@ public class RuleTest {
 
 		assertTrue(result);
 
-	}		
+	}	
+	
+	@Test
+	public void test80GGHraExemption() {
+		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
+		fPerson.setHraAvailed(false);
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setGrossTotalIncome(BigDecimal.valueOf(500000));
+		PersonUtil.addExpense(fPerson, 50000, FiConstants.EXPENSE_RENT, "Rent paid per anum ");
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80GG");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80GG", 1);
+
+		assertTrue(result);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

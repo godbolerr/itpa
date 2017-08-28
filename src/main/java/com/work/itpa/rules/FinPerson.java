@@ -25,7 +25,7 @@ public class FinPerson extends Person {
 
 	String aadharNumber;
 
-	
+	BigDecimal grossTotalIncome;
 
 	Address address;
 
@@ -53,10 +53,14 @@ public class FinPerson extends Person {
 	BigDecimal dearnessAllowancePerMonth;
 
 	boolean rentedAccomodation;
+	
+	boolean hraAvailed;
 
 	List<PropertyDetails> propertyDetails;
 
 	List<Loan> loans;
+	
+	List<Expense> expenses;
 
 	List<Donation> donations;
 	
@@ -407,6 +411,12 @@ public class FinPerson extends Person {
 		this.investments.add(investment);
 	}
 
+	public void addExpense(Expense expense) {
+		if (this.expenses == null) {
+			this.expenses = new ArrayList<Expense>();
+		}
+		this.expenses.add(expense);
+	}
 	
 	
 	/**
@@ -563,6 +573,24 @@ public class FinPerson extends Person {
 
 
 
+	/**
+	 * @return the grossTotalIncome
+	 */
+	public BigDecimal getGrossTotalIncome() {
+		return grossTotalIncome;
+	}
+
+
+
+	/**
+	 * @param grossTotalIncome the grossTotalIncome to set
+	 */
+	public void setGrossTotalIncome(BigDecimal grossTotalIncome) {
+		this.grossTotalIncome = grossTotalIncome;
+	}
+
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -617,6 +645,43 @@ public class FinPerson extends Person {
 		}
 
 		return true;
+	}
+
+
+
+
+	/**
+	 * @return the hraAvailed
+	 */
+	public boolean isHraAvailed() {
+		return hraAvailed;
+	}
+
+
+
+	/**
+	 * @param hraAvailed the hraAvailed to set
+	 */
+	public void setHraAvailed(boolean hraAvailed) {
+		this.hraAvailed = hraAvailed;
+	}
+
+
+
+	/**
+	 * @return the expenses
+	 */
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+
+
+
+	/**
+	 * @param expenses the expenses to set
+	 */
+	public void setExpenses(List<Expense> expenses) {
+		this.expenses = expenses;
 	}
 	
 	

@@ -42,6 +42,8 @@ public class FiConstants {
 	public static final String DEDUCTION_UNIQUE = "Unique";
 	public static final String DEDUCTION_ADDITIVE = "Additive";
 	
+	public static final String EXPENSE_RENT = "Rent";
+	
 	
 	
 	

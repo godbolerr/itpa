@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.Donation;
+import com.work.itpa.rules.Expense;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.Income;
@@ -90,6 +91,10 @@ public class PersonUtil {
 		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
 	}
 
+	public static void addExpense(FinPerson person, double amount, String type, String note) {
+		person.addExpense(new Expense(BigDecimal.valueOf(amount), type, note));
+	}
+	
 	public static void addIncome(FinPerson person, double amount, String reasonCode, String note) {
 		person.addIncome(new Income(BigDecimal.valueOf(amount), reasonCode, note));
 	}

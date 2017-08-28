@@ -9,27 +9,27 @@ import java.math.BigDecimal;
  * @author Developer
  *
  */
-public class Donation {
+public class Expense {
 
 	/**
-	 * Amount donated.
+	 * Amount spent Per Year.
 	 * 
 	 */
 	public BigDecimal amount;
 	
 	/**
-	 * Type of institution to which amount is donated
+	 * Expense Type
 	 */
 	
 	public String type;
 	
 	/**
-	 * Other details about an institution.
+	 * Other details about an expense.
 	 */
 	
 	public String details;
 	
-	public Donation(){}
+	public Expense(){}
 	
 
 	/**
@@ -37,7 +37,7 @@ public class Donation {
 	 * @param type
 	 * @param details
 	 */
-	public Donation(BigDecimal amount, String type, String details) {
+	public Expense(BigDecimal amount, String type, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
