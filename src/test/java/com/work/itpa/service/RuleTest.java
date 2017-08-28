@@ -681,5 +681,80 @@ public class RuleTest {
 		assertTrue(result);
 
 	}		
+
+
+	@Test
+	public void test80DDBResidentIndividualAge58HasDiseaseWithFatherAbove60() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(58);
+		fPerson.setDisease("ABCD");
+		// Associated disable wife with 45 percent disability
+		
+
+		Person father = PersonUtil.getPerson();
+		
+		
+		father.setGender(FiConstants.GENDER_MALE);
+		father.setRelationShipCode(FiConstants.RELATIONSHIP_FATHER);
+		father.setName("xxxx");
+		father.setDisease("ABCD");
+		father.setAge(62);
+
+		fPerson.addDependent(father);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DDB");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DDB", 2);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DDB", 60000);
+
+		assertTrue(result);
+
+	}		
 	
+
+	@Test
+	public void test80DDBResidentIndividualAge58HasDiseaseWithMotherAbove80() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setAge(58);
+		fPerson.setDisease("ABCD");
+		// Associated disable wife with 45 percent disability
+		
+
+		Person mother = PersonUtil.getPerson();
+		
+		
+		mother.setGender(FiConstants.GENDER_FEMALE);
+		mother.setRelationShipCode(FiConstants.RELATIONSHIP_MOTHER);
+		mother.setName("xxxx");
+		mother.setDisease("ABCD");
+		mother.setAge(82);
+
+		fPerson.addDependent(mother);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80DDB");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80DDB", 2);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80DDB", 80000);
+
+		assertTrue(result);
+
+	}		
 }
