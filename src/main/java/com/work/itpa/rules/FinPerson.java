@@ -65,6 +65,13 @@ public class FinPerson extends Person {
 	List<Income> otherIncomes;
 	
 	List<Person> allPersons;
+	
+	boolean donationToPoliticalParty;
+	boolean filedPatent;
+	boolean authoredBook;
+	boolean donationToResearch;
+	boolean savingAccountPresent;
+	
 
 	public FinPerson() {
 	}
@@ -434,6 +441,96 @@ public class FinPerson extends Person {
 	 */
 	public void setFamily(List<Person> family) {
 		this.family = family;
+	}
+
+
+
+	/**
+	 * @return the donationToPoliticalParty
+	 */
+	public boolean isDonationToPoliticalParty() {
+		return donationToPoliticalParty;
+	}
+
+
+
+	/**
+	 * @param donationToPoliticalParty the donationToPoliticalParty to set
+	 */
+	public void setDonationToPoliticalParty(boolean donationToPoliticalParty) {
+		this.donationToPoliticalParty = donationToPoliticalParty;
+	}
+
+
+
+	/**
+	 * @return the filedPatent
+	 */
+	public boolean isFiledPatent() {
+		return filedPatent;
+	}
+
+
+
+	/**
+	 * @param filedPatent the filedPatent to set
+	 */
+	public void setFiledPatent(boolean filedPatent) {
+		this.filedPatent = filedPatent;
+	}
+
+
+
+	/**
+	 * @return the authoredBook
+	 */
+	public boolean isAuthoredBook() {
+		return authoredBook;
+	}
+
+
+
+	/**
+	 * @param authoredBook the authoredBook to set
+	 */
+	public void setAuthoredBook(boolean authoredBook) {
+		this.authoredBook = authoredBook;
+	}
+
+
+
+	/**
+	 * @return the donationToResearch
+	 */
+	public boolean isDonationToResearch() {
+		return donationToResearch;
+	}
+
+
+
+	/**
+	 * @param donationToResearch the donationToResearch to set
+	 */
+	public void setDonationToResearch(boolean donationToResearch) {
+		this.donationToResearch = donationToResearch;
+	}
+
+
+
+	/**
+	 * @return the savingAccountPresent
+	 */
+	public boolean isSavingAccountPresent() {
+		return savingAccountPresent;
+	}
+
+
+
+	/**
+	 * @param savingAccountPresent the savingAccountPresent to set
+	 */
+	public void setSavingAccountPresent(boolean savingAccountPresent) {
+		this.savingAccountPresent = savingAccountPresent;
 	}
 
 

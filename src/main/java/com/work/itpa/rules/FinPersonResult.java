@@ -14,8 +14,14 @@ public class FinPersonResult {
 	
 	//TODO Change this variable name
 	
-	List<Deduction> plannedDeductions = new ArrayList<Deduction>();
-
+	List<Deduction> applicableDeductions = new ArrayList<Deduction>();
+	
+	List<Deduction> recoDeductions = new ArrayList<Deduction>();
+	
+	List<RiskScore> riskScores = new ArrayList<RiskScore>();
+	
+	double riskScore = 0.0;
+	
 	public Deduction getDeductionForType(String type){
 		
 		Deduction deduction = null;
@@ -23,7 +29,7 @@ public class FinPersonResult {
 		boolean found = false;
 		
 		
-		for (Iterator iterator = plannedDeductions.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = applicableDeductions.iterator(); iterator.hasNext();) {
 			Deduction d1 = (Deduction) iterator.next();
 			if ( type.equals(d1.getSection()))
 				found = true; 
@@ -32,7 +38,7 @@ public class FinPersonResult {
 		
 		if ( found == false ){
 			deduction = new Deduction();
-			plannedDeductions.add(deduction);
+			applicableDeductions.add(deduction);
 		}
 		
 		return deduction;
@@ -53,6 +59,9 @@ public class FinPersonResult {
 		deductions.add(deduction);
 	}
 
+	public void addRecoDeduction(Deduction deduction) {
+		recoDeductions.add(deduction);
+	}
 	
 	/**
 	 * @return the status
@@ -101,19 +110,99 @@ public class FinPersonResult {
 		this.deductions = deductions;
 	}
 
-	/**
-	 * @return the plannedDeductions
-	 */
-	public List<Deduction> getPlannedDeductions() {
-		return plannedDeductions;
-	}
+
 
 	/**
-	 * @param plannedDeductions the plannedDeductions to set
+	 * @return the applicableDeductions
 	 */
-	public void setPlannedDeductions(List<Deduction> plannedDeductions) {
-		this.plannedDeductions = plannedDeductions;
+	public List<Deduction> getApplicableDeductions() {
+		return applicableDeductions;
 	}
+
+
+
+
+
+
+	/**
+	 * @param applicableDeductions the applicableDeductions to set
+	 */
+	public void setApplicableDeductions(List<Deduction> applicableDeductions) {
+		this.applicableDeductions = applicableDeductions;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the recoDeductions
+	 */
+	public List<Deduction> getRecoDeductions() {
+		return recoDeductions;
+	}
+
+
+
+
+
+
+	/**
+	 * @param recoDeductions the recoDeductions to set
+	 */
+	public void setRecoDeductions(List<Deduction> recoDeductions) {
+		this.recoDeductions = recoDeductions;
+	}
+
+
+	/**
+	 * @return the riskScores
+	 */
+	public List<RiskScore> getRiskScores() {
+		return riskScores;
+	}
+
+
+
+
+
+
+	/**
+	 * @param riskScores the riskScores to set
+	 */
+	public void setRiskScores(List<RiskScore> riskScores) {
+		this.riskScores = riskScores;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the riskScore
+	 */
+	public double getRiskScore() {
+		return riskScore;
+	}
+
+
+
+
+
+
+	/**
+	 * @param riskScore the riskScore to set
+	 */
+	public void setRiskScore(double riskScore) {
+		this.riskScore = riskScore;
+	}
+
+
+
+
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

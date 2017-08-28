@@ -109,9 +109,9 @@ public class ItpaService {
 
 		logger.close();
 
-		List<Deduction> plannedDeductions = calculateMaxPerCatetory(result.getDeductions());
+		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
 
-		result.setPlannedDeductions(plannedDeductions);
+		result.setApplicableDeductions(applicableDeductions);
 
 		// Dispose the session and release memory
 

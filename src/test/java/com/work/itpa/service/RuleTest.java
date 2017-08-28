@@ -111,7 +111,7 @@ public class RuleTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", 42000);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80RRB", 42000);
 
 		assertTrue(totalResult);
 
@@ -136,7 +136,7 @@ public class RuleTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80RRB", 42000.27);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80RRB", 42000.27);
 
 		assertTrue(totalResult);
 
@@ -175,7 +175,7 @@ public class RuleTest {
 		assertTrue(result);		
 		
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80QQB", 49000.70);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80QQB", 49000.70);
 
 		assertTrue(totalResult);		
 
@@ -216,7 +216,7 @@ public class RuleTest {
 
 		assertTrue(result);
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80GGC", 60000);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80GGC", 60000);
 
 		assertTrue(totalResult);		
 		
@@ -259,7 +259,7 @@ public class RuleTest {
 
 		assertTrue(result);
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80GGA", 6000000);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80GGA", 6000000);
 
 		assertTrue(totalResult);		
 		
@@ -291,7 +291,7 @@ public class RuleTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80G", 40000);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80G", 40000);
 
 		assertTrue(totalResult);
 	}		
@@ -306,7 +306,7 @@ public class RuleTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getPlannedDeductions(), "80G", 40000);
+		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80G", 40000);
 
 		assertTrue(totalResult);
 	}
@@ -320,7 +320,7 @@ public class RuleTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		
-		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
 		
 		assertTrue(result);
 		
@@ -338,7 +338,7 @@ public class RuleTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		
-		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
 		
 		assertTrue(result);
 		
@@ -356,7 +356,7 @@ public class RuleTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		
-		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
 		
 		assertTrue(result);
 		
@@ -373,7 +373,7 @@ public class RuleTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 		
-		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
 		
 		assertTrue(result);
 		
@@ -390,7 +390,7 @@ public class RuleTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 		
-		boolean result = PersonUtil.hasSection(finResult.getPlannedDeductions(),"80E");
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(),"80E");
 		
 		assertTrue(result);
 		
@@ -409,7 +409,7 @@ public class RuleTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 		
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
 		
 		assertTrue(result);
 		
@@ -417,11 +417,11 @@ public class RuleTest {
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,25000);
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,25000);
 
 		assertTrue(result);	
 		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
 
 		assertTrue(result);	
 		
@@ -443,7 +443,7 @@ public class RuleTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 		
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
+		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE);
 		
 		assertTrue(result);
 		
@@ -451,11 +451,11 @@ public class RuleTest {
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,30000);
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_MECICAL_INSURANCE,30000);
 
 		assertTrue(result);	
 		
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getPlannedDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(),"80D",FiConstants.DEDUCTION_HEALTH_CHECKUP,5000);
 
 		assertTrue(result);	
 		
