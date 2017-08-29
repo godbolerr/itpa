@@ -3,6 +3,8 @@
  */
 package com.work.itpa.rules;
 
+import java.math.BigDecimal;
+
 /**
  * @author 115750
  *
@@ -19,7 +21,17 @@ public class PropertyDetails {
 	 * Owned, Rented
 	 */
 	String status;
-
+	
+	
+	public boolean firstProperty;	
+	
+	public BigDecimal loanValue;
+	
+	public BigDecimal propertyValue;
+	
+	public BigDecimal annualInterest;
+	
+	
 	public PropertyDetails(){}
 	/**
 	 * @param name
@@ -73,6 +85,54 @@ public class PropertyDetails {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the firstProperty
+	 */
+	public boolean isFirstProperty() {
+		return firstProperty;
+	}
+	/**
+	 * @param firstProperty the firstProperty to set
+	 */
+	public void setFirstProperty(boolean firstProperty) {
+		this.firstProperty = firstProperty;
+	}
+	/**
+	 * @return the loanValue
+	 */
+	public BigDecimal getLoanValue() {
+		return loanValue;
+	}
+	/**
+	 * @param loanValue the loanValue to set
+	 */
+	public void setLoanValue(BigDecimal loanValue) {
+		this.loanValue = loanValue;
+	}
+	/**
+	 * @return the annualInterest
+	 */
+	public BigDecimal getAnnualInterest() {
+		return annualInterest;
+	}
+	/**
+	 * @param annualInterest the annualInterest to set
+	 */
+	public void setAnnualInterest(BigDecimal annualInterest) {
+		this.annualInterest = annualInterest;
+	}
+	/**
+	 * @return the propertyValue
+	 */
+	public BigDecimal getPropertyValue() {
+		return propertyValue;
+	}
+	/**
+	 * @param propertyValue the propertyValue to set
+	 */
+	public void setPropertyValue(BigDecimal propertyValue) {
+		this.propertyValue = propertyValue;
 	}
 	
 	

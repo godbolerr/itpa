@@ -16,6 +16,7 @@ import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.Income;
 import com.work.itpa.rules.Investment;
 import com.work.itpa.rules.Person;
+import com.work.itpa.rules.PropertyDetails;
 
 /**
  * Generate person data based on certain conditions
@@ -99,6 +100,16 @@ public class PersonUtil {
 		person.addIncome(new Income(BigDecimal.valueOf(amount), reasonCode, note));
 	}
 
+	public static void addPropertyDetails(FinPerson person, String name, String city, String status, double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
+		PropertyDetails details = new PropertyDetails(name,city,status);
+		details.setLoanValue(BigDecimal.valueOf(loanAmount));
+		details.setAnnualInterest(BigDecimal.valueOf(annualInterest));
+		details.setFirstProperty(firstProperty);
+		details.setPropertyValue(BigDecimal.valueOf(propertyValue));
+		person.addPropertyDetails(details);
+	}
+	
+	
 	public static FinPerson getBachelorMale() {
 		FinPerson person = getFinPerson();
 		return person;

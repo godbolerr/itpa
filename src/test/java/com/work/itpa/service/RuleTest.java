@@ -757,8 +757,7 @@ public class RuleTest {
 		assertTrue(result);
 
 	}	
-	
-	@Test
+
 	public void test80GGHraExemption() {
 		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
 		fPerson.setHraAvailed(false);
@@ -780,8 +779,54 @@ public class RuleTest {
 	
 	
 	
+	@Test
+	public void test80EEInterestPaid() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addPropertyDetails(fPerson, "Pune House", "Pune", FiConstants.OWNERSHIP_OWN, 4000000, 3000000, 40000, true);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80EE");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80EE", 1);
+		
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80EE",40000);
+		
+		assertTrue(result);
 	
 	
+	}
+	
+	
+	@Test
+	public void test80EEInterestPaidAboveLimit() {
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addPropertyDetails(fPerson, "Pune House", "Pune", FiConstants.OWNERSHIP_OWN, 4000000, 3000000, 60000, true);
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80EE");
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80EE", 1);
+		
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), "80EE",50000);
+		
+		assertTrue(result);
+	
+	
+	}
 	
 	
 	

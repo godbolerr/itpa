@@ -4,23 +4,33 @@ residentStatus
 assesseeType
 propertyValueMax
 loanValueMax
+maxDeduction
 
 package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
+import com.work.itpa.rules.FiUtil;
 
 template "AT EE Rules"
 
 rule "ATEE@{row.rowNumber}"
     when
-        $fp : FinPerson(         		 	residentStatus == "@{residentStatus}"  ,
-         
-        		 	assesseeType == "@{assesseeType}"  
-        		 )        		 
+        $fp : FinPerson(residentStatus == "@{residentStatus}"  ,
+         			 	assesseeType == "@{assesseeType}"  
+        		 )     
+        		 
+        $fpProperty : PropertyDetails (
+        									propertyValue <= @{propertyValueMax},
+        									loanValue <= @{loanValueMax}, 
+        									annualInterest > 0 
+        							  ) from $fp.propertyDetails;
+        							     		 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{loanValueMax}),"","@{section}","");
+    
+    
+    	Deduction $deduction = new Deduction(FiUtil.lessOf($fpProperty.annualInterest,BigDecimal.valueOf(@{maxDeduction})),"","@{section}","");
     	insert($deduction);
 end
 end template
