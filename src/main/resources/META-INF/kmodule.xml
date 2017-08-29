@@ -66,15 +66,8 @@
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80g1.drt"
                       row="180" col="4"/>
-                      
-        <!-- Rule 80 G2  -->
-                      
-        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-                      template="com/work/itpa/rules/itpa_80g2.drt"
-                      row="185" col="4"/>
-                      
-                      
-        <!-- Rule 80 GG -->
+                     
+  
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80gg.drt"
