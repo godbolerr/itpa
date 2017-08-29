@@ -25,7 +25,7 @@ public class FinPerson extends Person {
 
 	String aadharNumber;
 
-	BigDecimal grossTotalIncome;
+	public BigDecimal grossTotalIncome;
 
 	Address address;
 

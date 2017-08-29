@@ -2,6 +2,7 @@ template header
 section
 residentStatus
 assesseeType
+schemeCode
 donationName
 maxDeductionPercent
 maxGtiPercent
@@ -18,9 +19,10 @@ rule "AT2GX@{row.rowNumber}"
     when
       $fp : FinPerson( assesseeType == "@{assesseeType}" ,
         				residentStatus == "@{residentStatus}"    	)	 
+        $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ) from $fp.donations 
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeductionPercent}),"","@{section}",""  );
+    	Deduction $deduction = new Deduction($pfDonation.amount,"80G","Additive","@{section}","Amount deducted for " + $pfDonation.schemeCode );
     	insert($deduction);
 end
 end template

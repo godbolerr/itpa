@@ -21,6 +21,13 @@ public class Donation {
 	 * Type of institution to which amount is donated
 	 */
 	
+	/**
+	 * Short scheme code if the scheme name is very large.
+	 * 
+	 */
+	public String schemeCode;
+	
+	
 	public String type;
 	
 	/**
@@ -84,6 +91,22 @@ public class Donation {
 	 */
 	public void setDetails(String details) {
 		this.details = details;
+	}
+
+
+	/**
+	 * @return the schemeCode
+	 */
+	public String getSchemeCode() {
+		return schemeCode;
+	}
+
+
+	/**
+	 * @param schemeCode the schemeCode to set
+	 */
+	public void setSchemeCode(String schemeCode) {
+		this.schemeCode = schemeCode;
 	}
 	
 	
