@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +26,22 @@ public class Rule80GGTest {
 	String sectionName = "80GG";
 
 	@Test
-	public void test80USelfResidentIndividualFiftyPercentDisability() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setDisabilityPercent(50);
+	public void test80GGHraExemption() {
+		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
+		fPerson.setHraAvailed(false);
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
+		fPerson.setGrossTotalIncome(BigDecimal.valueOf(500000));
+		PersonUtil.addExpense(fPerson, 50000, FiConstants.EXPENSE_RENT, "Rent paid per anum ");
+		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), "80GG");
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80GG", 1);
 
 		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 75000);
-
-		assertTrue(result);
-
 	}
 }

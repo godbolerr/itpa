@@ -22,10 +22,7 @@ rule "ATGG@{row.rowNumber}"
         		 	hraAvailed == false
         		 )        		 
        $fpExpense :  Expense   ( type == "Rent") from $fp.expenses
-       
-       
-        
-        $result : FinPersonResult( )
+       $result : FinPersonResult( )
     then
     	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxRent}),"","@{section}","Rental paid for this year ..." + $fpExpense.amount );
     	insert($deduction);
