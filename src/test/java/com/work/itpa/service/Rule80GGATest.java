@@ -6,7 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,8 @@ public class Rule80GGATest {
 	ItpaService dService;
 	
 	String sectionName = "80GGA";
+	
+	@Rule public TestName testName = new TestName();
 
 
 	@Test
@@ -41,5 +45,10 @@ public class Rule80GGATest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
 
 		assertTrue(result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 }

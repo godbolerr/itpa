@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +26,8 @@ public class Rule80TTATest {
 	ItpaService dService;
 	
 	String sectionName = "80TTA";
+	
+	@Rule public TestName testName = new TestName();
 
 
 	@Test
@@ -39,6 +43,11 @@ public class Rule80TTATest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 9000);
 
 		assertEquals(true, result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 
 	@Test
@@ -54,6 +63,12 @@ public class Rule80TTATest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 10000);
 
 		assertTrue(result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
+		
 	}
 
 	@Test
@@ -69,5 +84,10 @@ public class Rule80TTATest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 10001);
 
 		assertFalse(result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 }

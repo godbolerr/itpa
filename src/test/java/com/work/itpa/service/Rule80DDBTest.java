@@ -2,7 +2,9 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +26,7 @@ public class Rule80DDBTest {
 	
 	String sectionName = "80DDB";
 
+	@Rule public TestName testName = new TestName();
 
 	@Test
 	public void test80DDBResidentIndividualHasDisease() {
@@ -47,6 +50,9 @@ public class Rule80DDBTest {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 40000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 
 	}	
 	
@@ -73,6 +79,8 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}		
 
 	@Test
@@ -97,6 +105,8 @@ public class Rule80DDBTest {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 80000);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}		
 
@@ -136,6 +146,8 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}		
 	
 
@@ -173,6 +185,8 @@ public class Rule80DDBTest {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 80000);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}	
 }

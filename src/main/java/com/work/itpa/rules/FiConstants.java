@@ -1,5 +1,11 @@
 package com.work.itpa.rules;
 
+/**
+ * List of constants used in the project.
+ * 
+ * @author Developer
+ *
+ */
 public class FiConstants {
 
 	public static final String GENDER_MALE = "Male";	

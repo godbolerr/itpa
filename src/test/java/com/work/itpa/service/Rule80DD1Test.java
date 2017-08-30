@@ -2,7 +2,9 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +19,9 @@ import com.work.itpa.utils.PersonUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItparulesApplication.class)
 public class Rule80DD1Test {
+	
+	
+	@Rule public TestName testName = new TestName();
 
 	@Autowired
 	ItpaService dService;
@@ -43,6 +48,8 @@ public class Rule80DD1Test {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 75000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}
 
@@ -66,6 +73,9 @@ public class Rule80DD1Test {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 125000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		
 
 	}
 

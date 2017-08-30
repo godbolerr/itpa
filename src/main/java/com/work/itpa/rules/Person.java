@@ -4,7 +4,6 @@
 package com.work.itpa.rules;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +11,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * @author 115750
+ * Details about an individual
+ * 
+ * @author Developer
  *
  */
 public class Person implements Serializable {

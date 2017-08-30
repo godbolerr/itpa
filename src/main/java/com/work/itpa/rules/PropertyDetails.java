@@ -6,7 +6,9 @@ package com.work.itpa.rules;
 import java.math.BigDecimal;
 
 /**
- * @author 115750
+ * Property owned by Assessee
+ * 
+ * @author Developer
  *
  */
 public class PropertyDetails {

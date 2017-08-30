@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Result of TPA evaluation 
+ * 
+ * @author Developer
+ *
+ */
 public class FinPersonResult {
 
 	boolean status;
@@ -11,8 +17,6 @@ public class FinPersonResult {
 	List<String> messages = new ArrayList<String>();
 	
 	List<Deduction> deductions = new ArrayList<Deduction>();
-	
-	//TODO Change this variable name
 	
 	List<Deduction> applicableDeductions = new ArrayList<Deduction>();
 	

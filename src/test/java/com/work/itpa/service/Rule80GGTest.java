@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +26,8 @@ public class Rule80GGTest {
 	ItpaService dService;
 
 	String sectionName = "80GG";
+	
+	@Rule public TestName testName = new TestName();
 
 	@Test
 	public void test80GGHraExemption() {
@@ -43,5 +47,10 @@ public class Rule80GGTest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), "80GG", 1);
 
 		assertTrue(result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 }

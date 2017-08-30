@@ -11,16 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.kie.api.KieServices;
-import org.kie.api.event.rule.AfterMatchFiredEvent;
-import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
-import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.rule.AgendaFilter;
-import org.kie.api.runtime.rule.Match;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
@@ -28,8 +25,16 @@ import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.rules.Person;
 
-@Service
+/**
+ * Responsible for invocation of rules and calculating summary
+ * 
+ * @author Developer
+ *
+ */
+@Component
 public class ItpaService {
+	
+	 private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
 
 	@Autowired
 	private KieContainer kc;
@@ -38,42 +43,13 @@ public class ItpaService {
 	 * 
 	 */
 	public ItpaService() {
-		// TODO Auto-generated constructor stub
 	}
 
-	private AgendaFilter getAgendaFilter(String agenda) {
-
-		AgendaFilter af = new AgendaFilter() {
-			public boolean accept(Match match) {
-				String rulename = match.getRule().getName();
-
-				// Execute all rules starting with some agenda
-
-				if (rulename.startsWith(agenda))
-					return true;
-
-				return false;
-			}
-		};
-
-		return af;
-	}
 
 	public FinPersonResult calculateBenefits(FinPerson finPerson) {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
 		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
-
-		kSession.addEventListener(new DebugRuleRuntimeEventListener());
-
-		kSession.addEventListener(new DefaultAgendaEventListener() {
-			public void afterMatchFired(AfterMatchFiredEvent event) {
-				super.afterMatchFired(event);
-				// System.out.println(" ### " + event);
-			}
-		});
-
-		List<String> messages = new ArrayList<String>();
 
 		FinPersonResult result = new FinPersonResult();
 
@@ -101,6 +77,8 @@ public class ItpaService {
 		}
 
 		finPerson.setAllPersons(allPersons);
+		
+		LOG.debug("Firing rules for : " + finPerson);
 
 		kSession.insert(finPerson);
 		kSession.insert(result);
@@ -116,7 +94,14 @@ public class ItpaService {
 		// Dispose the session and release memory
 
 		kSession.dispose();
+		
+		if ( result.getDeductions() != null && result.getDeductions().size() > 0) {
+			result.setStatus(true);
+		}
 
+		LOG.debug("Result : " + result);
+
+		
 		return result;
 	}
 

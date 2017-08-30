@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.work.itpa.rules.FinPersonResult;
 
+/**
+ * Responsible for serving web channel 
+ * @author 115750
+ *
+ */
 @RestController
 @RequestMapping("/itpa")
 public class ItpaController {

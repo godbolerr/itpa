@@ -1,5 +1,11 @@
 package com.work.itpa.rules;
 
+/**
+ * Risk score calculated for Assessee
+ * 
+ * @author Developer
+ *
+ */
 public class RiskScore {
 	
 	/**

@@ -2,6 +2,12 @@ package com.work.itpa.rules;
 
 import java.math.BigDecimal;
 
+/**
+ * Utility class to be used in actual rules
+ * 
+ * @author Developer
+ *
+ */
 public class FiUtil {
 	
 	public static boolean isAvailable(String x, String type){

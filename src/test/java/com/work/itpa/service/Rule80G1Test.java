@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +27,8 @@ public class Rule80G1Test {
 	ItpaService dService;
 
 	String sectionName = "80G";
+	
+	@Rule public TestName testName = new TestName();
 
 	@Test
 	public void test80G1ResidentIndividualDonation() {
@@ -44,6 +48,10 @@ public class Rule80G1Test {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 
 
@@ -66,6 +74,10 @@ public class Rule80G1Test {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 30000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 
 	
@@ -88,6 +100,10 @@ public class Rule80G1Test {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 5000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 
 	
@@ -109,6 +125,10 @@ public class Rule80G1Test {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 30000);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}	
 	
 	

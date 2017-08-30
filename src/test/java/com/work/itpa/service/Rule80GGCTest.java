@@ -2,7 +2,9 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +24,8 @@ public class Rule80GGCTest {
 	ItpaService dService;
 	
 	String sectionName = "80GGC";
+	
+	@Rule public TestName testName = new TestName();
 
 
 	@Test
@@ -37,6 +41,11 @@ public class Rule80GGCTest {
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
 
 		assertTrue(result);
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
 	}
 
 	@Test
@@ -61,6 +70,10 @@ public class Rule80GGCTest {
 		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 60000);
 
 		assertTrue(totalResult);
+
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 
 	}
 

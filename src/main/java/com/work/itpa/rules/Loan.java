@@ -11,7 +11,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * @author 115750
+ * Loan taken by the Assessee
+ * 
+ * @author Developer
  *
  */
 public class Loan {

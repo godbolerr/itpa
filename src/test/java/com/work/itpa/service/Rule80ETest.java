@@ -2,7 +2,9 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,10 +22,10 @@ public class Rule80ETest {
 
 	@Autowired
 	ItpaService dService;
-	
+
 	String sectionName = "80E";
 	
-	
+	@Rule public TestName testName = new TestName();
 
 	@Test
 	public void test80ESelfResidentIndividual() {
@@ -40,6 +42,9 @@ public class Rule80ETest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}
 
 	@Test
@@ -57,6 +62,9 @@ public class Rule80ETest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}
 
 	@Test
@@ -74,6 +82,8 @@ public class Rule80ETest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
 
 		assertTrue(result);
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}
 
 	@Test
@@ -91,6 +101,9 @@ public class Rule80ETest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 
 		assertTrue(result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}
 
 	@Test
@@ -108,10 +121,9 @@ public class Rule80ETest {
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}
-	
-	
-	
-	
-	
+
 }

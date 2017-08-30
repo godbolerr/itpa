@@ -2,7 +2,9 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +25,8 @@ public class Rule80DDTest {
 	ItpaService dService;
 
 	String sectionName = "80DD";
+	
+	@Rule public TestName testName = new TestName();
 	
 	@Test
 	public void test80DDResidentIndividualMarriedWithDisabledWifeOfFortyFivePercent() {
@@ -55,6 +59,8 @@ public class Rule80DDTest {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 75000);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}	
 
@@ -90,6 +96,8 @@ public class Rule80DDTest {
 
 		assertTrue(result);
 
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
 	}	
 
 
@@ -124,6 +132,8 @@ public class Rule80DDTest {
 		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 125000);
 
 		assertTrue(result);
+
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}	
 	

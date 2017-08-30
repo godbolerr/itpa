@@ -2,6 +2,11 @@ package com.work.itpa.rules;
 
 import java.math.BigDecimal;
 
+/**
+ * 
+ * @author Developer
+ *
+ */
 public class Deduction {
 
 	/**

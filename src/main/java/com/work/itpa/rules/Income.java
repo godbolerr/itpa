@@ -6,7 +6,7 @@ package com.work.itpa.rules;
 import java.math.BigDecimal;
 
 /**
- * @author 115750
+ * @author Developer
  *
  */
 public class Income {
