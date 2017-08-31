@@ -33,7 +33,7 @@ public class Rule80ETest {
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		PersonUtil.addExpense(fPerson, 50000, FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST,FiConstants.RELATIONSHIP_SELF, "Interest Paid for loan on higher education of self");
+		PersonUtil.addExpense(fPerson, 50000, FiConstants.RELATIONSHIP_SELF,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of self");
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -54,76 +54,26 @@ public class Rule80ETest {
 
 	}
 
-	@Test
-	public void test80ESelfResidentIndividualMarried() {
-		FinPerson fPerson = PersonUtil.getMarriedMale();
-		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
-
-		assertTrue(result);
-
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-	}
 
 	@Test
-	public void test80ESelfResidentIndividualWithWard() {
-		FinPerson fPerson = PersonUtil.getBachelorMaleWithWard();
-		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
-
-		assertTrue(result);
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-	}
-
-	@Test
-	public void test80ESelfResidentHuf() {
+	public void test80ESelfResidentIndividualSelfAndWife() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		
+		PersonUtil.addExpense(fPerson, 34000 , FiConstants.RELATIONSHIP_SELF,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of self");
+		PersonUtil.addExpense(fPerson, 34000 , FiConstants.RELATIONSHIP_WIFE,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of wife");
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 
 		assertTrue(result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-	}
-
-	@Test
-	public void test80ESelfResidentHufWithHufMember() {
-		FinPerson fPerson = PersonUtil.getBachelorMaleWithHUFMember();
-		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_HUF);
-
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName,68000);
 
 		assertTrue(result);
+		
 
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
 

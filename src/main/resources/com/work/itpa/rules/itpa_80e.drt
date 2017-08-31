@@ -23,7 +23,7 @@ rule "ATE1Interest@{row.rowNumber}"
         $result : FinPersonResult( )
     then
     	double $deductionValue = $fpExpense.amount.doubleValue() * ${deductionPercent}/100;
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf($deductionValue),"","@{section}","@{relationShipCode} " );
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf($deductionValue),"","Additive","@{section}","@{relationShipCode} " );
     	insert($deduction);
 end
 end template
