@@ -101,6 +101,13 @@ public class PersonUtil {
 	public static void addExpense(FinPerson person, double amount, String type, String note) {
 		person.addExpense(new Expense(BigDecimal.valueOf(amount), type, note));
 	}
+
+
+	public static void addExpense(FinPerson person, double amount, String relationShipCode, String type, String note) {
+		Expense exp = new Expense(BigDecimal.valueOf(amount), type, note);
+		exp.setRelationShipCode(relationShipCode);
+		person.addExpense(exp);
+	}
 	
 	public static void addIncome(FinPerson person, double amount, String reasonCode, String note) {
 		person.addIncome(new Income(BigDecimal.valueOf(amount), reasonCode, note));

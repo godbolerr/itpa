@@ -49,6 +49,7 @@ public class FiConstants {
 	public static final String DEDUCTION_ADDITIVE = "Additive";
 	
 	public static final String EXPENSE_RENT = "Rent";
+	public static final String EXPENSE_HIGHER_EDU_LOAN_INTEREST = "HighEduLoanInterest";
 	
 	
 	

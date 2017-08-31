@@ -32,12 +32,19 @@ public class Rule80ETest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		
+		PersonUtil.addExpense(fPerson, 50000, FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST,FiConstants.RELATIONSHIP_SELF, "Interest Paid for loan on higher education of self");
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
 
 		assertTrue(result);
+		
+		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName,50000);
+
+		assertTrue(result);
+		
 
 		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 

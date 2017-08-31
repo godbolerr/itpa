@@ -29,6 +29,12 @@ public class Expense {
 	
 	public String details;
 	
+	/**
+	 * For whom this spend is done.
+	 */
+	
+	public String relationShipCode;
+	
 	public Expense(){}
 	
 
@@ -84,6 +90,22 @@ public class Expense {
 	 */
 	public void setDetails(String details) {
 		this.details = details;
+	}
+
+
+	/**
+	 * @return the relationShipCode
+	 */
+	public String getRelationShipCode() {
+		return relationShipCode;
+	}
+
+
+	/**
+	 * @param relationShipCode the relationShipCode to set
+	 */
+	public void setRelationShipCode(String relationShipCode) {
+		this.relationShipCode = relationShipCode;
 	}
 	
 	
