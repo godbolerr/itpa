@@ -1,0 +1,45 @@
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,deductionType,minAge,maxAge,maxDeduction
+80D_0_1,2017,80D_0,active,Payment of Medical Insurance - Self,80D,Resident,Individual,Self,Medical Insurance,1,59,25000
+80D_0_2,2017,80D_0,active,Payment of Medical Insurance - Wife,80D,Resident,Individual,Wife,Medical Insurance,1,59,25000
+80D_0_3,2017,80D_0,active,Payment of Medical Insurance - Father,80D,Resident,Individual,Father,Medical Insurance,1,59,25000
+80D_0_4,2017,80D_0,active,Payment of Medical Insurance - Mother,80D,Resident,Individual,Mother,Medical Insurance,1,59,25000
+80D_0_5,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Self,80D,Resident,Individual,Self,Medical Insurance,60,79,30000
+80D_0_6,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Wife,80D,Resident,Individual,Wife,Medical Insurance,60,79,30000
+80D_0_7,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Father,80D,Resident,Individual,Father,Medical Insurance,60,79,30000
+80D_0_8,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Mother,80D,Resident,Individual,Mother,Medical Insurance,60,79,30000
+80D_0_9,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Self,80D,Resident,Individual,Self,Medical Insurance,80,150,30000
+80D_0_10,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Wife,80D,Resident,Individual,Wife,Medical Insurance,80,150,30000
+80D_0_11,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Father,80D,Resident,Individual,Father,Medical Insurance,80,150,30000
+80D_0_12,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Mother,80D,Resident,Individual,Mother,Medical Insurance,80,150,30000
+80D_0_13,2017,80D_0,active,Payment of Medical Expenses - Self,80D,Resident,Individual,Self,Health Checkup,1,150,5000
+80D_0_14,2017,80D_0,active,Payment of Medical Expenses - Wife,80D,Resident,Individual,Wife,Health Checkup,1,150,5000
+80D_0_15,2017,80D_0,active,Payment of Medical Expenses - Father,80D,Resident,Individual,Father,Health Checkup,1,150,5000
+80D_0_16,2017,80D_0,active,Payment of Medical Expenses - Mother,80D,Resident,Individual,Mother,Health Checkup,1,150,5000
+80D_0_17,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,Resident,HUF,Self,Medical Insurance,1,59,25000
+80D_0_18,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,Resident,HUF,HUF Member,Medical Insurance,1,59,25000
+80D_0_19,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,Resident,HUF,Self,Medical Insurance,60,79,30000
+80D_0_20,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,Resident,HUF,HUF Member,Medical Insurance,60,79,30000
+80D_0_21,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,Resident,HUF,Self,Medical Insurance,80,150,30000
+80D_0_22,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,Resident,HUF,HUF Member,Medical Insurance,80,150,30000
+80D_0_23,2017,80D_0,active,Payment of Medical Insurance - Self,80D,NRI,Individual,Self,Medical Insurance,1,59,25000
+80D_0_24,2017,80D_0,active,Payment of Medical Insurance - Wife,80D,NRI,Individual,Wife,Medical Insurance,1,59,25000
+80D_0_25,2017,80D_0,active,Payment of Medical Insurance - Father,80D,NRI,Individual,Father,Medical Insurance,1,59,25000
+80D_0_26,2017,80D_0,active,Payment of Medical Insurance - Mother,80D,NRI,Individual,Mother,Medical Insurance,1,59,25000
+80D_0_27,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Self,80D,NRI,Individual,Self,Medical Insurance,60,79,30000
+80D_0_28,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Wife,80D,NRI,Individual,Wife,Medical Insurance,60,79,30000
+80D_0_29,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Father,80D,NRI,Individual,Father,Medical Insurance,60,79,30000
+80D_0_30,2017,80D_0,active,Payment of Medical Insurance - Senior Ctzn - Mother,80D,NRI,Individual,Mother,Medical Insurance,60,79,30000
+80D_0_31,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Self,80D,NRI,Individual,Self,Medical Insurance,80,150,30000
+80D_0_32,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Wife,80D,NRI,Individual,Wife,Medical Insurance,80,150,30000
+80D_0_33,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Father,80D,NRI,Individual,Father,Medical Insurance,80,150,30000
+80D_0_34,2017,80D_0,active,Payment of Medical Insurance - Super Senior Ctzn - Mother,80D,NRI,Individual,Mother,Medical Insurance,80,150,30000
+80D_0_35,2017,80D_0,active,Payment of Medical Expenses - NRI self,80D,NRI,Individual,Self,Health Checkup,1,150,5000
+80D_0_36,2017,80D_0,active,Payment of Medical Expenses - NRI Wife,80D,NRI,Individual,Wife,Health Checkup,1,150,5000
+80D_0_37,2017,80D_0,active,Payment of Medical Expenses NRI Father,80D,NRI,Individual,Father,Health Checkup,1,150,5000
+80D_0_38,2017,80D_0,active,Payment of Medical Expenses NRI Mother,80D,NRI,Individual,Mother,Health Checkup,1,150,5000
+80D_0_39,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,NRI,HUF,Self,Medical Insurance,1,59,25000
+80D_0_40,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,NRI,HUF,HUF Member,Medical Insurance,1,59,25000
+80D_0_41,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,NRI,HUF,Self,Medical Insurance,60,79,30000
+80D_0_42,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,NRI,HUF,HUF Member,Medical Insurance,60,79,30000
+80D_0_43,2017,80D_0,active,Payment of Medical Insurance - HUF Self,80D,NRI,HUF,Self,Medical Insurance,80,150,30000
+80D_0_44,2017,80D_0,active,Payment of Medical Insurance - HUF Member,80D,NRI,HUF,HUF Member,Medical Insurance,80,150,30000

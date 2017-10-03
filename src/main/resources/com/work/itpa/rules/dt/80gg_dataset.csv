@@ -1,0 +1,2 @@
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,hra,maxRentPerYear,rentPaidMinusGtiPercent,gtiPercent
+80GG_1,2017,80GG,active,Tax deduction on house rent ,80GG,Resident,Individual,No,60000,10,25
