@@ -1,8 +1,0 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,maxDeduction
-80E_1,2017,80E,active,Interest on Loan for Higher Education - Self,80E,Resident,Individual,Self,100
-80E_2,2017,80E,active,Interest on Loan for Higher Education -  Wife,80E,Resident,Individual,Wife,100
-80E_3,2017,80E,active,Interest on Loan for Higher Education - Son,80E,Resident,Individual,Son,100
-80E_4,2017,80E,active,Interest on Loan for Higher Education - Daughter,80E,Resident,Individual,Daughter,100
-80E_5,2017,80E,active,Interest on Loan for Higher Education - Legal Guardian,80E,Resident,Individual,Ward,100
-80E_6,2017,80E,active,Interest on Loan for Higher Education - Karta HUF,80E,Resident,HUF,Self,100
-80E_7,2017,80E,active,Interest on Loan for Higher Education - HUF Family,80E,Resident,HUF,HUF Member,100

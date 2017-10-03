@@ -1,12 +1,13 @@
 version: '2'
 services:
-    itpa-app:
-        image: itpa
+    itpadoc-app:
+        image: itpadoc
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:mysql://itpa-mysql:3306/itpa?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_DATA_MONGODB_URI=mongodb://itpadoc-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=itpadoc
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
-    itpa-mysql:
+    itpadoc-mongodb:
         extends:
-            file: mysql.yml
-            service: itpa-mysql
+            file: mongodb.yml
+            service: itpadoc-mongodb
