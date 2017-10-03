@@ -1,10 +1,8 @@
 package com.work.itpa.config;
 
-import com.github.mongobee.Mongobee;
-import com.mongodb.MongoClient;
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
-import io.github.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -21,8 +19,13 @@ import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventL
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.mongobee.Mongobee;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
+import io.github.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
 
 @Configuration
 @Profile("!" + JHipsterConstants.SPRING_PROFILE_CLOUD)
@@ -51,6 +54,18 @@ public class DatabaseConfiguration {
         return new CustomConversions(converters);
     }
 
+    //TODO Need to remove hardcoded localhost configuration
+    @Bean
+    public Mongo mongo() throws Exception {
+        return new MongoClient("localhost");
+    }
+ 
+    @Bean
+    public MongoTemplate mongoTemplate(MongoProperties mongoProperties) throws Exception {
+        return new MongoTemplate(mongo(), mongoProperties.getDatabase());
+    }
+    
+    
     @Bean
     public Mongobee mongobee(MongoClient mongoClient, MongoTemplate mongoTemplate, MongoProperties mongoProperties) {
         log.debug("Configuring Mongobee");

@@ -17,6 +17,7 @@ import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import com.work.itpa.rules.Deduction;
@@ -38,6 +39,9 @@ public class ItpaService {
 
 	@Autowired
 	private KieContainer kc;
+	
+	@Autowired
+	MongoTemplate mongoTemplate;
 
 	/**
 	 * 
@@ -50,6 +54,10 @@ public class ItpaService {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
 		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
+		
+		
+		
+		
 
 		FinPersonResult result = new FinPersonResult();
 
@@ -101,6 +109,9 @@ public class ItpaService {
 
 		LOG.debug("Result : " + result);
 
+		
+		mongoTemplate.save(finPerson, "FinPerson");
+		mongoTemplate.save(result, "FinPerson");
 		
 		return result;
 	}
