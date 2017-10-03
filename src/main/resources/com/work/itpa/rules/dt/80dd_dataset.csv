@@ -1,0 +1,13 @@
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,minDisabilityPercent,maxDisabilityPercent,maxDeduction
+80DD_1,2017,80DD,active,Suffering from Disability - Resident - Wife,80DD,Resident,Individual,Wife,40,79,75000
+80DD_2,2017,80DD,active,Suffering from Disability - Resident - Wife,80DD,Resident,Individual,Wife,80,100,125000
+80DD_3,2017,80DD,active,Suffering from Disability - Resident - Son,80DD,Resident,Individual,Son,40,79,75000
+80DD_4,2017,80DD,active,Suffering from Disability - Resident - Son,80DD,Resident,Individual,Son,80,100,125000
+80DD_5,2017,80DD,active,Suffering from Disability - Resident - Daughter,80DD,Resident,Individual,Daughter,40,79,75000
+80DD_6,2017,80DD,active,Suffering from Disability - Resident - Daughter,80DD,Resident,Individual,Daughter,80,100,125000
+80DD_7,2017,80DD,active,Suffering from Disability - Resident - Father,80DD,Resident,Individual,Father,40,79,75000
+80DD_8,2017,80DD,active,Suffering from Disability - Resident - Father,80DD,Resident,Individual,Father,80,100,125000
+80DD_9,2017,80DD,active,Suffering from Disability - Resident - Mother,80DD,Resident,Individual,Mother,40,79,75000
+80DD_10,2017,80DD,active,Suffering from Disability - Resident - Mother,80DD,Resident,Individual,Mother,80,100,125000
+80DD_11,2017,80DD,active,Suffering from Disability - Resident - HUF Family,80DD,Resident,HUF,HUF Member,40,79,75000
+80DD_12,2017,80DD,active,Suffering from Disability - Resident - HUF Family,80DD,Resident,HUF,HUF Member,80,100,125000

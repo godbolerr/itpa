@@ -1,0 +1,21 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.rules.FiConstants;
+
+/**
+Messages are global objects 
+
+**/
+
+global java.util.List messages
+
+rule "Find out Total Children"   
+    when
+        fp : FinPerson()
+        items : List ( size > 0 ) 
+        from collect ( Person ( gender == FiConstants.GENDER_MALE ) from fp.family )
+    then
+        System.out.println("Has sons");
+        messages.add("Messages added to the list : has sons");
+end

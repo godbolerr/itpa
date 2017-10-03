@@ -1,0 +1,32 @@
+template header
+section
+residentStatus
+assesseeType
+relationShipCode
+minDisabilityPercent
+maxDisabilityPercent
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "AT DD Others Rules"
+
+
+rule "ATDDDisabilityOthers@{row.rowNumber}"
+    when
+        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
+        				residentStatus == "@{residentStatus}"
+        
+        			 	)
+        $fpPerson :  Person   ( disabilityPercent >= @{minDisabilityPercent} , 
+								disabilityPercent <= @{maxDisabilityPercent} ,						
+        		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
+        $result : FinPersonResult( )
+    then
+    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","@{relationShipCode}  Age: " + $fpPerson.age + ": Disability Percent " + $fpPerson.disabilityPercent );
+    	insert($deduction);
+end
+end template

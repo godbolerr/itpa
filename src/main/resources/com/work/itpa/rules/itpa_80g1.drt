@@ -1,0 +1,30 @@
+template header
+section
+residentStatus
+assesseeType
+schemeCode
+donationName
+maxDeductionPercent
+maxGtiPercent
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.rules.FiUtil;
+
+template "AT G  1 Rules"
+
+
+rule "AT1GG@{row.rowNumber}"
+    when
+      $fp : FinPerson( assesseeType == "@{assesseeType}" ,
+        				residentStatus == "@{residentStatus}"    	)	 
+        $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ) from $fp.donations 
+        $result : FinPersonResult( )
+    then
+    	BigDecimal $applicableDeduction =  FiUtil.lessOf( BigDecimal.valueOf( $fp.grossTotalIncome.doubleValue() * @{maxGtiPercent} / 100  ) , BigDecimal.valueOf( $pfDonation.amount.doubleValue() * @{maxDeductionPercent} /100 ) ); 
+    	Deduction $deduction = new Deduction($applicableDeduction,"80G","Additive","@{section}","Amount deducted for " + $pfDonation.schemeCode );
+    	insert($deduction);
+end
+end template
