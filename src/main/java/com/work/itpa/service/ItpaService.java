@@ -16,6 +16,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
@@ -73,7 +74,7 @@ public class ItpaService {
 		assesseePerson.setGender(finPerson.getGender());
 		assesseePerson.setName(finPerson.getName());
 		assesseePerson.setRelationShipCode(finPerson.getRelationShipCode());
-		assesseePerson.setId(finPerson.getId());
+		
 
 		allPersons.add(assesseePerson);
 		if (finPerson.getDependents() != null) {
@@ -108,10 +109,14 @@ public class ItpaService {
 		}
 
 		LOG.debug("Result : " + result);
-
 		
-		mongoTemplate.save(finPerson, "FinPerson");
-		mongoTemplate.save(result, "FinPerson");
+		FinPerson fPerson = new FinPerson();
+		
+		BeanUtils.copyProperties(finPerson, fPerson);
+		
+		fPerson.setResult(result);
+		
+		mongoTemplate.save(fPerson, "FinPersonResult");
 		
 		return result;
 	}

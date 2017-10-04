@@ -21,7 +21,7 @@ public class Person implements Serializable {
 	/**
 	 * Uniuqe identifier for a person.
 	 */
-	String id = "";
+	String pid ="";
 	
 	
 	String name;
@@ -120,20 +120,6 @@ public class Person implements Serializable {
 		if ( disease != null && disease.length() > 0 ){
 			hasDisease = true;
 		}
-	}
-
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	/**
@@ -321,6 +307,16 @@ public class Person implements Serializable {
 	public String getMaritalStatus() {
 		return maritalStatus;
 	}
+	
+	
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
 	/**
 	 * @param maritalStatus the maritalStatus to set
@@ -341,11 +337,14 @@ public class Person implements Serializable {
 		result = prime * result + disabilityPercent;
 		result = prime * result + ((disease == null) ? 0 : disease.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((pid == null) ? 0 : pid.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((relationShipCode == null) ? 0 : relationShipCode.hashCode());
 		return result;
 	}
+	
+	
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -389,11 +388,11 @@ public class Person implements Serializable {
 		} else if (!gender.equals(other.gender)) {
 			return false;
 		}
-		if (id == null) {
-			if (other.id != null) {
+		if (pid == null) {
+			if (other.pid != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		} else if (!pid.equals(other.pid)) {
 			return false;
 		}
 		if (name == null) {

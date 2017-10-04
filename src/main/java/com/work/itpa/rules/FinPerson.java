@@ -76,6 +76,9 @@ public class FinPerson extends Person {
 	boolean donationToResearch;
 	boolean savingAccountPresent;
 	
+	
+	FinPersonResult result;
+	
 
 	public FinPerson() {
 	}
@@ -587,6 +590,24 @@ public class FinPerson extends Person {
 	 */
 	public void setGrossTotalIncome(BigDecimal grossTotalIncome) {
 		this.grossTotalIncome = grossTotalIncome;
+	}
+
+
+
+	/**
+	 * @return the result
+	 */
+	public FinPersonResult getResult() {
+		return result;
+	}
+
+
+
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(FinPersonResult result) {
+		this.result = result;
 	}
 
 

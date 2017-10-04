@@ -54,15 +54,14 @@ public class DatabaseConfiguration {
         return new CustomConversions(converters);
     }
 
-    //TODO Need to remove hardcoded localhost configuration
     @Bean
-    public Mongo mongo() throws Exception {
-        return new MongoClient("localhost");
+    public Mongo mongo(String hostName) throws Exception {
+        return new MongoClient(hostName);
     }
  
     @Bean
     public MongoTemplate mongoTemplate(MongoProperties mongoProperties) throws Exception {
-        return new MongoTemplate(mongo(), mongoProperties.getDatabase());
+        return new MongoTemplate(mongo(mongoProperties.getHost()), mongoProperties.getDatabase());
     }
     
     
