@@ -55,13 +55,13 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public Mongo mongo(String hostName) throws Exception {
-        return new MongoClient(hostName);
+    public Mongo mongo(MongoProperties mongoProperties) throws Exception {
+        return new MongoClient(mongoProperties.getHost());
     }
  
     @Bean
     public MongoTemplate mongoTemplate(MongoProperties mongoProperties) throws Exception {
-        return new MongoTemplate(mongo(mongoProperties.getHost()), mongoProperties.getDatabase());
+        return new MongoTemplate(mongo(mongoProperties), mongoProperties.getDatabase());
     }
     
     

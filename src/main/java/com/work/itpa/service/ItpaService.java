@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
@@ -37,6 +39,8 @@ import com.work.itpa.rules.Person;
 public class ItpaService {
 	
 	 private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
+	 
+	 public static final String ITPA_RULE_DATA = "itpaRuleData";
 
 	@Autowired
 	private KieContainer kc;
@@ -164,6 +168,24 @@ public class ItpaService {
 
 		return new ArrayList<Deduction>(dMap.values());
 
+	}
+
+
+	/**
+	 * TODO Handle error parsing the input json data
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public String updateRuleData(String data) {
+		String result = "SUCCESS";
+		
+		DBObject dbObject = (DBObject) JSON.parse(data);
+		
+		mongoTemplate.save(dbObject, ITPA_RULE_DATA);
+				
+		
+		return result;
 	}
 
 }
