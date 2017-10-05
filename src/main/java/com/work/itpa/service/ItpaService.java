@@ -37,14 +37,14 @@ import com.work.itpa.rules.Person;
  */
 @Component
 public class ItpaService {
-	
-	 private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
-	 
-	 public static final String ITPA_RULE_DATA = "itpaRuleData";
+
+	private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
+
+	public static final String ITPA_RULE_DATA = "itpaRuleData";
 
 	@Autowired
 	private KieContainer kc;
-	
+
 	@Autowired
 	MongoTemplate mongoTemplate;
 
@@ -54,43 +54,13 @@ public class ItpaService {
 	public ItpaService() {
 	}
 
-
 	public FinPersonResult calculateBenefits(FinPerson finPerson) {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
 		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
-		
-		
-		
-		
 
 		FinPersonResult result = new FinPersonResult();
 
-		List<Person> allPersons = new ArrayList<Person>();
-
-		// Add assess himself as a person.
-
-		Person assesseePerson = new Person();
-
-		assesseePerson.setAge(finPerson.getAge());
-		assesseePerson.setDisabilityPercent(finPerson.getDisabilityPercent());
-		assesseePerson.setDisease(finPerson.getDisease());
-		assesseePerson.setGender(finPerson.getGender());
-		assesseePerson.setName(finPerson.getName());
-		assesseePerson.setRelationShipCode(finPerson.getRelationShipCode());
-		
-
-		allPersons.add(assesseePerson);
-		if (finPerson.getDependents() != null) {
-			allPersons.addAll(finPerson.getDependents());
-		}
-
-		if (finPerson.getFamily() != null) {
-			allPersons.addAll(finPerson.getFamily());
-		}
-
-		finPerson.setAllPersons(allPersons);
-		
 		LOG.debug("Firing rules for : " + finPerson);
 
 		kSession.insert(finPerson);
@@ -107,21 +77,21 @@ public class ItpaService {
 		// Dispose the session and release memory
 
 		kSession.dispose();
-		
-		if ( result.getDeductions() != null && result.getDeductions().size() > 0) {
+
+		if (result.getDeductions() != null && result.getDeductions().size() > 0) {
 			result.setStatus(true);
 		}
 
 		LOG.debug("Result : " + result);
-		
+
 		FinPerson fPerson = new FinPerson();
-		
+
 		BeanUtils.copyProperties(finPerson, fPerson);
-		
+
 		fPerson.setResult(result);
-		
+
 		mongoTemplate.save(fPerson, "FinPersonResult");
-		
+
 		return result;
 	}
 
@@ -144,8 +114,8 @@ public class ItpaService {
 				Deduction xDeduction = dMap.get(key);
 
 				if (FiConstants.DEDUCTION_UNIQUE.equals(xDeduction.getMode())) {
-					
-					//TODO Add exact comparison
+
+					// TODO Add exact comparison
 					if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
 						dMap.put(key, deduction);
 					}
@@ -159,8 +129,8 @@ public class ItpaService {
 					totalDeduction.setSection(xDeduction.getSection());
 					BigDecimal origDeduction = xDeduction.getAmount();
 					totalDeduction.setAmount(origDeduction.add(deduction.getAmount()));
-					dMap.put(key, totalDeduction);				
-					
+					dMap.put(key, totalDeduction);
+
 				}
 
 			}
@@ -170,7 +140,6 @@ public class ItpaService {
 
 	}
 
-
 	/**
 	 * TODO Handle error parsing the input json data
 	 * 
@@ -179,12 +148,11 @@ public class ItpaService {
 	 */
 	public String updateRuleData(String data) {
 		String result = "SUCCESS";
-		
+
 		DBObject dbObject = (DBObject) JSON.parse(data);
-		
+
 		mongoTemplate.save(dbObject, ITPA_RULE_DATA);
-				
-		
+
 		return result;
 	}
 

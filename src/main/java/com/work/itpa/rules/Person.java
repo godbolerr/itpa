@@ -59,9 +59,6 @@ public class Person implements Serializable {
 	String relationShipCode;
 	
 	
-	String residentStatus;
-	
-	
 	String maritalStatus;
 	
 	
@@ -107,15 +104,15 @@ public class Person implements Serializable {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public Person(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
+	public Person(String name, Date dateOfBirth, int age, String gender, String relationShipCode, int disabilityPercent, String disease) {
 		super();
 		this.name = name;
-		this.residentStatus = residentStatus;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.relationShipCode = relationShipCode;
 		this.disabilityPercent = disabilityPercent;
 		this.disease = disease;
+		this.age = age;
 		
 		if ( disease != null && disease.length() > 0 ){
 			hasDisease = true;
@@ -271,21 +268,6 @@ public class Person implements Serializable {
 	
 	
 
-	/**
-	 * @return the residentStatus
-	 */
-	public String getResidentStatus() {
-		return residentStatus;
-	}
-
-	/**
-	 * @param residentStatus the residentStatus to set
-	 */
-	public void setResidentStatus(String residentStatus) {
-		this.residentStatus = residentStatus;
-	}
-	
-	
 
 	/**
 	 * @return the employmentStatus

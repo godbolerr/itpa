@@ -32,7 +32,7 @@ public class Rule80DD1Test {
 	@Test
 	public void test80USelfResidentIndividualFiftyPercentDisability() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setDisabilityPercent(50);
+		fPerson.getSelf().setDisabilityPercent(50);
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
@@ -57,7 +57,7 @@ public class Rule80DD1Test {
 	@Test
 	public void test80USelfResidentIndividualEightyPercentDisability() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setDisabilityPercent(81);
+		fPerson.getSelf().setDisabilityPercent(81);
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 

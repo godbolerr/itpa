@@ -42,7 +42,7 @@ public class Rule80DDTest {
 		wife.setName("Aasha");
 		wife.setAge(34);
 		
-		fPerson.addChildren(wife);
+		fPerson.addPerson(wife);
 		
 		// Associated disable wife with 45 percent disability
 		
@@ -78,7 +78,7 @@ public class Rule80DDTest {
 		wife.setName("Aasha");
 		wife.setAge(34);
 		
-		fPerson.addChildren(wife);
+		fPerson.addPerson(wife);
 		
 		// Associated disable wife with 45 percent disability
 		
@@ -115,7 +115,7 @@ public class Rule80DDTest {
 		hufMember.setName("Aasha");
 		hufMember.setAge(34);
 		
-		fPerson.addChildren(hufMember);
+		fPerson.addPerson(hufMember);
 		
 		// Associated disable wife with 45 percent disability
 		

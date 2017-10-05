@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * Contains information about the evaluator
  * 
  * @author developer
  *
  */
-public class FinPerson extends Person {
+public class FinPerson {
 
 	String email;
 
@@ -24,23 +23,20 @@ public class FinPerson extends Person {
 	String panNumber;
 
 	String aadharNumber;
+	
+	String residentStatus;
 
 	public BigDecimal grossTotalIncome;
 
 	Address address;
-
-	List<Person> family;
-
-	List<Person> dependents;
 
 	/**
 	 * Type of employment. TODO Enum
 	 * 
 	 */
 	String employmentType;
-	
+
 	public String assesseeType;
-	
 
 	BigDecimal salaryPerAnum;
 
@@ -53,38 +49,34 @@ public class FinPerson extends Person {
 	BigDecimal dearnessAllowancePerMonth;
 
 	boolean rentedAccomodation;
-	
+
 	boolean hraAvailed;
 
 	List<PropertyDetails> propertyDetails;
 
 	List<Loan> loans;
-	
+
 	List<Expense> expenses;
 
 	List<Donation> donations;
-	
+
 	List<Investment> investments;
-	
+
 	List<Income> otherIncomes;
-	
+
 	List<Person> allPersons;
-	
+
 	boolean donationToPoliticalParty;
 	boolean filedPatent;
 	boolean authoredBook;
 	boolean donationToResearch;
 	boolean savingAccountPresent;
-	
-	
+
 	FinPersonResult result;
-	
 
 	public FinPerson() {
 	}
 
-	
-	
 	/**
 	 * @param dateOfBirth
 	 * @param gender
@@ -92,11 +84,11 @@ public class FinPerson extends Person {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public FinPerson(String name,String residentStatus, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
-		super(name, residentStatus, dateOfBirth, gender, relationShipCode, disabilityPercent, disease);
+	public FinPerson(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode,
+			int disabilityPercent, String disease) {
+		// super(name, residentStatus, dateOfBirth, gender, relationShipCode,
+		// disabilityPercent, disease);
 	}
-
-
 
 	/**
 	 * @return the email
@@ -158,7 +150,6 @@ public class FinPerson extends Person {
 		this.aadharNumber = aadharNumber;
 	}
 
-
 	/**
 	 * @return the address
 	 */
@@ -173,7 +164,6 @@ public class FinPerson extends Person {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
 
 	/**
 	 * @return the employmentType
@@ -372,39 +362,12 @@ public class FinPerson extends Person {
 		this.otherIncomes.add(income);
 	}
 
-	
-	/**
-	 * @return the dependents
-	 */
-	public List<Person> getDependents() {
-		return dependents;
-	}
+	public void addPerson(Person p) {
 
-
-
-	/**
-	 * @param dependents the dependents to set
-	 */
-	public void setDependents(List<Person> dependents) {
-		this.dependents = dependents;
-	}
-
-
-
-	public void addDependent(Person p ){
-		
-		if ( dependents == null ) {
-			dependents = new ArrayList<Person>();
+		if (allPersons == null) {
+			allPersons = new ArrayList<Person>();
 		}
-		dependents.add(p);
-	}
-	
-	public void addChildren(Person p ){
-		
-		if ( family == null ) {
-			family = new ArrayList<Person>();
-		}
-		family.add(p);
+		allPersons.add(p);
 	}
 
 	public void addInvestment(Investment investment) {
@@ -420,8 +383,7 @@ public class FinPerson extends Person {
 		}
 		this.expenses.add(expense);
 	}
-	
-	
+
 	/**
 	 * @return the investments
 	 */
@@ -429,34 +391,13 @@ public class FinPerson extends Person {
 		return investments;
 	}
 
-
-
 	/**
-	 * @param investments the investments to set
+	 * @param investments
+	 *            the investments to set
 	 */
 	public void setInvestments(List<Investment> investments) {
 		this.investments = investments;
 	}
-
-
-
-	/**
-	 * @return the family
-	 */
-	public List<Person> getFamily() {
-		return family;
-	}
-
-
-
-	/**
-	 * @param family the family to set
-	 */
-	public void setFamily(List<Person> family) {
-		this.family = family;
-	}
-
-
 
 	/**
 	 * @return the donationToPoliticalParty
@@ -465,16 +406,13 @@ public class FinPerson extends Person {
 		return donationToPoliticalParty;
 	}
 
-
-
 	/**
-	 * @param donationToPoliticalParty the donationToPoliticalParty to set
+	 * @param donationToPoliticalParty
+	 *            the donationToPoliticalParty to set
 	 */
 	public void setDonationToPoliticalParty(boolean donationToPoliticalParty) {
 		this.donationToPoliticalParty = donationToPoliticalParty;
 	}
-
-
 
 	/**
 	 * @return the filedPatent
@@ -483,16 +421,13 @@ public class FinPerson extends Person {
 		return filedPatent;
 	}
 
-
-
 	/**
-	 * @param filedPatent the filedPatent to set
+	 * @param filedPatent
+	 *            the filedPatent to set
 	 */
 	public void setFiledPatent(boolean filedPatent) {
 		this.filedPatent = filedPatent;
 	}
-
-
 
 	/**
 	 * @return the authoredBook
@@ -501,16 +436,13 @@ public class FinPerson extends Person {
 		return authoredBook;
 	}
 
-
-
 	/**
-	 * @param authoredBook the authoredBook to set
+	 * @param authoredBook
+	 *            the authoredBook to set
 	 */
 	public void setAuthoredBook(boolean authoredBook) {
 		this.authoredBook = authoredBook;
 	}
-
-
 
 	/**
 	 * @return the donationToResearch
@@ -519,16 +451,13 @@ public class FinPerson extends Person {
 		return donationToResearch;
 	}
 
-
-
 	/**
-	 * @param donationToResearch the donationToResearch to set
+	 * @param donationToResearch
+	 *            the donationToResearch to set
 	 */
 	public void setDonationToResearch(boolean donationToResearch) {
 		this.donationToResearch = donationToResearch;
 	}
-
-
 
 	/**
 	 * @return the savingAccountPresent
@@ -537,16 +466,13 @@ public class FinPerson extends Person {
 		return savingAccountPresent;
 	}
 
-
-
 	/**
-	 * @param savingAccountPresent the savingAccountPresent to set
+	 * @param savingAccountPresent
+	 *            the savingAccountPresent to set
 	 */
 	public void setSavingAccountPresent(boolean savingAccountPresent) {
 		this.savingAccountPresent = savingAccountPresent;
 	}
-
-
 
 	/**
 	 * @return the assesseeType
@@ -555,26 +481,21 @@ public class FinPerson extends Person {
 		return assesseeType;
 	}
 
-
 	/**
-	 * @param assesseeType the assesseeType to set
+	 * @param assesseeType
+	 *            the assesseeType to set
 	 */
 	public void setAssesseeType(String assesseeType) {
 		this.assesseeType = assesseeType;
 	}
 
-	
 	public List<Person> getAllPersons() {
 		return allPersons;
 	}
 
-
-
 	public void setAllPersons(List<Person> allPersons) {
 		this.allPersons = allPersons;
 	}
-
-
 
 	/**
 	 * @return the grossTotalIncome
@@ -583,16 +504,13 @@ public class FinPerson extends Person {
 		return grossTotalIncome;
 	}
 
-
-
 	/**
-	 * @param grossTotalIncome the grossTotalIncome to set
+	 * @param grossTotalIncome
+	 *            the grossTotalIncome to set
 	 */
 	public void setGrossTotalIncome(BigDecimal grossTotalIncome) {
 		this.grossTotalIncome = grossTotalIncome;
 	}
-
-
 
 	/**
 	 * @return the result
@@ -601,18 +519,17 @@ public class FinPerson extends Person {
 		return result;
 	}
 
-
-
 	/**
-	 * @param result the result to set
+	 * @param result
+	 *            the result to set
 	 */
 	public void setResult(FinPersonResult result) {
 		this.result = result;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -626,9 +543,9 @@ public class FinPerson extends Person {
 		return result;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -668,9 +585,6 @@ public class FinPerson extends Person {
 		return true;
 	}
 
-
-
-
 	/**
 	 * @return the hraAvailed
 	 */
@@ -678,16 +592,13 @@ public class FinPerson extends Person {
 		return hraAvailed;
 	}
 
-
-
 	/**
-	 * @param hraAvailed the hraAvailed to set
+	 * @param hraAvailed
+	 *            the hraAvailed to set
 	 */
 	public void setHraAvailed(boolean hraAvailed) {
 		this.hraAvailed = hraAvailed;
 	}
-
-
 
 	/**
 	 * @return the expenses
@@ -696,15 +607,43 @@ public class FinPerson extends Person {
 		return expenses;
 	}
 
-
-
 	/**
-	 * @param expenses the expenses to set
+	 * @param expenses
+	 *            the expenses to set
 	 */
 	public void setExpenses(List<Expense> expenses) {
 		this.expenses = expenses;
 	}
 	
 	
-	
+
+	/**
+	 * @return the residentStatus
+	 */
+	public String getResidentStatus() {
+		return residentStatus;
+	}
+
+	/**
+	 * @param residentStatus the residentStatus to set
+	 */
+	public void setResidentStatus(String residentStatus) {
+		this.residentStatus = residentStatus;
+	}
+
+	public Person getSelf() {
+		
+		if ( allPersons != null ) {
+			for (Person person : allPersons) {
+
+				if (FiConstants.RELATIONSHIP_SELF.equals(person.getRelationShipCode() )) {
+					return person;
+				}
+			}
+		}
+
+		return null;
+
+	}
+
 }

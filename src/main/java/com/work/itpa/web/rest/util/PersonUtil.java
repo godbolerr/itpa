@@ -37,15 +37,20 @@ public class PersonUtil {
 
 	public static FinPerson getFinPerson() {
 
-		FinPerson fPerson = new FinPerson(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
-				FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF, 0, "");
+		Person pSelf = new Person(PERSON_NAME, new Date(), 40, FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF,
+				0, "");
+
+		FinPerson fPerson = new FinPerson();
+		fPerson.addPerson(pSelf);
+
+		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 
 		fPerson.setEmail(PERSON_EMAIL);
 		fPerson.setContactNumber("+1 998 889 8888");
 		fPerson.setAadharNumber("9998887878");
 		fPerson.setPanNumber("OPDID9987A");
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(40);
+
 		fPerson.setEmploymentType("GOV");
 		fPerson.setSalaryBasicPerMonth(BigDecimal.valueOf(3939));
 		fPerson.setSalaryPerAnum(BigDecimal.valueOf(49494949));
@@ -102,27 +107,26 @@ public class PersonUtil {
 		person.addExpense(new Expense(BigDecimal.valueOf(amount), type, note));
 	}
 
-
 	public static void addExpense(FinPerson person, double amount, String relationShipCode, String type, String note) {
 		Expense exp = new Expense(BigDecimal.valueOf(amount), type, note);
 		exp.setRelationShipCode(relationShipCode);
 		person.addExpense(exp);
 	}
-	
+
 	public static void addIncome(FinPerson person, double amount, String reasonCode, String note) {
 		person.addIncome(new Income(BigDecimal.valueOf(amount), reasonCode, note));
 	}
 
-	public static void addPropertyDetails(FinPerson person, String name, String city, String status, double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
-		PropertyDetails details = new PropertyDetails(name,city,status);
+	public static void addPropertyDetails(FinPerson person, String name, String city, String status,
+			double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
+		PropertyDetails details = new PropertyDetails(name, city, status);
 		details.setLoanValue(BigDecimal.valueOf(loanAmount));
 		details.setAnnualInterest(BigDecimal.valueOf(annualInterest));
 		details.setFirstProperty(firstProperty);
 		details.setPropertyValue(BigDecimal.valueOf(propertyValue));
 		person.addPropertyDetails(details);
 	}
-	
-	
+
 	public static FinPerson getBachelorMale() {
 		FinPerson person = getFinPerson();
 		return person;
@@ -130,48 +134,52 @@ public class PersonUtil {
 
 	public static FinPerson getBachelorMaleWithWard() {
 		FinPerson person = getFinPerson();
-		Person ward = new Person("Sham", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
-				FiConstants.RELATIONSHIP_WARD, 0, "");
-		person.addDependent(ward);
+		person.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		Person ward = new Person("Sham", new Date(), 25, FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_WARD, 0,
+				"");
+		person.addPerson(ward);
 		return person;
 	}
-	
-	public static Person getPerson(){
-		
-		return  new Person("XXX", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
-					FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
+
+	public static Person getPerson() {
+
+		return new Person("XXX", new Date(), 40, FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
 	}
 
 	public static FinPerson getBachelorMaleWithHUFMember() {
 		FinPerson person = getFinPerson();
-		Person hufMember = new Person("Laxman", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+		person.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
+		Person hufMember = new Person("Laxman", new Date(), 40, FiConstants.GENDER_FEMALE,
 				FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
-		person.addDependent(hufMember);
+		person.addPerson(hufMember);
 		return person;
 	}
 
 	public static FinPerson getBachelorMaleAbove60() {
 		FinPerson person = getFinPerson();
-		person.setAge(61);
+		person.getSelf().setAge(61);
 		return person;
 	}
 
 	public static FinPerson getMarriedMale() {
-		FinPerson person = getFinPerson();
-		person.setMaritalStatus(FiConstants.MARITAL_MARRIED);
-		Person wife = new Person("Lata", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
-				FiConstants.RELATIONSHIP_WIFE, 0, "");
+		FinPerson fPerson = getFinPerson();
+
+		fPerson.getSelf().setMaritalStatus(FiConstants.MARITAL_MARRIED);
+
+		Person wife = new Person("Lata", new Date(), 40, FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_WIFE, 0,
+				"");
 		wife.setAge(37);
-		person.addChildren(wife);
-		return person;
+		fPerson.addPerson(wife);
+
+		return fPerson;
 	}
 
 	public static FinPerson getMarriedMaleWithOneDaughter() {
 		FinPerson person = getMarriedMale();
-		Person daughter = new Person("Aasha", FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
+		Person daughter = new Person("Aasha", new Date(), 40, FiConstants.GENDER_FEMALE,
 				FiConstants.RELATIONSHIP_DAUGHTER, 0, "");
 		daughter.setAge(17);
-		person.addChildren(daughter);
+		person.addPerson(daughter);
 		return person;
 	}
 
@@ -303,19 +311,18 @@ public class PersonUtil {
 		}
 		return false;
 	}
-	
-	public static void logTestResult(String testName, FinPerson finPerson, FinPersonResult result){
-		
+
+	public static void logTestResult(String testName, FinPerson finPerson, FinPersonResult result) {
+
 		String inputJson = testName + "_in.json";
 		String outputJson = testName + "_out.json";
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		
-		finPerson.setAllPersons(null);
 		try {
 			mapper.writeValue(new File(inputJson), finPerson);
 			mapper.writeValue(new File(outputJson), result);
-			
+
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -326,9 +333,7 @@ public class PersonUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
 
 }

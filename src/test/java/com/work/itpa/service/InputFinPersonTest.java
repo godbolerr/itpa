@@ -37,14 +37,12 @@ public class InputFinPersonTest {
 	@Test
 	public void generateModelPerson() {
 		FinPerson fPerson = PersonUtil.getMarriedMaleWithOneDaughter();
-		fPerson.setAge(41);
-		fPerson.setDisabilityPercent(50);
+		fPerson.getSelf().setAge(41);
+		fPerson.getSelf().setDisabilityPercent(50);
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(BigDecimal.valueOf(49494949));
 
-		fPerson.setDisabilityPercent(81);
-		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_POLITICAL, "Donation to policical party xyz ");
 		PersonUtil.addIncome(fPerson, 9000, FiConstants.INCOME_SAVINGINTEREST, "Interest from savings bank ");
@@ -69,7 +67,7 @@ public class InputFinPersonTest {
 		wife.setName("Aasha");
 		wife.setAge(34);
 		
-		fPerson.addChildren(wife);
+		fPerson.addPerson(wife);
 		
 		Person father = PersonUtil.getPerson();
 		
@@ -80,7 +78,7 @@ public class InputFinPersonTest {
 		father.setDisease("ABCD");
 		father.setAge(62);
 
-		fPerson.addDependent(father);
+		fPerson.addPerson(father);
 		
 		
 		Person mother = PersonUtil.getPerson();
@@ -92,7 +90,7 @@ public class InputFinPersonTest {
 		mother.setDisease("ABCD");
 		mother.setAge(82);
 
-		fPerson.addDependent(mother);
+		fPerson.addPerson(mother);
 		
 		
 

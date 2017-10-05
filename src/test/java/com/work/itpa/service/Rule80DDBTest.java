@@ -34,8 +34,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(41);
-		fPerson.setDisease("ABCD");
+		fPerson.getSelf().setAge(41);
+		fPerson.getSelf().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -62,8 +62,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(61);
-		fPerson.setDisease("ABCD");
+		fPerson.getSelf().setAge(61);
+		fPerson.getSelf().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -89,8 +89,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(81);
-		fPerson.setDisease("ABCD");
+		fPerson.getSelf().setAge(81);
+		fPerson.getSelf().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -117,8 +117,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(58);
-		fPerson.setDisease("ABCD");
+		fPerson.getSelf().setAge(58);
+		fPerson.getSelf().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 
@@ -131,7 +131,7 @@ public class Rule80DDBTest {
 		father.setDisease("ABCD");
 		father.setAge(62);
 
-		fPerson.addDependent(father);
+		fPerson.addPerson(father);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -157,8 +157,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setAge(58);
-		fPerson.setDisease("ABCD");
+		fPerson.getSelf().setAge(58);
+		fPerson.getSelf().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 
@@ -171,7 +171,7 @@ public class Rule80DDBTest {
 		mother.setDisease("ABCD");
 		mother.setAge(82);
 
-		fPerson.addDependent(mother);
+		fPerson.addPerson(mother);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
