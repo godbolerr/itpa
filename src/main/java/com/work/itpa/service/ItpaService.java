@@ -34,6 +34,7 @@ import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.rules.RuleData;
+import com.work.itpa.rules.RuleTemplate;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -171,6 +172,16 @@ public class ItpaService {
 		return mongoTemplate.find(query, RuleData.class, "decisiondata");
 
 	}
+	
+	public List<RuleTemplate> getRuleTemplates(int assessmentYear) {
+
+		Query query = new Query();
+		query.addCriteria(Criteria.where("assessmentYear").is(assessmentYear));
+		return mongoTemplate.find(query, RuleTemplate.class, "ruleTemplate");
+
+	}
+	
+	
 
 	public void getRules(int assessmentYear, String ruleTemplate, String ruleFile, String commaSeperatedList) {
 
