@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import com.mongodb.DBObject;
@@ -27,7 +29,7 @@ import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.Person;
+import com.work.itpa.rules.RuleData;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -154,6 +156,16 @@ public class ItpaService {
 		mongoTemplate.save(dbObject, ITPA_RULE_DATA);
 
 		return result;
+	}
+
+	public List<RuleData> getDecisionData(int assessmentYear, String ruleTemplate) {
+
+		Query query = new Query();
+		query.addCriteria(Criteria.where("ruleTemplate").is(ruleTemplate));
+		query.addCriteria(Criteria.where("assessmentYear").is(assessmentYear));
+
+		return mongoTemplate.find(query, RuleData.class,"decisiondata");
+
 	}
 
 }
