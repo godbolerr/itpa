@@ -163,6 +163,18 @@ public class ItpaService {
 		return result;
 	}
 
+	public String updateRuleTemplate(RuleTemplate template) {
+		String result = "SUCCESS";
+		
+		mongoTemplate.save(template,"ruleTemplate");
+
+		return result;
+	}
+	
+	
+	
+	
+	
 	public List<RuleData> getDecisionData(int assessmentYear, String ruleTemplate) {
 
 		Query query = new Query();

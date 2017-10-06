@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.work.itpa.rules.FinPersonResult;
+import com.work.itpa.rules.RuleTemplate;
 import com.work.itpa.service.ItpaService;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -54,7 +55,10 @@ public class ItpaRuleResource {
 	
 	
 	
-	
+	@RequestMapping(value = "/template", method = { RequestMethod.POST })
+	public String updateRuleTemplate(@RequestBody RuleTemplate data) {
+		return itpaService.updateRuleTemplate(data);
+	}		
 	
 	
 	

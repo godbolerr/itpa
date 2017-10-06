@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.ItpadocApp;
 import com.work.itpa.rules.RuleData;
+import com.work.itpa.rules.RuleTemplate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpadocApp.class)
@@ -80,7 +81,6 @@ deductionType
 minAge
 maxAge
 maxDeduction
-		 */
 		
 		dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt","section,"
 				+ "residentStatus,"
@@ -90,7 +90,13 @@ maxDeduction
 				+ "minAge,"
 				+ "maxAge,"
 				+ "maxDeduction");
+		 */
 		
+		List<RuleTemplate> templates = dService.getRuleTemplates(2017);
+		
+		for (RuleTemplate ruleTemplate : templates) {
+			System.out.println(ruleTemplate.getRuleText());
+		}
 	}
 	
 
