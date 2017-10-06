@@ -631,7 +631,7 @@ public class FinPerson {
 		this.residentStatus = residentStatus;
 	}
 
-	public Person getSelf() {
+	public Person selfPerson() {
 		
 		if ( allPersons != null ) {
 			for (Person person : allPersons) {

@@ -33,7 +33,7 @@ public class Rule80DTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(45);
+		fPerson.selfPerson().setAge(45);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -65,7 +65,7 @@ public class Rule80DTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(61);
+		fPerson.selfPerson().setAge(61);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 

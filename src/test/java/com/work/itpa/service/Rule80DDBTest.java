@@ -34,8 +34,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(41);
-		fPerson.getSelf().setDisease("ABCD");
+		fPerson.selfPerson().setAge(41);
+		fPerson.selfPerson().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -62,8 +62,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(61);
-		fPerson.getSelf().setDisease("ABCD");
+		fPerson.selfPerson().setAge(61);
+		fPerson.selfPerson().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -89,8 +89,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(81);
-		fPerson.getSelf().setDisease("ABCD");
+		fPerson.selfPerson().setAge(81);
+		fPerson.selfPerson().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -117,8 +117,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(58);
-		fPerson.getSelf().setDisease("ABCD");
+		fPerson.selfPerson().setAge(58);
+		fPerson.selfPerson().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 
@@ -157,8 +157,8 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.getSelf().setAge(58);
-		fPerson.getSelf().setDisease("ABCD");
+		fPerson.selfPerson().setAge(58);
+		fPerson.selfPerson().setDisease("ABCD");
 		// Associated disable wife with 45 percent disability
 		
 

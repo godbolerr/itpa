@@ -25,8 +25,18 @@ public class ItpaServiceQuery {
 	public void test80D0() {
 		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
 		
+		System.out.println(data);
+		
 		assertTrue(data.size() > 0);
 		
 	}
+	
+	@Test
+	public void getRuleTest(){
+		
+		dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt");
+		
+	}
+	
 
 }

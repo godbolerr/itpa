@@ -1,108 +1,20 @@
 {  
-   "pid":"",
-   "name":"Ram Kumar",
-   "dateOfBirth":"2017-10-04",
-   "age":41,
-   "gender":"Male",
-   "relationShipCode":"Self",
-   "residentStatus":"Resident",
-   "maritalStatus":"Married",
-   "employmentStatus":null,
-   "disabilityPercent":81,
-   "disease":"",
-   "hasDisability":false,
-   "hasDisease":false,
-   "valid":false,
    "email":"rkumartyty@gmail.com",
    "contactNumber":"+1 998 889 8888",
    "panNumber":"OPDID9987A",
    "aadharNumber":"9998887878",
+   "residentStatus":"Resident",
    "grossTotalIncome":49494949,
-   "address":null,
-   "family":[  
-      {  
-         "pid":"",
-         "name":"Lata",
-         "dateOfBirth":"2017-10-04",
-         "age":37,
-         "gender":"Female",
-         "relationShipCode":"Wife",
-         "residentStatus":"Resident",
-         "maritalStatus":null,
-         "employmentStatus":null,
-         "disabilityPercent":0,
-         "disease":"",
-         "hasDisability":false,
-         "hasDisease":false,
-         "valid":false
-      },
-      {  
-         "pid":"",
-         "name":"Aasha",
-         "dateOfBirth":"2017-10-04",
-         "age":17,
-         "gender":"Female",
-         "relationShipCode":"Daughter",
-         "residentStatus":"Resident",
-         "maritalStatus":null,
-         "employmentStatus":null,
-         "disabilityPercent":0,
-         "disease":"",
-         "hasDisability":false,
-         "hasDisease":false,
-         "valid":false
-      },
-      {  
-         "pid":"",
-         "name":"Aasha",
-         "dateOfBirth":"2017-10-04",
-         "age":34,
-         "gender":"Female",
-         "relationShipCode":"Wife",
-         "residentStatus":"Resident",
-         "maritalStatus":null,
-         "employmentStatus":null,
-         "disabilityPercent":45,
-         "disease":"",
-         "hasDisability":false,
-         "hasDisease":false,
-         "valid":false
-      }
-   ],
-   "dependents":[  
-      {  
-         "pid":"",
-         "name":"xxxx",
-         "dateOfBirth":"2017-10-04",
-         "age":62,
-         "gender":"Male",
-         "relationShipCode":"Father",
-         "residentStatus":"Resident",
-         "maritalStatus":null,
-         "employmentStatus":null,
-         "disabilityPercent":0,
-         "disease":"ABCD",
-         "hasDisability":false,
-         "hasDisease":true,
-         "valid":false
-      },
-      {  
-         "pid":"",
-         "name":"xxxx",
-         "dateOfBirth":"2017-10-04",
-         "age":82,
-         "gender":"Female",
-         "relationShipCode":"Mother",
-         "residentStatus":"Resident",
-         "maritalStatus":null,
-         "employmentStatus":null,
-         "disabilityPercent":0,
-         "disease":"ABCD",
-         "hasDisability":false,
-         "hasDisease":true,
-         "valid":false
-      }
-   ],
+   "address":{  
+      "addressLine1":"D 334, Range Hill",
+      "addressLine2":"Near Blue Hotel",
+      "city":"Pune",
+      "state":"Maharashtra",
+      "country":"India",
+      "pinCode":"444033",
+      "landMark":"Express way entry",
+      "addressType":"RESIDENT"
+   },
    "employmentType":"GOV",
    "assesseeType":"Individual",
    "salaryPerAnum":49494949,
@@ -123,7 +35,18 @@
          "annualInterest":40000.0
       }
    ],
-   "loans":null,
+   "loans":[  
+      {  
+         "interestPaidPerAnum":34949,
+         "principalPaidPerAnum":24555,
+         "loanAmount":3455567,
+         "type":"HOUSING",
+         "institution":"sbi",
+         "loanPeriod":"33",
+         "loanStartDate":"2017-10-06",
+         "loanEndDate":"2017-10-06"
+      }
+   ],
    "expenses":[  
       {  
          "amount":50000.0,
@@ -158,7 +81,23 @@
          "details":"Test G1 Type donations"
       }
    ],
-   "investments":null,
+   "investments":[  
+      {  
+         "amount":35000,
+         "type":"LIC",
+         "details":"LIC 1"
+      },
+      {  
+         "amount":20000,
+         "type":"LIC",
+         "details":"LIC 2"
+      },
+      {  
+         "amount":35000,
+         "type":"PPF",
+         "details":"PPF 1"
+      }
+   ],
    "otherIncomes":[  
       {  
          "amount":9000.0,
@@ -176,7 +115,98 @@
          "details":"Income from Authoring book 1"
       }
    ],
-   "allPersons":null,
+   "allPersons":[  
+      {  
+         "pid":"",
+         "name":"Ram Kumar",
+         "dateOfBirth":"2017-10-06",
+         "age":41,
+         "gender":"Male",
+         "relationShipCode":"Self",
+         "maritalStatus":"Married",
+         "employmentStatus":null,
+         "disabilityPercent":50,
+         "disease":"",
+         "hasDisability":false,
+         "hasDisease":false,
+         "valid":false
+      },
+      {  
+         "pid":"",
+         "name":"Lata",
+         "dateOfBirth":"2017-10-06",
+         "age":37,
+         "gender":"Female",
+         "relationShipCode":"Wife",
+         "maritalStatus":null,
+         "employmentStatus":null,
+         "disabilityPercent":0,
+         "disease":"",
+         "hasDisability":false,
+         "hasDisease":false,
+         "valid":false
+      },
+      {  
+         "pid":"",
+         "name":"Aasha",
+         "dateOfBirth":"2017-10-06",
+         "age":17,
+         "gender":"Female",
+         "relationShipCode":"Daughter",
+         "maritalStatus":null,
+         "employmentStatus":null,
+         "disabilityPercent":0,
+         "disease":"",
+         "hasDisability":false,
+         "hasDisease":false,
+         "valid":false
+      },
+      {  
+         "pid":"",
+         "name":"Aasha",
+         "dateOfBirth":"2017-10-06",
+         "age":34,
+         "gender":"Female",
+         "relationShipCode":"Wife",
+         "maritalStatus":null,
+         "employmentStatus":null,
+         "disabilityPercent":45,
+         "disease":"",
+         "hasDisability":false,
+         "hasDisease":false,
+         "valid":false
+      },
+      {  
+         "pid":"",
+         "name":"xxxx",
+         "dateOfBirth":"2017-10-06",
+         "age":62,
+         "gender":"Male",
+         "relationShipCode":"Father",
+         "maritalStatus":null,
+         "employmentStatus":null,
+         "disabilityPercent":0,
+         "disease":"ABCD",
+         "hasDisability":false,
+         "hasDisease":true,
+         "valid":false
+      },
+      {  
+         "pid":"",
+         "name":"xxxx",
+         "dateOfBirth":"2017-10-06",
+         "age":82,
+         "gender":"Female",
+         "relationShipCode":"Mother",
+         "maritalStatus":null,
+         "employmentStatus":null,
+         "disabilityPercent":0,
+         "disease":"ABCD",
+         "hasDisability":false,
+         "hasDisease":true,
+         "valid":false
+      }
+   ],
    "donationToPoliticalParty":false,
    "filedPatent":false,
    "authoredBook":false,

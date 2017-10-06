@@ -20,7 +20,7 @@ public class RuleData implements Serializable {
 	String status;
 	String name;
 	String section;
-	String residetStatus;
+	String residentStatus;
 	String assesseeType;
 	String relationshipCode;
 	String deductionType;
@@ -99,17 +99,18 @@ public class RuleData implements Serializable {
 	public void setSection(String section) {
 		this.section = section;
 	}
+	
 	/**
-	 * @return the residetStatus
+	 * @return the residentStatus
 	 */
-	public String getResidetStatus() {
-		return residetStatus;
+	public String getResidentStatus() {
+		return residentStatus;
 	}
 	/**
-	 * @param residetStatus the residetStatus to set
+	 * @param residentStatus the residentStatus to set
 	 */
-	public void setResidetStatus(String residetStatus) {
-		this.residetStatus = residetStatus;
+	public void setResidentStatus(String residentStatus) {
+		this.residentStatus = residentStatus;
 	}
 	/**
 	 * @return the assesseeType
@@ -189,7 +190,7 @@ public class RuleData implements Serializable {
 	@Override
 	public String toString() {
 		return "RuleData [id=" + id + ", assessmentYear=" + assessmentYear + ", ruleTemplate=" + ruleTemplate
-				+ ", status=" + status + ", name=" + name + ", section=" + section + ", residetStatus=" + residetStatus
+				+ ", status=" + status + ", name=" + name + ", section=" + section + ", residetStatus=" + residentStatus
 				+ ", assesseeType=" + assesseeType + ", relationshipCode=" + relationshipCode + ", deductionType="
 				+ deductionType + ", minAge=" + minAge + ", maxAge=" + maxAge + ", maxDeduction=" + maxDeduction + "]";
 	}

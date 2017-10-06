@@ -3,6 +3,7 @@
  */
 package com.work.itpa.service;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.drools.template.DataProvider;
+import org.drools.template.DataProviderCompiler;
 import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
@@ -164,7 +167,52 @@ public class ItpaService {
 		query.addCriteria(Criteria.where("ruleTemplate").is(ruleTemplate));
 		query.addCriteria(Criteria.where("assessmentYear").is(assessmentYear));
 
-		return mongoTemplate.find(query, RuleData.class,"decisiondata");
+		return mongoTemplate.find(query, RuleData.class, "decisiondata");
+
+	}
+
+	public void getRules(int assessmentYear, String ruleTemplate, String ruleFile) {
+
+		DecisionDataProvider tdp = new DecisionDataProvider(getDecisionData(assessmentYear, ruleTemplate));
+		final DataProviderCompiler converter = new DataProviderCompiler();
+		final String drl = converter.compile(tdp, getTemplate(ruleFile));
+		System.out.println(drl);
+
+	}
+
+	private InputStream getTemplate(String ruleFile) {
+		return this.getClass().getResourceAsStream(ruleFile);
+	}
+
+	private class DecisionDataProvider implements DataProvider {
+
+		private Iterator<RuleData> iterator;
+
+		DecisionDataProvider(List<RuleData> rows) {
+			this.iterator = rows.iterator();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return iterator.hasNext();
+		}
+
+		/**
+		 * section residentStatus assesseeType relationShipCode deductionType
+		 * minAge maxAge maxDeduction
+		 */
+
+		@Override
+		public String[] next() {
+			RuleData ruleDataItem = iterator.next();
+			String[] row = new String[] { ruleDataItem.getSection(), ruleDataItem.getResidentStatus(), ruleDataItem.getAssesseeType(),
+					ruleDataItem.getRelationshipCode(), ruleDataItem.getDeductionType(),
+					String.valueOf(ruleDataItem.getMinAge()), String.valueOf(ruleDataItem.getMaxAge()),
+					String.valueOf(ruleDataItem.getMaxDeduction())
+
+			};
+			return row;
+		}
 
 	}
 

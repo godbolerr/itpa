@@ -157,14 +157,14 @@ public class PersonUtil {
 
 	public static FinPerson getBachelorMaleAbove60() {
 		FinPerson person = getFinPerson();
-		person.getSelf().setAge(61);
+		person.selfPerson().setAge(61);
 		return person;
 	}
 
 	public static FinPerson getMarriedMale() {
 		FinPerson fPerson = getFinPerson();
 
-		fPerson.getSelf().setMaritalStatus(FiConstants.MARITAL_MARRIED);
+		fPerson.selfPerson().setMaritalStatus(FiConstants.MARITAL_MARRIED);
 
 		Person wife = new Person("Lata", new Date(), 40, FiConstants.GENDER_FEMALE, FiConstants.RELATIONSHIP_WIFE, 0,
 				"");
