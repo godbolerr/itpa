@@ -21,12 +21,43 @@ public class ItpaServiceQuery {
 	@Autowired
 	ItpaService dService;
 	
+	/**
+	 * 	public String id;
+	public int assessmentYear;
+	public String ruleTemplate;
+	public String status;
+	public String name;
+	public String section;
+	public String residentStatus;
+	public String assesseeType;
+	public String relationshipCode;
+	public String deductionType;
+	public int minAge;
+	public int maxAge;
+	public int maxDeduction;
+	 */
 	@Test
 	public void test80D0() {
 		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
 		
 		System.out.println(data);
 		
+//		for (RuleData ruleData : data) {
+//			String[] sArray = dService.getFields("assessmentYear,status,name,section", ruleData);
+//			
+//			for (int i = 0; i < sArray.length; i++) {
+//				System.out.println(sArray[i]);
+//			}
+//		}
+		
+		
+		
+		
+		
+		
+		
+		
+//		
 		assertTrue(data.size() > 0);
 		
 	}
@@ -34,7 +65,31 @@ public class ItpaServiceQuery {
 	@Test
 	public void getRuleTest(){
 		
-		dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt");
+		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
+		
+		for (RuleData ruleData : data) {
+			//System.out.println(ruleData);
+		}
+		
+		/**
+		 * section
+residentStatus
+assesseeType
+relationShipCode
+deductionType
+minAge
+maxAge
+maxDeduction
+		 */
+		
+		dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt","section,"
+				+ "residentStatus,"
+				+ "assesseeType,"
+				+ "relationShipCode,"
+				+ "deductionType,"
+				+ "minAge,"
+				+ "maxAge,"
+				+ "maxDeduction");
 		
 	}
 	

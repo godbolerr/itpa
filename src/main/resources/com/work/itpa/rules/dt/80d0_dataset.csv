@@ -1,4 +1,4 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,deductionType,minAge,maxAge,maxDeduction
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,deductionType,minAge,maxAge,maxDeduction
 80D_0_1,2017,80D_0,active,Payment of Medical Insurance - Self,80D,Resident,Individual,Self,Medical Insurance,1,59,25000
 80D_0_2,2017,80D_0,active,Payment of Medical Insurance - Wife,80D,Resident,Individual,Wife,Medical Insurance,1,59,25000
 80D_0_3,2017,80D_0,active,Payment of Medical Insurance - Father,80D,Resident,Individual,Father,Medical Insurance,1,59,25000

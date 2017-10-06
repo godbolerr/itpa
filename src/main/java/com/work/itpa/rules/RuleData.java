@@ -14,19 +14,19 @@ import java.io.Serializable;
  */
 public class RuleData implements Serializable {
 
-	String id;
-	int assessmentYear;
-	String ruleTemplate;
-	String status;
-	String name;
-	String section;
-	String residentStatus;
-	String assesseeType;
-	String relationshipCode;
-	String deductionType;
-	int minAge;
-	int maxAge;
-	int maxDeduction;
+	public String id;
+	public int assessmentYear;
+	public String ruleTemplate;
+	public String status;
+	public String name;
+	public String section;
+	public String residentStatus;
+	public String assesseeType;
+	public String relationShipCode;
+	public String deductionType;
+	public int minAge;
+	public int maxAge;
+	public int maxDeduction;
 	/**
 	 * @return the id
 	 */
@@ -125,18 +125,6 @@ public class RuleData implements Serializable {
 		this.assesseeType = assesseeType;
 	}
 	/**
-	 * @return the relationshipCode
-	 */
-	public String getRelationshipCode() {
-		return relationshipCode;
-	}
-	/**
-	 * @param relationshipCode the relationshipCode to set
-	 */
-	public void setRelationshipCode(String relationshipCode) {
-		this.relationshipCode = relationshipCode;
-	}
-	/**
 	 * @return the deductionType
 	 */
 	public String getDeductionType() {
@@ -147,6 +135,19 @@ public class RuleData implements Serializable {
 	 */
 	public void setDeductionType(String deductionType) {
 		this.deductionType = deductionType;
+	}
+	
+	/**
+	 * @return the relationShipCode
+	 */
+	public String getRelationShipCode() {
+		return relationShipCode;
+	}
+	/**
+	 * @param relationShipCode the relationShipCode to set
+	 */
+	public void setRelationShipCode(String relationShipCode) {
+		this.relationShipCode = relationShipCode;
 	}
 	/**
 	 * @return the minAge
@@ -191,7 +192,7 @@ public class RuleData implements Serializable {
 	public String toString() {
 		return "RuleData [id=" + id + ", assessmentYear=" + assessmentYear + ", ruleTemplate=" + ruleTemplate
 				+ ", status=" + status + ", name=" + name + ", section=" + section + ", residetStatus=" + residentStatus
-				+ ", assesseeType=" + assesseeType + ", relationshipCode=" + relationshipCode + ", deductionType="
+				+ ", assesseeType=" + assesseeType + ", relationshipCode=" + relationShipCode + ", deductionType="
 				+ deductionType + ", minAge=" + minAge + ", maxAge=" + maxAge + ", maxDeduction=" + maxDeduction + "]";
 	}
 	

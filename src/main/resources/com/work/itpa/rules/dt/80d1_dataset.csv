@@ -1,4 +1,4 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,deductionType,minAge,maxAge,married,maxDeduction
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,deductionType,minAge,maxAge,married,maxDeduction
 80D_1_1,2017,80D_1,active,Payment of Medical Insurance - Daughter Not Married,80D,Resident,Individual,Daughter,Medical Insurance,1,59,No,25000
 80D_1_2,2017,80D_1,active,Payment of Medical Insurance - Daughter Married,80D,Resident,Individual,Daughter,Medical Insurance,19,150,Yes,0
 80D_1_3,2017,80D_1,active,Payment of Medical Insurance - Senior Ctzn - Daughter Not Married,80D,Resident,Individual,Daughter,Medical Insurance,60,79,No,30000

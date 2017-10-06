@@ -1,4 +1,4 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,minAge,maxAge,maxDeduction
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,minAge,maxAge,maxDeduction
 80DDB_1,2017,80DDB,active,Treatment of specified diseases  - Self,80DDB,Resident,Individual,Self,1,59,40000
 80DDB_2,2017,80DDB,active,Treatment of specified diseases  - Self,80DDB,Resident,Individual,Self,60,79,60000
 80DDB_3,2017,80DDB,active,Treatment of specified diseases  - Self,80DDB,Resident,Individual,Self,80,150,80000

@@ -1,4 +1,4 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,maxDeduction
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,maxDeduction
 80E_1,2017,80E,active,Interest on Loan for Higher Education - Self,80E,Resident,Individual,Self,100
 80E_2,2017,80E,active,Interest on Loan for Higher Education -  Wife,80E,Resident,Individual,Wife,100
 80E_3,2017,80E,active,Interest on Loan for Higher Education - Son,80E,Resident,Individual,Son,100

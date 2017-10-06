@@ -1,4 +1,4 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationshipCode,minDisabilityPercent,maxDisabilityPercent,maxDeduction
+_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,minDisabilityPercent,maxDisabilityPercent,maxDeduction
 80DD_1,2017,80DD,active,Suffering from Disability - Resident - Wife,80DD,Resident,Individual,Wife,40,79,75000
 80DD_2,2017,80DD,active,Suffering from Disability - Resident - Wife,80DD,Resident,Individual,Wife,80,100,125000
 80DD_3,2017,80DD,active,Suffering from Disability - Resident - Son,80DD,Resident,Individual,Son,40,79,75000

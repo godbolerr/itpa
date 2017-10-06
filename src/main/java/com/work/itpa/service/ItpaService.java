@@ -4,6 +4,7 @@
 package com.work.itpa.service;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,9 +172,10 @@ public class ItpaService {
 
 	}
 
-	public void getRules(int assessmentYear, String ruleTemplate, String ruleFile) {
+	public void getRules(int assessmentYear, String ruleTemplate, String ruleFile, String commaSeperatedList) {
 
-		DecisionDataProvider tdp = new DecisionDataProvider(getDecisionData(assessmentYear, ruleTemplate));
+		DecisionDataProvider tdp = new DecisionDataProvider(getDecisionData(assessmentYear, ruleTemplate),
+				commaSeperatedList);
 		final DataProviderCompiler converter = new DataProviderCompiler();
 		final String drl = converter.compile(tdp, getTemplate(ruleFile));
 		System.out.println(drl);
@@ -188,8 +190,11 @@ public class ItpaService {
 
 		private Iterator<RuleData> iterator;
 
-		DecisionDataProvider(List<RuleData> rows) {
+		private String commaSeperatedFields;
+
+		DecisionDataProvider(List<RuleData> rows, String commaSeperatedFields) {
 			this.iterator = rows.iterator();
+			this.commaSeperatedFields = commaSeperatedFields;
 		}
 
 		@Override
@@ -205,15 +210,39 @@ public class ItpaService {
 		@Override
 		public String[] next() {
 			RuleData ruleDataItem = iterator.next();
-			String[] row = new String[] { ruleDataItem.getSection(), ruleDataItem.getResidentStatus(), ruleDataItem.getAssesseeType(),
-					ruleDataItem.getRelationshipCode(), ruleDataItem.getDeductionType(),
-					String.valueOf(ruleDataItem.getMinAge()), String.valueOf(ruleDataItem.getMaxAge()),
-					String.valueOf(ruleDataItem.getMaxDeduction())
-
-			};
+			String[] row = getFields(commaSeperatedFields, ruleDataItem);
 			return row;
 		}
+	}
 
+	/**
+	 * TODO Handle exceptions and log the same.
+	 * 
+	 * @param commaSeperatedFields
+	 * @param ruleData
+	 * @return
+	 */
+	private String[] getFields(String commaSeperatedFields, RuleData ruleData) {
+
+		String[] fields = commaSeperatedFields.split(",");
+
+		String[] dataFields = new String[fields.length];
+
+		for (int i = 0; i < fields.length; i++) {
+			String thisField = fields[i];
+			try {
+				Field f = RuleData.class.getField(thisField);
+				if (f != null && f.get(ruleData) != null) {
+					String value = f.get(ruleData).toString();
+					dataFields[i] = value;
+				}
+			} catch (NoSuchFieldException | SecurityException e) {
+			} catch (IllegalArgumentException e) {
+			} catch (IllegalAccessException e) {
+			}
+		}
+
+		return dataFields;
 	}
 
 }
