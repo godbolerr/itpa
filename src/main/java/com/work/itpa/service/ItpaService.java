@@ -160,6 +160,7 @@ public class ItpaService {
 		query.addCriteria(Criteria.where(FiConstants.COL_RULETEMPPLATE).is(ruleTemplate));
 		query.addCriteria(Criteria.where(FiConstants.COL_ASSESSMENT_YEAR).is(assessmentYear));
 		query.addCriteria(Criteria.where(FiConstants.COL_STATUS).is(FiConstants.ACTIVE));
+		System.out.println(query.toString());
 
 		return mongoTemplate.find(query, RuleData.class, FiConstants.DB_COLLECTION_RULEDATA);
 

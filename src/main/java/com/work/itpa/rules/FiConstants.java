@@ -59,7 +59,7 @@ public class FiConstants {
 	// Decision table column names 
 	
 	
-	public static final String DB_COLLECTION_RULEDATA = "ruleData";
+	public static final String DB_COLLECTION_RULEDATA = "decisiondata";
 	
 	public static final String DB_COLLECTION_RULETEMPLATE = "ruleTemplate";
 	
