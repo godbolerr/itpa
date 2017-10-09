@@ -47,8 +47,6 @@ public class ItpaService {
 
 	private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
 
-	public static final String ITPA_RULE_DATA = "itpaRuleData";
-
 	@Autowired
 	private KieContainer kc;
 
@@ -97,7 +95,7 @@ public class ItpaService {
 
 		fPerson.setResult(result);
 
-		mongoTemplate.save(fPerson, "FinPersonResult");
+		mongoTemplate.save(fPerson, FiConstants.DB_COLLECTION_FIN_RESULT);
 
 		return result;
 	}
@@ -147,61 +145,45 @@ public class ItpaService {
 
 	}
 
-	/**
-	 * TODO Handle error parsing the input json data
-	 * 
-	 * @param data
-	 * @return
-	 */
-	public String updateRuleData(String data) {
-		String result = "SUCCESS";
-
-		DBObject dbObject = (DBObject) JSON.parse(data);
-
-		mongoTemplate.save(dbObject, ITPA_RULE_DATA);
-
-		return result;
-	}
-
 	public String updateRuleTemplate(RuleTemplate template) {
+
 		String result = "SUCCESS";
-		
-		mongoTemplate.save(template,"ruleTemplate");
+
+		mongoTemplate.save(template, FiConstants.DB_COLLECTION_RULETEMPLATE);
 
 		return result;
 	}
-	
-	
-	
-	
-	
+
 	public List<RuleData> getDecisionData(int assessmentYear, String ruleTemplate) {
 
 		Query query = new Query();
-		query.addCriteria(Criteria.where("ruleTemplate").is(ruleTemplate));
-		query.addCriteria(Criteria.where("assessmentYear").is(assessmentYear));
+		query.addCriteria(Criteria.where(FiConstants.COL_RULETEMPPLATE).is(ruleTemplate));
+		query.addCriteria(Criteria.where(FiConstants.COL_ASSESSMENT_YEAR).is(assessmentYear));
+		query.addCriteria(Criteria.where(FiConstants.COL_STATUS).is(FiConstants.ACTIVE));
 
-		return mongoTemplate.find(query, RuleData.class, "decisiondata");
+		return mongoTemplate.find(query, RuleData.class, FiConstants.DB_COLLECTION_RULEDATA);
 
 	}
-	
+
 	public List<RuleTemplate> getRuleTemplates(int assessmentYear) {
 
 		Query query = new Query();
-		query.addCriteria(Criteria.where("assessmentYear").is(assessmentYear));
-		return mongoTemplate.find(query, RuleTemplate.class, "ruleTemplate");
+		query.addCriteria(Criteria.where(FiConstants.COL_ASSESSMENT_YEAR).is(assessmentYear));
+		query.addCriteria(Criteria.where(FiConstants.COL_STATUS).is(FiConstants.ACTIVE));
+
+		return mongoTemplate.find(query, RuleTemplate.class, FiConstants.DB_COLLECTION_RULETEMPLATE);
 
 	}
-	
-	
 
-	public void getRules(int assessmentYear, String ruleTemplate, String ruleFile, String commaSeperatedList) {
+	public String getRules(int assessmentYear, String ruleTemplate, String ruleFile, String commaSeperatedList) {
 
 		DecisionDataProvider tdp = new DecisionDataProvider(getDecisionData(assessmentYear, ruleTemplate),
 				commaSeperatedList);
 		final DataProviderCompiler converter = new DataProviderCompiler();
-		final String drl = converter.compile(tdp, getTemplate(ruleFile));
-		System.out.println(drl);
+
+		List<RuleTemplate> rt = getRuleTemplates(assessmentYear);
+
+		return converter.compile(tdp, getTemplate(ruleFile));
 
 	}
 
@@ -239,7 +221,8 @@ public class ItpaService {
 	}
 
 	/**
-	 * TODO Handle exceptions and log the same.
+	 * TODO Handle exceptions and log the same. LOG NULL VALUES so that we dont
+	 * get unexpected results
 	 * 
 	 * @param commaSeperatedFields
 	 * @param ruleData

@@ -26,7 +26,7 @@ public class ItpaRuleResource {
 	private final Environment env;
 
 	private final JHipsterProperties jHipsterProperties;
-	
+
 	@Autowired
 	ItpaService itpaService;
 
@@ -40,32 +40,15 @@ public class ItpaRuleResource {
 
 		return "Time is " + LocalDate.now();
 	}
-	
-	
+
 	@RequestMapping(value = "/benefits", method = { RequestMethod.POST })
 	public FinPersonResult getBenefits(@RequestBody com.work.itpa.rules.FinPerson fPerson) {
 		return itpaService.calculateBenefits(fPerson);
-	}	
-	
-	
-	@RequestMapping(value = "/rule", method = { RequestMethod.POST })
-	public String updateRuleData(@RequestBody String data) {
-		return itpaService.updateRuleData(data);
-	}	
-	
-	
-	
+	}
+
 	@RequestMapping(value = "/template", method = { RequestMethod.POST })
 	public String updateRuleTemplate(@RequestBody RuleTemplate data) {
 		return itpaService.updateRuleTemplate(data);
-	}		
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
+
 }

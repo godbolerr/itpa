@@ -41,48 +41,15 @@ public class ItpaServiceQuery {
 	public void test80D0() {
 		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
 		
-		System.out.println(data);
-		
-//		for (RuleData ruleData : data) {
-//			String[] sArray = dService.getFields("assessmentYear,status,name,section", ruleData);
-//			
-//			for (int i = 0; i < sArray.length; i++) {
-//				System.out.println(sArray[i]);
-//			}
-//		}
-		
-		
-		
-		
-		
-		
-		
-		
-//		
 		assertTrue(data.size() > 0);
 		
 	}
 	
 	@Test
-	public void getRuleTest(){
+	public void getRules(){
 		
-		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
-		
-		for (RuleData ruleData : data) {
-			//System.out.println(ruleData);
-		}
-		
-		/**
-		 * section
-residentStatus
-assesseeType
-relationShipCode
-deductionType
-minAge
-maxAge
-maxDeduction
-		
-		dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt","section,"
+
+		String rules = dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt","section,"
 				+ "residentStatus,"
 				+ "assesseeType,"
 				+ "relationShipCode,"
@@ -90,14 +57,21 @@ maxDeduction
 				+ "minAge,"
 				+ "maxAge,"
 				+ "maxDeduction");
-		 */
+		
+		System.out.println(rules);
+		 
+		
+	}
+	
+	
+	@Test
+	public void getRuleTemplates(){
 		
 		List<RuleTemplate> templates = dService.getRuleTemplates(2017);
 		
 		for (RuleTemplate ruleTemplate : templates) {
 			System.out.println(ruleTemplate.getRuleText());
 		}
-	}
-	
+	}	
 
 }
