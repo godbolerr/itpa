@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.work.itpa.ItpadocApp;
 import com.work.itpa.rules.RuleData;
 import com.work.itpa.rules.RuleTemplate;
+import com.work.itpa.web.rest.util.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpadocApp.class)
@@ -20,7 +21,7 @@ public class ItpaServiceQuery {
 
 	
 	@Autowired
-	ItpaService dService;
+	ItpaRuleService dService;
 	
 	/**
 	 * 	public String id;
@@ -39,9 +40,9 @@ public class ItpaServiceQuery {
 	 */
 	@Test
 	public void test80D0() {
-		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
-		
-		assertTrue(data.size() > 0);
+//		List<RuleData> data = dService.getDecisionData(2017, "80D_0");
+//		
+//		assertTrue(data.size() > 0);
 		
 	}
 	
@@ -49,16 +50,9 @@ public class ItpaServiceQuery {
 	public void getRules(){
 		
 
-		String rules = dService.getRules(2017, "80D_0", "/com/work/itpa/rules/itpa_80d.drt","section,"
-				+ "residentStatus,"
-				+ "assesseeType,"
-				+ "relationShipCode,"
-				+ "deductionType,"
-				+ "minAge,"
-				+ "maxAge,"
-				+ "maxDeduction");
+		dService.calculateBenefits(PersonUtil.getMarriedMale());
 		
-		System.out.println(rules);
+
 		 
 		
 	}
@@ -67,11 +61,11 @@ public class ItpaServiceQuery {
 	@Test
 	public void getRuleTemplates(){
 		
-		List<RuleTemplate> templates = dService.getRuleTemplates(2017);
-		
-		for (RuleTemplate ruleTemplate : templates) {
-			System.out.println(ruleTemplate.getRuleText());
-		}
+//		List<RuleTemplate> templates = dService.getRuleTemplates(2017);
+//		
+//		for (RuleTemplate ruleTemplate : templates) {
+//			System.out.println(ruleTemplate.getRuleText());
+//		}
 	}	
 
 }

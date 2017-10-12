@@ -7,24 +7,21 @@ import java.io.Serializable;
 
 /**
  * 
- * Add trackers for date and audit
+ * Rule used in the system
  * 
  * @author 115750
  *
  */
-public class RuleTemplate implements Serializable {
+public class ItpaRule implements Serializable {
 
 	public String id;
-	
-	
-	public String ruleTemplateId;
-	
+
+	public String ruleId;
+
 	public String status;
-	
-	public String commaSeperatedFields;
-	
+
 	public int assessmentYear;
-	
+
 	public String ruleText;
 
 	/**
@@ -42,6 +39,20 @@ public class RuleTemplate implements Serializable {
 	}
 
 	/**
+	 * @return the ruleId
+	 */
+	public String getRuleId() {
+		return ruleId;
+	}
+
+	/**
+	 * @param ruleId the ruleId to set
+	 */
+	public void setRuleId(String ruleId) {
+		this.ruleId = ruleId;
+	}
+
+	/**
 	 * @return the status
 	 */
 	public String getStatus() {
@@ -53,20 +64,6 @@ public class RuleTemplate implements Serializable {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	/**
-	 * @return the commaSeperatedFields
-	 */
-	public String getCommaSeperatedFields() {
-		return commaSeperatedFields;
-	}
-
-	/**
-	 * @param commaSeperatedFields the commaSeperatedFields to set
-	 */
-	public void setCommaSeperatedFields(String commaSeperatedFields) {
-		this.commaSeperatedFields = commaSeperatedFields;
 	}
 
 	/**
@@ -97,24 +94,8 @@ public class RuleTemplate implements Serializable {
 		this.ruleText = ruleText;
 	}
 
-	/**
-	 * @return the ruleTemplateId
-	 */
-	public String getRuleTemplateId() {
-		return ruleTemplateId;
-	}
-
-	/**
-	 * @param ruleTemplateId the ruleTemplateId to set
-	 */
-	public void setRuleTemplateId(String ruleTemplateId) {
-		this.ruleTemplateId = ruleTemplateId;
-	}
 	
 	
 	
 	
-	
-	
-	
-	}
+}

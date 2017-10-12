@@ -3,6 +3,10 @@ Import data from csv files
 
 mongoimport --db itpadoctest --collection decisiondata --upsert --type csv --headerline --file <CSVFile>
 
+mvn dependency:sources dependency:resolve -Dclassifier=javadoc
+mvn dependency:sources dependency:resolve -Dclassifier=sources
+
+
 80d0_dataset.csv
 80d1_dataset.csv
 80d2_dataset.csv

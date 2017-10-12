@@ -63,6 +63,8 @@ public class FiConstants {
 	
 	public static final String DB_COLLECTION_RULETEMPLATE = "ruleTemplate";
 	
+	public static final String DB_COLLECTION_RULES = "rules";
+	
 	public static final String DB_COLLECTION_FIN_RESULT = "finResult";
 	
 	

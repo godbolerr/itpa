@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.work.itpa.rules.FinPersonResult;
+import com.work.itpa.rules.ItpaRule;
 import com.work.itpa.rules.RuleTemplate;
+import com.work.itpa.service.ItpaRuleService;
 import com.work.itpa.service.ItpaService;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -30,6 +32,9 @@ public class ItpaRuleResource {
 	@Autowired
 	ItpaService itpaService;
 
+	@Autowired
+	ItpaRuleService itpaRuleService;
+	
 	public ItpaRuleResource(Environment env, JHipsterProperties jHipsterProperties) {
 		this.env = env;
 		this.jHipsterProperties = jHipsterProperties;
@@ -50,5 +55,19 @@ public class ItpaRuleResource {
 	public String updateRuleTemplate(@RequestBody RuleTemplate data) {
 		return itpaService.updateRuleTemplate(data);
 	}
+	
+	@RequestMapping(value = "/rule", method = { RequestMethod.POST })
+	public String updateRule(@RequestBody ItpaRule rule) {
+		return itpaService.updateRule(rule);
+	}
+	
+	@RequestMapping(value = "/itpaBenefits", method = { RequestMethod.POST })
+	public FinPersonResult getItpaBenefits(@RequestBody com.work.itpa.rules.FinPerson fPerson) {
+		return itpaRuleService.calculateBenefits(fPerson);
+	}	
+	
+	
+	
+	
 
 }
