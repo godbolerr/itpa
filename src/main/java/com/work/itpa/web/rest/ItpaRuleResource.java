@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.work.itpa.domain.ItpaRule;
+import com.work.itpa.domain.RuleTemplate;
 import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.ItpaRule;
-import com.work.itpa.rules.RuleTemplate;
 import com.work.itpa.service.ItpaRuleService;
-import com.work.itpa.service.ItpaService;
+import com.work.itpa.service.ItpaRuleAdminService;
 import com.work.itpa.web.rest.util.PersonUtil;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -31,7 +31,7 @@ public class ItpaRuleResource {
 	private final JHipsterProperties jHipsterProperties;
 
 	@Autowired
-	ItpaService itpaService;
+	ItpaRuleAdminService itpaService;
 
 	@Autowired
 	ItpaRuleService itpaRuleService;

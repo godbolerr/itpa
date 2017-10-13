@@ -25,7 +25,7 @@ public class Rule80DD1Test {
 	@Rule public TestName testName = new TestName();
 
 	@Autowired
-	ItpaService dService;
+	ItpaRuleAdminService dService;
 
 	String sectionName = "80U";
 

@@ -30,7 +30,7 @@ public class InputFinPersonTest {
 	public TestName testName = new TestName();
 
 	@Autowired
-	ItpaService dService;
+	ItpaRuleAdminService dService;
 
 	String sectionName = "80U";
 

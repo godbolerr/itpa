@@ -22,7 +22,7 @@ import com.work.itpa.web.rest.util.PersonUtil;
 public class Rule80GGCTest {
 
 	@Autowired
-	ItpaService dService;
+	ItpaRuleAdminService dService;
 	
 	String sectionName = "80GGC";
 	

@@ -25,7 +25,7 @@ import com.work.itpa.web.rest.util.PersonUtil;
 public class Rule80G1Test {
 
 	@Autowired
-	ItpaService dService;
+	ItpaRuleAdminService dService;
 
 	String sectionName = "80G";
 	

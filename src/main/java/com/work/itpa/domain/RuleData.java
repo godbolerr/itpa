@@ -1,9 +1,13 @@
 /**
  * 
  */
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * 
@@ -12,20 +16,52 @@ import java.io.Serializable;
  * @author 115750
  *
  */
+@Document(collection = "decisiondata")
 public class RuleData implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Id
 	public String id;
+	
+	@Field("assessmentYear")
 	public int assessmentYear;
+	
+	@Field("ruleTemplate")
 	public String ruleTemplate;
+	
+	@Field("status")
 	public String status;
+	
+	@Field("name")
 	public String name;
+
+	@Field("section")
 	public String section;
+	
+	@Field("residentStatus")
 	public String residentStatus;
+	
+	@Field("assesseeType")
 	public String assesseeType;
+	
+	@Field("relationShipCode")
 	public String relationShipCode;
+	
+	@Field("deductionType")
 	public String deductionType;
+	
+	@Field("minAge")
 	public int minAge;
+	
+	@Field("maxAge")
 	public int maxAge;
+	
+	@Field("maxDeduction")
 	public int maxDeduction;
 	/**
 	 * @return the id

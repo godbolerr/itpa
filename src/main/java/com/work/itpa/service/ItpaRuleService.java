@@ -29,11 +29,11 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.work.itpa.domain.RuleData;
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.RuleData;
 import com.work.itpa.web.rest.util.PersonUtil;
 
 /**

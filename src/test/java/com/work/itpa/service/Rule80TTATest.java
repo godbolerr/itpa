@@ -23,7 +23,7 @@ import com.work.itpa.web.rest.util.PersonUtil;
 public class Rule80TTATest {
 
 	@Autowired
-	ItpaService dService;
+	ItpaRuleAdminService dService;
 	
 	String sectionName = "80TTA";
 	

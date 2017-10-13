@@ -3,49 +3,34 @@
  */
 package com.work.itpa.service;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.drools.template.DataProvider;
-import org.drools.template.DataProviderCompiler;
-import org.kie.api.KieBase;
-import org.kie.api.KieBaseConfiguration;
-import org.kie.api.KieServices;
-import org.kie.api.builder.KieBuilder;
-import org.kie.api.builder.KieFileSystem;
-import org.kie.api.builder.Message;
-import org.kie.api.io.ResourceType;
-import org.kie.api.logger.KieRuntimeLogger;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
-import org.kie.internal.builder.KnowledgeBuilder;
-import org.kie.internal.builder.KnowledgeBuilderFactory;
-import org.kie.internal.io.ResourceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import com.work.itpa.domain.ItpaRule;
+import com.work.itpa.domain.RuleData;
+import com.work.itpa.domain.RuleTemplate;
+import com.work.itpa.repository.RuleTemplateRepository;
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.ItpaRule;
-import com.work.itpa.rules.RuleData;
-import com.work.itpa.rules.RuleTemplate;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -54,23 +39,35 @@ import com.work.itpa.rules.RuleTemplate;
  *
  */
 @Component
-public class ItpaService {
+public class ItpaRuleAdminService {
 
-	private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
+	private final Logger LOG = LoggerFactory.getLogger(ItpaRuleAdminService.class);
 
-	//@Autowired
-	private KieContainer kc;
-
+	private final RuleTemplateRepository ruleTemplateRepository;
+	
+	
 	@Autowired
 	MongoTemplate mongoTemplate;
 
 	/**
 	 * 
 	 */
-	public ItpaService() {
+	public ItpaRuleAdminService(RuleTemplateRepository rtempRepository) {
+		this.ruleTemplateRepository = rtempRepository;
 	}
+	
+	
+	public RuleTemplate save(RuleTemplate template){
+		return ruleTemplateRepository.save(template);
+	}
+	
+	
 
-	public FinPersonResult newBenefits(FinPerson finPerson) {
+    public Page<RuleTemplate> findAll(Pageable pageable) {
+        return ruleTemplateRepository.findAll(pageable);
+    }
+    
+	public FinPersonResult calculateBenefits(FinPerson finPerson) {
 		//
 		FinPersonResult result = new FinPersonResult();
 		//
@@ -103,47 +100,6 @@ public class ItpaService {
 
 	}
 
-	public FinPersonResult calculateBenefits(FinPerson finPerson) {
-
-		KieSession kSession = kc.newKieSession("ItpaDataKs");
-
-		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
-
-		FinPersonResult result = new FinPersonResult();
-
-		LOG.debug("Firing rules for : " + finPerson);
-
-		kSession.insert(finPerson);
-		kSession.insert(result);
-
-		kSession.fireAllRules();
-
-		logger.close();
-
-		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
-
-		result.setApplicableDeductions(applicableDeductions);
-
-		// Dispose the session and release memory
-
-		kSession.dispose();
-
-		if (result.getDeductions() != null && result.getDeductions().size() > 0) {
-			result.setStatus(true);
-		}
-
-		LOG.debug("Result : " + result);
-
-		FinPerson fPerson = new FinPerson();
-
-		BeanUtils.copyProperties(finPerson, fPerson);
-
-		fPerson.setResult(result);
-
-		mongoTemplate.save(fPerson, FiConstants.DB_COLLECTION_FIN_RESULT);
-
-		return result;
-	}
 
 	/**
 	 * Return planned deductions as list.
@@ -228,97 +184,6 @@ public class ItpaService {
 		query.addCriteria(Criteria.where(FiConstants.COL_STATUS).is(FiConstants.ACTIVE));
 
 		return mongoTemplate.find(query, RuleTemplate.class, FiConstants.DB_COLLECTION_RULETEMPLATE);
-
-	}
-
-	public String getRules(int assessmentYear, String ruleTemplate, String ruleFile, String commaSeperatedList) {
-
-		final DataProviderCompiler converter = new DataProviderCompiler();
-
-		StringBuffer sb = new StringBuffer();
-
-		List<RuleTemplate> ruleTemplates = getRuleTemplates(assessmentYear);
-
-		for (RuleTemplate rt : ruleTemplates) {
-
-			DecisionDataProvider tdp = new DecisionDataProvider(getDecisionData(assessmentYear, rt.getRuleTemplateId()),
-					rt.getCommaSeperatedFields());
-
-			InputStream is = new ByteArrayInputStream(rt.getRuleText().getBytes());
-
-			String rules = converter.compile(tdp, is);
-
-			// TODO Validate rules before adding it to the main collection
-
-			sb.append(rules);
-			sb.append("\n");
-		}
-
-		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-
-		kbuilder.add(ResourceFactory.newByteArrayResource(sb.toString().getBytes()), ResourceType.DRL);
-
-		KieServices ks = KieServices.Factory.get();
-
-		KieFileSystem kfs = ks.newKieFileSystem();
-
-		String inMemoryDrlFileName = "src/main/resources/stateFulSessionRule.drl";
-
-		ks.getResources().newReaderResource(new StringReader(sb.toString())).setResourceType(ResourceType.DRL);
-
-		KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
-
-		if (kieBuilder.getResults().hasMessages(Message.Level.ERROR)) {
-			System.out.println(kieBuilder.getResults().toString());
-		}
-		KieContainer kContainer = ks.newKieContainer(kieBuilder.getKieModule().getReleaseId());
-		KieBaseConfiguration kbconf = ks.newKieBaseConfiguration();
-		KieBase kbase = kContainer.newKieBase(kbconf);
-		KieSession kSession = kbase.newKieSession();
-
-		Collection<String> baseNames = kc.getKieBaseNames();
-
-		baseNames.forEach(name -> System.out.println(name));
-
-		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
-
-		FinPersonResult result = new FinPersonResult();
-		
-		FinPerson finPerson= new FinPerson();
-
-		LOG.debug("Firing rules for : " + finPerson);
-
-		kSession.insert(finPerson);
-		kSession.insert(result);
-
-		kSession.fireAllRules();
-
-		logger.close();
-
-		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
-
-		result.setApplicableDeductions(applicableDeductions);
-
-		// Dispose the session and release memory
-
-		kSession.dispose();
-
-		if (result.getDeductions() != null && result.getDeductions().size() > 0) {
-			result.setStatus(true);
-		}
-
-		LOG.debug("Result : " + result);
-
-		FinPerson fPerson = new FinPerson();
-
-		BeanUtils.copyProperties(finPerson, fPerson);
-
-		fPerson.setResult(result);
-
-		mongoTemplate.save(fPerson, FiConstants.DB_COLLECTION_FIN_RESULT);
-		
-		
-		return sb.toString();
 
 	}
 
