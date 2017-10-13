@@ -87,7 +87,7 @@ public class DroolsConfig {
 			kfs.write(inMemoryDrlFileName, kieServices.getResources()
 					.newReaderResource(new StringReader(rule.getRuleText())).setResourceType(ResourceType.DRL));
 
-			logger.info("Loading Rule : " + rule.getRuleText());
+			//logger.info("Loading Rule : " + rule.getRuleText());
 
 		}
 
@@ -108,7 +108,7 @@ public class DroolsConfig {
 			String inMemoryDrlFileName = FiConstants.KIE_RESOURCE_DIR + rt.getRuleTemplateId()
 					+ FiConstants.KIE_DRL_EXTN;
 
-			// System.out.println(sb.toString());
+			
 
 			kfs.write(inMemoryDrlFileName, kieServices.getResources().newReaderResource(new StringReader(sb.toString()))
 					.setResourceType(ResourceType.DRL));
@@ -131,7 +131,7 @@ public class DroolsConfig {
 		query.addCriteria(Criteria.where(FiConstants.COL_RULETEMPPLATE).is(ruleTemplate));
 		query.addCriteria(Criteria.where(FiConstants.COL_ASSESSMENT_YEAR).is(assessmentYear));
 		query.addCriteria(Criteria.where(FiConstants.COL_STATUS).is(FiConstants.ACTIVE));
-		System.out.println(query.toString());
+		
 
 		return mongoTemplate.find(query, RuleData.class, FiConstants.DB_COLLECTION_RULEDATA);
 

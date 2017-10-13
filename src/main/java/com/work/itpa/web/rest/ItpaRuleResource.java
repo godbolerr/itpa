@@ -15,6 +15,7 @@ import com.work.itpa.rules.ItpaRule;
 import com.work.itpa.rules.RuleTemplate;
 import com.work.itpa.service.ItpaRuleService;
 import com.work.itpa.service.ItpaService;
+import com.work.itpa.web.rest.util.PersonUtil;
 
 import io.github.jhipster.config.JHipsterProperties;
 
@@ -67,7 +68,9 @@ public class ItpaRuleResource {
 	}	
 	
 	
-	
-	
-
+	@RequestMapping(value = "/itpaBenefitsTest", method = { RequestMethod.POST })
+	public FinPersonResult getItpaBenefitsTest(@RequestBody com.work.itpa.rules.FinPerson fPerson) {
+		return itpaRuleService.calculateBenefits(PersonUtil.getMarriedMale());
+	}	
+		
 }

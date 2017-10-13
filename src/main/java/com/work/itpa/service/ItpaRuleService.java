@@ -34,6 +34,7 @@ import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.rules.RuleData;
+import com.work.itpa.web.rest.util.PersonUtil;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -48,7 +49,7 @@ public class ItpaRuleService {
 
 	@Autowired
 	MongoTemplate mongoTemplate;
-	
+
 	@Autowired
 	KieBase kbase;
 
@@ -103,38 +104,31 @@ public class ItpaRuleService {
 
 	}
 
-
 	public FinPersonResult calculateBenefits(FinPerson finPerson) {
 
-	
 		KieSession kieSession = kbase.newKieSession();
-		
-		kieSession.addEventListener( new DefaultAgendaEventListener() {
-		    public void afterMatchFired(AfterMatchFiredEvent event) {
-		        super.afterMatchFired( event );
-		        System.out.println( event );
-		    }
-		});		
-		
-		kieSession.addEventListener( new DebugRuleRuntimeEventListener() );
-		
-		KieRuntimeLogger logger =
-				  KieServices.Factory.get().getLoggers().newFileLogger(kieSession, "itpaLog.txt");
-		
+
+		kieSession.addEventListener(new DefaultAgendaEventListener() {
+			public void afterMatchFired(AfterMatchFiredEvent event) {
+				super.afterMatchFired(event);
+				System.out.println(event);
+			}
+		});
+
+		kieSession.addEventListener(new DebugRuleRuntimeEventListener());
+
+		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kieSession, "itpaLog.txt");
+
 		FinPersonResult result = new FinPersonResult();
+
+		
 
 		kieSession.insert(finPerson);
 		kieSession.insert(result);
 		kieSession.fireAllRules();
-		
-		kieSession.dispose();
-		
-		
-		
-		
 
-		
-		
+		kieSession.dispose();
+
 		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
 
 		result.setApplicableDeductions(applicableDeductions);
@@ -148,9 +142,9 @@ public class ItpaRuleService {
 		BeanUtils.copyProperties(finPerson, fPerson);
 
 		fPerson.setResult(result);
-		
+
 		logger.close();
-		
+
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -158,13 +152,11 @@ public class ItpaRuleService {
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 
 		mongoTemplate.save(fPerson, FiConstants.DB_COLLECTION_FIN_RESULT);
 
-		return result;		
-		
-		
+		return result;
 
 	}
 
