@@ -13,6 +13,11 @@ import java.util.Map;
 
 import org.drools.template.DataProvider;
 import org.kie.api.KieBase;
+import org.kie.api.KieServices;
+import org.kie.api.event.rule.AfterMatchFiredEvent;
+import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
+import org.kie.api.event.rule.DefaultAgendaEventListener;
+import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +28,12 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.work.itpa.rules.Deduction;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.rules.RuleData;
-import com.work.itpa.web.rest.util.PersonUtil;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -104,8 +109,20 @@ public class ItpaRuleService {
 	
 		KieSession kieSession = kbase.newKieSession();
 		
+		kieSession.addEventListener( new DefaultAgendaEventListener() {
+		    public void afterMatchFired(AfterMatchFiredEvent event) {
+		        super.afterMatchFired( event );
+		        System.out.println( event );
+		    }
+		});		
+		
+		kieSession.addEventListener( new DebugRuleRuntimeEventListener() );
+		
+		KieRuntimeLogger logger =
+				  KieServices.Factory.get().getLoggers().newFileLogger(kieSession, "itpaLog.txt");
+		
 		FinPersonResult result = new FinPersonResult();
-		FinPerson tempPerson = PersonUtil.getMarriedMale();
+
 		kieSession.insert(finPerson);
 		kieSession.insert(result);
 		kieSession.fireAllRules();
@@ -114,14 +131,8 @@ public class ItpaRuleService {
 		
 		
 		
-		ObjectMapper mapper = new ObjectMapper();
 		
-		try {
-			System.out.println(mapper.writeValueAsString(tempPerson));
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		
 		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
@@ -137,6 +148,17 @@ public class ItpaRuleService {
 		BeanUtils.copyProperties(finPerson, fPerson);
 
 		fPerson.setResult(result);
+		
+		logger.close();
+		
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			System.out.println(mapper.writeValueAsString(fPerson));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 
 		mongoTemplate.save(fPerson, FiConstants.DB_COLLECTION_FIN_RESULT);
 

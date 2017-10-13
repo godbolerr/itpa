@@ -58,7 +58,7 @@ public class ItpaService {
 
 	private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
 
-	@Autowired
+	//@Autowired
 	private KieContainer kc;
 
 	@Autowired

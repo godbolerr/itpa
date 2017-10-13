@@ -1,18 +1,16 @@
 package com.work.itpa.service;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.work.itpa.ItpadocApp;
-import com.work.itpa.rules.RuleData;
-import com.work.itpa.rules.RuleTemplate;
+import com.work.itpa.rules.FinPersonResult;
 import com.work.itpa.web.rest.util.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,10 +48,11 @@ public class ItpaServiceQuery {
 	public void getRules(){
 		
 
-		dService.calculateBenefits(PersonUtil.getMarriedMale());
+		FinPersonResult result = dService.calculateBenefits(PersonUtil.getMarriedMale());
 		
-
-		 
+		result = dService.calculateBenefits(PersonUtil.getMarriedMale());
+		
+		result = dService.calculateBenefits(PersonUtil.getMarriedMale());
 		
 	}
 	

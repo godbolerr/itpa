@@ -16,8 +16,11 @@ import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.Message;
+import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -41,20 +44,22 @@ import com.work.itpa.rules.RuleTemplate;
 @ComponentScan(basePackages = { "com.work" })
 public class DroolsConfig {
 	
+	
+	private final Logger logger = LoggerFactory.getLogger(DroolsConfig.class);
+
 	@Autowired
 	MongoTemplate mongoTemplate;
 
-
-	@Bean
+	//@Bean
 	public KieContainer kieContainer() throws IOException {
 		return KieServices.Factory.get().getKieClasspathContainer();
 	}
 
 	@Bean
 	KieBase getKieBase() {
-		
-		//TODO Hardcoded for now. Get this from configuration.
-		
+
+		// TODO Hardcoded for now. Get this from configuration.
+
 		int assessmentYear = 2017;
 
 		final DataProviderCompiler converter = new DataProviderCompiler();
@@ -62,27 +67,29 @@ public class DroolsConfig {
 		StringBuffer sb = new StringBuffer();
 
 		List<RuleTemplate> ruleTemplates = getRuleTemplates(assessmentYear);
-		
+
 		List<ItpaRule> itpaRules = getRules(assessmentYear);
 
-		KieServices ks = KieServices.Factory.get();
+		KieServices kieServices = KieServices.Factory.get();
 
-		KieFileSystem kfs = ks.newKieFileSystem();
-		
-		
+		KieModuleModel kieModuleModel = kieServices.newKieModuleModel();
+
+		KieFileSystem kfs = kieServices.newKieFileSystem();
+
+		kfs.writeKModuleXML(kieModuleModel.toXML());
+
 		// Load Rules from the database.
-		
-		for( ItpaRule rule : itpaRules ){
-			
-			String inMemoryDrlFileName = "src/main/resources/" + rule.getRuleId() + ".drl";
-			
-			kfs.write(inMemoryDrlFileName, ks.getResources().newReaderResource(new StringReader(rule.getRuleText()))
-					.setResourceType(ResourceType.DRL));
-			
-			System.out.println("Loading Rule : " + rule.getRuleText());
-			
+
+		for (ItpaRule rule : itpaRules) {
+
+			String inMemoryDrlFileName = FiConstants.KIE_RESOURCE_DIR + rule.getRuleId() + FiConstants.KIE_DRL_EXTN;
+
+			kfs.write(inMemoryDrlFileName, kieServices.getResources()
+					.newReaderResource(new StringReader(rule.getRuleText())).setResourceType(ResourceType.DRL));
+
+			logger.info("Loading Rule : " + rule.getRuleText());
+
 		}
-		
 
 		for (RuleTemplate rt : ruleTemplates) {
 
@@ -96,27 +103,28 @@ public class DroolsConfig {
 			// TODO Validate rules before adding it to the main collection
 
 			sb.append(rules);
-			sb.append("\n");
+			sb.append(FiConstants.NEWLINE);
 
-			String inMemoryDrlFileName = "src/main/resources/" + rt.getRuleTemplateId() + ".drl";
-			
-			//System.out.println(sb.toString());
+			String inMemoryDrlFileName = FiConstants.KIE_RESOURCE_DIR + rt.getRuleTemplateId()
+					+ FiConstants.KIE_DRL_EXTN;
 
-			kfs.write(inMemoryDrlFileName, ks.getResources().newReaderResource(new StringReader(sb.toString()))
+			// System.out.println(sb.toString());
+
+			kfs.write(inMemoryDrlFileName, kieServices.getResources().newReaderResource(new StringReader(sb.toString()))
 					.setResourceType(ResourceType.DRL));
 		}
 
-		KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
+		KieBuilder kieBuilder = kieServices.newKieBuilder(kfs).buildAll();
 
 		if (kieBuilder.getResults().hasMessages(Message.Level.ERROR)) {
-			System.out.println(kieBuilder.getResults().toString());
+			logger.error(kieBuilder.getResults().toString());
 		}
-		KieContainer kContainer = ks.newKieContainer(kieBuilder.getKieModule().getReleaseId());
-		KieBaseConfiguration kbconf = ks.newKieBaseConfiguration();
+		KieContainer kContainer = kieServices.newKieContainer(kieServices.getRepository().getDefaultReleaseId());
+		KieBaseConfiguration kbconf = kieServices.newKieBaseConfiguration();
 		return kContainer.newKieBase(kbconf);
 
 	}
-	
+
 	public List<RuleData> getDecisionData(int assessmentYear, String ruleTemplate) {
 
 		Query query = new Query();
@@ -138,8 +146,7 @@ public class DroolsConfig {
 		return mongoTemplate.find(query, RuleTemplate.class, FiConstants.DB_COLLECTION_RULETEMPLATE);
 
 	}
-	
-	
+
 	public List<ItpaRule> getRules(int assessmentYear) {
 
 		Query query = new Query();
@@ -148,7 +155,7 @@ public class DroolsConfig {
 
 		return mongoTemplate.find(query, ItpaRule.class, FiConstants.DB_COLLECTION_RULES);
 
-	}	
+	}
 
 	private class DecisionDataProvider implements DataProvider {
 
@@ -178,7 +185,7 @@ public class DroolsConfig {
 			return row;
 		}
 	}
-	
+
 	/**
 	 * TODO Handle exceptions and log the same. LOG NULL VALUES so that we dont
 	 * get unexpected results
@@ -209,6 +216,5 @@ public class DroolsConfig {
 
 		return dataFields;
 	}
-	
 
 }
