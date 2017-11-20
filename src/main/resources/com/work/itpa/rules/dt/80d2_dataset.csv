@@ -1,7 +1,0 @@
-_id,assessmentYear,ruleTemplate,status,name,section,residentStatus,assesseeType,relationShipCode,deductionType,minAge,maxAge,employed,maxDeduction
-80D_2_1,2017,80D_2,active,Payment of Medical Insurance - Son Not employeed,80D,Resident,Individual,Son,Medical Insurance,1,25,No,25000
-80D_2_2,2017,80D_2,active,Payment of Medical Insurance - Son Employeed,80D,Resident,Individual,Son,Medical Insurance,19,150,Yes,0
-80D_2_3,2017,80D_2,active,Payment of Medical Expenses - Son Not employeed,80D,Resident,Individual,Son,Health Checkup,1,25,No,5000
-80D_2_4,2017,80D_2,active,Payment of Medical Expenses - Son Employeed,80D,Resident,Individual,Son,Health Checkup,19,150,No,0
-80D_2_5,2017,80D_2,active,Payment of Medical Insurance - NRI Son Not employeed,80D,NRI,Individual,Son,Medical Insurance,1,25,No,25000
-80D_2_6,2017,80D_2,active,Payment of Medical Insurance - NRI Son Employeed,80D,NRI,Individual,Son,Medical Insurance,19,150,Yes,0
