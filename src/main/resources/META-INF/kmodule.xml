@@ -5,7 +5,13 @@
         
         <!--  Total 17 rules  -->
         
-              <!-- Rule 80 GGA -->
+        <!-- Rule 80 U -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80u.drt"
+                      row="46" col="2"/>        
+        
+       <!-- Rule 80 GGA -->
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80gga.drt"
@@ -21,7 +27,23 @@
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80qqb.drt"
-                      row="85" col="2"/>                     
+                      row="85" col="2"/>
+                      
+        <!-- Rule 80 RRB  -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80rrb.drt"
+                      row="89" col="2"/>
+                      
+                      
+                      
+         <!-- Rule 80 TTA  -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80tta.drt"
+                      row="93" col="2"/>     
+                      
+                                                                                      
       
                        
         <ksession name="ItpaDataKs"/>

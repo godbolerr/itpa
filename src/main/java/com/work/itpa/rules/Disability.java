@@ -7,9 +7,9 @@ package com.work.itpa.rules;
 public class Disability {
 
 	
-	int percentSelf;
+	String percentSelf;
 	
-	int percentDependent;
+	String percentDependent;
 	
 	String dependentRelation;
 	
@@ -21,7 +21,7 @@ public class Disability {
 	 * @param percentDependent
 	 * @param dependentRelation
 	 */
-	public Disability(int percentSelf, int percentDependent, String dependentRelation) {
+	public Disability(String percentSelf, String percentDependent, String dependentRelation) {
 		super();
 		this.percentSelf = percentSelf;
 		this.percentDependent = percentDependent;
@@ -31,28 +31,28 @@ public class Disability {
 	/**
 	 * @return the percentSelf
 	 */
-	public int getPercentSelf() {
+	public String getPercentSelf() {
 		return percentSelf;
 	}
 
 	/**
 	 * @param percentSelf the percentSelf to set
 	 */
-	public void setPercentSelf(int percentSelf) {
+	public void setPercentSelf(String percentSelf) {
 		this.percentSelf = percentSelf;
 	}
 
 	/**
 	 * @return the percentDependent
 	 */
-	public int getPercentDependent() {
+	public String getPercentDependent() {
 		return percentDependent;
 	}
 
 	/**
 	 * @param percentDependent the percentDependent to set
 	 */
-	public void setPercentDependent(int percentDependent) {
+	public void setPercentDependent(String percentDependent) {
 		this.percentDependent = percentDependent;
 	}
 

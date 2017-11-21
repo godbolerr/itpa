@@ -1,10 +1,14 @@
 template header
-section
-residentStatus
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
 assesseeType
-relationShipCode
-minDisabilityPercent
-maxDisabilityPercent
+residentialStatus
+disabilityPercentSelf
+categoryType
 maxDeduction
 
 package com.work.itpa.rules;
@@ -17,16 +21,15 @@ template "AT U Rules"
 
 rule "ATUDisability@{row.rowNumber}"
     when
-        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
-        
-        			 	)
-        $fpPerson :  Person   ( disabilityPercent >= @{minDisabilityPercent} , 
-								disabilityPercent <= @{maxDisabilityPercent} ,						
-        		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
-        $result : FinPersonResult( )
+        $fp : FinPerson( assesseeType == "@{assesseeType}" ,residentialStatus == "@{residentialStatus}")
+        $fpDisablity :  Disability ( percentSelf == "@{disabilityPercentSelf}"  ) from $fp.disablity 
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","@{relationShipCode}  Age: " + $fpPerson.age + ": Disability Percent " + $fpPerson.disabilityPercent );
+    	Deduction $deduction = new Deduction( 	new BigDecimal(@{maxDeduction})  ,
+    											new BigDecimal(@{maxDeduction}) ,
+    											new BigDecimal(@{maxDeduction})  ,
+    											"@{categoryType}",
+    											"@{sectionType}",
+    											"Disability Benefits" );
     	insert($deduction);
 end
 end template

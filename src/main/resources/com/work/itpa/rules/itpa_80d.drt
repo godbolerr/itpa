@@ -1,11 +1,16 @@
 template header
-section
-residentStatus
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
 assesseeType
-relationShipCode
-deductionType
+residentialStatus
+policyFor
 minAge
 maxAge
+categoryType
 maxDeduction
 
 package com.work.itpa.rules;
@@ -17,10 +22,8 @@ template "ATDRules"
 
 rule "ATD_@{row.rowNumber}"
     when
-        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
+        $fp : FinPerson( assesseeType == "@{assesseeType}" , residentialStatus == "@{residentialStatus}" )
         
-        			 	)
         $fpPerson :  Person   (	age  >= @{minAge} , 
 								age  <= @{maxAge} ,
         		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 

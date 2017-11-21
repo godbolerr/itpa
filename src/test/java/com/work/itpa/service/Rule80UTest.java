@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.ItpaApp;
+import com.work.itpa.rules.Disability;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
@@ -28,23 +29,20 @@ public class Rule80UTest {
 	@Rule public TestName testName = new TestName();
 
 	@Test
-	public void test80USelfResidentIndividualFiftyPercentDisability() {
+	public void test80UDisabilitySelf40_TO_79() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		//fPerson.setDisabilityPercent(50);
+		fPerson.setDisablity(new Disability("40_TO_79","",""));
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+
+		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 75000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 75000);
 
 		assertTrue(result);
 		
@@ -56,23 +54,19 @@ public class Rule80UTest {
 	}
 
 	@Test
-	public void test80USelfResidentIndividualEightyPercentDisability() {
+	public void test80UDisabilitySelf80_MORE() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		//fPerson.setDisabilityPercent(81);
+		fPerson.setDisablity(new Disability("80_MORE","",""));
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 125000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 125000);
 
 		assertTrue(result);
 		

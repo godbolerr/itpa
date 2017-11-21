@@ -37,7 +37,7 @@ public class Rule80DDTest {
 
 		Person wife = PersonUtil.getPerson();
 		
-		fPerson.setDisablity(new Disability(81,0,""));
+		fPerson.setDisablity(new Disability("","",""));
 		wife.setGender(FiConstants.GENDER_FEMALE);
 		wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
 		wife.setName("Aasha");
@@ -73,7 +73,7 @@ public class Rule80DDTest {
 
 		Person wife = PersonUtil.getPerson();
 		
-		fPerson.setDisablity(new Disability(81,0,""));
+		fPerson.setDisablity(new Disability("","",""));
 		wife.setGender(FiConstants.GENDER_FEMALE);
 		wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
 		wife.setName("Aasha");
@@ -110,7 +110,7 @@ public class Rule80DDTest {
 
 		Person hufMember = PersonUtil.getPerson();
 		
-		fPerson.setDisablity(new Disability(0,0,""));
+		fPerson.setDisablity(new Disability("","",""));
 		hufMember.setGender(FiConstants.GENDER_FEMALE);
 		hufMember.setRelationShipCode(FiConstants.RELATIONSHIP_HUFMEMBER);
 		hufMember.setName("Aasha");
