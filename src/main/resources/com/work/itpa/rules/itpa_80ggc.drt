@@ -14,19 +14,20 @@ import java.math.BigDecimal;
 
 template "ATGGC Donation to political parties"
 
-
 rule "ATGGC@{row.rowNumber}"
-      when
+    when
         $fp : FinPerson()
-        			 	
         $pfDonation :  Donation   (	type == "Political" ) from $fp.donations   
-        							
-         
         $result : FinPersonResult( )
     then
         BigDecimal deduction = new BigDecimal(@{pcDeduction});
         BigDecimal percent = new BigDecimal(100);
-    	Deduction $deduction = new Deduction($pfDonation.amount.multiply(deduction).divide(percent) ,"","Additive","@{sectionType}","Amount deducted for " + $pfDonation.details );
+    	Deduction $deduction = new Deduction( 	$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											"NA",
+    											"@{sectionType}",
+    											$pfDonation.details );
     	insert($deduction);
 end
 end template

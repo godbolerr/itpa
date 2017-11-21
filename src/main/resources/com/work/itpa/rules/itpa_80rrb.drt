@@ -23,7 +23,7 @@ rule "ATRRB@{row.rowNumber}"
         				residentialStatus == "@{residentialStatus}"
         			 	)
         			 	
-        $pfIncome :  Income   (	type == "Patent" ) from $fp.incomes   
+        $pfIncome :  Income   (	type == "INCOME_PATENTt" ) from $fp.incomes   
         							
          
         $result : FinPersonResult( )

@@ -5,17 +5,44 @@ import com.work.itpa.rules.FiConstants;
 
 import function com.work.itpa.rules.FiUtil.isAvailable;
 
-/**
-Messages are global objects 
-
-**/
-
 global java.util.List messages
 
-rule "Get List of all deductions which can be availed for 80"   
+rule "Get List of all deductions which can be availed"   
     when
         $deduction : Deduction ()
         $result : FinPersonResult( )
     then
     	$result.addDeduction($deduction);
+end
+
+// As the deduction is based on percentage of actual, there is no other variable to compare with.
+
+rule "Find max deduction 80GGA"
+   salience -50
+	when
+		$result : FinPersonResult( )
+ 		$total : Double() from accumulate(
+         Deduction( $amt : amount , sectionType == "80GGA" ),
+         init( double total = 0; ),
+         action( total += $amt.doubleValue(); ),
+         reverse( total -= $amt.doubleValue(); ),
+         result( new Double( total ) ) )		
+		
+	then
+		$result.addFinalDeduction($total,"80GGA","");
+end
+
+rule "Find max deduction 80GGC"
+   salience -50
+	when
+		$result : FinPersonResult( )
+ 		$total : Double() from accumulate(
+         Deduction( $amt : amount , sectionType == "80GGC" ),
+         init( double total = 0; ),
+         action( total += $amt.doubleValue(); ),
+         reverse( total -= $amt.doubleValue(); ),
+         result( new Double( total ) ) )		
+		
+	then
+		$result.addFinalDeduction($total,"80GGC","");
 end

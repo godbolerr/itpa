@@ -1,11 +1,12 @@
 package com.work.itpa.rules;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * Result of TPA evaluation 
+ * Result of TPA evaluation
  * 
  * @author Developer
  *
@@ -15,46 +16,50 @@ public class FinPersonResult {
 	boolean status;
 
 	List<String> messages = new ArrayList<String>();
-	
+
 	List<Deduction> deductions = new ArrayList<Deduction>();
-	
+
 	List<Deduction> applicableDeductions = new ArrayList<Deduction>();
-	
+
 	List<Deduction> recoDeductions = new ArrayList<Deduction>();
-	
+
 	List<RiskScore> riskScores = new ArrayList<RiskScore>();
-	
+
 	double riskScore = 0.0;
-	
-	public Deduction getDeductionForType(String type){
-		
+
+	public Deduction getDeductionForType(String type) {
+
 		Deduction deduction = null;
-		
+
 		boolean found = false;
-		
-		
+
 		for (Iterator iterator = applicableDeductions.iterator(); iterator.hasNext();) {
 			Deduction d1 = (Deduction) iterator.next();
-			if ( type.equals(d1.getSection()))
-				found = true; 
-				
+			if (type.equals(d1.getSectionType()))
+				found = true;
+
 		}
-		
-		if ( found == false ){
+
+		if (found == false) {
 			deduction = new Deduction();
 			applicableDeductions.add(deduction);
 		}
-		
+
 		return deduction;
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
+	public void addFinalDeduction(double deductionAmount, String sectionType, String deductionType) {
+
+		Deduction finalDeduction = new Deduction();
+		finalDeduction.setAmount(new BigDecimal(deductionAmount + ""));
+		finalDeduction.setDeductionType(deductionType);
+		finalDeduction.setSectionType(sectionType);
+
+		applicableDeductions.add(finalDeduction);
+
+	}
+
 	public void addMessage(String message) {
 		messages.add(message);
 	}
@@ -66,7 +71,7 @@ public class FinPersonResult {
 	public void addRecoDeduction(Deduction deduction) {
 		recoDeductions.add(deduction);
 	}
-	
+
 	/**
 	 * @return the status
 	 */
@@ -96,9 +101,6 @@ public class FinPersonResult {
 	public void setMessages(List<String> messages) {
 		this.messages = messages;
 	}
-	
-	
-	
 
 	/**
 	 * @return the deductions
@@ -108,13 +110,12 @@ public class FinPersonResult {
 	}
 
 	/**
-	 * @param deductions the deductions to set
+	 * @param deductions
+	 *            the deductions to set
 	 */
 	public void setDeductions(List<Deduction> deductions) {
 		this.deductions = deductions;
 	}
-
-
 
 	/**
 	 * @return the applicableDeductions
@@ -123,22 +124,13 @@ public class FinPersonResult {
 		return applicableDeductions;
 	}
 
-
-
-
-
-
 	/**
-	 * @param applicableDeductions the applicableDeductions to set
+	 * @param applicableDeductions
+	 *            the applicableDeductions to set
 	 */
 	public void setApplicableDeductions(List<Deduction> applicableDeductions) {
 		this.applicableDeductions = applicableDeductions;
 	}
-
-
-
-
-
 
 	/**
 	 * @return the recoDeductions
@@ -147,18 +139,13 @@ public class FinPersonResult {
 		return recoDeductions;
 	}
 
-
-
-
-
-
 	/**
-	 * @param recoDeductions the recoDeductions to set
+	 * @param recoDeductions
+	 *            the recoDeductions to set
 	 */
 	public void setRecoDeductions(List<Deduction> recoDeductions) {
 		this.recoDeductions = recoDeductions;
 	}
-
 
 	/**
 	 * @return the riskScores
@@ -167,22 +154,13 @@ public class FinPersonResult {
 		return riskScores;
 	}
 
-
-
-
-
-
 	/**
-	 * @param riskScores the riskScores to set
+	 * @param riskScores
+	 *            the riskScores to set
 	 */
 	public void setRiskScores(List<RiskScore> riskScores) {
 		this.riskScores = riskScores;
 	}
-
-
-
-
-
 
 	/**
 	 * @return the riskScore
@@ -191,24 +169,17 @@ public class FinPersonResult {
 		return riskScore;
 	}
 
-
-
-
-
-
 	/**
-	 * @param riskScore the riskScore to set
+	 * @param riskScore
+	 *            the riskScore to set
 	 */
 	public void setRiskScore(double riskScore) {
 		this.riskScore = riskScore;
 	}
 
-
-
-
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

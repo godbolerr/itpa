@@ -37,7 +37,7 @@ public class Rule80DDBTest {
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -64,7 +64,7 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -90,7 +90,7 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		// Associated disable wife with 45 percent disability
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -117,7 +117,7 @@ public class Rule80DDBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		fPerson.setDisease(new Disease("","","30",new BigDecimal(0),new BigDecimal(0)));
 		// Associated disable wife with 45 percent disability
 		
 
@@ -127,7 +127,7 @@ public class Rule80DDBTest {
 		father.setGender(FiConstants.GENDER_MALE);
 		father.setRelationShipCode(FiConstants.RELATIONSHIP_FATHER);
 		father.setName("xxxx");
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		father.setAge(62);
 
 		fPerson.addFamily(father);
@@ -157,7 +157,7 @@ public class Rule80DDBTest {
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
-		fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
+		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		// Associated disable wife with 45 percent disability
 		
 

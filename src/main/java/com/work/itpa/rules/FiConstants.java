@@ -18,10 +18,10 @@ public class FiConstants {
 	public static final String OWNERSHIP_RENTAL = "Rental";
 	
 	public static final String RESIDENT_NRI = "NRI";
-	public static final String RESIDENT_RESIDENT = "Resident";
+	public static final String RESIDENT_RESIDENT = "RESIDENT";
 	
 	public static final String ASSESSEE_HUF = "HUF";
-	public static final String ASSESSEE_INDIVIDUAL = "Individual";
+	public static final String ASSESSEE_INDIVIDUAL = "INDIVIDUAL";
 	
 	public static final String DEDUCTION_MECICAL_INSURANCE = "Medical Insurance";
 	public static final String DEDUCTION_HEALTH_CHECKUP = "Health Checkup";

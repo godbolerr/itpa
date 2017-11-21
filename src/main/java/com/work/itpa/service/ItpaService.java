@@ -63,9 +63,9 @@ public class ItpaService {
 
 		//logger.close();
 
-		List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
+		//List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
 
-		result.setApplicableDeductions(applicableDeductions);
+		//result.setApplicableDeductions(applicableDeductions);
 
 		// Dispose the session and release memory
 
@@ -89,40 +89,40 @@ public class ItpaService {
 	 */
 	private List<Deduction> calculateMaxPerCatetory(List<Deduction> deductions) {
 
-		Map<String, Deduction> dMap = new HashMap<String, Deduction>();
+//		Map<String, Deduction> dMap = new HashMap<String, Deduction>();
+//
+//		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
+//			Deduction deduction = iterator.next();
+//			String key = deduction.getSectionType() + deduction.getDeductionType();
+//			if (dMap.containsKey(key) == false) {
+//				dMap.put(key, deduction);
+//			} else {
+//				Deduction xDeduction = dMap.get(key);
+//
+//				if (FiConstants.DEDUCTION_UNIQUE.equals(xDeduction.getMode())) {
+//					
+//					//TODO Add exact comparison
+//					if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
+//						dMap.put(key, deduction);
+//					}
+//				}
+//
+//				if (FiConstants.DEDUCTION_ADDITIVE.equals(xDeduction.getMode())) {
+//
+//					Deduction totalDeduction = new Deduction();
+//					totalDeduction.setMode(xDeduction.getMode());
+//					totalDeduction.setType(xDeduction.getType());
+//					totalDeduction.setSection(xDeduction.getSection());
+//					BigDecimal origDeduction = xDeduction.getAmount();
+//					totalDeduction.setAmount(origDeduction.add(deduction.getAmount()));
+//					dMap.put(key, totalDeduction);				
+//					
+//				}
+//
+//			}
+//		}
 
-		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
-			Deduction deduction = iterator.next();
-			String key = deduction.getSection() + deduction.getType();
-			if (dMap.containsKey(key) == false) {
-				dMap.put(key, deduction);
-			} else {
-				Deduction xDeduction = dMap.get(key);
-
-				if (FiConstants.DEDUCTION_UNIQUE.equals(xDeduction.getMode())) {
-					
-					//TODO Add exact comparison
-					if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
-						dMap.put(key, deduction);
-					}
-				}
-
-				if (FiConstants.DEDUCTION_ADDITIVE.equals(xDeduction.getMode())) {
-
-					Deduction totalDeduction = new Deduction();
-					totalDeduction.setMode(xDeduction.getMode());
-					totalDeduction.setType(xDeduction.getType());
-					totalDeduction.setSection(xDeduction.getSection());
-					BigDecimal origDeduction = xDeduction.getAmount();
-					totalDeduction.setAmount(origDeduction.add(deduction.getAmount()));
-					dMap.put(key, totalDeduction);				
-					
-				}
-
-			}
-		}
-
-		return new ArrayList<Deduction>(dMap.values());
+		return null;// new ArrayList<Deduction>(dMap.values());
 
 	}
 

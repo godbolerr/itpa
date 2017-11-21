@@ -9,34 +9,53 @@ import java.math.BigDecimal;
  */
 public class Deduction {
 
-	/**
-	 * Amount eligible for max deduction
-	 */
 	public BigDecimal amount;
 
 	/**
-	 * Type of section for which limit is utilized
+	 * Sub-Type of section for which limit is utilized
 	 */
-	public String type;
+	public String deductionType;
 
 	/**
-	 * Section under which it is allowed.
+	 * Section Type under which it is allowed.
 	 */
-	
+
+	public String sectionType;
+
 	/**
-	 * Mode indicates if deduction is unique in the collection or it has to be added.
+	 * Maximum deduction under this section
 	 */
-	public String mode = FiConstants.DEDUCTION_UNIQUE;
-	
-	
-	
-	public String section;
-	
-	
+
 	public BigDecimal maxDeduction;
-	
 
+	/**
+	 * Eligible deduction for the assessor
+	 */
+	public BigDecimal eligibleDeduction;
+
+	/**
+	 * Notes associated with this deduction.
+	 * 
+	 */
 	public String notes;
+	
+	/**
+	 * @param amount
+	 * @param deductionType
+	 * @param sectionType
+	 * @param maxDeduction
+	 * @param eligibleDeduction
+	 * @param notes
+	 */
+	public Deduction(BigDecimal amount, BigDecimal eligibleDeduction,  BigDecimal maxDeduction, String deductionType, String sectionType, String notes) {
+		super();
+		this.amount = amount;
+		this.deductionType = deductionType;
+		this.sectionType = sectionType;
+		this.maxDeduction = maxDeduction;
+		this.eligibleDeduction = eligibleDeduction;
+		this.notes = notes;
+	}
 
 	/**
 	 * @return the amount
@@ -54,18 +73,63 @@ public class Deduction {
 	}
 
 	/**
-	 * @return the section
+	 * @return the deductionType
 	 */
-	public String getSection() {
-		return section;
+	public String getDeductionType() {
+		return deductionType;
 	}
 
 	/**
-	 * @param section
-	 *            the section to set
+	 * @param deductionType
+	 *            the deductionType to set
 	 */
-	public void setSection(String section) {
-		this.section = section;
+	public void setDeductionType(String deductionType) {
+		this.deductionType = deductionType;
+	}
+
+	/**
+	 * @return the sectionType
+	 */
+	public String getSectionType() {
+		return sectionType;
+	}
+
+	/**
+	 * @param sectionType
+	 *            the sectionType to set
+	 */
+	public void setSectionType(String sectionType) {
+		this.sectionType = sectionType;
+	}
+
+	/**
+	 * @return the maxDeduction
+	 */
+	public BigDecimal getMaxDeduction() {
+		return maxDeduction;
+	}
+
+	/**
+	 * @param maxDeduction
+	 *            the maxDeduction to set
+	 */
+	public void setMaxDeduction(BigDecimal maxDeduction) {
+		this.maxDeduction = maxDeduction;
+	}
+
+	/**
+	 * @return the eligibleDeduction
+	 */
+	public BigDecimal getEligibleDeduction() {
+		return eligibleDeduction;
+	}
+
+	/**
+	 * @param eligibleDeduction
+	 *            the eligibleDeduction to set
+	 */
+	public void setEligibleDeduction(BigDecimal eligibleDeduction) {
+		this.eligibleDeduction = eligibleDeduction;
 	}
 
 	/**
@@ -83,95 +147,6 @@ public class Deduction {
 		this.notes = notes;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type
-	 *            the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
-
-	/**
-	 * @return the mode
-	 */
-	public String getMode() {
-		return mode;
-	}
-
-	/**
-	 * @param mode the mode to set
-	 */
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
-	
-	
-
-	/**
-	 * @return the maxDeduction
-	 */
-	public BigDecimal getMaxDeduction() {
-		return maxDeduction;
-	}
-
-	/**
-	 * @param maxDeduction the maxDeduction to set
-	 */
-	public void setMaxDeduction(BigDecimal maxDeduction) {
-		this.maxDeduction = maxDeduction;
-	}
-
-	/**
-	 * @param amount
-	 * @param section
-	 * @param notes
-	 */
-	public Deduction(BigDecimal amount, String type, String mode, String section, String notes) {
-		super();
-		this.amount = amount;
-		this.type = type;
-		this.mode = mode;
-		this.section = section;
-		this.notes = notes;
-		
-	}
-	
-	/**
-	 * Called when type is unique
-	 * 
-	 * @param amount
-	 * @param type
-	 * @param section
-	 * @param notes
-	 */
-	public Deduction(BigDecimal amount, String type,  String section, String notes) {
-		super();
-		this.amount = amount;
-		this.type = type;
-		this.section = section;
-		this.notes = notes;
-		
-	}
-
-	public Deduction(BigDecimal amount, String type,  String section, BigDecimal maxDeductionAllowed,  String notes) {
-		super();
-		this.amount = amount;
-		this.type = type;
-		this.section = section;
-		this.maxDeduction = maxDeductionAllowed;
-		this.notes = notes;
-		
-	}
-	
 	public Deduction() {
 	}
 

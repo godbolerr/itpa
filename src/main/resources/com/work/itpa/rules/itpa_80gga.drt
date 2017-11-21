@@ -18,15 +18,17 @@ template "ATGGA Donation to scientific research"
 rule "ATGGA@{row.rowNumber}"
        when
         $fp : FinPerson()
-        			 	
         $pfDonation :  Donation   (	type == "SCIENTIFIC_RESEARCH" ) from $fp.donations   
-        							
         $result : FinPersonResult( )
     then
         BigDecimal deduction = new BigDecimal(@{pcDeduction});
         BigDecimal percent = new BigDecimal(100);
-    	Deduction $deduction = new Deduction( $pfDonation.amount.multiply(deduction).divide(percent)  ,"","Additive","@{sectionType}","Amount deducted for " + $pfDonation.details );
-    	System.out.println("Percent applicable is " + percent +":" + @{pcDeduction} + ":" + deduction + ":" + $deduction.amount );
+    	Deduction $deduction = new Deduction( 	$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											"NA",
+    											"@{sectionType}",
+    											$pfDonation.details );
     	insert($deduction);
 end
 end template

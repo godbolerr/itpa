@@ -51,7 +51,6 @@ public class PersonUtil {
 		self.setLastName("Kumar");
 		self.setAge(30);
 		self.setRelationShipCode(FiConstants.RELATIONSHIP_SELF);
-		self.setRelationType(FiConstants.RELATIONSHIP_SELF);
 		self.setGender(FiConstants.GENDER_MALE);
 		fPerson.addFamily(self);		
 		
@@ -149,7 +148,7 @@ public class PersonUtil {
 		self.setLastName("Kumar");
 		self.setAge(30);
 		self.setRelationShipCode(FiConstants.RELATIONSHIP_SELF);
-		self.setRelationType(FiConstants.RELATIONSHIP_SELF);
+	
 		self.setGender(FiConstants.GENDER_MALE);
 
 		return self;
@@ -211,7 +210,7 @@ public class PersonUtil {
 		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = (Deduction) iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection()) && deduction.getAmount().compareTo(newAmount) == 0) {
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getAmount().compareTo(newAmount) == 0) {
 				return true;
 			}
 
@@ -228,7 +227,7 @@ public class PersonUtil {
 		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = (Deduction) iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection())) {
+			if (section.equalsIgnoreCase(deduction.getSectionType())) {
 				return true;
 			}
 
@@ -247,7 +246,7 @@ public class PersonUtil {
 		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection())) {
+			if (section.equalsIgnoreCase(deduction.getSectionType())) {
 				count++;
 			}
 		}
@@ -270,7 +269,7 @@ public class PersonUtil {
 		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = (Deduction) iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deductionType.equalsIgnoreCase(deduction.getDeductionType())
 					&& deduction.getAmount().compareTo(newAmount) == 0) {
 				return true;
 			}
@@ -289,7 +288,7 @@ public class PersonUtil {
 		for (Iterator iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = (Deduction) iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deductionType.equalsIgnoreCase(deduction.getDeductionType())
 
 			) {
 				return true;
@@ -311,7 +310,7 @@ public class PersonUtil {
 		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = iterator.next();
 
-			if (section.equalsIgnoreCase(deduction.getSection()) && deductionType.equalsIgnoreCase(deduction.getType())
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deductionType.equalsIgnoreCase(deduction.getDeductionType())
 
 			) {
 				count++;
@@ -332,20 +331,20 @@ public class PersonUtil {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		finPerson.setAllPersons(null);
-		try {
-			mapper.writeValue(new File(inputJson), finPerson);
-			mapper.writeValue(new File(outputJson), result);
-			
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			mapper.writeValue(new File(inputJson), finPerson);
+//			mapper.writeValue(new File(outputJson), result);
+//			
+//		} catch (JsonGenerationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JsonMappingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 	}

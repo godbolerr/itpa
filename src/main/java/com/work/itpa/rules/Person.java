@@ -56,16 +56,13 @@ public class Person implements Serializable {
 	/**
 	 * Relationship of the person with the container entity
 	 * 
-	 * SELF,SON,DAUGHTER,FATERH,MOTHER,BROTHER,SISTER,OTHER
+	 * 
 	 * 
 	 */
 	
 	String relationShipCode;
 	
 	
-	String relationType;
-
-
 	/**
 	 * @return the id
 	 */
@@ -193,23 +190,6 @@ public class Person implements Serializable {
 		this.relationShipCode = relationShipCode;
 	}
 
-
-	/**
-	 * @return the relationType
-	 */
-	public String getRelationType() {
-		return relationType;
-	}
-
-
-	/**
-	 * @param relationType the relationType to set
-	 */
-	public void setRelationType(String relationType) {
-		this.relationType = relationType;
-	}	
-
-	
 	
 	
 	

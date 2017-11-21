@@ -10,32 +10,20 @@
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80gga.drt"
                       row="71" col="2"/>
-                      
-       <!-- Rule 80 GGC -->
+                                   
+      <!-- Rule 80 GGC -->
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80ggc.drt"
                       row="78" col="2"/>
                       
-                      
        <!-- Rule 80 QQB -->
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80qqb.drt"
-                      row="85" col="2"/>
-                      
-        <!-- Rule 80 RRB  -->
-                      
-        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-                      template="com/work/itpa/rules/itpa_80rrb.drt"
-                      row="89" col="2"/>
-                      
-        <!-- Rule 80 TTA  -->
-                      
-        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-                      template="com/work/itpa/rules/itpa_80tta.drt"
-                      row="93" col="2"/>                      
-                      
+                      row="85" col="2"/>                     
+      
+                       
         <ksession name="ItpaDataKs"/>
     
     </kbase>     

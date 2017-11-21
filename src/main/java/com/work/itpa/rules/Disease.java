@@ -11,7 +11,7 @@ public class Disease {
 	
 	String dependentRelation;
 	
-	int ageOfDependent;
+	String ageOfDependent;
 	
 	BigDecimal amountSpent;
 	
@@ -26,7 +26,7 @@ public class Disease {
 	 * @param amountSpent
 	 * @param amountRecovered
 	 */
-	public Disease(String name, String dependentRelation, int ageOfDependent, BigDecimal amountSpent,
+	public Disease(String name, String dependentRelation, String ageOfDependent, BigDecimal amountSpent,
 			BigDecimal amountRecovered) {
 		super();
 		this.name = name;
@@ -67,14 +67,14 @@ public class Disease {
 	/**
 	 * @return the ageOfDependent
 	 */
-	public int getAgeOfDependent() {
+	public String getAgeOfDependent() {
 		return ageOfDependent;
 	}
 
 	/**
 	 * @param ageOfDependent the ageOfDependent to set
 	 */
-	public void setAgeOfDependent(int ageOfDependent) {
+	public void setAgeOfDependent(String ageOfDependent) {
 		this.ageOfDependent = ageOfDependent;
 	}
 

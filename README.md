@@ -1,3 +1,12 @@
+
+TODO:
+
+
+1. Write unit test include amount with fractions.
+2. Address rounding issue.
+
+
+
 # itpa
 This application was generated using JHipster 4.6.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.6.2](https://jhipster.github.io/documentation-archive/v4.6.2).
 
@@ -206,9 +215,35 @@ Original Rules and knowledge base
 </kmodule>
 
 
-1. 80 GGA Only one row is required
 
-2. 80GGC Only 1 row is required
+      <!-- Rule 80 GGC -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80ggc.drt"
+                      row="78" col="2"/>
+                      
+                      
+       <!-- Rule 80 QQB -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80qqb.drt"
+                      row="85" col="2"/>
+                      
+        <!-- Rule 80 RRB  -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80rrb.drt"
+                      row="89" col="2"/>
+                      
+        <!-- Rule 80 TTA  -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80tta.drt"
+                      row="93" col="2"/>         
+                      
+                      
+
+
 
 3. Donation type master values are missing - SCIENTIFIC, POLITICAL, ....
 
