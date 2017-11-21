@@ -1,10 +1,15 @@
 template header
-section
-residentStatus
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
 assesseeType
+residentialStatus
 relationShipCode
-minDisabilityPercent
-maxDisabilityPercent
+dependentDisabilityPercent
+categoryType
 maxDeduction
 
 package com.work.itpa.rules;
@@ -17,10 +22,7 @@ template "AT DD Others Rules"
 
 rule "ATDDDisabilityOthers@{row.rowNumber}"
     when
-        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
-        
-        			 	)
+ 		$fp : FinPerson( assesseeType == "@{assesseeType}" ,residentialStatus == "@{residentialStatus}")
         $fpPerson :  Person   ( disabilityPercent >= @{minDisabilityPercent} , 
 								disabilityPercent <= @{maxDisabilityPercent} ,						
         		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 

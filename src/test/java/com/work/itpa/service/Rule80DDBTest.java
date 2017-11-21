@@ -32,17 +32,18 @@ public class Rule80DDBTest {
 	@Rule public TestName testName = new TestName();
 
 	@Test
-	public void test80DDBResidentIndividualHasDisease() {
+	public void test80DDBDiseaseDependent_UPTO_59() {
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
-		// Associated disable wife with 45 percent disability
+		fPerson.setDisease(new Disease("Disease 1","","UPTO_59",new BigDecimal(100),new BigDecimal(100)));		
 		
+	
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -50,7 +51,7 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 40000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 100);
 
 		assertTrue(result);
 		
@@ -69,7 +70,7 @@ public class Rule80DDBTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -77,7 +78,7 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 60000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 60000);
 
 		assertTrue(result);
 
@@ -95,7 +96,7 @@ public class Rule80DDBTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -103,7 +104,7 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 80000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 80000);
 
 		assertTrue(result);
 
@@ -134,7 +135,7 @@ public class Rule80DDBTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -142,7 +143,7 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 60000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 60000);
 
 		assertTrue(result);
 
@@ -173,7 +174,7 @@ public class Rule80DDBTest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -181,7 +182,7 @@ public class Rule80DDBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 80000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 80000);
 
 		assertTrue(result);
 

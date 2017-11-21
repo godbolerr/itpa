@@ -13,9 +13,9 @@ public class Disease {
 	
 	String ageOfDependent;
 	
-	BigDecimal amountSpent;
+	public BigDecimal amountSpent;
 	
-	BigDecimal amountRecovered;
+	public BigDecimal amountRecovered;
 
 	
 	

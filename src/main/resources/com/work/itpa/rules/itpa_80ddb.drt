@@ -1,10 +1,13 @@
 template header
-section
-residentStatus
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
 assesseeType
-relationShipCode
-minAge
-maxAge
+residentialStatus
+diseaseDependentAge
 maxDeduction
 
 package com.work.itpa.rules;
@@ -14,20 +17,19 @@ import java.math.BigDecimal;
 
 template "AT DDB Disease Rules"
 
-
 rule "ATDDBDisease@{row.rowNumber}"
     when
-        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
-        
-        			 	)
-        $fpPerson :  Person   ( age  >= @{minAge} , 
-								age  <= @{maxAge} ,	
-								hasDisease == true,				
-        		 				relationShipCode == "@{relationShipCode}"  ) from $fp.allPersons 
-        $result : FinPersonResult( )
+        $fp : FinPerson( assesseeType == "@{assesseeType}" ,residentialStatus == "@{residentialStatus}")
+		$fpDisease :  Disease ( ageOfDependent == "@{diseaseDependentAge}"  ) from $fp.disease 
     then
-    	Deduction $deduction = new Deduction(BigDecimal.valueOf(@{maxDeduction}),"","@{section}","@{relationShipCode}  Age: " + $fpPerson.age  );
-    	insert($deduction);
+    // Need to substract amount recoverd.
+    // or add it in condition if the result is less than 0
+	Deduction $deduction = new Deduction( 	$fpDisease.amountSpent  ,
+											new BigDecimal(@{maxDeduction}) ,
+											new BigDecimal(@{maxDeduction})  ,
+											"NA",
+											"@{sectionType}",
+											"Disease Benefits for dependent" );
+	insert($deduction);
 end
 end template
