@@ -1,0 +1,32 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+pcDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "ATGGC Donation to political parties"
+
+
+rule "ATGGC@{row.rowNumber}"
+      when
+        $fp : FinPerson()
+        			 	
+        $pfDonation :  Donation   (	type == "Political" ) from $fp.donations   
+        							
+         
+        $result : FinPersonResult( )
+    then
+        BigDecimal deduction = new BigDecimal(@{pcDeduction});
+        BigDecimal percent = new BigDecimal(100);
+    	Deduction $deduction = new Deduction($pfDonation.amount.multiply(deduction).divide(percent) ,"","Additive","@{sectionType}","Amount deducted for " + $pfDonation.details );
+    	insert($deduction);
+end
+end template

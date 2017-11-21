@@ -1,0 +1,30 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.rules.FiConstants;
+
+import function com.work.itpa.rules.FiUtil.isAvailable;
+
+/**
+Messages are global objects 
+
+**/
+
+global java.util.List messages
+
+/**
+
+If
+        $x : String() from $s.stringList;
+        $s : Object(input.contains($x)); Then....
+
+**/
+
+rule "Check if investments are eligible for deductions"   
+    when
+    	
+        $fp : FinPerson()
+        $inv : Investment ( isAvailable(type,"80c") ) from $fp.investments	
+    then
+        System.out.println("Has deductible investment " + $inv.details );
+end

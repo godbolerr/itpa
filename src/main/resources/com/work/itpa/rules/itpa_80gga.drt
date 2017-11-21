@@ -1,0 +1,32 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+pcDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+
+template "ATGGA Donation to scientific research"
+
+
+rule "ATGGA@{row.rowNumber}"
+       when
+        $fp : FinPerson()
+        			 	
+        $pfDonation :  Donation   (	type == "SCIENTIFIC_RESEARCH" ) from $fp.donations   
+        							
+        $result : FinPersonResult( )
+    then
+        BigDecimal deduction = new BigDecimal(@{pcDeduction});
+        BigDecimal percent = new BigDecimal(100);
+    	Deduction $deduction = new Deduction( $pfDonation.amount.multiply(deduction).divide(percent)  ,"","Additive","@{sectionType}","Amount deducted for " + $pfDonation.details );
+    	System.out.println("Percent applicable is " + percent +":" + @{pcDeduction} + ":" + deduction + ":" + $deduction.amount );
+    	insert($deduction);
+end
+end template
