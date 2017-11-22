@@ -1,4 +1,4 @@
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

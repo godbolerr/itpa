@@ -19,11 +19,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.work.itpa.rules.Deduction;
-import com.work.itpa.rules.FiConstants;
-import com.work.itpa.rules.FinPerson;
-import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.Person;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FiConstants;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Person;
 
 /**
  * Responsible for invocation of rules and calculating summary

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

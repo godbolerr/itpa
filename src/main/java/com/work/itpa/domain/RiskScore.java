@@ -1,4 +1,4 @@
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 /**
  * Risk score calculated for Assessee

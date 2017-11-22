@@ -1,4 +1,4 @@
-package com.work.itpa.rules;
+package com.work.itpa.utils;
 
 import java.math.BigDecimal;
 

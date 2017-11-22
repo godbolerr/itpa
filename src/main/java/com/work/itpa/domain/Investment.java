@@ -1,41 +1,37 @@
 /**
  * 
  */
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 import java.math.BigDecimal;
 
 /**
- * @author Developer
+ * Investments made in various schemes in the year.
+ * 
+ * @author 115750
  *
  */
-public class Expense {
+public class Investment {
 
 	/**
-	 * Amount spent Per Year.
+	 * Amount invested per year.
 	 * 
 	 */
 	public BigDecimal amount;
 	
 	/**
-	 * Expense Type
+	 * Type of institution to which amount is invested
 	 */
 	
 	public String type;
 	
 	/**
-	 * Other details about an expense.
+	 * Other details about an investment.
 	 */
 	
 	public String details;
 	
-	/**
-	 * For whom this spend is done.
-	 */
-	
-	public String relationShipCode;
-	
-	public Expense(){}
+	public Investment(){}
 	
 
 	/**
@@ -43,7 +39,7 @@ public class Expense {
 	 * @param type
 	 * @param details
 	 */
-	public Expense(BigDecimal amount, String type, String details) {
+	public Investment(BigDecimal amount, String type, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
@@ -90,22 +86,6 @@ public class Expense {
 	 */
 	public void setDetails(String details) {
 		this.details = details;
-	}
-
-
-	/**
-	 * @return the relationShipCode
-	 */
-	public String getRelationShipCode() {
-		return relationShipCode;
-	}
-
-
-	/**
-	 * @param relationShipCode the relationShipCode to set
-	 */
-	public void setRelationShipCode(String relationShipCode) {
-		this.relationShipCode = relationShipCode;
 	}
 	
 	

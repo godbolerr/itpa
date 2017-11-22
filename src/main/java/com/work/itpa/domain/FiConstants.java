@@ -1,4 +1,4 @@
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 /**
  * List of constants used in the project.

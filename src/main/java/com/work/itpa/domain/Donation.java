@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 import java.math.BigDecimal;
 
@@ -9,34 +9,42 @@ import java.math.BigDecimal;
  * @author Developer
  *
  */
-public class Income {
-	
+public class Donation {
+
 	/**
-	 * Amount received.
+	 * Amount donated.
+	 * 
 	 */
 	public BigDecimal amount;
 	
 	/**
-	 * Type of income. 
+	 * Type of institution to which amount is donated
+	 */
+	
+	/**
+	 * Short scheme code if the scheme name is very large.
 	 * 
 	 */
+	public String schemeCode;
+	
+	
 	public String type;
 	
 	/**
-	 * Other details associated with income.
-	 * 
+	 * Other details about an institution.
 	 */
+	
 	public String details;
 	
+	public Donation(){}
 	
-	public Income(){}
 
 	/**
 	 * @param amount
 	 * @param type
 	 * @param details
 	 */
-	public Income(BigDecimal amount, String type, String details) {
+	public Donation(BigDecimal amount, String type, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
@@ -85,12 +93,21 @@ public class Income {
 		this.details = details;
 	}
 
-	
-	
-	
-	
-	
-	
+
+	/**
+	 * @return the schemeCode
+	 */
+	public String getSchemeCode() {
+		return schemeCode;
+	}
+
+
+	/**
+	 * @param schemeCode the schemeCode to set
+	 */
+	public void setSchemeCode(String schemeCode) {
+		this.schemeCode = schemeCode;
+	}
 	
 	
 	

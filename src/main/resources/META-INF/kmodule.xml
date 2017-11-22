@@ -17,12 +17,12 @@
                       template="com/work/itpa/rules/itpa_80ddb.drt"
                       row="58" col="2"/>     
                       
-          <!-- Rule 80 EE-->
+          <!-- Rule 80 EE
           
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80ee.drt"
                       row="67" col="2"/>    
-                      
+              -->        
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80g.drt"
                       row="98" col="2"/>

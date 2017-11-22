@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.work.itpa.rules;
+package com.work.itpa.domain;
 
 
 public class Disability {

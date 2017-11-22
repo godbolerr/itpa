@@ -1,9 +1,14 @@
 package com.work.itpa.rules;
 
 import java.util.List;
-import com.work.itpa.rules.FiConstants;
+import com.work.itpa.domain.FiConstants;
 
-import function com.work.itpa.rules.FiUtil.isAvailable;
+import function com.work.itpa.utils.FiUtil.isAvailable;
+
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Investment;
 
 /**
 Messages are global objects 

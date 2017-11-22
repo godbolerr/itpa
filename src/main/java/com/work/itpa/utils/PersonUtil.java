@@ -13,16 +13,16 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.work.itpa.rules.Deduction;
-import com.work.itpa.rules.Donation;
-import com.work.itpa.rules.Expense;
-import com.work.itpa.rules.FiConstants;
-import com.work.itpa.rules.FinPerson;
-import com.work.itpa.rules.FinPersonResult;
-import com.work.itpa.rules.Income;
-import com.work.itpa.rules.Investment;
-import com.work.itpa.rules.Person;
-import com.work.itpa.rules.PropertyDetails;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.Donation;
+import com.work.itpa.domain.Expense;
+import com.work.itpa.domain.FiConstants;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Income;
+import com.work.itpa.domain.Investment;
+import com.work.itpa.domain.Person;
+import com.work.itpa.domain.PropertyDetails;
 
 /**
  * Generate person data based on certain conditions

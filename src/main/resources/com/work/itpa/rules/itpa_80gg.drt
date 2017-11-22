@@ -12,6 +12,11 @@ package com.work.itpa.rules;
 import java.util.List;
 import java.math.BigDecimal;
 
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Expense;
+
 template "AT GG Rules"
 
 rule "ATGG@{row.rowNumber}"
