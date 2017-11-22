@@ -32,7 +32,7 @@ public class Rule80GTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
 				"Donation to Prime Minister’s National Relief Fund");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -44,7 +44,6 @@ public class Rule80GTest {
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
-
 	}
 
 	@Test
@@ -52,9 +51,9 @@ public class Rule80GTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
 				"Donation to Prime Minister’s National Relief Fund");
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
+		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
 				"Donation to Prime Minister’s National Relief Fund again");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 

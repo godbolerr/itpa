@@ -1,10 +1,13 @@
 template header
-section
-residentStatus
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
 assesseeType
-propertyValueMax
-loanValueMax
-maxDeduction
+residentialStatus
+pcDeduction
 
 package com.work.itpa.rules;
 
@@ -16,21 +19,18 @@ template "AT EE Rules"
 
 rule "ATEE@{row.rowNumber}"
     when
-        $fp : FinPerson(residentStatus == "@{residentStatus}"  ,
-         			 	assesseeType == "@{assesseeType}"  
-        		 )     
-        		 
-        $fpProperty : PropertyDetails (
-        									propertyValue <= @{propertyValueMax},
-        									loanValue <= @{loanValueMax}, 
-        									annualInterest > 0 
-        							  ) from $fp.propertyDetails;
-        							     		 
-        $result : FinPersonResult( )
+		$fp : FinPerson( assesseeType == "@{assesseeType}" ,residentialStatus == "@{residentialStatus}") 		 
+        $fpLoan : Loan ( type == "EDUCATION") from $fp.loans;
+
     then
-    
-    
-    	Deduction $deduction = new Deduction(FiUtil.lessOf($fpProperty.annualInterest,BigDecimal.valueOf(@{maxDeduction})),"","@{section}","");
+        BigDecimal deduction = new BigDecimal(@{pcDeduction});
+        BigDecimal percent = new BigDecimal(100);
+    	Deduction $deduction = new Deduction( 	$fpLoan.interestPaidPerAnum.multiply(deduction).divide(percent)  ,
+    											$fpLoan.interestPaidPerAnum.multiply(deduction).divide(percent)  ,
+    											$fpLoan.interestPaidPerAnum.multiply(deduction).divide(percent)  ,
+    											"NA",
+    											"@{sectionType}",
+    											"Interest on Education Loan" );
     	insert($deduction);
 end
 end template

@@ -22,7 +22,7 @@ rule "Find max deduction 80GGA"
 	when
 		$result : FinPersonResult( )
  		$total : Double() from accumulate(
-         Deduction( $amt : amount , sectionType == "80GGA" ),
+         Deduction( sectionType == "80GGA" , $amt : amount  ),
          init( double total = 0; ),
          action( total += $amt.doubleValue(); ),
          reverse( total -= $amt.doubleValue(); ),

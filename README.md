@@ -7,6 +7,7 @@ TODO:
 3. Need input JSON for 80D
 4. dependentRelation and relationshipCode in 80DD
 4. DependentRelation not taken into account 80DDB -> amount recovered where to use 
+5. 80ee swap of individual and resident values.
 
 
 

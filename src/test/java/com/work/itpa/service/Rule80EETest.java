@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -14,6 +16,7 @@ import com.work.itpa.ItpaApp;
 import com.work.itpa.rules.FiConstants;
 import com.work.itpa.rules.FinPerson;
 import com.work.itpa.rules.FinPersonResult;
+import com.work.itpa.rules.Loan;
 import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,11 +37,15 @@ public class Rule80EETest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addPropertyDetails(fPerson, "Pune House", "Pune", FiConstants.OWNERSHIP_OWN, 4000000, 3000000, 40000, true);
+	
+		Loan loan = new Loan();
+		loan.setType("EDUCATION");
+		loan.setInterestPaidPerAnum(new BigDecimal(10000));
+		fPerson.addLoan(loan);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -46,14 +53,12 @@ public class Rule80EETest {
 		
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName,40000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName,10000);
 		
 		assertTrue(result);
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
-	
-	
 	}
 	
 	
@@ -62,11 +67,14 @@ public class Rule80EETest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addPropertyDetails(fPerson, "Pune House", "Pune", FiConstants.OWNERSHIP_OWN, 4000000, 3000000, 60000, true);
+		Loan loan = new Loan();
+		loan.setType("EDUCATION");
+		loan.setInterestPaidPerAnum(new BigDecimal(2000000));
+		fPerson.addLoan(loan);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getApplicableDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
 
 		assertTrue(result);
 
@@ -74,7 +82,7 @@ public class Rule80EETest {
 		
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName,50000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName,2000000);
 		
 		assertTrue(result);
 

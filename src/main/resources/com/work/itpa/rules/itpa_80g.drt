@@ -1,9 +1,12 @@
 template header
-section
-residentStatus
-assesseeType
-donationName
-maxDeductionPercent
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+schemeCode
+pcDeduction
 
 package com.work.itpa.rules;
 
@@ -14,14 +17,17 @@ template "AT G Rules"
 
 rule "ATG@{row.rowNumber}"
       when
-        $fp : FinPerson( assesseeType == "@{assesseeType}" ,
-        				residentStatus == "@{residentStatus}"
-        			 	)
-        			 	
-        $pfDonation :  Donation   (	type == "@{donationName}" ) from $fp.donations          
-        $result : FinPersonResult( )
+        $fp : FinPerson() 	
+        $pfDonation :  Donation   (	type == "@{schemeCode}" ) from $fp.donations          
     then
-    	Deduction $deduction = new Deduction($pfDonation.amount,"80G","Additive","@{section}","Amount deducted for " + $pfDonation.details );
+        BigDecimal deduction = new BigDecimal(@{pcDeduction});
+        BigDecimal percent = new BigDecimal(100);
+    	Deduction $deduction = new Deduction( 	$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
+    											"NA",
+    											"@{sectionType}",
+    											$pfDonation.details );
     	insert($deduction);
 end
 end template
