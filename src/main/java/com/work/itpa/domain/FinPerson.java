@@ -39,6 +39,13 @@ public class FinPerson implements Serializable {
 	
 	String assessmentYear;
 	
+	int noOfDependents;
+	
+	String locale;
+	
+	String currency;
+	
+	
 	
 	public BigDecimal grossTotalIncome;
 
@@ -678,6 +685,60 @@ public class FinPerson implements Serializable {
 	}
 	
 	
+	/**
+	 * @return the noOfDependents
+	 */
+	public int getNoOfDependents() {
+		return noOfDependents;
+	}
+
+
+
+	/**
+	 * @param noOfDependents the noOfDependents to set
+	 */
+	public void setNoOfDependents(int noOfDependents) {
+		this.noOfDependents = noOfDependents;
+	}
+
+
+
+	/**
+	 * @return the locale
+	 */
+	public String getLocale() {
+		return locale;
+	}
+
+
+
+	/**
+	 * @param locale the locale to set
+	 */
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+
+
+	/**
+	 * @return the currency
+	 */
+	public String getCurrency() {
+		return currency;
+	}
+
+
+
+	/**
+	 * @param currency the currency to set
+	 */
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+
+
 	public void addFamily(Person person ){
 		if ( this.family == null ){
 			this.family = new ArrayList<Person>();

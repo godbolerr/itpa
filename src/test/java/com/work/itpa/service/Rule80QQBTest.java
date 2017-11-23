@@ -33,7 +33,7 @@ public class Rule80QQBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 13000, FiConstants.INCOME_AUTHOR_BOOKS, "Income from Authoring book 1");
+		PersonUtil.addIncome(fPerson, 13000, FiConstants.INCOME_ROYALTY, FiConstants.SOURCE_BOOK, "Income from Authoring book 1");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 13000);

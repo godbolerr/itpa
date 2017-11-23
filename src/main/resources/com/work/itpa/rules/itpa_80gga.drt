@@ -22,7 +22,7 @@ template "ATGGA Donation to scientific research"
 rule "ATGGA@{row.rowNumber}"
        when
         $fp : FinPerson()
-        $pfDonation :  Donation   (	type == "SCIENTIFIC_RESEARCH" ) from $fp.donations   
+        $pfDonation :  Donation   (	type == "SCIENTIFIC" ) from $fp.donations   
         $result : FinPersonResult( )
     then
         BigDecimal deduction = new BigDecimal(@{pcDeduction});

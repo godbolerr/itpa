@@ -35,7 +35,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 9000, FiConstants.INCOME_SAVINGINTEREST, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 9000, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -55,7 +55,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 10000, FiConstants.INCOME_SAVINGINTEREST, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 10000, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -76,7 +76,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 10001, FiConstants.INCOME_SAVINGINTEREST, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 10001, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted

@@ -31,7 +31,7 @@ public class Rule80GGATest {
 	@Test
 	public void test80ggaSingleDonationToScientificResearch() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_SCIENTIFIC_RESEARCH,
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_SCIENTIFIC,
 				"Donation to scientific research for biology");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -51,10 +51,10 @@ public class Rule80GGATest {
 	@Test
 	public void test80ggaMultipleDonationToScientificResearch() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_SCIENTIFIC_RESEARCH,
+		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_SCIENTIFIC,
 				"Donation to scientific research for biology");
 		
-		PersonUtil.addDonation(fPerson, 50000, FiConstants.DONATION_SCIENTIFIC_RESEARCH,
+		PersonUtil.addDonation(fPerson, 50000, FiConstants.DONATION_SCIENTIFIC,
 				"Donation to scientific research for physics");
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);

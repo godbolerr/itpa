@@ -22,7 +22,7 @@ template "ATGGC Donation to political parties"
 rule "ATGGC@{row.rowNumber}"
     when
         $fp : FinPerson()
-        $pfDonation :  Donation   (	type == "Political" ) from $fp.donations   
+        $pfDonation :  Donation   (	type == "POLITICAL" ) from $fp.donations   
         $result : FinPersonResult( )
     then
         BigDecimal deduction = new BigDecimal(@{pcDeduction});

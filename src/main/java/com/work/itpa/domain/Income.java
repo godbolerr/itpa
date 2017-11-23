@@ -10,36 +10,43 @@ import java.math.BigDecimal;
  *
  */
 public class Income {
-	
+
 	/**
 	 * Amount received.
 	 */
 	public BigDecimal amount;
-	
+
 	/**
-	 * Type of income. 
+	 * Type of income.
 	 * 
 	 */
 	public String type;
-	
+
+	/**
+	 * Income source
+	 */
+
+	public String source;
+
 	/**
 	 * Other details associated with income.
 	 * 
 	 */
 	public String details;
-	
-	
-	public Income(){}
+
+	public Income() {
+	}
 
 	/**
 	 * @param amount
 	 * @param type
 	 * @param details
 	 */
-	public Income(BigDecimal amount, String type, String details) {
+	public Income(BigDecimal amount, String type, String source, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
+		this.source = source;
 		this.details = details;
 	}
 
@@ -51,7 +58,8 @@ public class Income {
 	}
 
 	/**
-	 * @param amount the amount to set
+	 * @param amount
+	 *            the amount to set
 	 */
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
@@ -65,7 +73,8 @@ public class Income {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -79,20 +88,26 @@ public class Income {
 	}
 
 	/**
-	 * @param details the details to set
+	 * @param details
+	 *            the details to set
 	 */
 	public void setDetails(String details) {
 		this.details = details;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * @return the source
+	 */
+	public String getSource() {
+		return source;
+	}
+
+	/**
+	 * @param source
+	 *            the source to set
+	 */
+	public void setSource(String source) {
+		this.source = source;
+	}
+
 }

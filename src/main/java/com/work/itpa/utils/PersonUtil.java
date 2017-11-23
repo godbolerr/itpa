@@ -114,8 +114,8 @@ public class PersonUtil {
 		person.addExpense(exp);
 	}
 	
-	public static void addIncome(FinPerson person, double amount, String reasonCode, String note) {
-		person.addIncome(new Income(BigDecimal.valueOf(amount), reasonCode, note));
+	public static void addIncome(FinPerson person, double amount, String type, String source, String note) {
+		person.addIncome(new Income(BigDecimal.valueOf(amount), type, source, note));
 	}
 
 	public static void addPropertyDetails(FinPerson person, String name, String city, String status, double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
@@ -179,7 +179,7 @@ public class PersonUtil {
 		wife.setFirstName("Lata");
 		wife.setLastName("Kulkarni");
 		wife.setAge(30);
-		wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
+		//wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
 		wife.setGender(FiConstants.GENDER_FEMALE);
 		finPerson.addFamily(wife);
 		return finPerson;

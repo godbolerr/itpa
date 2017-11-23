@@ -126,7 +126,7 @@ public class Rule80DDBTest {
 		
 		
 		father.setGender(FiConstants.GENDER_MALE);
-		father.setRelationShipCode(FiConstants.RELATIONSHIP_FATHER);
+		//father.setRelationShipCode(FiConstants.RELATIONSHIP_FATHER);
 		father.setName("xxxx");
 		//fPerson.setDisease(new Disease("","",30,new BigDecimal(0),new BigDecimal(0)));
 		father.setAge(62);
@@ -166,7 +166,7 @@ public class Rule80DDBTest {
 		
 		
 		mother.setGender(FiConstants.GENDER_FEMALE);
-		mother.setRelationShipCode(FiConstants.RELATIONSHIP_MOTHER);
+		//mother.setRelationShipCode(FiConstants.RELATIONSHIP_MOTHER);
 		mother.setName("xxxx");
 		mother.setAge(82);
 

@@ -62,7 +62,7 @@ public class Rule80ETest {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
 		PersonUtil.addExpense(fPerson, 34000 , FiConstants.RELATIONSHIP_SELF,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of self");
-		PersonUtil.addExpense(fPerson, 34000 , FiConstants.RELATIONSHIP_WIFE,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of wife");
+		//PersonUtil.addExpense(fPerson, 34000 , FiConstants.RELATIONSHIP_WIFE,FiConstants.EXPENSE_HIGHER_EDU_LOAN_INTEREST, "Interest Paid for loan on higher education of wife");
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
