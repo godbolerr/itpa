@@ -10,7 +10,14 @@
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80c.drt"
                       row="4" col="2"/>         
-        
+ 
+        <!-- Rule 80 CCC -->
+                      
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80ccc.drt"
+                      row="32" col="2"/>
+                      
+                                
         <!-- Rule 80 U -->
                       
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
