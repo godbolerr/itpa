@@ -16,6 +16,7 @@ import com.work.itpa.ItpaApp;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Income;
 import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +36,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 9000, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 9000, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -55,7 +56,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 10000, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 10000, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -76,7 +77,7 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 10001, FiConstants.INCOME_INTEREST,FiConstants.SOURCE_PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, 10001, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted

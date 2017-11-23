@@ -7,6 +7,8 @@ name
 sectionType
 assesseeType
 residentialStatus
+type
+categoryType
 maxDeduction
 
 package com.work.itpa.rules;
@@ -16,23 +18,23 @@ import java.math.BigDecimal;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.FinPersonResult;
-import com.work.itpa.domain.Income;
+import com.work.itpa.domain.Investment;
 
-template "ATQQB Royalty income of authors "
+template "ATC related deductions "
 
 
-rule "ATQQB@{row.rowNumber}"
+rule "ATC@{row.rowNumber}"
        when
         $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
-        $pfIncome :  Income   (	type == Income.Type.ROYALTY , source == Income.Source.BOOK ) from $fp.incomes   
+        $pfInvestment :  Investment   (	type == "@{type}") from $fp.investments   
         $result : FinPersonResult( )
     then
-    	Deduction $deduction = new Deduction( 	$pfIncome.amount,
-    											$pfIncome.amount  ,
+    	Deduction $deduction = new Deduction( 	$pfInvestment.amount,
+    											$pfInvestment.amount  ,
     											new BigDecimal(""+@{maxDeduction})  ,
-    											"NA",
+    											"@{categoryType}",
     											"@{sectionType}",
-    											$pfIncome.details );
+    											$pfInvestment.details + ":" + " @{type} " );
     	insert($deduction);
 end
 end template

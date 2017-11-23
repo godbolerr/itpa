@@ -14,6 +14,7 @@ import com.work.itpa.ItpaApp;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Income;
 import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +34,7 @@ public class Rule80RRBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000, FiConstants.INCOME_ROYALTY,FiConstants.SOURCE_PATENT, "Income from Patent ");
+		PersonUtil.addIncome(fPerson, 20000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -51,8 +52,8 @@ public class Rule80RRBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000, FiConstants.INCOME_ROYALTY,FiConstants.SOURCE_PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, 22000, FiConstants.INCOME_ROYALTY,FiConstants.SOURCE_PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(fPerson, 20000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, 22000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -79,8 +80,8 @@ public class Rule80RRBTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000.14, FiConstants.INCOME_ROYALTY,FiConstants.SOURCE_PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, 22000.13, FiConstants.INCOME_ROYALTY,FiConstants.SOURCE_PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(fPerson, 20000.14, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, 22000.13, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted

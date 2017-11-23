@@ -114,7 +114,7 @@ public class PersonUtil {
 		person.addExpense(exp);
 	}
 	
-	public static void addIncome(FinPerson person, double amount, String type, String source, String note) {
+	public static void addIncome(FinPerson person, double amount, Income.Type type, Income.Source source, String note) {
 		person.addIncome(new Income(BigDecimal.valueOf(amount), type, source, note));
 	}
 
@@ -331,20 +331,20 @@ public class PersonUtil {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		finPerson.setAllPersons(null);
-//		try {
-//			mapper.writeValue(new File(inputJson), finPerson);
-//			mapper.writeValue(new File(outputJson), result);
-//			
-//		} catch (JsonGenerationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JsonMappingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			mapper.writeValue(new File(inputJson), finPerson);
+			mapper.writeValue(new File(outputJson), result);
+			
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

@@ -11,6 +11,16 @@ import java.math.BigDecimal;
  */
 public class Income {
 
+	public enum Source {
+		NA, BOOK, PATENT
+	};
+
+	public enum Type {
+
+		NA, INTEREST, GROSS_TOTAL, HRA, EPF, PF_EMPLOYEE, PF_EMPLOYEER, BASIC_SALARY, DEARNESS_ALLOWANCE, PS_EMPLOYEE, PS_EMPLOYEER, RENTAL_RECEPITS, ROYALTY
+
+	};
+
 	/**
 	 * Amount received.
 	 */
@@ -20,13 +30,13 @@ public class Income {
 	 * Type of income.
 	 * 
 	 */
-	public String type;
+	public Type type;
 
 	/**
 	 * Income source
 	 */
 
-	public String source;
+	public Source source = Source.NA;
 
 	/**
 	 * Other details associated with income.
@@ -42,7 +52,7 @@ public class Income {
 	 * @param type
 	 * @param details
 	 */
-	public Income(BigDecimal amount, String type, String source, String details) {
+	public Income(BigDecimal amount, Type type, Source source, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
@@ -68,7 +78,7 @@ public class Income {
 	/**
 	 * @return the type
 	 */
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
@@ -76,7 +86,7 @@ public class Income {
 	 * @param type
 	 *            the type to set
 	 */
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -98,7 +108,7 @@ public class Income {
 	/**
 	 * @return the source
 	 */
-	public String getSource() {
+	public Source getSource() {
 		return source;
 	}
 
@@ -106,7 +116,7 @@ public class Income {
 	 * @param source
 	 *            the source to set
 	 */
-	public void setSource(String source) {
+	public void setSource(Source source) {
 		this.source = source;
 	}
 

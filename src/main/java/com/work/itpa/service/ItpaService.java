@@ -3,13 +3,10 @@
  */
 package com.work.itpa.service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
+import org.drools.core.event.DebugAgendaEventListener;
+import org.drools.core.event.DebugRuleRuntimeEventListener;
 import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
@@ -20,10 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
-import com.work.itpa.domain.Person;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -50,7 +45,10 @@ public class ItpaService {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
 		
-		//KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
+		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
+		
+		kSession.addEventListener(new DebugAgendaEventListener());
+		kSession.addEventListener(new DebugRuleRuntimeEventListener());		
 
 		FinPersonResult result = new FinPersonResult();
 	
@@ -61,7 +59,7 @@ public class ItpaService {
 
 		kSession.fireAllRules();
 
-		//logger.close();
+		logger.close();
 
 		//List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
 
