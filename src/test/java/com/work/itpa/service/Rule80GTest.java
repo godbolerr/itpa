@@ -46,44 +46,4 @@ public class Rule80GTest {
 
 	}
 
-	@Test
-	public void test80GResidentIndividualDonationTwoTimesSameScheme() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
-				"Donation to Prime Minister’s National Relief Fund");
-		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
-				"Donation to Prime Minister’s National Relief Fund again");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 40000);
-
-		assertTrue(totalResult);
-		
-		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-
-	}
-
-	@Test
-	public void test80GResidentIndividualDonationTwoDifferentScheme() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "Prime Minister’s National Relief Fund",
-				"Donation to Prime Minister’s National Relief Fund");
-		PersonUtil.addDonation(fPerson, 20000, "National Sports Fund", "Donation to National Sports Fund");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getApplicableDeductions(), sectionName, 40000);
-
-		assertTrue(totalResult);
-		
-		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-
-	}
 }

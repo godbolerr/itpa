@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -14,6 +16,7 @@ import com.work.itpa.ItpaApp;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Insurance;
 import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,64 +35,23 @@ public class Rule80DTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
-
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_MECICAL_INSURANCE);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), sectionName,
-				FiConstants.DEDUCTION_MECICAL_INSURANCE, 1);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_MECICAL_INSURANCE, 25000);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_HEALTH_CHECKUP, 5000);
-
-		assertTrue(result);
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-	}
-
-	@Test
-	public void test80DSelfResidentIndividualAboveSixty() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		
+		fPerson.addInsurance(new Insurance("LIFE", "TRM_PLAN", "FAMILY", new BigDecimal("78999"), new BigDecimal("4533"), 12));
 		
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithDeductionType(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_MECICAL_INSURANCE);
-
-		assertTrue(result);
-
-		result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), sectionName,
+		boolean result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), sectionName,
 				FiConstants.DEDUCTION_MECICAL_INSURANCE, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_MECICAL_INSURANCE, 30000);
+		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getDeductions(), sectionName,
+				FiConstants.DEDUCTION_MECICAL_INSURANCE, 78999);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getApplicableDeductions(), sectionName,
-				FiConstants.DEDUCTION_HEALTH_CHECKUP, 5000);
-
-		assertTrue(result);
-		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
 
 	}
 

@@ -45,6 +45,7 @@ public class PersonUtil {
 		fPerson.setAadharNumber("9998887878");
 		fPerson.setPanNumber("OPDID9987A");
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.setGrossTotalIncome(new BigDecimal("200000"));
 		
 		Person self = new Person();
 		self.setFirstName("Ram");

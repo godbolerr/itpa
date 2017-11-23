@@ -84,6 +84,8 @@ public class FinPerson implements Serializable {
 	
 	List<Person> allPersons;
 	
+	List<Insurance> insurances;
+	
 	boolean donationToPoliticalParty;
 	boolean filedPatent;
 	boolean authoredBook;
@@ -739,11 +741,36 @@ public class FinPerson implements Serializable {
 
 
 
+	/**
+	 * @return the insurances
+	 */
+	public List<Insurance> getInsurances() {
+		return insurances;
+	}
+
+
+
+	/**
+	 * @param insurances the insurances to set
+	 */
+	public void setInsurances(List<Insurance> insurances) {
+		this.insurances = insurances;
+	}
+
+
+
 	public void addFamily(Person person ){
 		if ( this.family == null ){
 			this.family = new ArrayList<Person>();
 		}
 		family.add(person);		
+	}
+	
+	public void addInsurance(Insurance insurance ){
+		if ( this.insurances == null ){
+			this.insurances = new ArrayList<Insurance>();
+		}
+		insurances.add(insurance);		
 	}
 	
 }

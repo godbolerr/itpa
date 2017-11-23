@@ -36,9 +36,17 @@
                       template="com/work/itpa/rules/itpa_80ee.drt"
                       row="157" col="2"/>    
               -->        
+              
+              
+          <!-- 80G1 -->
         <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
                       template="com/work/itpa/rules/itpa_80g.drt"
                       row="116" col="2"/>
+                      
+          <!-- 80G2 -->
+        <ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+                      template="com/work/itpa/rules/itpa_80g1.drt"
+                      row="147" col="2"/>                      
                                                               
         
        <!-- Rule 80 GGA -->

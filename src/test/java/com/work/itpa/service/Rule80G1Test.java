@@ -37,8 +37,8 @@ public class Rule80G1Test {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
 		
-		Donation donation = new Donation(BigDecimal.valueOf(20000), "", "Test G1 Type donations");
-		donation.setSchemeCode("G1_1");
+		Donation donation = new Donation(BigDecimal.valueOf(20000), "", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
+		donation.setSchemeCode("GOVT_APPRVD_FAMLY_PLNG");
 		fPerson.addDonation(donation);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
@@ -53,75 +53,22 @@ public class Rule80G1Test {
 
 
 	}
-
-
-
-	@Test
-	public void test80G1ResidentIndividualDonationMoreThan10PercentGti() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
-		
-		Donation donation = new Donation(BigDecimal.valueOf(31000), "", "Test G1 Type donations");
-		donation.setSchemeCode("G1_1");
-		fPerson.addDonation(donation);
-		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		// Verify section and amount deducted
-
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 30000);
-
-		assertTrue(result);
-		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-
-	}
-
-	
-
-	@Test
-	public void test80G1ResidentIndividualDonationWith50PercentDeduction() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
-		
-		Donation donation = new Donation(BigDecimal.valueOf(10000), "", "Test G1 Type donation with 50% deduction on donation value");
-		donation.setSchemeCode("G1_3");
-		fPerson.addDonation(donation);
-		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-
-		// Verify section and amount deducted
-
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 5000);
-
-		assertTrue(result);
-		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-
-	}
-
 	
 	@Test
-	public void test80G1ResidentIndividualDonationWith50PercentDeductionGreaterThan10PercentGti() {
+	public void test80G1ResidentIndividualDonationGreaterThanGtiPercent() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
 		
-		Donation donation = new Donation(BigDecimal.valueOf(70000), "", "Test G1 Type donation with 50% deduction on donation value greater than 10% GTI");
-		donation.setSchemeCode("G1_3");
+		Donation donation = new Donation(BigDecimal.valueOf(40000), "", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
+		donation.setSchemeCode("GOVT_APPRVD_FAMLY_PLNG");
 		fPerson.addDonation(donation);
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
-		
+
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 30000);
 
 		assertTrue(result);
@@ -130,9 +77,5 @@ public class Rule80G1Test {
 
 
 	}	
-	
-	
-	
-	
 
 }

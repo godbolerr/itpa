@@ -8,6 +8,13 @@ TODO:
 4. dependentRelation and relationshipCode in 80DD
 4. DependentRelation not taken into account 80DDB -> amount recovered where to use 
 5. 80CCC - Pension fund investment constant is missing. .
+6. 80CCD1 - Which head/key expense should belong to ?
+7. 80CCD2 - Which head/key expense should belong to ?
+8. 80CCD1B - Need clarity
+9. 80D - Confusion in terms of Insurance or EXPENSE, policyFor ?
+10.80DD - Why relationship code exists in the decsion table.
+11.80G1 - donationCode - changed to schemeCode
+
 
 
 
