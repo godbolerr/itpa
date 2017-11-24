@@ -70,6 +70,14 @@ end
 
 
 
+rule "Summarize 80G Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80G")
+        $summary : SummaryDeduction( sectionType == "80G")
+    then
+    	$summary.addDeduction($deduction);
+end
+
 
 
 

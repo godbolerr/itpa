@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -30,16 +32,19 @@ public class Rule80GTest {
 
 	@Test
 	public void test80GResidentIndividualDonation() {
+		
+		BigDecimal donation1 = new BigDecimal("20000.00");
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, Donation.Type.OTHER,"PM_NAT_REL_FUND",
-				"Donation to Prime Minister’s National Relief Fund");
+		PersonUtil.addDonation(fPerson, donation1, Donation.Type.OTHER,"NAT_DEF_FUND_CEN_GOVT",
+				"Donation NAT_DEF_FUND_CEN_GOVT");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation1);
 
 		assertTrue(result);
 		

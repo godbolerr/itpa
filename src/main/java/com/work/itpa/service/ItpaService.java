@@ -88,6 +88,8 @@ public class ItpaService {
 				"All Donations for scientific research under 80GGA "));
 		summaryDeductions.add(new SummaryDeduction("80GGC", new BigDecimal("0"),
 				"All Donations for scientific research under 80GGC "));
+		summaryDeductions.add(new SummaryDeduction("80G", new BigDecimal("0"),
+				"All Donations for various schemes under 80G"));
 
 		for (Iterator<SummaryDeduction> iterator = summaryDeductions.iterator(); iterator.hasNext();) {
 			SummaryDeduction summaryDeduction = (SummaryDeduction) iterator.next();
