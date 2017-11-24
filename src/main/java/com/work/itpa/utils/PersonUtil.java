@@ -3,15 +3,11 @@
  */
 package com.work.itpa.utils;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Donation;
@@ -23,6 +19,7 @@ import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 import com.work.itpa.domain.PropertyDetails;
+import com.work.itpa.domain.SummaryDeduction;
 
 /**
  * Generate person data based on certain conditions
@@ -100,8 +97,8 @@ public class PersonUtil {
 
 	}
 
-	public static void addDonation(FinPerson person, double amount, Donation.Type type, String note) {
-		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
+	public static void addDonation(FinPerson person, BigDecimal amount, Donation.Type type, String note) {
+		person.addDonation(new Donation(amount, type, note));
 	}
 	
 	public static void addDonation(FinPerson person, double amount, Donation.Type type, String schemeCode , String note) {
@@ -222,6 +219,24 @@ public class PersonUtil {
 		}
 		return false;
 	}
+	
+	
+	public static boolean hasSectionWithAmount(List<Deduction> deductions, String section, BigDecimal amount) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction =  iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getAmount().equals(amount)) {
+				return true;
+			}
+
+		}
+		return false;
+	}	
 
 	public static boolean hasSection(List<Deduction> deductions, String section) {
 
@@ -239,6 +254,41 @@ public class PersonUtil {
 		}
 		return false;
 	}
+	
+	public static boolean hasSummarySection(List<SummaryDeduction> deductions, String section) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator<SummaryDeduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			SummaryDeduction deduction = (SummaryDeduction) iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSectionType())) {
+				return true;
+			}
+
+		}
+		return false;
+	}	
+	
+	public static boolean hasSummarySectionWithAmount(List<SummaryDeduction> deductions, String sectionType, BigDecimal amount ) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+
+		for (Iterator<SummaryDeduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			SummaryDeduction summaryDeduction = (SummaryDeduction) iterator.next();
+
+			if (sectionType.equalsIgnoreCase(summaryDeduction.getSectionType())  &&  summaryDeduction.getEligibleAmount().equals(amount)            ) {
+				return true;
+			}
+
+		}
+		return false;
+	}		
+	
 
 	public static boolean hasSectionNTimes(List<Deduction> deductions, String section, int noOfTimes) {
 

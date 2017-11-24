@@ -3,6 +3,9 @@
  */
 package com.work.itpa.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.drools.core.event.DebugAgendaEventListener;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Component;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.SummaryDeduction;
 
 /**
  * Responsible for invocation of rules and calculating summary
@@ -28,8 +32,8 @@ import com.work.itpa.domain.FinPersonResult;
  */
 @Component
 public class ItpaService {
-	
-	 private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
+
+	private final Logger LOG = LoggerFactory.getLogger(ItpaService.class);
 
 	@Autowired
 	private KieContainer kc;
@@ -40,88 +44,56 @@ public class ItpaService {
 	public ItpaService() {
 	}
 
-
 	public FinPersonResult calculateBenefits(FinPerson finPerson) {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
-		
+
 		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
-		
+
 		kSession.addEventListener(new DebugAgendaEventListener());
-		kSession.addEventListener(new DebugRuleRuntimeEventListener());		
+		kSession.addEventListener(new DebugRuleRuntimeEventListener());
 
 		FinPersonResult result = new FinPersonResult();
-	
+
 		LOG.debug("Firing rules for : " + finPerson);
 
 		kSession.insert(finPerson);
 		kSession.insert(result);
 
+		List<SummaryDeduction> summaryDeductions = new ArrayList<SummaryDeduction>();
+
+		insertSummaryDeductions(kSession, summaryDeductions);
+
 		kSession.fireAllRules();
 
 		logger.close();
 
-		//List<Deduction> applicableDeductions = calculateMaxPerCatetory(result.getDeductions());
-
-		//result.setApplicableDeductions(applicableDeductions);
-
 		// Dispose the session and release memory
 
 		kSession.dispose();
-		
-		if ( result.getDeductions() != null && result.getDeductions().size() > 0) {
+
+		if (result.getDeductions() != null && result.getDeductions().size() > 0) {
 			result.setStatus(true);
+			result.setSummaryDeductions(summaryDeductions);
 		}
 
 		LOG.debug("Result : " + result);
 
-		
 		return result;
 	}
 
-	/**
-	 * Return planned deductions as list.
-	 * 
-	 * @param deductions
-	 * @return
-	 */
-	private List<Deduction> calculateMaxPerCatetory(List<Deduction> deductions) {
+	private void insertSummaryDeductions(KieSession kSession, List<SummaryDeduction> summaryDeductions) {
 
-//		Map<String, Deduction> dMap = new HashMap<String, Deduction>();
-//
-//		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
-//			Deduction deduction = iterator.next();
-//			String key = deduction.getSectionType() + deduction.getDeductionType();
-//			if (dMap.containsKey(key) == false) {
-//				dMap.put(key, deduction);
-//			} else {
-//				Deduction xDeduction = dMap.get(key);
-//
-//				if (FiConstants.DEDUCTION_UNIQUE.equals(xDeduction.getMode())) {
-//					
-//					//TODO Add exact comparison
-//					if (xDeduction.getAmount().doubleValue() < deduction.getAmount().doubleValue()) {
-//						dMap.put(key, deduction);
-//					}
-//				}
-//
-//				if (FiConstants.DEDUCTION_ADDITIVE.equals(xDeduction.getMode())) {
-//
-//					Deduction totalDeduction = new Deduction();
-//					totalDeduction.setMode(xDeduction.getMode());
-//					totalDeduction.setType(xDeduction.getType());
-//					totalDeduction.setSection(xDeduction.getSection());
-//					BigDecimal origDeduction = xDeduction.getAmount();
-//					totalDeduction.setAmount(origDeduction.add(deduction.getAmount()));
-//					dMap.put(key, totalDeduction);				
-//					
-//				}
-//
-//			}
-//		}
+		summaryDeductions.add(new SummaryDeduction("80GGA", new BigDecimal("0"),
+				"All Donations for scientific research under 80GGA "));
+		summaryDeductions.add(new SummaryDeduction("80GGC", new BigDecimal("0"),
+				"All Donations for scientific research under 80GGC "));
 
-		return null;// new ArrayList<Deduction>(dMap.values());
+		for (Iterator<SummaryDeduction> iterator = summaryDeductions.iterator(); iterator.hasNext();) {
+			SummaryDeduction summaryDeduction = (SummaryDeduction) iterator.next();
+			kSession.insert(summaryDeduction);
 
+		}
 	}
 
 }

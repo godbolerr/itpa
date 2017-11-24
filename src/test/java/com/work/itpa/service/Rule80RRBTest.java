@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -66,7 +68,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getSummaryDeductions(), sectionName, 42000);
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, new BigDecimal("42000") );
 
 		assertTrue(totalResult);
 		
@@ -94,7 +96,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSectionWithAmount(finResult.getSummaryDeductions(), sectionName, 42000.27);
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, new BigDecimal("42000.27"));
 
 		assertTrue(totalResult);
 		

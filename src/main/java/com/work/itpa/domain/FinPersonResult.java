@@ -19,64 +19,14 @@ public class FinPersonResult {
 
 	List<Deduction> deductions = new ArrayList<Deduction>();
 
-	List<Deduction> summaryDeductions = new ArrayList<Deduction>();
+	List<SummaryDeduction> summaryDeductions = new ArrayList<SummaryDeduction>();
 
 
 	List<RiskScore> riskScores = new ArrayList<RiskScore>();
 
 	double riskScore = 0.0;
 
-	public Deduction getDeductionForType(String type) {
 
-		Deduction deduction = null;
-
-		boolean found = false;
-
-		for (Iterator iterator = summaryDeductions.iterator(); iterator.hasNext();) {
-			Deduction d1 = (Deduction) iterator.next();
-			if (type.equals(d1.getSectionType()))
-				found = true;
-
-		}
-
-		if (found == false) {
-			deduction = new Deduction();
-			deduction.setSectionType(type);
-			summaryDeductions.add(deduction);
-		}
-
-		return deduction;
-
-	}
-
-	// What if there is no limit, like 100% is applicable,
-	// Do we configure it somewhere ?
-	
-	public void addFinalDeduction(BigDecimal deductionAmount, String sectionType, String deductionType,BigDecimal maxLimit) {
-
-		Deduction deduction = getDeductionForType(sectionType);
-		
-		// Check if existing limit is already reached.
-		
-		if ( deduction.getAmount().compareTo(maxLimit) == 0 ) {
-			return;
-		}
-		
-		// IF limit is not reached, then check if by adding current deduction, limit is maxed.
-		
-		BigDecimal currentAmount = deduction.getAmount().add(deductionAmount);
-		
-		if ( currentAmount.compareTo(maxLimit) == 1 || currentAmount.compareTo(maxLimit) == 0 ) {
-			
-			deduction.setAmount(maxLimit);
-			
-		} else {
-			// Increment the value by the new amount
-			
-			deduction.setAmount(currentAmount);
-		}
-		
-	}
 
 	public void addMessage(String message) {
 		messages.add(message);
@@ -131,20 +81,6 @@ public class FinPersonResult {
 		this.deductions = deductions;
 	}
 
-	/**
-	 * @return the summaryDeductions
-	 */
-	public List<Deduction> getsummaryDeductions() {
-		return summaryDeductions;
-	}
-
-	/**
-	 * @param summaryDeductions
-	 *            the summaryDeductions to set
-	 */
-	public void setsummaryDeductions(List<Deduction> summaryDeductions) {
-		this.summaryDeductions = summaryDeductions;
-	}
 
 
 	/**
@@ -187,14 +123,14 @@ public class FinPersonResult {
 	/**
 	 * @return the summaryDeductions
 	 */
-	public List<Deduction> getSummaryDeductions() {
+	public List<SummaryDeduction> getSummaryDeductions() {
 		return summaryDeductions;
 	}
 
 	/**
 	 * @param summaryDeductions the summaryDeductions to set
 	 */
-	public void setSummaryDeductions(List<Deduction> summaryDeductions) {
+	public void setSummaryDeductions(List<SummaryDeduction> summaryDeductions) {
 		this.summaryDeductions = summaryDeductions;
 	}
 

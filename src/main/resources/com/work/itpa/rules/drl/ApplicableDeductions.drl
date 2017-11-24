@@ -41,13 +41,38 @@ rule "Get List of all deductions which can be availed"
 end
 
 
+/**
 rule "Initiate SummaryDeduction objects"
 	when
 		not (SummaryDeduction())
 	then
-		System.out.println("Summary Objects initiated");
-		insert(new SummaryDeduction(new BigDecimal("0"),"80G",""));
+		System.out.println("Summary Objects initiated for GGA and GGC");
 end
+**/
+
+
+rule "Summarize GGA Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80GGA")
+        $summary : SummaryDeduction( sectionType == "80GGA")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+rule "Summarize GGC Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80GGC")
+        $summary : SummaryDeduction( sectionType == "80GGC")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+
+
+
+
 
 /**
 // As the deduction is based on percentage of actual, there is no other variable to compare with.

@@ -2,6 +2,8 @@ package com.work.itpa.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -12,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.ItpaApp;
 import com.work.itpa.domain.Donation;
-import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.utils.PersonUtil;
@@ -32,15 +33,18 @@ public class Rule80GGATest {
 	@Test
 	public void test80ggaSingleDonationToScientificResearch() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		PersonUtil.addDonation(fPerson, 20000, Donation.Type.SCIENTIFIC,
+		
+		BigDecimal donation = new BigDecimal("20000.00");
+		
+		PersonUtil.addDonation(fPerson, donation, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for biology");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation);
 
 		assertTrue(result);
 		
-		//result = PersonUtil.hasSectionWithAmount(finResult.getSummaryDeductions(), sectionName, 20000);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, donation);
 
 		assertTrue(result);
 		
