@@ -86,6 +86,7 @@ public class Rule80CTest {
 		assertTrue(result);
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		
 
 	}	
 
