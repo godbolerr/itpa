@@ -79,6 +79,36 @@ rule "Summarize 80G Specific donation"
 end
 
 
+rule "Summarize 80QQB Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80QQB")
+        $summary : SummaryDeduction( sectionType == "80QQB")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+
+
+rule "Summarize 80RRB Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80RRB")
+        $summary : SummaryDeduction( sectionType == "80RRB")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+
+rule "Summarize TTA Specific donation"   
+    when
+        $deduction : Deduction ( sectionType == "80TTA")
+        $summary : SummaryDeduction( sectionType == "80TTA")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
 
 
 

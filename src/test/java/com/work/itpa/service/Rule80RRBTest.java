@@ -33,15 +33,18 @@ public class Rule80RRBTest {
 
 	@Test
 	public void test80RRBResidentIndividualOnePatentIncome() {
+		
+		BigDecimal income = new BigDecimal("20000.00");
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
 		assertTrue(result);
 		
@@ -49,26 +52,34 @@ public class Rule80RRBTest {
 
 	}
 
-	//@Test
+	@Test
 	public void test80RRBResidentIndividualTwoPatentIncome() {
+		
+		BigDecimal income = new BigDecimal("20000.00");
+		
+		BigDecimal income2 = new BigDecimal("22000.00");
+		
+		BigDecimal totalIncome = new BigDecimal("42000");
+		
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, 22000, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 22000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, new BigDecimal("42000") );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, totalIncome );
 
 		assertTrue(totalResult);
 		
@@ -77,13 +88,20 @@ public class Rule80RRBTest {
 
 	}
 
-	//@Test
+	@Test
 	public void test80RRBResidentIndividualThreePatentIncomeFractions() {
+		
+		BigDecimal income = new BigDecimal("20000.14");
+		
+		BigDecimal income2 = new BigDecimal("22000.13");
+		
+		BigDecimal totalIncome = new BigDecimal("42000.27");
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 20000.14, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, 22000.13, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
@@ -96,7 +114,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, new BigDecimal("42000.27"));
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,totalIncome );
 
 		assertTrue(totalResult);
 		

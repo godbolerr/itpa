@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -33,15 +35,19 @@ public class Rule80TTATest {
 
 	//@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeBelow10K() {
+		
+		BigDecimal income = new BigDecimal("9000.00");
+		
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 9000, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 9000);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
 		assertEquals(true, result);
 		
@@ -74,15 +80,18 @@ public class Rule80TTATest {
 
 	@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeGreaterThan10K() {
+		
+		BigDecimal income = new BigDecimal("10001.00");
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, 10001, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, income , Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 10001);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
 		assertFalse(result);
 		

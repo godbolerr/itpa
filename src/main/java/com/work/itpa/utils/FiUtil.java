@@ -23,6 +23,7 @@ public class FiUtil {
 		
 	}
 
+
 	public static boolean isAvailable(String x, String type) {
 
 		boolean result = false;

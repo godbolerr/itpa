@@ -120,8 +120,8 @@ public class PersonUtil {
 		person.addExpense(exp);
 	}
 	
-	public static void addIncome(FinPerson person, double amount, Income.Type type, Income.Source source, String note) {
-		person.addIncome(new Income(BigDecimal.valueOf(amount), type, source, note));
+	public static void addIncome(FinPerson person, BigDecimal amount, Income.Type type, Income.Source source, String note) {
+		person.addIncome(new Income(amount, type, source, note));
 	}
 
 	public static void addPropertyDetails(FinPerson person, String name, String city, String status, double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
@@ -285,7 +285,7 @@ public class PersonUtil {
 		for (Iterator<SummaryDeduction> iterator = deductions.iterator(); iterator.hasNext();) {
 			SummaryDeduction summaryDeduction = (SummaryDeduction) iterator.next();
 
-			if (sectionType.equalsIgnoreCase(summaryDeduction.getSectionType())  &&  summaryDeduction.getEligibleAmount().equals(amount)            ) {
+			if (sectionType.equalsIgnoreCase(summaryDeduction.getSectionType())  &&  summaryDeduction.getEligibleAmount().compareTo(amount) == 0            ) {
 				return true;
 			}
 
