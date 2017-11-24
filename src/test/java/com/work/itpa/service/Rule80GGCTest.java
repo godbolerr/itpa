@@ -52,8 +52,6 @@ public class Rule80GGCTest {
 		assertTrue(result);
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
-
-
 	}
 	
 	@Test
