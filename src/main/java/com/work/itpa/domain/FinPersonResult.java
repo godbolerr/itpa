@@ -19,9 +19,8 @@ public class FinPersonResult {
 
 	List<Deduction> deductions = new ArrayList<Deduction>();
 
-	List<Deduction> applicableDeductions = new ArrayList<Deduction>();
+	List<Deduction> summaryDeductions = new ArrayList<Deduction>();
 
-	List<Deduction> recoDeductions = new ArrayList<Deduction>();
 
 	List<RiskScore> riskScores = new ArrayList<RiskScore>();
 
@@ -33,7 +32,7 @@ public class FinPersonResult {
 
 		boolean found = false;
 
-		for (Iterator iterator = applicableDeductions.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = summaryDeductions.iterator(); iterator.hasNext();) {
 			Deduction d1 = (Deduction) iterator.next();
 			if (type.equals(d1.getSectionType()))
 				found = true;
@@ -42,22 +41,41 @@ public class FinPersonResult {
 
 		if (found == false) {
 			deduction = new Deduction();
-			applicableDeductions.add(deduction);
+			deduction.setSectionType(type);
+			summaryDeductions.add(deduction);
 		}
 
 		return deduction;
 
 	}
 
-	public void addFinalDeduction(double deductionAmount, String sectionType, String deductionType) {
+	// What if there is no limit, like 100% is applicable,
+	// Do we configure it somewhere ?
+	
+	public void addFinalDeduction(BigDecimal deductionAmount, String sectionType, String deductionType,BigDecimal maxLimit) {
 
-		Deduction finalDeduction = new Deduction();
-		finalDeduction.setAmount(new BigDecimal(deductionAmount + ""));
-		finalDeduction.setDeductionType(deductionType);
-		finalDeduction.setSectionType(sectionType);
-
-		applicableDeductions.add(finalDeduction);
-
+		Deduction deduction = getDeductionForType(sectionType);
+		
+		// Check if existing limit is already reached.
+		
+		if ( deduction.getAmount().compareTo(maxLimit) == 0 ) {
+			return;
+		}
+		
+		// IF limit is not reached, then check if by adding current deduction, limit is maxed.
+		
+		BigDecimal currentAmount = deduction.getAmount().add(deductionAmount);
+		
+		if ( currentAmount.compareTo(maxLimit) == 1 || currentAmount.compareTo(maxLimit) == 0 ) {
+			
+			deduction.setAmount(maxLimit);
+			
+		} else {
+			// Increment the value by the new amount
+			
+			deduction.setAmount(currentAmount);
+		}
+		
 	}
 
 	public void addMessage(String message) {
@@ -66,10 +84,6 @@ public class FinPersonResult {
 
 	public void addDeduction(Deduction deduction) {
 		deductions.add(deduction);
-	}
-
-	public void addRecoDeduction(Deduction deduction) {
-		recoDeductions.add(deduction);
 	}
 
 	/**
@@ -118,34 +132,25 @@ public class FinPersonResult {
 	}
 
 	/**
-	 * @return the applicableDeductions
+	 * @return the summaryDeductions
 	 */
-	public List<Deduction> getApplicableDeductions() {
-		return applicableDeductions;
+	public List<Deduction> getsummaryDeductions() {
+		return summaryDeductions;
 	}
 
 	/**
-	 * @param applicableDeductions
-	 *            the applicableDeductions to set
+	 * @param summaryDeductions
+	 *            the summaryDeductions to set
 	 */
-	public void setApplicableDeductions(List<Deduction> applicableDeductions) {
-		this.applicableDeductions = applicableDeductions;
+	public void setsummaryDeductions(List<Deduction> summaryDeductions) {
+		this.summaryDeductions = summaryDeductions;
 	}
 
-	/**
-	 * @return the recoDeductions
-	 */
-	public List<Deduction> getRecoDeductions() {
-		return recoDeductions;
-	}
 
 	/**
 	 * @param recoDeductions
 	 *            the recoDeductions to set
 	 */
-	public void setRecoDeductions(List<Deduction> recoDeductions) {
-		this.recoDeductions = recoDeductions;
-	}
 
 	/**
 	 * @return the riskScores
@@ -175,6 +180,22 @@ public class FinPersonResult {
 	 */
 	public void setRiskScore(double riskScore) {
 		this.riskScore = riskScore;
+	}
+	
+	
+
+	/**
+	 * @return the summaryDeductions
+	 */
+	public List<Deduction> getSummaryDeductions() {
+		return summaryDeductions;
+	}
+
+	/**
+	 * @param summaryDeductions the summaryDeductions to set
+	 */
+	public void setSummaryDeductions(List<Deduction> summaryDeductions) {
+		this.summaryDeductions = summaryDeductions;
 	}
 
 	/*

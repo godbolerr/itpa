@@ -8,6 +8,26 @@ import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Donation;
+import com.work.itpa.domain.SummaryDeduction;
+
+
+// QQB and RRB combined to be 3 lacs or less
+// 80GGA no clubbing required - no upper limit
+// 80GGC no clubbing required - no upper limit
+// 80G no upper limit
+// 80U independent
+// 80DDB , RELATION IS ONLY FOR INFORMATION , Put it in notes. Amount recovered should be deducted from the money spent.
+// 80D 2 - To be taken from expense array. 
+// 80D 1 - Taken Insurance where type = HEALTH , if policyFor =  family then look at SELF age, use premium for deduction
+// 80D 1 - policyFor = parents, type = HEALTH , parentsMoreThanSixty , MIN_AGE MAX_AGE will come from json
+// Aggregation for 80D - Health + Health expense is max [ Insurance should include health expenses if applicable ]
+// Aggregation of FAMILY and PARENT will be combined to form maxDeduction
+// 80DD - Relationship code is relationDepended in the json
+// 80E for aggregation no max limit single value field.
+// TTA - Take from Income, type = interest max deduction 10000, independent.
+// 80 Aggregation
+
+
 
 
 global java.util.List messages
@@ -20,6 +40,16 @@ rule "Get List of all deductions which can be availed"
     	$result.addDeduction($deduction);
 end
 
+
+rule "Initiate SummaryDeduction objects"
+	when
+		not (SummaryDeduction())
+	then
+		System.out.println("Summary Objects initiated");
+		insert(new SummaryDeduction(new BigDecimal("0"),"80G",""));
+end
+
+/**
 // As the deduction is based on percentage of actual, there is no other variable to compare with.
 
 rule "Find max deduction 80GGA"
@@ -52,6 +82,8 @@ rule "Find max deduction 80GGC"
 		$result.addFinalDeduction($total,"80GGC","");
 end
 
+
+**/
 
 
 
