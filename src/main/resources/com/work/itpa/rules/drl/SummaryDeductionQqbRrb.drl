@@ -1,0 +1,75 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// QQB and RRB are combined into one.
+
+rule "Summarize 80QQB Specific donations - add donations "   
+    when
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+ 		$deduction : Deduction ( sectionType == "80QQB" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+rule "Summarize 80RRB Specific donations - add donations"   
+    when
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+        $deduction : Deduction (  sectionType == "80RRB")
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+
+rule "Summarize 80QQB Specific donations - add eligible amount true"   
+    when
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+ 		$deduction : Deduction ( sectionType == "80QQB" ,
+ 								 isLessThanEqualToMax($deduction,$summary) == true )        
+    then
+    	$summary.addToEligibleAmount($deduction.amount);
+end
+
+rule "Summarize 80RRB Specific donations - add eligible amount true"   
+    when
+    	$summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+        $deduction : Deduction (  sectionType == "80RRB" ,
+ 								 isLessThanEqualToMax($deduction,$summary) == true )       
+    then
+    	$summary.addToEligibleAmount($deduction.amount);
+end
+
+
+
+
+rule "Summarize 80QQB Specific donations - add eligible amount false"   
+    when
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+ 		$deduction : Deduction ( sectionType == "80QQB" ,
+ 								 isLessThanEqualToMax($deduction,$summary) == false )        
+    then
+    	$summary.setEligibleAmountToMaxAmount();
+end
+
+rule "Summarize 80RRB Specific donations - add eligible amount false"   
+    when
+    	$summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+        $deduction : Deduction (  sectionType == "80RRB" ,
+ 								 isLessThanEqualToMax($deduction,$summary) == false )       
+    then
+    	$summary.setEligibleAmountToMaxAmount();
+end
+
+
+
+
+

@@ -2,6 +2,9 @@ package com.work.itpa.utils;
 
 import java.math.BigDecimal;
 
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
 /**
  * Utility class to be used in actual rules
  * 
@@ -9,6 +12,40 @@ import java.math.BigDecimal;
  *
  */
 public class FiUtil {
+	
+	
+	
+	/**
+	 * For now it is assumed to when NO MAX LIMIT is defined, it is marked as 0.
+	 * 
+	 * TODO : Check the requirement
+	 * 
+	 * @param deduction
+	 * @param sDeduction
+	 * @return
+	 */
+	
+	public static boolean isLessThanEqualToMax(Deduction deduction, SummaryDeduction sDeduction){
+		
+		boolean status = false;
+		
+		BigDecimal result = sDeduction.getEligibleAmount().add(deduction.getEligibleDeduction());
+		
+		if (sDeduction.getMaxAmount().compareTo(new BigDecimal("0")) == 0) {
+			status = true;
+			
+		} else {
+
+			if (result.compareTo(sDeduction.getMaxAmount()) >= 0) {
+				status = false;
+			} else {
+				status = true;
+			}
+		}		
+		
+		return status;
+		
+	}
 
 	/**
 	 * Returns percentage value for a given BigDecimal object.

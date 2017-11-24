@@ -66,27 +66,6 @@ rule "Summarize 80G Specific donation"
     	$summary.addDeduction($deduction);
 end
 
-// QQB and RRB are combined into one.
-
-rule "Summarize 80QQB Specific donations"   
-    when
-        $deduction : Deduction ( sectionType == "80QQB" )
-        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
-    then
-    	$summary.addDeduction($deduction);
-end
-
-// QQB and RRB are combined into one.
-
-rule "Summarize 80RRB Specific donations"   
-    when
-        $deduction : Deduction (  sectionType == "80RRB")
-        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
-    then
-    	$summary.addDeduction($deduction);
-end
-
-
 
 rule "Summarize TTA Specific donation"   
     when

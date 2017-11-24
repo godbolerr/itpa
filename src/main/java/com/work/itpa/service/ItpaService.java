@@ -14,12 +14,13 @@ import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.QueryResults;
+import org.kie.api.runtime.rule.QueryResultsRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.SummaryDeduction;
@@ -60,21 +61,27 @@ public class ItpaService {
 		kSession.insert(finPerson);
 		kSession.insert(result);
 
-		List<SummaryDeduction> summaryDeductions = new ArrayList<SummaryDeduction>();
-
-		insertSummaryDeductions(kSession, summaryDeductions);
+		//insertSummaryDeductions(kSession, summaryDeductions);
 
 		kSession.fireAllRules();
 
 		logger.close();
 
 		// Dispose the session and release memory
+		
+		List<SummaryDeduction> sDeductions = new ArrayList<SummaryDeduction>();
+		QueryResults results = kSession.getQueryResults( "Get Summary Deductions" ); 
+		for ( QueryResultsRow row : results ) {
+		    SummaryDeduction sDeduction  = ( SummaryDeduction ) row.get( "$sd" ); //you can retrieve all the bounded variables here
+		    sDeductions.add(sDeduction);
+		}
+		
 
 		kSession.dispose();
 
 		if (result.getDeductions() != null && result.getDeductions().size() > 0) {
 			result.setStatus(true);
-			result.setSummaryDeductions(summaryDeductions);
+			result.setSummaryDeductions(sDeductions);
 		}
 
 		LOG.debug("Result : " + result);
@@ -93,8 +100,9 @@ public class ItpaService {
 				"All Donations for scientific research under 80GGC "));
 		summaryDeductions.add(new SummaryDeduction("80G", new BigDecimal("0"),
 				"All Donations for various schemes under 80G"));		
-		summaryDeductions.add(new SummaryDeduction("80QQB_80RRB", new BigDecimal("300000"),
-				"Royalty related to Books and Patents -  80QQB and 80RRB"));	
+
+//		summaryDeductions.add(new SummaryDeduction("80QQB_80RRB", new BigDecimal("300000"),
+//				"Royalty related to Books and Patents -  80QQB and 80RRB"));	
 		
 		summaryDeductions.add(new SummaryDeduction("80TTA", new BigDecimal("10000"),
 				"Interest Income TTA"));			

@@ -1,0 +1,26 @@
+package com.work.itpa.rules;
+
+import com.work.itpa.domain.SummaryDeduction;
+
+
+rule "Initiate Summary Deductions"
+	when
+		not (SummaryDeduction())
+	then
+		System.out.println("Summary Objects initiated....");
+				
+		SummaryDeduction qqbrrb = new SummaryDeduction("80QQB_80RRB");
+		qqbrrb.setMaxAmount(new BigDecimal("300000"));
+		insert(qqbrrb);
+		
+end
+
+/**
+	Retrieve all summary deductions from working memory
+**/
+
+query "Get Summary Deductions"
+	$sd : SummaryDeduction()
+end
+
+
