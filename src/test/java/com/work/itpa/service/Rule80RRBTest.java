@@ -30,6 +30,8 @@ public class Rule80RRBTest {
 	
 	@Rule public TestName testName = new TestName();
 	
+	String summarySectionName = "80QQB_80RRB";
+	
 
 	@Test
 	public void test80RRBResidentIndividualOnePatentIncome() {
@@ -79,7 +81,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, totalIncome );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName, totalIncome );
 
 		assertTrue(totalResult);
 		
@@ -114,7 +116,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,totalIncome );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,totalIncome );
 
 		assertTrue(totalResult);
 		
@@ -149,7 +151,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,totalIncome );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,totalIncome );
 
 		assertTrue(totalResult);
 		

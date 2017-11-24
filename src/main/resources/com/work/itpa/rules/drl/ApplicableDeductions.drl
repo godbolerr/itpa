@@ -12,9 +12,6 @@ import com.work.itpa.domain.SummaryDeduction;
 
 
 // QQB and RRB combined to be 3 lacs or less
-// 80GGA no clubbing required - no upper limit
-// 80GGC no clubbing required - no upper limit
-// 80G no upper limit
 // 80U independent
 // 80DDB , RELATION IS ONLY FOR INFORMATION , Put it in notes. Amount recovered should be deducted from the money spent.
 // 80D 2 - To be taken from expense array. 
@@ -78,22 +75,22 @@ rule "Summarize 80G Specific donation"
     	$summary.addDeduction($deduction);
 end
 
+// QQB and RRB are combined into one.
 
-rule "Summarize 80QQB Specific donation"   
+rule "Summarize 80QQB Specific donations"   
     when
-        $deduction : Deduction ( sectionType == "80QQB")
-        $summary : SummaryDeduction( sectionType == "80QQB")
+        $deduction : Deduction ( sectionType == "80QQB" )
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
     then
     	$summary.addDeduction($deduction);
 end
 
+// QQB and RRB are combined into one.
 
-
-
-rule "Summarize 80RRB Specific donation"   
+rule "Summarize 80RRB Specific donations"   
     when
-        $deduction : Deduction ( sectionType == "80RRB")
-        $summary : SummaryDeduction( sectionType == "80RRB")
+        $deduction : Deduction (  sectionType == "80RRB")
+        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
     then
     	$summary.addDeduction($deduction);
 end
@@ -108,45 +105,6 @@ rule "Summarize TTA Specific donation"
     	$summary.addDeduction($deduction);
 end
 
-
-
-
-
-/**
-// As the deduction is based on percentage of actual, there is no other variable to compare with.
-
-rule "Find max deduction 80GGA"
-   salience -50
-	when
-		$result : FinPersonResult( )
- 		$total : Double() from accumulate(
-         Deduction( sectionType == "80GGA" , $amt : amount  ),
-         init( double total = 0; ),
-         action( total += $amt.doubleValue(); ),
-         reverse( total -= $amt.doubleValue(); ),
-         result( new Double( total ) ) )		
-		
-	then
-		$result.addFinalDeduction($total,"80GGA","");
-end
-
-rule "Find max deduction 80GGC"
-   salience -50
-	when
-		$result : FinPersonResult( )
- 		$total : Double() from accumulate(
-         Deduction( $amt : amount , sectionType == "80GGC" ),
-         init( double total = 0; ),
-         action( total += $amt.doubleValue(); ),
-         reverse( total -= $amt.doubleValue(); ),
-         result( new Double( total ) ) )		
-		
-	then
-		$result.addFinalDeduction($total,"80GGC","");
-end
-
-
-**/
 
 
 

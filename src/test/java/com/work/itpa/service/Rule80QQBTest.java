@@ -27,6 +27,8 @@ public class Rule80QQBTest {
 	ItpaService dService;
 
 	String sectionName = "80QQB";
+	
+	String summarySectionName = "80QQB_80RRB";
 
 	@Rule
 	public TestName testName = new TestName();
@@ -72,7 +74,7 @@ public class Rule80QQBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,
 				income1.add(income2));
 
 		assertTrue(result);
@@ -86,6 +88,8 @@ public class Rule80QQBTest {
 
 		BigDecimal income1 = new BigDecimal("200000.00");
 		BigDecimal income2 = new BigDecimal("100009.00");
+		
+		
 
 		BigDecimal expectedExemption = new BigDecimal("300000.00");
 
@@ -105,7 +109,7 @@ public class Rule80QQBTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,
 				expectedExemption);
 
 		assertTrue(result);
