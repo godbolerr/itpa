@@ -33,7 +33,7 @@ public class Rule80TTATest {
 	@Rule public TestName testName = new TestName();
 
 
-	//@Test
+	@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeBelow10K() {
 		
 		BigDecimal income = new BigDecimal("9000.00");
@@ -42,12 +42,16 @@ public class Rule80TTATest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+
+		assertEquals(true, result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, income);
 
 		assertEquals(true, result);
 		
@@ -59,42 +63,54 @@ public class Rule80TTATest {
 
 	@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeEqualTo10K() {
-//		FinPerson fPerson = PersonUtil.getBachelorMale();
-//		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-//		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-//		PersonUtil.addIncome(fPerson, 10000, Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
-//		FinPersonResult finResult = dService.calculateBenefits(fPerson);
-//
-//		// Verify section and amount deducted
-//
-//		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 10000);
-//
-//		assertTrue(result);
-//		
-//		
-//		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
-
+		BigDecimal income = new BigDecimal("10000.00");
 		
-	}
-
-	@Test
-	public void test80TTAResidentIndividualSavingInterestIncomeGreaterThan10K() {
-		
-		BigDecimal income = new BigDecimal("10001.00");
 		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income , Income.Type.ROYALTY,Income.Source.PATENT, "Interest from savings bank ");
+		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
-		assertFalse(result);
+		assertEquals(true, result);
 		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, income);
+
+		assertEquals(true, result);
+		
+		
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);		
+	}
+
+	@Test
+	public void test80TTAResidentIndividualSavingInterestIncomeGreaterThan10K() {
+		
+		BigDecimal income = new BigDecimal("11000.00");
+		
+		BigDecimal expected = new BigDecimal("10000.00");
+		
+		
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+
+		assertEquals(true, result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, expected);
+
+		assertEquals(true, result);
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 

@@ -15,8 +15,8 @@ import java.util.List;
 import java.math.BigDecimal;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Income;
+import function com.work.itpa.utils.FiUtil.lessOf;
 
 template "ATRRB Royalty income "
 
@@ -25,10 +25,9 @@ rule "ATRRB@{row.rowNumber}"
        when
         $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
         $pfIncome :  Income   (	type == Income.Type.ROYALTY , source == Income.Source.PATENT ) from $fp.incomes   
-        $result : FinPersonResult( )
     then
     	Deduction $deduction = new Deduction( 	$pfIncome.amount,
-    											$pfIncome.amount  ,
+    											lessOf(new BigDecimal(""+@{maxDeduction}),$pfIncome.amount)  ,
     											new BigDecimal(""+@{maxDeduction})  ,
     											"NA",
     											"@{sectionType}",

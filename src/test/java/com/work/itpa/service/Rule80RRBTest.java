@@ -89,7 +89,7 @@ public class Rule80RRBTest {
 	}
 
 	@Test
-	public void test80RRBResidentIndividualThreePatentIncomeFractions() {
+	public void test80RRBResidentIndividualTwoPatentIncomeFractions() {
 		
 		BigDecimal income = new BigDecimal("20000.14");
 		
@@ -106,11 +106,11 @@ public class Rule80RRBTest {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 20000.14);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 22000.13);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
 
 		assertTrue(result);
 
@@ -122,4 +122,39 @@ public class Rule80RRBTest {
 
 
 	}
+	
+	@Test
+	public void test80RRBResidentIndividualTwoPatentIncomeFractionsExceedsLimit() {
+		
+		BigDecimal income = new BigDecimal("202000.14");
+		
+		BigDecimal income2 = new BigDecimal("322000.13");
+		
+		BigDecimal totalIncome = new BigDecimal("300000.00");
+		
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		// Verify section and amount deducted
+
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
+
+		assertTrue(result);
+
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,totalIncome );
+
+		assertTrue(totalResult);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+
+	}	
 }
