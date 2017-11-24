@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.ItpaApp;
+import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
@@ -32,7 +33,7 @@ public class Rule80GTest {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, 20000, "PM_NAT_REL_FUND",
+		PersonUtil.addDonation(fPerson, 20000, Donation.Type.OTHER,"PM_NAT_REL_FUND",
 				"Donation to Prime Minister’s National Relief Fund");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 

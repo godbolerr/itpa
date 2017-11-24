@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.ItpaApp;
+import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
@@ -31,7 +32,7 @@ public class Rule80GGCTest {
 	//@Test
 	public void test80ggcSinglePoliticalDonations() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		PersonUtil.addDonation(fPerson, 20000, FiConstants.DONATION_POLITICAL, "Donation to policical party xyz ");
+		PersonUtil.addDonation(fPerson, 20000, Donation.Type.POLITICAL, "Donation to policical party xyz ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted

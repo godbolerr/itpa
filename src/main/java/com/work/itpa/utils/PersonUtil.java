@@ -100,9 +100,13 @@ public class PersonUtil {
 
 	}
 
-	public static void addDonation(FinPerson person, double amount, String type, String note) {
+	public static void addDonation(FinPerson person, double amount, Donation.Type type, String note) {
 		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
 	}
+	
+	public static void addDonation(FinPerson person, double amount, Donation.Type type, String schemeCode , String note) {
+		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
+	}	
 
 	public static void addExpense(FinPerson person, double amount, String type, String note) {
 		person.addExpense(new Expense(BigDecimal.valueOf(amount), type, note));

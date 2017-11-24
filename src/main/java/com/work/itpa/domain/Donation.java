@@ -27,12 +27,18 @@ public class Donation {
 	 */
 	public String schemeCode;
 	
+	public enum Type {
+		SCIENTIFIC, POLITICAL, OTHER
+	};
 	
-	public String type;
+	
+	public Type type;
 	
 	/**
 	 * Other details about an institution.
 	 */
+	
+	
 	
 	public String details;
 	
@@ -44,12 +50,21 @@ public class Donation {
 	 * @param type
 	 * @param details
 	 */
-	public Donation(BigDecimal amount, String type, String details) {
+	public Donation(BigDecimal amount, Type type, String details) {
 		super();
 		this.amount = amount;
 		this.type = type;
 		this.details = details;
 	}
+	
+	public Donation(BigDecimal amount, Type type,String schemeCode, String details) {
+		super();
+		this.amount = amount;
+		this.type = type;
+		this.schemeCode  = schemeCode;
+		this.details = details;
+	}
+		
 
 	/**
 	 * @return the amount
@@ -68,14 +83,14 @@ public class Donation {
 	/**
 	 * @return the type
 	 */
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

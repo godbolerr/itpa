@@ -37,7 +37,7 @@ public class Rule80G1Test {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
 		
-		Donation donation = new Donation(BigDecimal.valueOf(20000), "", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
+		Donation donation = new Donation(BigDecimal.valueOf(20000), Donation.Type.OTHER, "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
 		donation.setSchemeCode("GOVT_APPRVD_FAMLY_PLNG");
 		fPerson.addDonation(donation);
 		
@@ -61,7 +61,7 @@ public class Rule80G1Test {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(BigDecimal.valueOf(300000));
 		
-		Donation donation = new Donation(BigDecimal.valueOf(40000), "", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
+		Donation donation = new Donation(BigDecimal.valueOf(40000), Donation.Type.OTHER, "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
 		donation.setSchemeCode("GOVT_APPRVD_FAMLY_PLNG");
 		fPerson.addDonation(donation);
 		
