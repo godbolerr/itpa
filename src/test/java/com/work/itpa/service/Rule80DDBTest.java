@@ -27,7 +27,7 @@ public class Rule80DDBTest {
 	@Autowired
 	ItpaService dService;
 	
-	String sectionName = "80DDB";
+	String sectionName80ddb = "80DDB";
 
 	@Rule public TestName testName = new TestName();
 
@@ -43,15 +43,15 @@ public class Rule80DDBTest {
 	
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ddb);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80ddb, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 100);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ddb, 100);
 
 		assertTrue(result);
 		

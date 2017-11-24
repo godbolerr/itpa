@@ -26,7 +26,7 @@ public class Rule80EETest {
 	@Autowired
 	ItpaService dService;
 	
-	String sectionName = "80EE";
+	String sectionName80ee = "80EE";
 	
 	@Rule public TestName testName = new TestName();
 	
@@ -45,15 +45,15 @@ public class Rule80EETest {
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ee);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80ee, 1);
 		
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName,10000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ee,10000);
 		
 		assertTrue(result);
 		
@@ -74,15 +74,15 @@ public class Rule80EETest {
 //		
 //		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 //
-//		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+//		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ee);
 //
 //		assertTrue(result);
 //
-//		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+//		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80ee, 1);
 //		
 //		assertTrue(result);
 //
-//		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName,2000000);
+//		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ee,2000000);
 //		
 //		assertTrue(result);
 //

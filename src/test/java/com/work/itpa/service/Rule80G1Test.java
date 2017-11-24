@@ -26,7 +26,7 @@ public class Rule80G1Test {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80G";
+	String sectionName80g = "80G";
 	
 	@Rule public TestName testName = new TestName();
 
@@ -50,11 +50,11 @@ public class Rule80G1Test {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donationAmount);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, donationAmount);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, donationAmount);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80g, donationAmount);
 
 		assertTrue(result);
 		
@@ -91,11 +91,11 @@ public class Rule80G1Test {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, eligibleDonation);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, eligibleDonation);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, eligibleDonation);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80g, eligibleDonation);
 
 		assertTrue(result);
 		
@@ -137,15 +137,15 @@ public class Rule80G1Test {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, eligibleDonation);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, eligibleDonation);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donationAmount2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, donationAmount2);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, eligibleDonation.add(donationAmount2));
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80g, eligibleDonation.add(donationAmount2));
 
 		assertTrue(result);
 		

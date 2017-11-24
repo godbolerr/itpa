@@ -26,7 +26,7 @@ public class Rule80DTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80D";
+	String sectionName80d = "80D";
 	
 	@Rule public TestName testName = new TestName();
 	
@@ -41,12 +41,12 @@ public class Rule80DTest {
 //
 //		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 //
-//		boolean result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), sectionName,
+//		boolean result = PersonUtil.hasSectionWithDeductionTypeNTimes(finResult.getDeductions(), sectionName80d,
 //				FiConstants.DEDUCTION_MECICAL_INSURANCE, 1);
 //
 //		assertTrue(result);
 //
-//		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getDeductions(), sectionName,
+//		result = PersonUtil.hasSectionWithDeductionTypeAndAmount(finResult.getDeductions(), sectionName80d,
 //				FiConstants.DEDUCTION_MECICAL_INSURANCE, 78999);
 //
 //		assertTrue(result);

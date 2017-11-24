@@ -25,7 +25,7 @@ public class Rule80GGTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80GG";
+	String sectionName80gg = "80GG";
 	
 	@Rule public TestName testName = new TestName();
 

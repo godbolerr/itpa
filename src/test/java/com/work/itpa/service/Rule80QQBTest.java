@@ -26,9 +26,9 @@ public class Rule80QQBTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80QQB";
+	String sectionName80qqb = "80QQB";
 	
-	String summarySectionName = "80QQB_80RRB";
+	String summarysectionName80qqb = "80QQB_80RRB";
 
 	@Rule
 	public TestName testName = new TestName();
@@ -44,7 +44,7 @@ public class Rule80QQBTest {
 		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income);
 
 		assertTrue(result);
 
@@ -66,15 +66,15 @@ public class Rule80QQBTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income1);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income2);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarysectionName80qqb,
 				income1.add(income2));
 
 		assertTrue(result);
@@ -101,15 +101,15 @@ public class Rule80QQBTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income1);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income2);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarysectionName80qqb,
 				expectedExemption);
 
 		assertTrue(result);

@@ -24,7 +24,7 @@ public class Rule80UTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80U";
+	String sectionName80u = "80U";
 	
 	@Rule public TestName testName = new TestName();
 
@@ -38,11 +38,11 @@ public class Rule80UTest {
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 
-		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80u, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 75000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80u, 75000);
 
 		assertTrue(result);
 		
@@ -62,11 +62,11 @@ public class Rule80UTest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		boolean result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80u, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 125000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80u, 125000);
 
 		assertTrue(result);
 		

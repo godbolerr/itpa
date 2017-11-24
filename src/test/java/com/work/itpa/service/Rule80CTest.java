@@ -30,34 +30,34 @@ public class Rule80CTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80C";
+	String sectionName80c = "80C";
 
 	@Test
 	public void test80CPPFContribution() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		
-		BigDecimal providentFundAmount = new BigDecimal("40000");
+		BigDecimal providentFundAmount80c = new BigDecimal("40000");
 		
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		fPerson.addInvestment(new Investment(providentFundAmount,"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80c, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, providentFundAmount);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80c, providentFundAmount80c);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, providentFundAmount);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80c, providentFundAmount80c);
 
 		assertEquals(true, result);
 		
@@ -71,35 +71,35 @@ public class Rule80CTest {
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		BigDecimal providentFundAmount = new BigDecimal("75000");
+		BigDecimal providentFundAmount80c = new BigDecimal("75000");
 		
-		BigDecimal scssAmount = new BigDecimal("100000");
+		BigDecimal scssAmount80c = new BigDecimal("100000");
 		
-		BigDecimal expectedAmount = new BigDecimal("150000");
+		BigDecimal expectedAmount80c = new BigDecimal("150000");
 		
-		fPerson.addInvestment(new Investment(providentFundAmount,"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
-		fPerson.addInvestment(new Investment(scssAmount,"SCSS","Invest in SCSS "));
+		fPerson.addInvestment(new Investment(scssAmount80c,"SCSS","Invest in SCSS "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 2);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80c, 2);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, providentFundAmount);
-
-		assertTrue(result);
-		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, scssAmount);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80c, providentFundAmount80c);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, expectedAmount);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80c, scssAmount80c);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80c, expectedAmount80c);
 
 		assertEquals(true, result);
 		

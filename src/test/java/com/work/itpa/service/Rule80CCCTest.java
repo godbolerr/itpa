@@ -29,7 +29,7 @@ public class Rule80CCCTest {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80CCC";
+	String sectionName80ccc = "80CCC";
 
 	@Test
 	public void test80CPPFContribution() {
@@ -37,19 +37,21 @@ public class Rule80CCCTest {
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		fPerson.addInvestment(new Investment(new BigDecimal("75000"),"PENSION","Invest in Pension Funds "));
+		BigDecimal investAmount80ccc = new BigDecimal("75000");
+		
+		fPerson.addInvestment(new Investment(investAmount80ccc,"PENSION","Invest in Pension Funds "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccc);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80ccc, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 75000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccc, investAmount80ccc);
 
 		assertTrue(result);
 		

@@ -25,7 +25,7 @@ public class Rule80GGATest {
 	@Autowired
 	ItpaService dService;
 	
-	String sectionName = "80GGA";
+	String sectionName80gga = "80GGA";
 	
 	@Rule public TestName testName = new TestName();
 
@@ -40,11 +40,11 @@ public class Rule80GGATest {
 				"Donation to scientific research for biology");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80gga, donation);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, donation);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80gga, donation);
 
 		assertTrue(result);
 		
@@ -56,7 +56,7 @@ public class Rule80GGATest {
 	@Test
 	public void test80ggaMultipleDonationToScientificResearch() {
 		
-		String sectionNamegga = "80GGA";
+		String sectionName80ggagga = "80GGA";
 		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		BigDecimal donationgga = new BigDecimal("20000.00");
@@ -72,15 +72,15 @@ public class Rule80GGATest {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionNamegga, donationgga);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ggagga, donationgga);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionNamegga, donation2gga);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ggagga, donation2gga);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionNamegga, donationgga.add(donation2gga));
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80ggagga, donationgga.add(donation2gga));
 
 		assertTrue(result);
 		

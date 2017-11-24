@@ -26,7 +26,7 @@ public class Rule80DD2Test {
 	@Autowired
 	ItpaService dService;
 
-	String sectionName = "80U";
+	String sectionName80dd2 = "80U";
 	
 	@Rule public TestName testName = new TestName();
 
@@ -39,15 +39,15 @@ public class Rule80DD2Test {
 //
 //		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 //
-//		boolean result = PersonUtil.hasSection(finResult.getSummaryDeductions(), sectionName);
+//		boolean result = PersonUtil.hasSection(finResult.getSummaryDeductions(), sectionName80dd2);
 //
 //		assertTrue(result);
 //
-//		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+//		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80dd2, 1);
 //
 //		assertTrue(result);
 //
-//		result = PersonUtil.hasSectionWithAmount(finResult.getSummaryDeductions(), sectionName, 75000);
+//		result = PersonUtil.hasSectionWithAmount(finResult.getSummaryDeductions(), sectionName80dd2, 75000);
 //
 //		assertTrue(result);
 //		
@@ -65,15 +65,15 @@ public class Rule80DD2Test {
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
-		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName);
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80dd2);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName, 1);
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80dd2, 1);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, new BigDecimal("125000"));
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80dd2, new BigDecimal("125000"));
 
 		assertTrue(result);
 
