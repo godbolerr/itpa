@@ -129,7 +129,7 @@ public class SummaryDeduction {
 		// This condition indicates that there is no max limit for this section.
 
 		BigDecimal result = eligibleAmount.add(deduction.getEligibleDeduction());
-
+		
 		if (maxAmount.compareTo(new BigDecimal("0")) == 0) {
 			eligibleAmount = result;
 

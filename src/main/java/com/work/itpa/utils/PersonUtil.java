@@ -3,11 +3,15 @@
  */
 package com.work.itpa.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Donation;
@@ -392,20 +396,20 @@ public class PersonUtil {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		finPerson.setAllPersons(null);
-//		try {
-//			mapper.writeValue(new File(inputJson), finPerson);
-//			mapper.writeValue(new File(outputJson), result);
-//			
-//		} catch (JsonGenerationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JsonMappingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			mapper.writeValue(new File(inputJson), finPerson);
+			mapper.writeValue(new File(outputJson), result);
+			
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

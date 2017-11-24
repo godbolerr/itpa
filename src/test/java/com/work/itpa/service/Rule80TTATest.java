@@ -91,6 +91,8 @@ public class Rule80TTATest {
 	@Test
 	public void test80TTAResidentIndividualSavingInterestIncomeGreaterThan10K() {
 		
+		String section80TTAName = "80TTA";
+		
 		BigDecimal income = new BigDecimal("11000.00");
 		
 		BigDecimal expected = new BigDecimal("10000.00");
@@ -104,11 +106,11 @@ public class Rule80TTATest {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), section80TTAName, income);
 
 		assertEquals(true, result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, expected);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), section80TTAName, expected);
 
 		assertEquals(true, result);
 		

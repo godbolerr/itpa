@@ -84,17 +84,19 @@ public class Rule80GTest {
 	@Test
 	public void test80GWithTwoDonationFiftyAndHundredPercentDeduction() {
 		
-		BigDecimal donation1 = new BigDecimal("20000.00");
-		BigDecimal donation2 = new BigDecimal("14000.00");
+		String sectionName80g = "80G";
 		
-		BigDecimal expectedExemption = new BigDecimal("24000.00");
+		BigDecimal donation180g = new BigDecimal("20000.00");
+		BigDecimal donation280g = new BigDecimal("14000.00");
+		
+		BigDecimal expectedExemption80g = new BigDecimal("24000.00");
 		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addDonation(fPerson, donation1, Donation.Type.OTHER,"PM_DROUGHT_RELF_FND",
+		PersonUtil.addDonation(fPerson, donation180g, Donation.Type.OTHER,"PM_DROUGHT_RELF_FND",
 				"Donation PM_DROUGHT_RELF_FND. 50% exemption expected.");
-		PersonUtil.addDonation(fPerson, donation2, Donation.Type.OTHER,"NAT_DEF_FUND_CEN_GOVT",
+		PersonUtil.addDonation(fPerson, donation280g, Donation.Type.OTHER,"NAT_DEF_FUND_CEN_GOVT",
 				"Donation NAT_DEF_FUND_CEN_GOVT");
 		
 		
@@ -102,16 +104,16 @@ public class Rule80GTest {
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation1);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, donation180g);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80g, donation280g);
 
 		assertTrue(result);
 				
 		
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,expectedExemption );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80g,expectedExemption80g );
 
 		assertTrue(totalResult);
 		

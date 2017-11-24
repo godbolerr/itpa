@@ -1,5 +1,6 @@
 package com.work.itpa.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
@@ -34,10 +35,13 @@ public class Rule80CTest {
 	@Test
 	public void test80CPPFContribution() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
+		
+		BigDecimal providentFundAmount = new BigDecimal("40000");
+		
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		fPerson.addInvestment(new Investment(new BigDecimal("75000"),"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		fPerson.addInvestment(new Investment(providentFundAmount,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -49,9 +53,13 @@ public class Rule80CTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 75000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, providentFundAmount);
 
 		assertTrue(result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, providentFundAmount);
+
+		assertEquals(true, result);
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
@@ -63,9 +71,15 @@ public class Rule80CTest {
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
-		fPerson.addInvestment(new Investment(new BigDecimal("75000"),"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		BigDecimal providentFundAmount = new BigDecimal("75000");
 		
-		fPerson.addInvestment(new Investment(new BigDecimal("100000"),"SCSS","Invest in SCSS "));
+		BigDecimal scssAmount = new BigDecimal("100000");
+		
+		BigDecimal expectedAmount = new BigDecimal("150000");
+		
+		fPerson.addInvestment(new Investment(providentFundAmount,"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		
+		fPerson.addInvestment(new Investment(scssAmount,"SCSS","Invest in SCSS "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -77,13 +91,18 @@ public class Rule80CTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 75000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, providentFundAmount);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, 100000);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, scssAmount);
 
 		assertTrue(result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, expectedAmount);
+
+		assertEquals(true, result);
+		
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 		

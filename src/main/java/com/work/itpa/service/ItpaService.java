@@ -84,6 +84,9 @@ public class ItpaService {
 
 	private void insertSummaryDeductions(KieSession kSession, List<SummaryDeduction> summaryDeductions) {
 
+		summaryDeductions.add(new SummaryDeduction("80C", new BigDecimal("150000"),
+				"Benefits for 80C. Max limit is 1,50,000 "));
+		
 		summaryDeductions.add(new SummaryDeduction("80GGA", new BigDecimal("0"),
 				"All Donations for scientific research under 80GGA "));
 		summaryDeductions.add(new SummaryDeduction("80GGC", new BigDecimal("0"),

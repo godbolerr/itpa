@@ -17,7 +17,7 @@ import java.util.List;
 import java.math.BigDecimal;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
+import function com.work.itpa.utils.FiUtil.lessOf;
 import com.work.itpa.domain.Investment;
 
 template "ATC related deductions "
@@ -27,10 +27,9 @@ rule "ATC@{row.rowNumber}"
        when
         $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
         $pfInvestment :  Investment   (	type == "@{type}") from $fp.investments   
-        $result : FinPersonResult( )
     then
     	Deduction $deduction = new Deduction( 	$pfInvestment.amount,
-    											$pfInvestment.amount  ,
+    											lessOf(new BigDecimal(""+@{maxDeduction}),$pfInvestment.amount)  ,
     											new BigDecimal(""+@{maxDeduction})  ,
     											"@{categoryType}",
     											"@{sectionType}",

@@ -128,30 +128,34 @@ public class Rule80RRBTest {
 	@Test
 	public void test80RRBResidentIndividualTwoPatentIncomeFractionsExceedsLimit() {
 		
-		BigDecimal income = new BigDecimal("202000.14");
+		String section80RRBName = "80RRB";
 		
-		BigDecimal income2 = new BigDecimal("322000.13");
+		String summarySectionQQBRRBName = "80QQB_80RRB";
 		
-		BigDecimal totalIncome = new BigDecimal("300000.00");
+		BigDecimal incomerrb = new BigDecimal("202000.14");
+		
+		BigDecimal income2rrb = new BigDecimal("322000.13");
+		
+		BigDecimal totalIncomeRrb = new BigDecimal("300000.00");
 		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(fPerson, incomerrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(fPerson, income2rrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), section80RRBName, incomerrb);
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, income2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), section80RRBName, income2rrb);
 
 		assertTrue(result);
 
-		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionName,totalIncome );
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), summarySectionQQBRRBName,totalIncomeRrb );
 
 		assertTrue(totalResult);
 		

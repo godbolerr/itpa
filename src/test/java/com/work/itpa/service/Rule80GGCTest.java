@@ -57,31 +57,33 @@ public class Rule80GGCTest {
 	@Test
 	public void test80ggcMultiplePoliticalDonations() {
 		
-		BigDecimal donation1 = new BigDecimal("20000.00");
-		BigDecimal donation2 = new BigDecimal("35000.10");
+		String ggcSectionName = "80GGC";
+		
+		BigDecimal donation1ggc = new BigDecimal("20000.00");
+		BigDecimal donation2ggc = new BigDecimal("35000.10");
 		
 		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		
 		
-		PersonUtil.addDonation(fPerson, donation1, Donation.Type.POLITICAL, "Donation to policical party xyz ");
-		PersonUtil.addDonation(fPerson, donation2, Donation.Type.POLITICAL, "Donation to policical party abc ");
+		PersonUtil.addDonation(fPerson, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
+		PersonUtil.addDonation(fPerson, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
-		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation1);
+		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), ggcSectionName, donation1ggc);
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName, donation2);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), ggcSectionName, donation2ggc);
 
 		assertTrue(result);
 		
 		// Verify final deduction which is applicable.
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName, donation1.add(donation2));
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), ggcSectionName, donation1ggc.add(donation2ggc));
 
 		assertTrue(result);
 		
