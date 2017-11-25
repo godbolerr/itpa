@@ -1,0 +1,34 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// 80GGA Specific deductionss
+
+rule "Summarize 80GGA Specific donations - add donations "   
+    when
+        $summary : SummaryDeduction( sectionType == "80GGA")
+ 		$deduction : Deduction ( sectionType == "80GGA" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+rule "Summarize 80GGA Specific donations - add eligible amount true"   
+    when
+        $summary : SummaryDeduction( sectionType == "80GGA")
+ 		$deduction : Deduction ( sectionType == "80GGA")        
+    then
+    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
+end
+
+
+
+

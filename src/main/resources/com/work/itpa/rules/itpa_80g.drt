@@ -30,6 +30,7 @@ rule "ATG@{row.rowNumber}"
     											"NA",
     											"@{sectionType}",
     											$pfDonation.details );
+    	System.out.println("Eligible deduction  " + percentOf($pfDonation.amount,@{pcDeduction}) + " : @{schemeCode}" );
     	insert($deduction);
 end
 end template

@@ -13,6 +13,23 @@ rule "Initiate Summary Deductions"
 		qqbrrb.setMaxAmount(new BigDecimal("300000"));
 		insert(qqbrrb);
 		
+		SummaryDeduction atgga = new SummaryDeduction("80GGA");
+		insert(atgga);	
+		
+		SummaryDeduction atggc = new SummaryDeduction("80GGC");
+		insert(atggc);	
+		
+		SummaryDeduction atg = new SummaryDeduction("80G");
+		insert(atg);	
+		
+		SummaryDeduction atc = new SummaryDeduction("80C");
+		atc.setMaxAmount(new BigDecimal("150000"));
+		insert(atc);
+		
+		SummaryDeduction tta = new SummaryDeduction("80TTA");
+		tta.setMaxAmount(new BigDecimal("10000"));
+		insert(tta);		
+		
 end
 
 /**

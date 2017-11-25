@@ -48,6 +48,11 @@ public class Rule80GTest {
 
 		assertTrue(result);
 		
+		boolean totalResult = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName,donation1 );
+
+		assertTrue(totalResult);
+		
+		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}

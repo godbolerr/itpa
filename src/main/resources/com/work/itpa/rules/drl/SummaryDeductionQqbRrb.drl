@@ -36,7 +36,7 @@ rule "Summarize 80QQB Specific donations - add eligible amount true"
  		$deduction : Deduction ( sectionType == "80QQB" ,
  								 isLessThanEqualToMax($deduction,$summary) == true )        
     then
-    	$summary.addToEligibleAmount($deduction.amount);
+    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
 end
 
 rule "Summarize 80RRB Specific donations - add eligible amount true"   
@@ -45,7 +45,7 @@ rule "Summarize 80RRB Specific donations - add eligible amount true"
         $deduction : Deduction (  sectionType == "80RRB" ,
  								 isLessThanEqualToMax($deduction,$summary) == true )       
     then
-    	$summary.addToEligibleAmount($deduction.amount);
+    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
 end
 
 

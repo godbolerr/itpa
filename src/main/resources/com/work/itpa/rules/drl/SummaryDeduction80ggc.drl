@@ -1,0 +1,34 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// 80GGC Specific deductionss
+
+rule "Summarize 80GGC Specific donations - add donations "   
+    when
+        $summary : SummaryDeduction( sectionType == "80GGC")
+ 		$deduction : Deduction ( sectionType == "80GGC" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+rule "Summarize 80GGC Specific donations - add eligible amount true"   
+    when
+        $summary : SummaryDeduction( sectionType == "80GGC")
+ 		$deduction : Deduction ( sectionType == "80GGC")        
+    then
+    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
+end
+
+
+
+
