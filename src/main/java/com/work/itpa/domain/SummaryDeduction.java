@@ -10,12 +10,17 @@ import java.util.List;
  *
  */
 public class SummaryDeduction {
+	
+	
+	public static final String NO_MAX = "NO_MAX";
 
 	public String sectionType;
 
 	public BigDecimal maxAmount;
 
 	public BigDecimal eligibleAmount;
+	
+	public String maxDeductionStrategy;
 
 	List<Deduction> deductions;
 
@@ -35,6 +40,7 @@ public class SummaryDeduction {
 		this.eligibleAmount = new BigDecimal("0");
 		this.notes = "Summary Deduction " + sectionType ;
 		this.deductions = new ArrayList<Deduction>();
+		maxDeductionStrategy = NO_MAX;
 	}
 
 	/**
@@ -50,6 +56,7 @@ public class SummaryDeduction {
 		this.notes = notes;
 		eligibleAmount = new BigDecimal("0");
 		this.deductions = new ArrayList<Deduction>();
+		maxDeductionStrategy = NO_MAX;
 	}
 
 	/**
@@ -150,6 +157,7 @@ public class SummaryDeduction {
 	 */
 	public void addDeduction(Deduction deduction) {
 		deductions.add(deduction);
+		this.setEligibleAmount(eligibleAmount.add(deduction.getEligibleDeduction()));
 
 		/**
 		 * Explore if max is reached, if not add the same.

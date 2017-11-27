@@ -21,14 +21,5 @@ rule "Summarize 80GGA Specific donations - add donations "
 end
 
 
-rule "Summarize 80GGA Specific donations - add eligible amount true"   
-    when
-        $summary : SummaryDeduction( sectionType == "80GGA")
- 		$deduction : Deduction ( sectionType == "80GGA")        
-    then
-    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
-end
-
-
 
 

@@ -12,9 +12,17 @@ import com.work.itpa.domain.SummaryDeduction;
  *
  */
 public class FiUtil {
-	
-	
-	
+
+	public static boolean isGreaterThan(BigDecimal first, BigDecimal second) {
+
+		if (first.compareTo(second) > 0) {
+			return true;
+		}
+
+		return false;
+
+	}
+
 	/**
 	 * For now it is assumed to when NO MAX LIMIT is defined, it is marked as 0.
 	 * 
@@ -24,16 +32,16 @@ public class FiUtil {
 	 * @param sDeduction
 	 * @return
 	 */
-	
-	public static boolean isLessThanEqualToMax(Deduction deduction, SummaryDeduction sDeduction){
-		
+
+	public static boolean isLessThanEqualToMax(Deduction deduction, SummaryDeduction sDeduction) {
+
 		boolean status = false;
-		
+
 		BigDecimal result = sDeduction.getEligibleAmount().add(deduction.getEligibleDeduction());
-		
+
 		if (sDeduction.getMaxAmount().compareTo(new BigDecimal("0")) == 0) {
 			status = true;
-			
+
 		} else {
 
 			if (result.compareTo(sDeduction.getMaxAmount()) >= 0) {
@@ -41,10 +49,10 @@ public class FiUtil {
 			} else {
 				status = true;
 			}
-		}		
-		
+		}
+
 		return status;
-		
+
 	}
 
 	/**
@@ -57,9 +65,8 @@ public class FiUtil {
 	public static BigDecimal percentOf(BigDecimal input, int deductionPercent) {
 
 		return input.multiply(new BigDecimal(deductionPercent)).divide(new BigDecimal(100));
-		
-	}
 
+	}
 
 	public static boolean isAvailable(String x, String type) {
 

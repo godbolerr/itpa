@@ -36,3 +36,16 @@ rule "Get List of all deductions which can be availed"
     then
     	$result.addDeduction($deduction);
 end
+
+
+
+
+rule "80QQB_80RRB - Calculate Max for this deduction ..."   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80QQB_80RRB" , isGreaterThan(eligibleAmount,maxAmount))
+    then
+    	System.out.println("Last rule to be executed...");
+    	//$summary.setEligibleAmountToMaxAmount();    	
+end
+

@@ -19,17 +19,3 @@ rule "Summarize 80G Specific donations - add donations "
     then
     	$summary.addDeduction($deduction);
 end
-
-
-rule "Summarize 80G Specific donations - add eligible amount true"   
-    when
-        $summary : SummaryDeduction( sectionType == "80G")
- 		$deduction : Deduction ( sectionType == "80G")        
-    then
-    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
-    	System.out.println("Added amount " + $deduction.eligibleDeduction + " for 80G Deduction");
-end
-
-
-
-

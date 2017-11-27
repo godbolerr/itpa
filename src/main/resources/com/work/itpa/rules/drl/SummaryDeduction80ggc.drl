@@ -21,14 +21,4 @@ rule "Summarize 80GGC Specific donations - add donations "
 end
 
 
-rule "Summarize 80GGC Specific donations - add eligible amount true"   
-    when
-        $summary : SummaryDeduction( sectionType == "80GGC")
- 		$deduction : Deduction ( sectionType == "80GGC")        
-    then
-    	$summary.addToEligibleAmount($deduction.eligibleDeduction);
-end
-
-
-
 
