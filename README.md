@@ -25,11 +25,19 @@ mvn spring-boot:run -Dmaven.test.skip=true
 mvn test
 
 
+4. To access the functionality, use POST with the following URL
+
+	http://localhost:8080/itpa/benefits
+	
+5. Sample JSON for input can be found in src/test/resources folder.
+
+
+
 Issues:
 
-	Standalone war file is not able to load Rule related packages. 
-	Summary calculations are still in Java codebase. Need to extract it out into rules.
-	Rule package need to be seperated all together and built as seperate deployable.
+	a.Standalone war file is not able to load Rule related packages. 
+	b.Summary calculations are still in Java codebase. Need to extract it out into rules.
+	c.Rule package need to be seperated all together and built as seperate deployable.
 	
 	
 	 
