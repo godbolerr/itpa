@@ -1,4 +1,4 @@
-package com.work.itpa.web.rest;
+package com.work.itpa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
-import com.work.itpa.service.ItpaService;
+
 
 /**
  * Responsible for serving web channel 
- * @author 115750
+ * 
  *
  */
 @RestController
@@ -25,7 +26,7 @@ public class ItpaController {
 	}
 
 	@RequestMapping(value = "/benefits", method = { RequestMethod.POST })
-	public FinPersonResult getBenefits(@RequestBody com.work.itpa.domain.FinPerson fPerson) {
+	public FinPersonResult getBenefits(@RequestBody FinPerson fPerson) {
 		return tpaService.calculateBenefits(fPerson);
 	}
 }

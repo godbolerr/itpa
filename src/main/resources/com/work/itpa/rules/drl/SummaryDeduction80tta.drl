@@ -16,3 +16,13 @@ rule "Summarize 80TTA Specific deductions - add deductions "
     then
     	$summary.addDeduction($deduction);
 end
+
+
+rule "80TTA - Calculate Max for this deduction ..."   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80TTA"  )
+    then
+    	$summary.setEligibleAmountForMaxLimit();    	
+end
+

@@ -20,6 +20,7 @@ rule "Summarize 80GGA Specific donations - add donations "
     	$summary.addDeduction($deduction);
 end
 
+// There is no max limit
 
 
 

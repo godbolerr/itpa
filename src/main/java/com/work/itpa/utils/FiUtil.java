@@ -12,6 +12,15 @@ import com.work.itpa.domain.SummaryDeduction;
  *
  */
 public class FiUtil {
+	
+	
+	public static boolean isSummmaryGreaterThanEligible(SummaryDeduction sDeduction){
+		
+		if (sDeduction.getEligibleAmount().compareTo(sDeduction.getMaxAmount()) > 0) {
+			return true;
+		}
+		return false;
+	}
 
 	public static boolean isGreaterThan(BigDecimal first, BigDecimal second) {
 

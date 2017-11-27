@@ -10,7 +10,7 @@ import com.work.itpa.domain.SummaryDeduction;
 global java.util.List messages
 
 
-// QQB and RRB are combined into one.
+// 80C related Summary Deduction
 
 rule "Summarize 80C Specific donations - add donations "   
     when
@@ -20,3 +20,15 @@ rule "Summarize 80C Specific donations - add donations "
     	$summary.addDeduction($deduction);
 end
 
+
+// This is not the right way to implement logic as it is hidden inside Java class and not in rules
+// Find way to extrat it out.
+
+
+rule "80C Decide max limit"   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80C"  )
+    then
+    	$summary.setEligibleAmountForMaxLimit();    	
+end

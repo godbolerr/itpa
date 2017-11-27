@@ -11,22 +11,6 @@ import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.SummaryDeduction;
 
 
-// QQB and RRB combined to be 3 lacs or less  - Done
-// 80U independent
-// 80DDB , RELATION IS ONLY FOR INFORMATION , Put it in notes. Amount recovered should be deducted from the money spent.
-// 80D 2 - To be taken from expense array. 
-// 80D 1 - Taken Insurance where type = HEALTH , if policyFor =  family then look at SELF age, use premium for deduction
-// 80D 1 - policyFor = parents, type = HEALTH , parentsMoreThanSixty , MIN_AGE MAX_AGE will come from json
-// Aggregation for 80D - Health + Health expense is max [ Insurance should include health expenses if applicable ]
-// Aggregation of FAMILY and PARENT will be combined to form maxDeduction
-// 80DD - Relationship code is relationDepended in the json
-// 80E for aggregation no max limit single value field.
-// TTA - Take from Income, type = interest max deduction 10000, independent.
-// 80 Aggregation
-
-
-
-
 global java.util.List messages
 
 rule "Get List of all deductions which can be availed"   
@@ -34,18 +18,6 @@ rule "Get List of all deductions which can be availed"
         $deduction : Deduction ()
         $result : FinPersonResult( )
     then
+    	System.out.println("Adding deduction to the rule " + $deduction.sectionType );
     	$result.addDeduction($deduction);
 end
-
-
-
-
-rule "80QQB_80RRB - Calculate Max for this deduction ..."   
-salience -100
-    when
-    	$summary : SummaryDeduction( sectionType == "80QQB_80RRB" , isGreaterThan(eligibleAmount,maxAmount))
-    then
-    	System.out.println("Last rule to be executed...");
-    	//$summary.setEligibleAmountToMaxAmount();    	
-end
-

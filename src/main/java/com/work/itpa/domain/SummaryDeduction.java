@@ -20,8 +20,6 @@ public class SummaryDeduction {
 
 	public BigDecimal eligibleAmount;
 	
-	public String maxDeductionStrategy;
-
 	List<Deduction> deductions;
 
 	public String notes;
@@ -40,7 +38,6 @@ public class SummaryDeduction {
 		this.eligibleAmount = new BigDecimal("0");
 		this.notes = "Summary Deduction " + sectionType ;
 		this.deductions = new ArrayList<Deduction>();
-		maxDeductionStrategy = NO_MAX;
 	}
 
 	/**
@@ -56,7 +53,6 @@ public class SummaryDeduction {
 		this.notes = notes;
 		eligibleAmount = new BigDecimal("0");
 		this.deductions = new ArrayList<Deduction>();
-		maxDeductionStrategy = NO_MAX;
 	}
 
 	/**
@@ -148,6 +144,15 @@ public class SummaryDeduction {
 	 */
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	
+	
+	public void setEligibleAmountForMaxLimit(){
+		
+		if ( eligibleAmount.compareTo(maxAmount) >= 0 ){
+			eligibleAmount = maxAmount;
+		}
+		
 	}
 
 	/**
