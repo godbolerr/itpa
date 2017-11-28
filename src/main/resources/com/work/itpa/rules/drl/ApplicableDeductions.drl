@@ -18,6 +18,6 @@ rule "Get List of all deductions which can be availed"
         $deduction : Deduction ()
         $result : FinPersonResult( )
     then
-    	System.out.println("Adding deduction to the rule " + $deduction.sectionType );
+    	//System.out.println("Adding deduction to the rule " + $deduction.sectionType );
     	$result.addDeduction($deduction);
 end

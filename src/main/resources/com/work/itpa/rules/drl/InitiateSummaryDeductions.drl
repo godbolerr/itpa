@@ -29,7 +29,10 @@ rule "Initiate Summary Deductions"
 		insert(ggc);		
 		
 		SummaryDeduction g = new SummaryDeduction("80G");
-		insert(g);			
+		insert(g);	
+		
+		SummaryDeduction gg = new SummaryDeduction("80GG");
+		insert(gg);				
 		
 		SummaryDeduction atc = new SummaryDeduction("80C");
 		atc.setMaxAmount(new BigDecimal("150000"));

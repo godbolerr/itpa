@@ -81,8 +81,12 @@
 	
 		<!-- Rule 80EE -->
 		
-		<!-- Rule 80GG -->		
+		<!-- Rule 80GG -->	
 			
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80gg.drt" row="413" col="2" />	
+			
+						
 		<ksession name="ItpaDataKs" />
 		
 		

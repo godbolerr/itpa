@@ -68,7 +68,7 @@ public class FinPerson implements Serializable {
 	
 	boolean rentedAccomodation;
 	
-	boolean hraAvailed;
+	String hraAvailed;
 
 	List<PropertyDetails> propertyDetails;
 
@@ -561,11 +561,10 @@ public class FinPerson implements Serializable {
 
 
 
-
 	/**
 	 * @return the hraAvailed
 	 */
-	public boolean isHraAvailed() {
+	public String getHraAvailed() {
 		return hraAvailed;
 	}
 
@@ -574,7 +573,7 @@ public class FinPerson implements Serializable {
 	/**
 	 * @param hraAvailed the hraAvailed to set
 	 */
-	public void setHraAvailed(boolean hraAvailed) {
+	public void setHraAvailed(String hraAvailed) {
 		this.hraAvailed = hraAvailed;
 	}
 
