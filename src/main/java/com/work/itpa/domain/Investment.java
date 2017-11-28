@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  *
  */
 public class Investment {
-
+	
 	/**
 	 * Amount invested per year.
 	 * 

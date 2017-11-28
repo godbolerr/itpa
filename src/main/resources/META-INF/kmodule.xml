@@ -1,51 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
 
-	<kbase name="ItpaDataKb" default="true"
-		packages="com.work.itpa.rules, com.work.itpa.rules.drl">
+	<kbase name="ItpaDataKb" default="true" packages="com.work.itpa.rules, com.work.itpa.rules.drl">
+		
+		
+		<!-- Rule 80 C 
+			
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80c.drt" row="6" col="2" />	
 
-
-		<!-- Rule 80 QQB -->
+ 		-->		
+ 
+		<!-- Rule 80CCC -->
+		
+		<!-- Rule 80CCD1 -->
+		
+		<!-- Rule 80CCD2 -->
+		
+		
+		<!-- Rule 80CCD1B -->
 
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80qqb.drt" row="104" col="2" />
-			
-		<!-- Rule 80 RRB -->
-
-		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80rrb.drt" row="108" col="2" />
-			
-		<!-- Rule 80 TTA -->
-
-		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80tta.drt" row="112" col="2" />			
-			
+			template="com/work/itpa/rules/itpa_80ccd1b.drt" row="99" col="2" />			
+		
+		<!-- Rule 80D1 -->
+		
+		<!-- Rule 80D2 -->
+		
+		
+		<!-- Rule 80U -->
+		
+		<!-- Rule 80DD -->
+		
+		<!-- Rule 80DDB -->
+		
+		<!-- Rule 80E -->
+		
 		<!-- Rule 80 GGA -->
 
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80gga.drt" row="96" col="2" />			
+			template="com/work/itpa/rules/itpa_80gga.drt" row="239" col="2" />			
 			
 		<!-- Rule 80 GGC -->
 
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80ggc.drt" row="100" col="2" />		
+			template="com/work/itpa/rules/itpa_80ggc.drt" row="254" col="2" />		
 			
-		<!-- Rule 80 G -->				
+		
+		
+		<!-- Rule 80 QQB -->
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80qqb.drt" row="271" col="2" />
+			
+		<!-- Rule 80 RRB -->
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80rrb.drt" row="288" col="2" />
+			
+		<!-- Rule 80 TTA -->
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80tta.drt" row="305" col="2" />			
+			
+		
+		<!-- Rule 80 G 1 -->				
 			
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80g.drt" row="116" col="2" />
+			template="com/work/itpa/rules/itpa_80g.drt" row="322" col="2" />
 			
-		<!-- Rule 80 G - 1 -->		
-			
-		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80g1.drt" row="147" col="2" />	
-			
-		<!-- Rule 80 C  -->		
+		<!-- Rule 80 G - 2 -->		
 			
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80c.drt" row="4" col="2" />					
+			template="com/work/itpa/rules/itpa_80g1.drt" row="367" col="2" />	
+			
+	
+		<!-- Rule 80EE -->
+		
+		<!-- Rule 80GG -->		
 			
 		<ksession name="ItpaDataKs" />
+		
+		
 	</kbase>
 
 

@@ -18,6 +18,10 @@ rule "Initiate Summary Deductions"
 		tta.setMaxAmount(new BigDecimal("10000"));
 		insert(tta);	
 		
+		SummaryDeduction ccd1b = new SummaryDeduction("80CCD1B");
+		ccd1b.setMaxAmount(new BigDecimal("50000"));
+		insert(ccd1b);		
+		
 		SummaryDeduction gga = new SummaryDeduction("80GGA");
 		insert(gga);		
 		

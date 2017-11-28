@@ -8,7 +8,6 @@ sectionType
 assesseeType
 residentialStatus
 type
-categoryType
 maxDeduction
 
 package com.work.itpa.rules;
@@ -31,7 +30,7 @@ rule "ATC@{row.rowNumber}"
     	Deduction $deduction = new Deduction( 	$pfInvestment.amount,
     											lessOf(new BigDecimal(""+@{maxDeduction}),$pfInvestment.amount)  ,
     											new BigDecimal(""+@{maxDeduction})  ,
-    											"@{categoryType}",
+    											"",
     											"@{sectionType}",
     											$pfInvestment.details + ":" + " @{type} " );
     	insert($deduction);

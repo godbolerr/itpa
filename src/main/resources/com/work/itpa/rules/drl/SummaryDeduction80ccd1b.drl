@@ -1,0 +1,28 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+rule "Summarize 80CCD1B Specific deductions - add deductions "   
+    when
+        $summary : SummaryDeduction( sectionType == "80CCD1B")
+ 		$deduction : Deduction ( sectionType == "80CCD1B" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+rule "80CCD1B - Calculate Max for this deduction ..."   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80CCD1B"  )
+    then
+    	$summary.setEligibleAmountForMaxLimit();    	
+end
+

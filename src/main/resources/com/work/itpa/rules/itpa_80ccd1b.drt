@@ -1,0 +1,41 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+type
+maxDeduction
+
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Investment;
+
+template "ATCCD1B Rules - NPS "
+
+
+rule "ATCCD1B_1@{row.rowNumber}"
+    when
+		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}") &&
+  		$fpInvestment: Investment( type == "PF_NPS" ) from $fp.investments   
+		
+    then
+    	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
+    											lessOf(new BigDecimal(""+@{maxDeduction}),$fpInvestment.amount)  ,
+    											new BigDecimal(""+@{maxDeduction})  ,
+    											"NA",
+    											"@{sectionType}",
+    											$fpInvestment.details );
+    	insert($deduction);
+end
+end template
+

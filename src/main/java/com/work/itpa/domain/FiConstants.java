@@ -17,7 +17,7 @@ public class FiConstants {
 	public static final String OWNERSHIP_OWN = "Own";
 	public static final String OWNERSHIP_RENTAL = "Rental";
 
-	public static final String RESIDENT_NRI = "NRI";
+	public static final String RESIDENT_NRI = "NON_RESIDENT";
 	public static final String RESIDENT_RESIDENT = "RESIDENT";
 
 	public static final String ASSESSEE_HUF = "HUF";
