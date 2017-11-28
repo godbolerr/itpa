@@ -18,30 +18,44 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 public class Loan {
 
-	BigDecimal interestPaidPerAnum;
+	public BigDecimal interestPaidPerAnum;
 
-	BigDecimal principalPaidPerAnum;
+	public BigDecimal principalPaidPerAnum;
 
-	BigDecimal loanAmount;
+	public BigDecimal loanAmount;
 
-	String type;
+	public String type;
 
-	String institution;
+	public String institution;
 
-	String loanPeriod;
+	public String loanPeriod;
+	
+	
 
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	Date loanStartDate;
+	public Date loanStartDate;
 
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	Date loanEndDate;
+	public Date loanEndDate;
 	
-	
-	
-	public Loan(){}
-	
+	public String details;
+
+	public Loan() {
+	}
+
+	/**
+	 * 
+	 * @param type
+	 * @param interestPaidPerAnum
+	 */
+	public Loan(String type, BigDecimal interestPaidPerAnum) {
+
+		this.type = type;
+		this.interestPaidPerAnum = interestPaidPerAnum;
+
+	}
 
 	/**
 	 * @param interestPaidPerAnum
@@ -184,6 +198,20 @@ public class Loan {
 	 */
 	public void setLoanEndDate(Date loanEndDate) {
 		this.loanEndDate = loanEndDate;
+	}
+
+	/**
+	 * @return the details
+	 */
+	public String getDetails() {
+		return details;
+	}
+
+	/**
+	 * @param details the details to set
+	 */
+	public void setDetails(String details) {
+		this.details = details;
 	}
 
 }

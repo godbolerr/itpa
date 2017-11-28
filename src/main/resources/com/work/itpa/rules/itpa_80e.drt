@@ -1,0 +1,37 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+pcDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.Loan;
+import function com.work.itpa.utils.FiUtil.percentOf;
+
+template "AT E Rules"
+
+rule "ATE@{row.rowNumber}"
+      when
+          $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
+        	$pfLoan :  Loan   (	type == "EDUCATION" ) from $fp.loans          
+    then
+    	Deduction $deduction = new Deduction( 	$pfLoan.interestPaidPerAnum  ,
+    											percentOf($pfLoan.interestPaidPerAnum,@{pcDeduction}) ,
+    											percentOf($pfLoan.interestPaidPerAnum,@{pcDeduction}) ,
+    											"NA",
+    											"@{sectionType}",
+    											$pfLoan.details );
+    	insert($deduction);
+end
+end template
+

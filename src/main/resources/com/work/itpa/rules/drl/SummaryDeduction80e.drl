@@ -1,0 +1,21 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// 80E Specific deductionss. No max limit at higher level, it comes from deduction itself.
+
+rule "Summarize 80E Specific donations - add donations "   
+    when
+        $summary : SummaryDeduction( sectionType == "80E")
+ 		$deduction : Deduction ( sectionType == "80E" )        
+    then
+    	$summary.addDeduction($deduction);
+end

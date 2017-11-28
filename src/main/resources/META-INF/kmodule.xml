@@ -36,6 +36,10 @@
 		
 		<!-- Rule 80E -->
 		
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80e.drt" row="222" col="2" />	
+			
+					
 		<!-- Rule 80 GGA -->
 
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"

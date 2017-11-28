@@ -33,7 +33,11 @@ rule "Initiate Summary Deductions"
 		
 		SummaryDeduction atc = new SummaryDeduction("80C");
 		atc.setMaxAmount(new BigDecimal("150000"));
-		insert(atc);		
+		insert(atc);
+		
+		SummaryDeduction ate = new SummaryDeduction("80E");
+		insert(ate);			
+				
 		
 end
 
