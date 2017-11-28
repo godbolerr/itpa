@@ -26,9 +26,9 @@ public class FiConstants {
 	public static final String DEDUCTION_MECICAL_INSURANCE = "Medical Insurance";
 	public static final String DEDUCTION_HEALTH_CHECKUP = "Health Checkup";
 	
-	public static final String TRUE = "TRUE";
+	public static final String TRUE = "true";
 	
-	public static final String FALSE = "FALSE";
+	public static final String FALSE = "false";
 	
 	
 	

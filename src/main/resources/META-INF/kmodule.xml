@@ -4,12 +4,12 @@
 	<kbase name="ItpaDataKb" default="true" packages="com.work.itpa.rules, com.work.itpa.rules.drl">
 		
 		
-		<!-- Rule 80 C 
+		<!-- Rule 80 C -->		
 			
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
 			template="com/work/itpa/rules/itpa_80c.drt" row="6" col="2" />	
 
- 		-->		
+ 		
  
 		<!-- Rule 80CCC -->
 		

@@ -10,8 +10,7 @@ import java.util.List;
  *
  */
 public class SummaryDeduction {
-	
-	
+
 	public static final String NO_MAX = "NO_MAX";
 
 	public String sectionType;
@@ -19,12 +18,11 @@ public class SummaryDeduction {
 	public BigDecimal maxAmount;
 
 	public BigDecimal eligibleAmount;
-	
+
 	List<Deduction> deductions;
 
 	public String notes;
-	
-	
+
 	/**
 	 * @param sectionType
 	 * @param maxAmount
@@ -36,7 +34,7 @@ public class SummaryDeduction {
 		this.sectionType = sectionType;
 		this.maxAmount = new BigDecimal("0");
 		this.eligibleAmount = new BigDecimal("0");
-		this.notes = "Summary Deduction " + sectionType ;
+		this.notes = "Summary Deduction " + sectionType;
 		this.deductions = new ArrayList<Deduction>();
 	}
 
@@ -99,20 +97,20 @@ public class SummaryDeduction {
 	public void setEligibleAmount(BigDecimal eligibleAmount) {
 		this.eligibleAmount = eligibleAmount;
 	}
-	
+
 	/**
 	 * Increment current eligible amount by the given value.
 	 * 
 	 * @param amount
 	 */
-	public void addToEligibleAmount(BigDecimal amount){
+	public void addToEligibleAmount(BigDecimal amount) {
 		this.eligibleAmount = this.eligibleAmount.add(amount);
 	}
-	
+
 	/**
 	 * Eligible amount is max amount
 	 */
-	public void setEligibleAmountToMaxAmount(){
+	public void setEligibleAmountToMaxAmount() {
 		this.eligibleAmount = this.maxAmount;
 	}
 
@@ -145,14 +143,30 @@ public class SummaryDeduction {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
-	
-	public void setEligibleAmountForMaxLimit(){
-		
-		if ( eligibleAmount.compareTo(maxAmount) >= 0 ){
+
+	public void setEligibleAmountForMaxLimit() {
+
+		if (eligibleAmount.compareTo(maxAmount) >= 0) {
 			eligibleAmount = maxAmount;
 		}
-		
+
+	}
+
+	/**
+	 * If there is only one deduction, set max to that of deduction
+	 * 
+	 * TODO :: If there are more than one, find out the max applicable of all
+	 * deductions and take that
+	 */
+	public void setMaxFromDeductions() {
+
+		if (deductions.size() == 1) {
+			Deduction curDeduction = deductions.get(0);
+			this.maxAmount = curDeduction.getMaxDeduction();
+			setEligibleAmountForMaxLimit();
+
+		}
+
 	}
 
 	/**
@@ -171,21 +185,23 @@ public class SummaryDeduction {
 		 * 
 		 */
 
-//		// This condition indicates that there is no max limit for this section.
-//
-//		BigDecimal result = eligibleAmount.add(deduction.getEligibleDeduction());
-//		
-//		if (maxAmount.compareTo(new BigDecimal("0")) == 0) {
-//			eligibleAmount = result;
-//
-//		} else {
-//
-//			if (result.compareTo(maxAmount) >= 0) {
-//				eligibleAmount = maxAmount;
-//			} else {
-//				eligibleAmount = result;
-//			}
-//		}
+		// // This condition indicates that there is no max limit for this
+		// section.
+		//
+		// BigDecimal result =
+		// eligibleAmount.add(deduction.getEligibleDeduction());
+		//
+		// if (maxAmount.compareTo(new BigDecimal("0")) == 0) {
+		// eligibleAmount = result;
+		//
+		// } else {
+		//
+		// if (result.compareTo(maxAmount) >= 0) {
+		// eligibleAmount = maxAmount;
+		// } else {
+		// eligibleAmount = result;
+		// }
+		// }
 
 	}
 

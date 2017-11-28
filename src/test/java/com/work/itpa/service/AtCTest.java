@@ -27,9 +27,9 @@ public class AtCTest extends BaseTest {
 
 	@Test
 	public void scientificDonationTest() {
-		KieSession kSession = createDefaultSession();
+//		KieSession kSession = createDefaultSession();
 //
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+//		FinPerson fPerson = PersonUtil.getBachelorMale();
 //
 //		BigDecimal donation = new BigDecimal("20000.00");
 //

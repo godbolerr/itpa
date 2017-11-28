@@ -31,7 +31,7 @@ rule "ATGG1@{row.rowNumber}"
     											new BigDecimal(""+@{maxRentAllowed})  ,
     											"NA",
     											"@{sectionType}",
-    											$fpExpense.details );
+    											$fpExpense.details + " Hra Availved value is : " +  "@{hraAvailed}" );
     	insert($deduction);
 end
 end template
