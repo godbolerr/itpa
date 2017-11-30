@@ -16,8 +16,16 @@ public class Disease {
 	public BigDecimal amountSpent;
 	
 	public BigDecimal amountRecovered;
-
 	
+	
+	
+	public Disease() {
+		
+	}
+
+	public Disease(String name) {
+		this.name= name;
+	}	
 	
 	/**
 	 * @param name
