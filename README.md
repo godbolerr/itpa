@@ -15,12 +15,12 @@ Section completed
 
 1. To run the server
 
-mvn spring-boot:run
+mvn spring-boot:run -Dserver.port=8888
 
 
 2. To run the server without running test 
 
-mvn spring-boot:run -Dmaven.test.skip=true
+mvn spring-boot:run -Dmaven.test.skip=true -Dserver.port=8888
 
 
 3. To test all the scenarios
