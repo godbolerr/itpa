@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * Contains information about the evaluator
+ * 
+ * TODO Refactoring and documentation required.
  * 
  * @author developer
  *
@@ -32,72 +33,54 @@ public class FinPerson implements Serializable {
 	String aadharNumber;
 
 	String residentialStatus;
-	
-	String maritalStatus;
-	
-	String assesseeType;
-	
-	String assessmentYear;
-	
-	int noOfDependents;
-	
-	String locale;
-	
-	String currency;
-	
-	
-	
-	public BigDecimal grossTotalIncome;
 
-	Address address;
+	String maritalStatus;
+
+	String assesseeType;
+
+	String assessmentYear;
+
+	int noOfDependents;
+
+	String currency;
+
+	String locale;
 
 	List<Person> family;
 
-	
 	Disability disablity;
-	
-	Disease disease;
-	
-	
-	/**
-	 * Type of employment. TODO Enum
-	 * 
-	 */
-	String employmentType;
-	
-	
-	boolean rentedAccomodation;
-	
-	String hraAvailed;
 
-	List<PropertyDetails> propertyDetails;
+	Disease disease;
+
+	List<Income> incomes;
+
+	List<Expense> expenses;
+
+	public BigDecimal grossTotalIncome;
 
 	List<Loan> loans;
-	
-	List<Expense> expenses;
+
+	List<CapitalAsset> capitalAssets;
+
+	List<Investment> investments;
+
+	List<Insurance> insurances;
 
 	List<Donation> donations;
 	
-	List<Investment> investments;
 	
-	List<Income> incomes;
+	SystemFlag systemFlag;
 	
-	List<Person> allPersons;
 	
-	List<Insurance> insurances;
+	StatusFlag statusFlag;
 	
-	boolean donationToPoliticalParty;
-	boolean filedPatent;
-	boolean authoredBook;
-	boolean donationToResearch;
-	boolean savingAccountPresent;
 	
+
+	String hraAvailed;
 
 	public FinPerson() {
 	}
 
-	
-	
 	/**
 	 * @param dateOfBirth
 	 * @param gender
@@ -105,11 +88,11 @@ public class FinPerson implements Serializable {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public FinPerson(String name,String residentStatus, Date dateOfBirth, String gender, String relationShipCode, int disabilityPercent, String disease) {
-	//	super(name, residentStatus, dateOfBirth, gender, relationShipCode, disabilityPercent, disease);
+	public FinPerson(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode,
+			int disabilityPercent, String disease) {
+		// super(name, residentStatus, dateOfBirth, gender, relationShipCode,
+		// disabilityPercent, disease);
 	}
-
-
 
 	/**
 	 * @return the email
@@ -126,8 +109,6 @@ public class FinPerson implements Serializable {
 		this.email = email;
 	}
 
-	
-	
 	/**
 	 * @return the incomes
 	 */
@@ -135,16 +116,13 @@ public class FinPerson implements Serializable {
 		return incomes;
 	}
 
-
-
 	/**
-	 * @param incomes the incomes to set
+	 * @param incomes
+	 *            the incomes to set
 	 */
 	public void setIncomes(List<Income> incomes) {
 		this.incomes = incomes;
 	}
-
-
 
 	/**
 	 * @return the contactNumber
@@ -191,53 +169,6 @@ public class FinPerson implements Serializable {
 		this.aadharNumber = aadharNumber;
 	}
 
-
-	/**
-	 * @return the address
-	 */
-	public Address getAddress() {
-		return address;
-	}
-
-	/**
-	 * @param address
-	 *            the address to set
-	 */
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-
-	/**
-	 * @return the employmentType
-	 */
-	public String getEmploymentType() {
-		return employmentType;
-	}
-
-	/**
-	 * @param employmentType
-	 *            the employmentType to set
-	 */
-	public void setEmploymentType(String employmentType) {
-		this.employmentType = employmentType;
-	}
-
-	/**
-	 * @return the rentedAccomodation
-	 */
-	public boolean isRentedAccomodation() {
-		return rentedAccomodation;
-	}
-
-	/**
-	 * @param rentedAccomodation
-	 *            the rentedAccomodation to set
-	 */
-	public void setRentedAccomodation(boolean rentedAccomodation) {
-		this.rentedAccomodation = rentedAccomodation;
-	}
-
 	/**
 	 * @return the loans
 	 */
@@ -266,30 +197,6 @@ public class FinPerson implements Serializable {
 	 */
 	public void setDonations(List<Donation> donations) {
 		this.donations = donations;
-	}
-
-	/**
-	 * @return the propertyDetails
-	 */
-	public List<PropertyDetails> getPropertyDetails() {
-		return propertyDetails;
-	}
-
-	/**
-	 * @param propertyDetails
-	 *            the propertyDetails to set
-	 */
-	public void setPropertyDetails(List<PropertyDetails> propertyDetails) {
-		this.propertyDetails = propertyDetails;
-	}
-
-
-	public void addPropertyDetails(PropertyDetails details) {
-		if (this.propertyDetails == null) {
-			this.propertyDetails = new ArrayList<PropertyDetails>();
-		}
-		this.propertyDetails.add(details);
-
 	}
 
 	public void addLoan(Loan loan) {
@@ -329,8 +236,7 @@ public class FinPerson implements Serializable {
 		}
 		this.expenses.add(expense);
 	}
-	
-	
+
 	/**
 	 * @return the investments
 	 */
@@ -338,16 +244,13 @@ public class FinPerson implements Serializable {
 		return investments;
 	}
 
-
-
 	/**
-	 * @param investments the investments to set
+	 * @param investments
+	 *            the investments to set
 	 */
 	public void setInvestments(List<Investment> investments) {
 		this.investments = investments;
 	}
-
-
 
 	/**
 	 * @return the family
@@ -356,106 +259,13 @@ public class FinPerson implements Serializable {
 		return family;
 	}
 
-
-
 	/**
-	 * @param family the family to set
+	 * @param family
+	 *            the family to set
 	 */
 	public void setFamily(List<Person> family) {
 		this.family = family;
 	}
-
-
-
-	/**
-	 * @return the donationToPoliticalParty
-	 */
-	public boolean isDonationToPoliticalParty() {
-		return donationToPoliticalParty;
-	}
-
-
-
-	/**
-	 * @param donationToPoliticalParty the donationToPoliticalParty to set
-	 */
-	public void setDonationToPoliticalParty(boolean donationToPoliticalParty) {
-		this.donationToPoliticalParty = donationToPoliticalParty;
-	}
-
-
-
-	/**
-	 * @return the filedPatent
-	 */
-	public boolean isFiledPatent() {
-		return filedPatent;
-	}
-
-
-
-	/**
-	 * @param filedPatent the filedPatent to set
-	 */
-	public void setFiledPatent(boolean filedPatent) {
-		this.filedPatent = filedPatent;
-	}
-
-
-
-	/**
-	 * @return the authoredBook
-	 */
-	public boolean isAuthoredBook() {
-		return authoredBook;
-	}
-
-
-
-	/**
-	 * @param authoredBook the authoredBook to set
-	 */
-	public void setAuthoredBook(boolean authoredBook) {
-		this.authoredBook = authoredBook;
-	}
-
-
-
-	/**
-	 * @return the donationToResearch
-	 */
-	public boolean isDonationToResearch() {
-		return donationToResearch;
-	}
-
-
-
-	/**
-	 * @param donationToResearch the donationToResearch to set
-	 */
-	public void setDonationToResearch(boolean donationToResearch) {
-		this.donationToResearch = donationToResearch;
-	}
-
-
-
-	/**
-	 * @return the savingAccountPresent
-	 */
-	public boolean isSavingAccountPresent() {
-		return savingAccountPresent;
-	}
-
-
-
-	/**
-	 * @param savingAccountPresent the savingAccountPresent to set
-	 */
-	public void setSavingAccountPresent(boolean savingAccountPresent) {
-		this.savingAccountPresent = savingAccountPresent;
-	}
-
-
 
 	/**
 	 * @return the assesseeType
@@ -464,26 +274,13 @@ public class FinPerson implements Serializable {
 		return assesseeType;
 	}
 
-
 	/**
-	 * @param assesseeType the assesseeType to set
+	 * @param assesseeType
+	 *            the assesseeType to set
 	 */
 	public void setAssesseeType(String assesseeType) {
 		this.assesseeType = assesseeType;
 	}
-
-	
-	public List<Person> getAllPersons() {
-		return allPersons;
-	}
-
-
-
-	public void setAllPersons(List<Person> allPersons) {
-		this.allPersons = allPersons;
-	}
-
-
 
 	/**
 	 * @return the grossTotalIncome
@@ -492,18 +289,17 @@ public class FinPerson implements Serializable {
 		return grossTotalIncome;
 	}
 
-
-
 	/**
-	 * @param grossTotalIncome the grossTotalIncome to set
+	 * @param grossTotalIncome
+	 *            the grossTotalIncome to set
 	 */
 	public void setGrossTotalIncome(BigDecimal grossTotalIncome) {
 		this.grossTotalIncome = grossTotalIncome;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -517,9 +313,9 @@ public class FinPerson implements Serializable {
 		return result;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -559,8 +355,6 @@ public class FinPerson implements Serializable {
 		return true;
 	}
 
-
-
 	/**
 	 * @return the hraAvailed
 	 */
@@ -568,16 +362,13 @@ public class FinPerson implements Serializable {
 		return hraAvailed;
 	}
 
-
-
 	/**
-	 * @param hraAvailed the hraAvailed to set
+	 * @param hraAvailed
+	 *            the hraAvailed to set
 	 */
 	public void setHraAvailed(String hraAvailed) {
 		this.hraAvailed = hraAvailed;
 	}
-
-
 
 	/**
 	 * @return the expenses
@@ -586,16 +377,13 @@ public class FinPerson implements Serializable {
 		return expenses;
 	}
 
-
-
 	/**
-	 * @param expenses the expenses to set
+	 * @param expenses
+	 *            the expenses to set
 	 */
 	public void setExpenses(List<Expense> expenses) {
 		this.expenses = expenses;
 	}
-
-
 
 	/**
 	 * @return the residentialStatus
@@ -604,16 +392,13 @@ public class FinPerson implements Serializable {
 		return residentialStatus;
 	}
 
-
-
 	/**
-	 * @param residentialStatus the residentialStatus to set
+	 * @param residentialStatus
+	 *            the residentialStatus to set
 	 */
 	public void setResidentialStatus(String residentialStatus) {
 		this.residentialStatus = residentialStatus;
 	}
-
-
 
 	/**
 	 * @return the maritalStatus
@@ -622,16 +407,13 @@ public class FinPerson implements Serializable {
 		return maritalStatus;
 	}
 
-
-
 	/**
-	 * @param maritalStatus the maritalStatus to set
+	 * @param maritalStatus
+	 *            the maritalStatus to set
 	 */
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-
-
 
 	/**
 	 * @return the assessmentYear
@@ -640,16 +422,13 @@ public class FinPerson implements Serializable {
 		return assessmentYear;
 	}
 
-
-
 	/**
-	 * @param assessmentYear the assessmentYear to set
+	 * @param assessmentYear
+	 *            the assessmentYear to set
 	 */
 	public void setAssessmentYear(String assessmentYear) {
 		this.assessmentYear = assessmentYear;
 	}
-
-
 
 	/**
 	 * @return the disablity
@@ -658,16 +437,13 @@ public class FinPerson implements Serializable {
 		return disablity;
 	}
 
-
-
 	/**
-	 * @param disablity the disablity to set
+	 * @param disablity
+	 *            the disablity to set
 	 */
 	public void setDisablity(Disability disablity) {
 		this.disablity = disablity;
 	}
-
-
 
 	/**
 	 * @return the disease
@@ -676,16 +452,14 @@ public class FinPerson implements Serializable {
 		return disease;
 	}
 
-
-
 	/**
-	 * @param disease the disease to set
+	 * @param disease
+	 *            the disease to set
 	 */
 	public void setDisease(Disease disease) {
 		this.disease = disease;
 	}
-	
-	
+
 	/**
 	 * @return the noOfDependents
 	 */
@@ -693,16 +467,13 @@ public class FinPerson implements Serializable {
 		return noOfDependents;
 	}
 
-
-
 	/**
-	 * @param noOfDependents the noOfDependents to set
+	 * @param noOfDependents
+	 *            the noOfDependents to set
 	 */
 	public void setNoOfDependents(int noOfDependents) {
 		this.noOfDependents = noOfDependents;
 	}
-
-
 
 	/**
 	 * @return the locale
@@ -711,16 +482,13 @@ public class FinPerson implements Serializable {
 		return locale;
 	}
 
-
-
 	/**
-	 * @param locale the locale to set
+	 * @param locale
+	 *            the locale to set
 	 */
 	public void setLocale(String locale) {
 		this.locale = locale;
 	}
-
-
 
 	/**
 	 * @return the currency
@@ -729,16 +497,13 @@ public class FinPerson implements Serializable {
 		return currency;
 	}
 
-
-
 	/**
-	 * @param currency the currency to set
+	 * @param currency
+	 *            the currency to set
 	 */
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-
-
 
 	/**
 	 * @return the insurances
@@ -747,29 +512,71 @@ public class FinPerson implements Serializable {
 		return insurances;
 	}
 
-
-
 	/**
-	 * @param insurances the insurances to set
+	 * @param insurances
+	 *            the insurances to set
 	 */
 	public void setInsurances(List<Insurance> insurances) {
 		this.insurances = insurances;
 	}
 
-
-
-	public void addFamily(Person person ){
-		if ( this.family == null ){
+	public void addFamily(Person person) {
+		if (this.family == null) {
 			this.family = new ArrayList<Person>();
 		}
-		family.add(person);		
+		family.add(person);
 	}
-	
-	public void addInsurance(Insurance insurance ){
-		if ( this.insurances == null ){
+
+	public void addInsurance(Insurance insurance) {
+		if (this.insurances == null) {
 			this.insurances = new ArrayList<Insurance>();
 		}
-		insurances.add(insurance);		
+		insurances.add(insurance);
+	}
+
+	/**
+	 * @return the capitalAssets
+	 */
+	public List<CapitalAsset> getCapitalAssets() {
+		return capitalAssets;
+	}
+
+	/**
+	 * @param capitalAssets
+	 *            the capitalAssets to set
+	 */
+	public void setCapitalAssets(List<CapitalAsset> capitalAssets) {
+		this.capitalAssets = capitalAssets;
+	}
+
+	/**
+	 * @return the systemFlag
+	 */
+	public SystemFlag getSystemFlag() {
+		return systemFlag;
+	}
+
+	/**
+	 * @param systemFlag the systemFlag to set
+	 */
+	public void setSystemFlag(SystemFlag systemFlag) {
+		this.systemFlag = systemFlag;
+	}
+
+	/**
+	 * @return the statusFlag
+	 */
+	public StatusFlag getStatusFlag() {
+		return statusFlag;
+	}
+
+	/**
+	 * @param statusFlag the statusFlag to set
+	 */
+	public void setStatusFlag(StatusFlag statusFlag) {
+		this.statusFlag = statusFlag;
 	}
 	
+	
+
 }
