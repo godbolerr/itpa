@@ -28,7 +28,7 @@ public class Rule80QQBTest {
 
 	String sectionName80qqb = "80QQB";
 	
-	String summarysectionName80qqb = "80QQB_80RRB";
+	String summarysectionName80qqb = "80QQB";
 
 	@Rule
 	public TestName testName = new TestName();

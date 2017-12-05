@@ -30,7 +30,7 @@ public class Rule80RRBTest {
 	
 	@Rule public TestName testName = new TestName();
 	
-	String summarySectionName = "80QQB_80RRB";
+	String summarySectionName = "80RRB";
 	
 
 	@Test
@@ -130,7 +130,7 @@ public class Rule80RRBTest {
 		
 		String section80RRBName = "80RRB";
 		
-		String summarySectionQQBRRBName = "80QQB_80RRB";
+		String summarySectionQQBRRBName = "80RRB";
 		
 		BigDecimal incomerrb = new BigDecimal("202000.14");
 		

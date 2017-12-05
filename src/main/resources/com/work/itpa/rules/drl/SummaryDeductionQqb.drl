@@ -1,0 +1,36 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isSummmaryGreaterThanEligible;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+
+rule "Summarize 80QQB Specific donations - add donations "   
+    when
+        $summary : SummaryDeduction( sectionType == "80QQB")
+ 		$deduction : Deduction ( sectionType == "80QQB" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
+// This is not the right way to implement logic as it is hidden inside Java class and not in rules
+// Find way to extrat it out.
+
+
+rule "80QQB - Calculate Max for this deduction ..."   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80QQB"  )
+    then
+    	$summary.setEligibleAmountForMaxLimit();    	
+end
+
+
+

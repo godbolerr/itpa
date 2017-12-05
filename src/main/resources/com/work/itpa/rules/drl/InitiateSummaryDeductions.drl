@@ -9,10 +9,13 @@ rule "Initiate Summary Deductions"
 	then
 		System.out.println("Summary Objects initiated....");
 				
-		SummaryDeduction qqbrrb = new SummaryDeduction("80QQB_80RRB");
-		qqbrrb.setMaxAmount(new BigDecimal("300000"));
-		insert(qqbrrb);
+		SummaryDeduction qqb = new SummaryDeduction("80QQB");
+		qqb.setMaxAmount(new BigDecimal("300000"));
+		insert(qqb);
 		
+		SummaryDeduction rrb = new SummaryDeduction("80RRB");
+		rrb.setMaxAmount(new BigDecimal("300000"));
+		insert(rrb);
 		
 		SummaryDeduction tta = new SummaryDeduction("80TTA");
 		tta.setMaxAmount(new BigDecimal("10000"));

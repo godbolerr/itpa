@@ -10,20 +10,9 @@ import com.work.itpa.domain.SummaryDeduction;
 global java.util.List messages
 
 
-// QQB and RRB are combined into one.
-
-rule "Summarize 80QQB Specific donations - add donations "   
-    when
-        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
- 		$deduction : Deduction ( sectionType == "80QQB" )        
-    then
-    	$summary.addDeduction($deduction);
-end
-
-
 rule "Summarize 80RRB Specific donations - add donations "   
     when
-        $summary : SummaryDeduction( sectionType == "80QQB_80RRB")
+        $summary : SummaryDeduction( sectionType == "80RRB")
  		$deduction : Deduction ( sectionType == "80RRB" )        
     then
     	$summary.addDeduction($deduction);   	
@@ -34,13 +23,10 @@ end
 // Find way to extrat it out.
 
 
-rule "80QQB_80RRB - Calculate Max for this deduction ..."   
+rule "80RRB - Calculate Max for this deduction ..."   
 salience -100
     when
-    	$summary : SummaryDeduction( sectionType == "80QQB_80RRB"  )
+    	$summary : SummaryDeduction( sectionType == "80RRB"  )
     then
     	$summary.setEligibleAmountForMaxLimit();    	
 end
-
-
-
