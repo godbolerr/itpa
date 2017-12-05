@@ -51,7 +51,7 @@ public class TestAllSections {
 
 		BigDecimal expected80TTA = new BigDecimal("10000.00");
 
-		String summarySectionQQBRRBName = "80QQB_80RRB";
+		String summarySectionQQBRRBName = "80RRB";
 
 		BigDecimal incomerrb = new BigDecimal("202000.14");
 
