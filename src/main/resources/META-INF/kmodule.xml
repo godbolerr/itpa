@@ -46,6 +46,10 @@
 		
 		<!-- Rule 80CCD2 -->
 		
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80ccd2.drt" row="83" col="2" />	
+		
+		
 		
 		<!-- Rule 80CCD1B -->
 
