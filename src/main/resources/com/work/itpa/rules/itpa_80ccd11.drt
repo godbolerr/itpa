@@ -1,0 +1,47 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+hasSalary
+minAge
+maxAge
+maxBasicDAPct
+
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Investment;
+import com.work.itpa.domain.Person;
+
+template "ATCCD1 Rules - Pension Scheme Contribution "
+
+
+rule "ATCCD1_1@{row.rowNumber}"
+    when
+		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
+		$fpPerson :  Person   (	age  >= @{minAge} , 
+										age  <= @{maxAge} ,
+		        		 				relationShipCode == "SELF"  ) from $fp.family 	
+  		$fpInvestment: Investment( type == "PS_EMPLOYEE" ) from $fp.investments   
+		
+    then
+    	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
+    											lessOf(new BigDecimal(""+@{maxBasicDAPct}),$fpInvestment.amount)  ,
+    											new BigDecimal(""+@{maxBasicDAPct})  ,
+    											"NA",
+    											"@{sectionType}",
+    											$fpInvestment.details );
+    	insert($deduction);
+end
+end template
+

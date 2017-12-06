@@ -17,7 +17,16 @@
 			template="com/work/itpa/rules/itpa_80ccc.drt" row="49" col="2" />	
 
 		
-		<!-- Rule 80CCD1 -->
+		<!-- Rule 80CCD1 - 1 -->
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80ccd11.drt" row="65" col="2" />	
+
+		<!-- Rule 80CCD1 - 2 -->
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80ccd12.drt" row="73" col="2" />	
+
 		
 		<!-- Rule 80CCD2 -->
 		

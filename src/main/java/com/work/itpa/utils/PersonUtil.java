@@ -121,9 +121,27 @@ public class PersonUtil {
 
 		return self;
 
-		// return new Person("XXX", FiConstants.RESIDENT_RESIDENT, new Date(),
-		// FiConstants.GENDER_FEMALE,
-		// FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
+	}
+
+	/**
+	 * Return PERSON with relationshipCode
+	 * @param fPerson
+	 * @return
+	 */
+	public static Person getPersionWithRelation(FinPerson fPerson,String relationshipCode) {
+
+		Person p = null;
+
+		List<Person> family = fPerson.getFamily();
+
+		for (Iterator<Person> iterator = family.iterator(); iterator.hasNext();) {
+			Person person = iterator.next();
+			if (relationshipCode.equals(person.getRelationShipCode())) {
+				p = person;
+			}
+		}
+		return p;
+
 	}
 
 	public static FinPerson getBachelorMaleWithHUFMember() {
@@ -353,20 +371,20 @@ public class PersonUtil {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-//		try {
-//			mapper.writeValue(new File(inputJson), finPerson);
-//			mapper.writeValue(new File(outputJson), result);
-//
-//		} catch (JsonGenerationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JsonMappingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		// try {
+		// mapper.writeValue(new File(inputJson), finPerson);
+		// mapper.writeValue(new File(outputJson), result);
+		//
+		// } catch (JsonGenerationException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (JsonMappingException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 	}
 

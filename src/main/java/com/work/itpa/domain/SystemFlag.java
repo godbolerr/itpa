@@ -12,6 +12,8 @@ package com.work.itpa.domain;
 public class SystemFlag {
 	
 	Boolean hraAvailed;
+	
+	Boolean hasSalary;
 
 	/**
 	 * @return the hraAvailed
@@ -25,6 +27,20 @@ public class SystemFlag {
 	 */
 	public void setHraAvailed(Boolean hraAvailed) {
 		this.hraAvailed = hraAvailed;
+	}
+
+	/**
+	 * @return the hasSalary
+	 */
+	public Boolean getHasSalary() {
+		return hasSalary;
+	}
+
+	/**
+	 * @param hasSalary the hasSalary to set
+	 */
+	public void setHasSalary(Boolean hasSalary) {
+		this.hasSalary = hasSalary;
 	}
 	
 	
