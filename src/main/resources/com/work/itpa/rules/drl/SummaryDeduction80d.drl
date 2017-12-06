@@ -1,0 +1,21 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// 80D Specific deductionss - Need to consolidate
+
+rule "Summarize 80d Specific Deductions "   
+    when
+        $summary : SummaryDeduction( sectionType == "80D")
+ 		$deduction : Deduction ( sectionType == "80D" )        
+    then
+    	$summary.addDeduction($deduction);
+end

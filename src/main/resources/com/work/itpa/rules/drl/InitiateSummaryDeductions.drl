@@ -44,6 +44,8 @@ rule "Initiate Summary Deductions"
 		SummaryDeduction ate = new SummaryDeduction("80E");
 		insert(ate);			
 				
+		SummaryDeduction atd = new SummaryDeduction("80D");
+		insert(atd);
 		
 end
 
