@@ -1,0 +1,21 @@
+package com.work.itpa.rules;
+
+import java.util.List;
+import com.work.itpa.domain.FiConstants;
+
+import function com.work.itpa.utils.FiUtil.isLessThanEqualToMax;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.SummaryDeduction;
+
+global java.util.List messages
+
+
+// 80DD Specific deductionss
+
+rule "Summarize 80DD Specific to Disability "   
+    when
+        $summary : SummaryDeduction( sectionType == "80DD")
+ 		$deduction : Deduction ( sectionType == "80DD" )        
+    then
+    	$summary.addDeduction($deduction);
+end

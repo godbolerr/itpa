@@ -87,29 +87,5 @@ public class ItpaService {
 		return result;
 	}
 
-	private void insertSummaryDeductions(KieSession kSession, List<SummaryDeduction> summaryDeductions) {
-
-		summaryDeductions.add(new SummaryDeduction("80C", new BigDecimal("150000"),
-				"Benefits for 80C. Max limit is 1,50,000 "));
-		
-		summaryDeductions.add(new SummaryDeduction("80GGC", new BigDecimal("0"),
-				"All Donations for scientific research under 80GGC "));
-		summaryDeductions.add(new SummaryDeduction("80G", new BigDecimal("0"),
-				"All Donations for various schemes under 80G"));		
-
-//		summaryDeductions.add(new SummaryDeduction("80QQB_80RRB", new BigDecimal("300000"),
-//				"Royalty related to Books and Patents -  80QQB and 80RRB"));	
-		
-		summaryDeductions.add(new SummaryDeduction("80TTA", new BigDecimal("10000"),
-				"Interest Income TTA"));			
-		
-		
-
-		for (Iterator<SummaryDeduction> iterator = summaryDeductions.iterator(); iterator.hasNext();) {
-			SummaryDeduction summaryDeduction = (SummaryDeduction) iterator.next();
-			kSession.insert(summaryDeduction);
-
-		}
-	}
 
 }

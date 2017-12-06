@@ -72,6 +72,10 @@
 					
 		<!-- Rule 80DD -->
 		
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80dd.drt" row="181" col="2" />			
+		
 		<!-- Rule 80DDB -->
 		
 		<!-- Rule 80E -->

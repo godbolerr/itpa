@@ -10,13 +10,26 @@ package com.work.itpa.domain;
  *
  */
 public class SystemFlag {
-	
+
 	Boolean hraAvailed;
-	
+
 	Boolean hasSalary;
-	
+
 	Boolean hasDisabilitySelf;
-	
+
+	Boolean hasDisabledDependent;
+
+	public SystemFlag() {
+
+		hraAvailed = Boolean.FALSE;
+
+		hasSalary = Boolean.FALSE;
+
+		hasDisabilitySelf = Boolean.FALSE;
+
+		hasDisabledDependent = Boolean.FALSE;
+
+	}
 
 	/**
 	 * @return the hraAvailed
@@ -26,7 +39,8 @@ public class SystemFlag {
 	}
 
 	/**
-	 * @param hraAvailed the hraAvailed to set
+	 * @param hraAvailed
+	 *            the hraAvailed to set
 	 */
 	public void setHraAvailed(Boolean hraAvailed) {
 		this.hraAvailed = hraAvailed;
@@ -40,7 +54,8 @@ public class SystemFlag {
 	}
 
 	/**
-	 * @param hasSalary the hasSalary to set
+	 * @param hasSalary
+	 *            the hasSalary to set
 	 */
 	public void setHasSalary(Boolean hasSalary) {
 		this.hasSalary = hasSalary;
@@ -54,11 +69,25 @@ public class SystemFlag {
 	}
 
 	/**
-	 * @param hasDisabilitySelf the hasDisabilitySelf to set
+	 * @param hasDisabilitySelf
+	 *            the hasDisabilitySelf to set
 	 */
 	public void setHasDisabilitySelf(Boolean hasDisabilitySelf) {
 		this.hasDisabilitySelf = hasDisabilitySelf;
 	}
-	
-	
+
+	/**
+	 * @return the hasDisabledDependent
+	 */
+	public Boolean getHasDisabledDependent() {
+		return hasDisabledDependent;
+	}
+
+	/**
+	 * @param hasDisabledDependent the hasDisabledDependent to set
+	 */
+	public void setHasDisabledDependent(Boolean hasDisabledDependent) {
+		this.hasDisabledDependent = hasDisabledDependent;
+	}
+
 }

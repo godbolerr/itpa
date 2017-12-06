@@ -13,26 +13,26 @@ public class Disability {
 
 	String percentSelf;
 
-	String percentDependent;
+	String dependentDisabilityPercent;
 
 	String dependentRelation;
 
 	public Disability() {
 
 		this.percentSelf = "";
-		this.percentDependent = "";
+		this.dependentDisabilityPercent = "";
 		this.dependentRelation = "";
 	}
 
 	/**
 	 * @param percentSelf
-	 * @param percentDependent
+	 * @param dependentDisabilityPercent
 	 * @param dependentRelation
 	 */
-	public Disability(String percentSelf, String percentDependent, String dependentRelation) {
+	public Disability(String percentSelf, String dependentDisabilityPercent, String dependentRelation) {
 		super();
 		this.percentSelf = percentSelf;
-		this.percentDependent = percentDependent;
+		this.dependentDisabilityPercent = dependentDisabilityPercent;
 		this.dependentRelation = dependentRelation;
 	}
 
@@ -51,20 +51,6 @@ public class Disability {
 		this.percentSelf = percentSelf;
 	}
 
-	/**
-	 * @return the percentDependent
-	 */
-	public String getPercentDependent() {
-		return percentDependent;
-	}
-
-	/**
-	 * @param percentDependent
-	 *            the percentDependent to set
-	 */
-	public void setPercentDependent(String percentDependent) {
-		this.percentDependent = percentDependent;
-	}
 
 	/**
 	 * @return the dependentRelation
@@ -79,6 +65,20 @@ public class Disability {
 	 */
 	public void setDependentRelation(String dependentRelation) {
 		this.dependentRelation = dependentRelation;
+	}
+
+	/**
+	 * @return the dependentDisabilityPercent
+	 */
+	public String getDependentDisabilityPercent() {
+		return dependentDisabilityPercent;
+	}
+
+	/**
+	 * @param dependentDisabilityPercent the dependentDisabilityPercent to set
+	 */
+	public void setDependentDisabilityPercent(String dependentDisabilityPercent) {
+		this.dependentDisabilityPercent = dependentDisabilityPercent;
 	}
 
 }

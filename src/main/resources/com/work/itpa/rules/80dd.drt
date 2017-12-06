@@ -1,0 +1,38 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+hasDisabledDependent
+dependentDisabilityPercent
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.Loan;
+import function com.work.itpa.utils.FiUtil.percentOf;
+
+template "AT DD Rules for disability of Dependents "
+
+rule "ATDD@{row.rowNumber}"
+      when
+          $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" )
+    then
+    	Deduction $deduction = new Deduction( 	new BigDecimal(@{maxDeduction})  ,
+    											new BigDecimal(@{maxDeduction}) ,
+    											new BigDecimal(@{maxDeduction}) ,
+    											"NA",
+    											"@{sectionType}",
+    											"Disability Benefits for Dependent : Percent Disability for Dependent - @{dependentDisabilityPercent}" );
+    	insert($deduction);
+end
+end template
+
