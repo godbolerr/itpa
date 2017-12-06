@@ -21,6 +21,15 @@ rule "Summarize 80C Specific donations - add donations "
 end
 
 
+rule "Summarize 80CCC Specific donations - add donations to 80C "   
+    when
+        $summary : SummaryDeduction( sectionType == "80C")
+ 		$deduction : Deduction ( sectionType == "80CCC" )        
+    then
+    	$summary.addDeduction($deduction);
+end
+
+
 // This is not the right way to implement logic as it is hidden inside Java class and not in rules
 // Find way to extrat it out.
 
