@@ -38,9 +38,11 @@ public class Rule80DDTest {
 	@Test
 	public void testDisabilityDependentFourtyToSeventyNinePercent() {
 
-		BigDecimal disabilityDependentDeduction = new BigDecimal("25000");
+		BigDecimal disabilityDependentDeduction = new BigDecimal("75000");
 
 		FinPerson fPerson = PersonUtil.getBachelorMale();
+		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
+		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);		
 
 		SystemFlag sflag = new SystemFlag();
 		
@@ -48,12 +50,11 @@ public class Rule80DDTest {
 		
 		Disability disability = fPerson.getDisablity();
 		
-		disability.setDependentDisabilityPercent("80_MORE");
+		disability.setDependentDisabilityPercent("40_TO_79");
 
 		fPerson.setSystemFlag(sflag);
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 

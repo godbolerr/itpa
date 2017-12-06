@@ -20,11 +20,14 @@ import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Loan;
 import function com.work.itpa.utils.FiUtil.percentOf;
 
-template "AT DD Rules for disability of Dependents "
+template "ATDD Rules for disability of Dependents "
 
 rule "ATDD@{row.rowNumber}"
       when
-          $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" )
+          $fp : FinPerson( assesseeType == "@{assesseeType}" ,	
+          residentialStatus == "@{residentialStatus}",
+          disablity.dependentDisabilityPercent == "@{dependentDisabilityPercent}"
+           )
     then
     	Deduction $deduction = new Deduction( 	new BigDecimal(@{maxDeduction})  ,
     											new BigDecimal(@{maxDeduction}) ,
