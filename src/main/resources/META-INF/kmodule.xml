@@ -4,11 +4,27 @@
 	<kbase name="ItpaDataKb" default="true" packages="com.work.itpa.rules, com.work.itpa.rules.drl">
 		
 		
-		<!-- Rule 80 C -->		
+		<!-- Rule 80 C 1 -->		
 			
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
-			template="com/work/itpa/rules/itpa_80c.drt" row="6" col="2" />	
+			template="com/work/itpa/rules/itpa_80c1.drt" row="5" col="2" />	
 
+		<!-- Rule 80 C 2 -->		
+			
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80c2.drt" row="27" col="2" />	
+
+
+		<!-- Rule 80 C 3 -->		
+			
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80c3.drt" row="36" col="2" />	
+
+
+		<!-- Rule 80 C 4 	-->	
+			
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80c4.drt" row="41" col="2" />	
  		
  
 		<!-- Rule 80CCC -->

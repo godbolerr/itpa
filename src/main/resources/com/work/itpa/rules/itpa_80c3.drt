@@ -1,0 +1,42 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+type
+maxDeduction
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import function com.work.itpa.utils.FiUtil.lessOf;
+import com.work.itpa.domain.Investment;
+import com.work.itpa.domain.Expense;
+import com.work.itpa.domain.Loan;
+import com.work.itpa.domain.Insurance;
+
+
+template "ATC 3 Loan related deductions "
+
+rule "ATC3_Loans_@{row.rowNumber}"
+       when
+        $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
+        $fpLoan :  Loan   (	type == "@{type}") from $fp.loans   
+    then
+    	Deduction $deduction = new Deduction( 	$fpLoan.principalPaidPerAnum,
+    											lessOf(new BigDecimal(""+@{maxDeduction}),$fpLoan.principalPaidPerAnum)  ,
+    											new BigDecimal(""+@{maxDeduction})  ,
+    											"",
+    											"@{sectionType}",
+    											$fpLoan.details + ":" + " @{type} " );
+    	insert($deduction);
+end
+
+end template

@@ -3,15 +3,11 @@
  */
 package com.work.itpa.utils;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Donation;
@@ -23,7 +19,9 @@ import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 import com.work.itpa.domain.PropertyDetails;
+import com.work.itpa.domain.StatusFlag;
 import com.work.itpa.domain.SummaryDeduction;
+import com.work.itpa.domain.SystemFlag;
 
 /**
  * Generate person data based on certain conditions
@@ -47,6 +45,15 @@ public class PersonUtil {
 		fPerson.setPanNumber("OPDID9987A");
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(new BigDecimal("200000"));
+		
+		SystemFlag sflag = new SystemFlag();
+		sflag.setHasSalary(Boolean.FALSE);
+		
+		fPerson.setSystemFlag(sflag);
+		
+		StatusFlag statusFlag = new StatusFlag();
+		
+		fPerson.setStatusFlag(statusFlag);
 
 		Person self = new Person();
 		self.setFirstName("Ram");

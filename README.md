@@ -57,6 +57,8 @@ TODO:
 	6. Equals,hashcode and toString for each domain object.
 	7. Add Unit Tests to Cover all the data scenarios for all sections. 
 	8. Write rules with unit tests for the sections remaining 
+	9. Handle NPE in rules
+	
 	
 	
 	
