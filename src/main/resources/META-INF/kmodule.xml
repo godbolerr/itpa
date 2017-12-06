@@ -78,6 +78,14 @@
 		
 		<!-- Rule 80DDB -->
 		
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80ddb1.drt" row="201" col="2" />		
+			
+		<!-- Rule 80DDB -->
+		
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80ddb2.drt" row="210" col="2" />					
+		
 		<!-- Rule 80E -->
 		
 		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"

@@ -18,6 +18,8 @@ public class SystemFlag {
 	Boolean hasDisabilitySelf;
 
 	Boolean hasDisabledDependent;
+	
+	Boolean hasDisease;
 
 	public SystemFlag() {
 
@@ -28,6 +30,8 @@ public class SystemFlag {
 		hasDisabilitySelf = Boolean.FALSE;
 
 		hasDisabledDependent = Boolean.FALSE;
+		
+		hasDisease =  Boolean.FALSE;
 
 	}
 
@@ -88,6 +92,20 @@ public class SystemFlag {
 	 */
 	public void setHasDisabledDependent(Boolean hasDisabledDependent) {
 		this.hasDisabledDependent = hasDisabledDependent;
+	}
+
+	/**
+	 * @return the hasDisease
+	 */
+	public Boolean getHasDisease() {
+		return hasDisease;
+	}
+
+	/**
+	 * @param hasDisease the hasDisease to set
+	 */
+	public void setHasDisease(Boolean hasDisease) {
+		this.hasDisease = hasDisease;
 	}
 
 }

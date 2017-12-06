@@ -53,6 +53,10 @@ rule "Initiate Summary Deductions"
 		SummaryDeduction atdd = new SummaryDeduction("80DD");
 		insert(atdd);	
 		
+		SummaryDeduction atddb = new SummaryDeduction("80DDB");
+		insert(atddb);
+		
+		System.out.println("Summary deductions initiated....");
 end
 
 /**

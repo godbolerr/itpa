@@ -1,0 +1,40 @@
+template header
+id
+assessmentYear
+ruleTemplate
+status
+name
+sectionType
+assesseeType
+residentialStatus
+dependentAge
+maxDeduction
+
+
+package com.work.itpa.rules;
+
+import java.util.List;
+import java.math.BigDecimal;
+import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Investment;
+import com.work.itpa.domain.Person;
+
+template "ATDDB 2 Rules - Treatment of specified disease for Dependent "
+
+rule "ATDDB2_@{row.rowNumber}"
+    when
+		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , disease.dependentAge == "@{dependentAge}",  $fpDisease : disease ) 
+    then
+    	System.out.println("Dependent has disease");
+    	Deduction $deduction = new Deduction( 	$fpDisease.amountSpent.subtract($fpDisease.amountRecovered) ,
+    											lessOf(new BigDecimal(""+@{maxDeduction}),$fpDisease.amountSpent.subtract($fpDisease.amountRecovered) ) ,
+    											new BigDecimal(""+@{maxDeduction})  ,
+    											"NA",
+    											"@{sectionType}",
+    											"Treatment of disease for dependent ");
+    	insert($deduction);
+end
+end template
+

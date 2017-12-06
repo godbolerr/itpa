@@ -6,44 +6,42 @@ package com.work.itpa.domain;
 import java.math.BigDecimal;
 
 public class Disease {
-	
-	String name ;
-	
-	String dependentRelation ;
-	
-	String ageOfDependent;
-	
+
+	String name;
+
+	String dependentRelation;
+
+	String dependentAge;
+
 	public BigDecimal amountSpent;
-	
+
 	public BigDecimal amountRecovered;
-	
-	
-	
+
 	public Disease() {
-		
+
 		this.name = "";
 		this.dependentRelation = "";
-		this.ageOfDependent = "";
-		
+		this.dependentAge = "";
+
 	}
 
 	public Disease(String name) {
-		this.name= name;
-	}	
-	
+		this.name = name;
+	}
+
 	/**
 	 * @param name
 	 * @param dependentRelation
-	 * @param ageOfDependent
+	 * @param dependentAge
 	 * @param amountSpent
 	 * @param amountRecovered
 	 */
-	public Disease(String name, String dependentRelation, String ageOfDependent, BigDecimal amountSpent,
+	public Disease(String name, String dependentRelation, String dependentAge, BigDecimal amountSpent,
 			BigDecimal amountRecovered) {
 		super();
 		this.name = name;
 		this.dependentRelation = dependentRelation;
-		this.ageOfDependent = ageOfDependent;
+		this.dependentAge = dependentAge;
 		this.amountSpent = amountSpent;
 		this.amountRecovered = amountRecovered;
 	}
@@ -56,7 +54,8 @@ public class Disease {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -70,24 +69,11 @@ public class Disease {
 	}
 
 	/**
-	 * @param dependentRelation the dependentRelation to set
+	 * @param dependentRelation
+	 *            the dependentRelation to set
 	 */
 	public void setDependentRelation(String dependentRelation) {
 		this.dependentRelation = dependentRelation;
-	}
-
-	/**
-	 * @return the ageOfDependent
-	 */
-	public String getAgeOfDependent() {
-		return ageOfDependent;
-	}
-
-	/**
-	 * @param ageOfDependent the ageOfDependent to set
-	 */
-	public void setAgeOfDependent(String ageOfDependent) {
-		this.ageOfDependent = ageOfDependent;
 	}
 
 	/**
@@ -98,7 +84,8 @@ public class Disease {
 	}
 
 	/**
-	 * @param amountSpent the amountSpent to set
+	 * @param amountSpent
+	 *            the amountSpent to set
 	 */
 	public void setAmountSpent(BigDecimal amountSpent) {
 		this.amountSpent = amountSpent;
@@ -112,13 +99,25 @@ public class Disease {
 	}
 
 	/**
-	 * @param amountRecovered the amountRecovered to set
+	 * @param amountRecovered
+	 *            the amountRecovered to set
 	 */
 	public void setAmountRecovered(BigDecimal amountRecovered) {
 		this.amountRecovered = amountRecovered;
 	}
-	
-	
-	
+
+	/**
+	 * @return the dependentAge
+	 */
+	public String getDependentAge() {
+		return dependentAge;
+	}
+
+	/**
+	 * @param dependentAge the dependentAge to set
+	 */
+	public void setDependentAge(String dependentAge) {
+		this.dependentAge = dependentAge;
+	}
 
 }
