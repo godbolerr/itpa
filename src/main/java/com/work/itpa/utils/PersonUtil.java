@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
+import com.work.itpa.domain.Disability;
+import com.work.itpa.domain.Disease;
 import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.Expense;
 import com.work.itpa.domain.FiConstants;
@@ -46,8 +48,17 @@ public class PersonUtil {
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(new BigDecimal("200000"));
 		
+		
+		Disability disablity = new Disability("", "", "");
+		fPerson.setDisablity(disablity);
+		
+		Disease disease = new Disease();
+		fPerson.setDisease(disease);
+		
+		
 		SystemFlag sflag = new SystemFlag();
 		sflag.setHasSalary(Boolean.FALSE);
+		sflag.setHasDisabilitySelf(Boolean.FALSE);
 		
 		fPerson.setSystemFlag(sflag);
 		

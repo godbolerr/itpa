@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 public class Disease {
 	
-	String name;
+	String name ;
 	
-	String dependentRelation;
+	String dependentRelation ;
 	
 	String ageOfDependent;
 	
@@ -20,6 +20,10 @@ public class Disease {
 	
 	
 	public Disease() {
+		
+		this.name = "";
+		this.dependentRelation = "";
+		this.ageOfDependent = "";
 		
 	}
 

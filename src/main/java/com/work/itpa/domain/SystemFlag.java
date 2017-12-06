@@ -14,6 +14,9 @@ public class SystemFlag {
 	Boolean hraAvailed;
 	
 	Boolean hasSalary;
+	
+	Boolean hasDisabilitySelf;
+	
 
 	/**
 	 * @return the hraAvailed
@@ -41,6 +44,20 @@ public class SystemFlag {
 	 */
 	public void setHasSalary(Boolean hasSalary) {
 		this.hasSalary = hasSalary;
+	}
+
+	/**
+	 * @return the hasDisabilitySelf
+	 */
+	public Boolean getHasDisabilitySelf() {
+		return hasDisabilitySelf;
+	}
+
+	/**
+	 * @param hasDisabilitySelf the hasDisabilitySelf to set
+	 */
+	public void setHasDisabilitySelf(Boolean hasDisabilitySelf) {
+		this.hasDisabilitySelf = hasDisabilitySelf;
 	}
 	
 	

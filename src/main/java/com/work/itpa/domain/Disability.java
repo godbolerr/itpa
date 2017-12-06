@@ -3,18 +3,26 @@
  */
 package com.work.itpa.domain;
 
-
+/**
+ * Initiatlize with non null values
+ * 
+ * @author Developer
+ *
+ */
 public class Disability {
 
-	
 	String percentSelf;
-	
+
 	String percentDependent;
-	
+
 	String dependentRelation;
-	
-	
-	
+
+	public Disability() {
+
+		this.percentSelf = "";
+		this.percentDependent = "";
+		this.dependentRelation = "";
+	}
 
 	/**
 	 * @param percentSelf
@@ -36,7 +44,8 @@ public class Disability {
 	}
 
 	/**
-	 * @param percentSelf the percentSelf to set
+	 * @param percentSelf
+	 *            the percentSelf to set
 	 */
 	public void setPercentSelf(String percentSelf) {
 		this.percentSelf = percentSelf;
@@ -50,7 +59,8 @@ public class Disability {
 	}
 
 	/**
-	 * @param percentDependent the percentDependent to set
+	 * @param percentDependent
+	 *            the percentDependent to set
 	 */
 	public void setPercentDependent(String percentDependent) {
 		this.percentDependent = percentDependent;
@@ -64,11 +74,11 @@ public class Disability {
 	}
 
 	/**
-	 * @param dependentRelation the dependentRelation to set
+	 * @param dependentRelation
+	 *            the dependentRelation to set
 	 */
 	public void setDependentRelation(String dependentRelation) {
 		this.dependentRelation = dependentRelation;
 	}
-	
-	
+
 }

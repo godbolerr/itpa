@@ -65,7 +65,11 @@
 		
 		
 		<!-- Rule 80U -->
-		
+
+		<ruleTemplate dtable="com/work/itpa/rules/itpa.xls"
+			template="com/work/itpa/rules/itpa_80u.drt" row="163" col="2" />	
+			
+					
 		<!-- Rule 80DD -->
 		
 		<!-- Rule 80DDB -->
