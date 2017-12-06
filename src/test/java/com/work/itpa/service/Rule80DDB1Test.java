@@ -74,7 +74,7 @@ public class Rule80DDB1Test {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ddb, expectedAtDdbAmount);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ddb, amountSpent.subtract(amountRecovered));
 
 		assertTrue(result);
 

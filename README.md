@@ -7,13 +7,19 @@ Section completed
 4. 80gga
 5. 80ggc
 6. 80g
-7. 80c - Premium Aggregation - Need to discuss, Break into smaller chunks based on type of head
+7. 80c - Premium Aggregation - Need to discuss
 8. 80gg
 9. 80e
 10. 80ccd1b
 11. 80ccc
 12. 80CCD1 - Testing is not complete
 13. 
+
+
+All test passing. Some logic needs to revisited for sections covered today.
+Aggregation AGTI to be worked on.
+
+
 
 1. To run the server
 
