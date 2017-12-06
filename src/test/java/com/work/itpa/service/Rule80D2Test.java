@@ -41,7 +41,7 @@ public class Rule80D2Test {
 		
 		BigDecimal healthCheckupExpenses = new BigDecimal("75000");
 		
-		BigDecimal expectedAmount80d = new BigDecimal("75000");
+		BigDecimal expectedAmount80d = new BigDecimal("5000");
 		
 		fPerson.addExpense(new Expense(healthCheckupExpenses,"PRV_HEALTH_CHK","Prventive Health Checkup "));
 		
