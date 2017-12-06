@@ -23,8 +23,15 @@ public class Insurance {
 	public BigDecimal sumAssured;
 
 	public Integer healthCover;
-	
-	
+
+	public String details;
+
+	public Insurance(String type, BigDecimal premium, String details) {
+		super();
+		this.type = type;
+		this.premium = premium;
+		this.details = details;
+	}
 
 	/**
 	 * @param type
@@ -53,7 +60,8 @@ public class Insurance {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -67,7 +75,8 @@ public class Insurance {
 	}
 
 	/**
-	 * @param typeOfPolicy the typeOfPolicy to set
+	 * @param typeOfPolicy
+	 *            the typeOfPolicy to set
 	 */
 	public void setTypeOfPolicy(String typeOfPolicy) {
 		this.typeOfPolicy = typeOfPolicy;
@@ -81,7 +90,8 @@ public class Insurance {
 	}
 
 	/**
-	 * @param policyFor the policyFor to set
+	 * @param policyFor
+	 *            the policyFor to set
 	 */
 	public void setPolicyFor(String policyFor) {
 		this.policyFor = policyFor;
@@ -95,7 +105,8 @@ public class Insurance {
 	}
 
 	/**
-	 * @param premium the premium to set
+	 * @param premium
+	 *            the premium to set
 	 */
 	public void setPremium(BigDecimal premium) {
 		this.premium = premium;
@@ -109,7 +120,8 @@ public class Insurance {
 	}
 
 	/**
-	 * @param sumAssured the sumAssured to set
+	 * @param sumAssured
+	 *            the sumAssured to set
 	 */
 	public void setSumAssured(BigDecimal sumAssured) {
 		this.sumAssured = sumAssured;
@@ -123,13 +135,25 @@ public class Insurance {
 	}
 
 	/**
-	 * @param healthCover the healthCover to set
+	 * @param healthCover
+	 *            the healthCover to set
 	 */
 	public void setHealthCover(Integer healthCover) {
 		this.healthCover = healthCover;
 	}
-	
-	
-	
 
+	/**
+	 * @return the details
+	 */
+	public String getDetails() {
+		return details;
+	}
+
+	/**
+	 * @param details
+	 *            the details to set
+	 */
+	public void setDetails(String details) {
+		this.details = details;
+	}
 }

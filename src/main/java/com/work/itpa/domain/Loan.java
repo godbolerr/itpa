@@ -56,6 +56,20 @@ public class Loan {
 		this.interestPaidPerAnum = interestPaidPerAnum;
 
 	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @param interestPaidPerAnum
+	 */
+	public Loan(String type, BigDecimal interestPaidPerAnum,BigDecimal principalPaidPerAnum,String details) {
+
+		this.type = type;
+		this.interestPaidPerAnum = interestPaidPerAnum;
+		this.principalPaidPerAnum = principalPaidPerAnum;
+		this.details = details;
+
+	}	
 
 	/**
 	 * @param interestPaidPerAnum
