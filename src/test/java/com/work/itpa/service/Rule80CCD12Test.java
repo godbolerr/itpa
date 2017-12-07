@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 import com.work.itpa.domain.SystemFlag;
@@ -49,12 +50,12 @@ public class Rule80CCD12Test {
 		
 		fPerson.setSystemFlag(sflag);
 		
-
 		BigDecimal pensionSchemeCCD1Amount = new BigDecimal("40000");
-
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
+		
+		BigDecimal grossTotalIncome = new BigDecimal("500000");
+		
+		fPerson.addIncome(new Income(grossTotalIncome,Income.Type.GROSS_TOTAL,Income.Source.NA,"Gross Total Income"));
+		
 		fPerson.addInvestment(new Investment(pensionSchemeCCD1Amount, "PS_SELF", "Investment in Pension Scheme by Self employed person "));
 
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);

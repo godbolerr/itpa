@@ -53,11 +53,18 @@ public class Rule80CCD11Test {
 
 		BigDecimal basicIncome = new BigDecimal("40000");
 		BigDecimal daIncome = new BigDecimal("10000");
+		
+		BigDecimal pensionSchemeContribution = new BigDecimal("10000");
+		
 
 		fPerson.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
 		
-
 		fPerson.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
+		
+		fPerson.addInvestment(new Investment(pensionSchemeContribution, "PS_EMPLOYEE", "Investment in Pension Scheme by Employee "));
+		
+		
+		
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -69,7 +76,7 @@ public class Rule80CCD11Test {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11, basicIncome.add(daIncome).multiply(new BigDecimal("0.1")));
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11, new BigDecimal("5000"));
 
 		assertTrue(result);
 

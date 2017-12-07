@@ -23,22 +23,33 @@ import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 
+import function com.work.itpa.utils.FiUtil.percentOf;
+
+
 template "ATCCD1 Rules - Pension Scheme Contribution "
 
+
+//TODO Handle multiple incomes under the same head
+//TODO Handle multiple investments under the same head.
 
 rule "ATCCD1_1@{row.rowNumber}"
     when
 		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
 		$fpPerson :  Person   (	age  >= @{minAge} , 
 										age  <= @{maxAge} ,
-		        		 				relationShipCode == "SELF"  ) from $fp.family 			
+		        		 				relationShipCode == "SELF"  ) from $fp.family 	
+		        		 				
+		$fpBasicIncome: Income( type == Income.Type.BASIC_SALARY ) from $fp.incomes
+		$fpDearnessAllowance: Income ( type == Income.Type.DEARNESS_ALLOWANCE ) from $fp.incomes
+		$fp: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
+				
     then
-    	Deduction $deduction = new Deduction( 	$fp.,
-    											lessOf(new BigDecimal(""+@{maxBasicDAPct}),$fpInvestment.amount)  ,
-    											new BigDecimal(""+@{maxBasicDAPct})  ,
+    	Deduction $deduction = new Deduction( 	percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
+    											percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
+    											percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
     											"NA",
     											"@{sectionType}",
-    											$fpInvestment.details );
+    											"Contribution to Pension Scheme" );
     	insert($deduction);
 end
 end template
