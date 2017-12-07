@@ -44,7 +44,7 @@ public class Rule80DDB1Test {
 
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 
-		Person self = PersonUtil.getPersionWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
 
 		SystemFlag sflag = new SystemFlag();

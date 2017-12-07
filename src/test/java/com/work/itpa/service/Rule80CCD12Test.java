@@ -40,7 +40,7 @@ public class Rule80CCD12Test {
 	public void test80CCD1PensionSchemeInvestmentEmployeeSelf() {
 
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		Person self = PersonUtil.getPersionWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);		
 		
 		SystemFlag sflag = new SystemFlag();

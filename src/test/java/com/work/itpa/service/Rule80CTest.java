@@ -158,10 +158,8 @@ public class Rule80CTest {
 	
 
 	@Test
-	public void test80CTutionFees() {
+	public void test80c2ExpensesTutionFees() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
 		BigDecimal tutionFeeExpense = new BigDecimal("75000");
 		
@@ -193,18 +191,16 @@ public class Rule80CTest {
 
 	}	
 	
-	
+
 	@Test
-	public void test80CTutionFeesExceedMax() {
+	public void test80c2ExpensesTutionFeesExceedMax() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
 		BigDecimal tutionFeeExpense = new BigDecimal("175000");
 		
 		BigDecimal expectedAmount80c = new BigDecimal("150000");
 		
-		fPerson.addExpense(new Expense(tutionFeeExpense,"TUTION_FEES","Tution Fee for daughter's higher education "));
+		fPerson.addExpense(new Expense(tutionFeeExpense,"TUTION_FEES","Tution Fee for son "));
 		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
@@ -232,12 +228,8 @@ public class Rule80CTest {
 	
 	
 	@Test
-	public void test80CPropertyLoanPrincipalRepayment() {
+	public void test80c3LoanPropertyLoanPrincipalRepayment() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		
-		
 		
 		BigDecimal interestRepayment = new BigDecimal("7000");
 		
@@ -274,12 +266,9 @@ public class Rule80CTest {
 	
 	
 	@Test
-	public void test80CPropertyLoanPrincipalRepaymentExeedsMax() {
+	public void test80c3ExpensePropertyLoanPrincipalRepaymentExeedsMax() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		
-		
+	
 		
 		BigDecimal interestRepayment = new BigDecimal("7000");
 		
@@ -317,7 +306,7 @@ public class Rule80CTest {
 	
 
 	@Test
-	public void test80CLifeInsurancePremiumSingle() {
+	public void test80c4InsuranceLifeInsurancePremiumSingle() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
@@ -357,12 +346,9 @@ public class Rule80CTest {
 		
 
 	@Test
-	public void test80CLifeInsurancePremiumTwoTimes() {
+	public void test80c4InsuranceLifeInsurancePremiumTwoTimes() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		
-		
+	
 		
 		BigDecimal lifeInsurancePremiumPaidLic = new BigDecimal("70000");
 		
@@ -407,7 +393,7 @@ public class Rule80CTest {
 	
 
 	@Test
-	public void test80CLifeInsuranceAndPropertyPremium() {
+	public void test80c4InsuranceLifeInsuranceAndPropertyPremiumExceedsMax() {
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);

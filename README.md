@@ -2,8 +2,9 @@
 Section completed
 
 
-
-
+1. 80C - Divided into 4 sections 
+2. 80CCC - cateogory type is ignored
+3. 
 
 
 

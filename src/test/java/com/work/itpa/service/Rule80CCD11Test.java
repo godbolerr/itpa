@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.work.itpa.domain.FiConstants;
 import com.work.itpa.domain.FinPerson;
 import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 import com.work.itpa.domain.SystemFlag;
@@ -41,7 +42,7 @@ public class Rule80CCD11Test {
 
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		
-		Person self = PersonUtil.getPersionWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
 		
 		SystemFlag sflag = new SystemFlag();
@@ -50,13 +51,14 @@ public class Rule80CCD11Test {
 		
 		fPerson.setSystemFlag(sflag);
 
-		BigDecimal pensionSchemeCCD1Amount = new BigDecimal("40000");
+		BigDecimal basicIncome = new BigDecimal("40000");
+		BigDecimal daIncome = new BigDecimal("10000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		fPerson.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
+		
 
-		fPerson.addInvestment(new Investment(pensionSchemeCCD1Amount, "PS_EMPLOYEE", "Investment in Pension Scheme"));
-
+		fPerson.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
+		
 		FinPersonResult finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
@@ -67,7 +69,7 @@ public class Rule80CCD11Test {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11, pensionSchemeCCD1Amount);
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11, basicIncome.add(daIncome).multiply(new BigDecimal("0.1")));
 
 		assertTrue(result);
 

@@ -31,11 +31,9 @@ rule "ATCCD1_1@{row.rowNumber}"
 		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
 		$fpPerson :  Person   (	age  >= @{minAge} , 
 										age  <= @{maxAge} ,
-		        		 				relationShipCode == "SELF"  ) from $fp.family 	
-  		$fpInvestment: Investment( type == "PS_EMPLOYEE" ) from $fp.investments   
-		
+		        		 				relationShipCode == "SELF"  ) from $fp.family 			
     then
-    	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
+    	Deduction $deduction = new Deduction( 	$fp.,
     											lessOf(new BigDecimal(""+@{maxBasicDAPct}),$fpInvestment.amount)  ,
     											new BigDecimal(""+@{maxBasicDAPct})  ,
     											"NA",

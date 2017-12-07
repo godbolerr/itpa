@@ -151,7 +151,7 @@ public class PersonUtil {
 	 * @param fPerson
 	 * @return
 	 */
-	public static Person getPersionWithRelation(FinPerson fPerson,String relationshipCode) {
+	public static Person getPersonWithRelation(FinPerson fPerson,String relationshipCode) {
 
 		Person p = null;
 
