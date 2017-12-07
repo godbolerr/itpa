@@ -54,7 +54,7 @@ public class Rule80CCD11Test {
 		BigDecimal basicIncome = new BigDecimal("40000");
 		BigDecimal daIncome = new BigDecimal("10000");
 		
-		BigDecimal pensionSchemeContribution = new BigDecimal("10000");
+		BigDecimal pensionSchemeContribution = new BigDecimal("3000");
 		
 
 		fPerson.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
@@ -76,7 +76,7 @@ public class Rule80CCD11Test {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11, new BigDecimal("5000"));
+		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ccd11,pensionSchemeContribution);
 
 		assertTrue(result);
 

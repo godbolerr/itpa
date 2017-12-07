@@ -24,7 +24,7 @@ import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 
 import function com.work.itpa.utils.FiUtil.percentOf;
-
+import function com.work.itpa.utils.FiUtil.lessOf;
 
 template "ATCCD1 Rules - Pension Scheme Contribution "
 
@@ -41,12 +41,14 @@ rule "ATCCD1_1@{row.rowNumber}"
 		        		 				
 		$fpBasicIncome: Income( type == Income.Type.BASIC_SALARY ) from $fp.incomes
 		$fpDearnessAllowance: Income ( type == Income.Type.DEARNESS_ALLOWANCE ) from $fp.incomes
-		$fpInvestmen: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
+		$fpInvestment: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
 				
     then
-    	Deduction $deduction = new Deduction( 	percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
-    											percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
-    											percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
+    	BigDecimal $allowedDeduction = percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ;
+    	
+    	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
+    											lessOf( $fpInvestment.amount, $allowedDeduction )
+    											$allowedDeduction ,
     											"NA",
     											"@{sectionType}",
     											"Contribution to Pension Scheme" );
