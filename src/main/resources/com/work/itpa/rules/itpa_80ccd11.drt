@@ -41,7 +41,7 @@ rule "ATCCD1_1@{row.rowNumber}"
 		        		 				
 		$fpBasicIncome: Income( type == Income.Type.BASIC_SALARY ) from $fp.incomes
 		$fpDearnessAllowance: Income ( type == Income.Type.DEARNESS_ALLOWANCE ) from $fp.incomes
-		$fp: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
+		$fpInvestmen: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
 				
     then
     	Deduction $deduction = new Deduction( 	percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ,
