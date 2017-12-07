@@ -36,13 +36,14 @@ public class Rule80CTest {
 	String sectionName80c = "80C";
 
 	@Test
-	public void test80CPPFContribution() {
+	public void test80c1InvestmentPpf() {
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal providentFundAmount80c = new BigDecimal("40000");
 		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		BigDecimal maxDeduction80c = new BigDecimal("150000");
+		
 		
 		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
@@ -56,7 +57,7 @@ public class Rule80CTest {
 
 		assertTrue(result);
 
-		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80c, providentFundAmount80c);
+		result = PersonUtil.hasSectionWithAllAmounts(finResult.getDeductions(), sectionName80c, providentFundAmount80c,providentFundAmount80c,maxDeduction80c);
 
 		assertTrue(result);
 		
@@ -67,9 +68,49 @@ public class Rule80CTest {
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
 
 	}
+
 	
 	@Test
-	public void test80CPPFandSCCSContribution() {
+	public void test80c1InvestmentPpfExceedingMax() {
+		
+		FinPerson fPerson = PersonUtil.getBachelorMale();
+		
+		BigDecimal providentFundAmount80c = new BigDecimal("151000");
+		
+		BigDecimal maxDeduction80c = new BigDecimal("150000");
+		
+		
+		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
+		
+		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+
+		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), sectionName80c, 1);
+
+		assertTrue(result);
+
+		result = PersonUtil.hasSectionWithAllAmounts(finResult.getDeductions(), sectionName80c, providentFundAmount80c,maxDeduction80c,maxDeduction80c);
+
+		assertTrue(result);
+		
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80c, maxDeduction80c);
+
+		assertEquals(true, result);
+		
+		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+
+	}
+	
+	
+	
+	
+	@Test
+	public void test80c1PpfAndSCCSInvestment() {
+		
+		
 		FinPerson fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
@@ -105,6 +146,7 @@ public class Rule80CTest {
 		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80c, expectedAmount80c);
 
 		assertEquals(true, result);
+		
 		
 		
 		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);

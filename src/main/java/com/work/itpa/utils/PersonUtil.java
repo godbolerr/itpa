@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Disability;
@@ -32,6 +35,8 @@ import com.work.itpa.domain.SystemFlag;
  *
  */
 public class PersonUtil {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(PersonUtil.class);
 
 	public static String PERSON_NAME = "Ram Kumar";
 	public static String PERSON_EMAIL = "rkumartyty@gmail.com";
@@ -47,7 +52,7 @@ public class PersonUtil {
 		fPerson.setPanNumber("OPDID9987A");
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(new BigDecimal("200000"));
-		
+		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		
 		Disability disablity = new Disability("", "", "");
 		fPerson.setDisablity(disablity);
@@ -238,6 +243,45 @@ public class PersonUtil {
 		return false;
 	}
 
+	public static boolean hasSectionWithAllAmounts(List<Deduction> deductions, String section, BigDecimal amount,BigDecimal eligibleAmount, BigDecimal maxDeduction) {
+
+		if (deductions == null || deductions.size() == 0) {
+			return false;
+		}
+		
+		boolean status = false;
+
+		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
+			Deduction deduction = iterator.next();
+
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getAmount().equals(amount)) {
+				status =  true;
+			} else {
+				LOG.error("Amount not matching : " + deduction.getAmount() + " - " + amount);
+				status =  false;
+			}
+
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getEligibleDeduction().equals(eligibleAmount)) {
+				status =  true;
+			} else {
+				LOG.error("Eligible Amount not matching : " + deduction.getEligibleDeduction() + " - " + eligibleAmount);
+				status =  false;
+			}
+			
+			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getMaxDeduction().equals(maxDeduction)) {
+				status =  true;
+			} else {
+				LOG.error("Max Amount not matching : " + deduction.getMaxDeduction() + " - " + maxDeduction);
+				status = false;
+			}
+			
+		}
+		return status;
+	}
+	
+	
+	
+	
 	public static boolean hasSection(List<Deduction> deductions, String section) {
 
 		if (deductions == null || deductions.size() == 0) {
