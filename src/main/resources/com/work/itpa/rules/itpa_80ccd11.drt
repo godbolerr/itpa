@@ -12,7 +12,6 @@ minAge
 maxAge
 maxBasicDAPct
 
-
 package com.work.itpa.rules;
 
 import java.util.List;
@@ -22,6 +21,7 @@ import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
+import com.work.itpa.domain.Income;
 
 import function com.work.itpa.utils.FiUtil.percentOf;
 import function com.work.itpa.utils.FiUtil.lessOf;
@@ -29,25 +29,21 @@ import function com.work.itpa.utils.FiUtil.lessOf;
 template "ATCCD1 Rules - Pension Scheme Contribution "
 
 
-//TODO Handle multiple incomes under the same head
-//TODO Handle multiple investments under the same head.
-
 rule "ATCCD1_1@{row.rowNumber}"
     when
-		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
+		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" ) 
+		
 		$fpPerson :  Person   (	age  >= @{minAge} , 
 										age  <= @{maxAge} ,
-		        		 				relationShipCode == "SELF"  ) from $fp.family 	
-		        		 				
+		        		 				relationShipCode == "SELF"  ) from $fp.family 			
 		$fpBasicIncome: Income( type == Income.Type.BASIC_SALARY ) from $fp.incomes
 		$fpDearnessAllowance: Income ( type == Income.Type.DEARNESS_ALLOWANCE ) from $fp.incomes
 		$fpInvestment: Investment ( type == "PS_EMPLOYEE" ) from $fp.investments
-				
+		        		 								
     then
     	BigDecimal $allowedDeduction = percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ;
-    	
     	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
-    											lessOf( $fpInvestment.amount, $allowedDeduction )
+    											lessOf( $fpInvestment.amount, $allowedDeduction ),
     											$allowedDeduction ,
     											"NA",
     											"@{sectionType}",
