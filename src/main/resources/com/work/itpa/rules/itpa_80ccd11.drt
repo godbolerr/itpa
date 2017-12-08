@@ -42,6 +42,7 @@ rule "ATCCD1_1@{row.rowNumber}"
 		        		 								
     then
     	BigDecimal $allowedDeduction = percentOf($fpBasicIncome.amount.add($fpDearnessAllowance.amount),@{maxBasicDAPct}) ;
+    	System.out.println("Allowed deduction is " + $allowedDeduction );
     	Deduction $deduction = new Deduction( 	$fpInvestment.amount,
     											lessOf( $fpInvestment.amount, $allowedDeduction ),
     											$allowedDeduction ,
