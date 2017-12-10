@@ -14,12 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Loan;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -35,7 +34,7 @@ public class Rule80ETest {
 
 	@Test
 	public void test80EEducationLoanInterest() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal interestPaidOnEducationLoan = new BigDecimal("10000");
 		
@@ -45,7 +44,7 @@ public class Rule80ETest {
 		
 		fPerson.addLoan(new Loan("EDUCATION",interestPaidOnEducationLoan));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80e);
 

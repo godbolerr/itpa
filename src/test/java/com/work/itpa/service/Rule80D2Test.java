@@ -15,10 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Expense;
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -35,7 +34,7 @@ public class Rule80D2Test {
 
 	@Test
 	public void test80DHealthCheckup() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
@@ -45,7 +44,7 @@ public class Rule80D2Test {
 		
 		fPerson.addExpense(new Expense(healthCheckupExpenses,"PRV_HEALTH_CHK","Prventive Health Checkup "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80d);
 

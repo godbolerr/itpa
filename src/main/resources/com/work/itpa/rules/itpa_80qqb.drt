@@ -13,7 +13,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Income;
 import function com.work.itpa.utils.FiUtil.lessOf;
@@ -23,7 +23,7 @@ template "ATQQB Royalty income of authors "
 
 rule "ATQQB@{row.rowNumber}"
        when
-        $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
+        $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
         $pfIncome :  Income   (	type == Income.Type.ROYALTY , source == Income.Source.BOOK ) from $fp.incomes   
     then
     	Deduction $deduction = new Deduction( 	$pfIncome.amount,

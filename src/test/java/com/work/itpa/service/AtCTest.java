@@ -14,9 +14,8 @@ import org.junit.Test;
 import org.kie.api.runtime.KieSession;
 
 import com.work.itpa.domain.Donation;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.SummaryDeduction;
-import com.work.itpa.utils.PersonUtil;
 
 
 /**

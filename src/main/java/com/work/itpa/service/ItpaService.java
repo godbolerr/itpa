@@ -21,8 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.SummaryDeduction;
 
 /**
@@ -45,36 +45,30 @@ public class ItpaService {
 	public ItpaService() {
 	}
 
-	public FinPersonResult calculateBenefits(FinPerson finPerson) {
+	public Assessment calculateBenefits(Assessee assessee) {
 
 		KieSession kSession = kc.newKieSession("ItpaDataKs");
 
-		KieRuntimeLogger logger = KieServices.Factory.get().getLoggers().newFileLogger(kSession, "logRules");
+		Assessment result = new Assessment();
 
-		kSession.addEventListener(new DebugAgendaEventListener());
-		kSession.addEventListener(new DebugRuleRuntimeEventListener());
+		LOG.debug("Firing rules for : " + assessee);
 
-		FinPersonResult result = new FinPersonResult();
-
-		LOG.debug("Firing rules for : " + finPerson);
-
-		kSession.insert(finPerson);
+		kSession.insert(assessee);
 		kSession.insert(result);
 
 		kSession.fireAllRules();
 
-		logger.close();
-
-		// Dispose the session and release memory
+		
 		
 		List<SummaryDeduction> sDeductions = new ArrayList<SummaryDeduction>();
+		
 		QueryResults results = kSession.getQueryResults( "Get Summary Deductions" ); 
 		for ( QueryResultsRow row : results ) {
 		    SummaryDeduction sDeduction  = ( SummaryDeduction ) row.get( "$sd" ); //you can retrieve all the bounded variables here
 		    sDeductions.add(sDeduction);
 		}
 		
-
+		// Dispose the session and release memory
 		kSession.dispose();
 
 		if (result.getDeductions() != null && result.getDeductions().size() > 0) {

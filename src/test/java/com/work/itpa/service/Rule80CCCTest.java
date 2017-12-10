@@ -15,13 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Expense;
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Insurance;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Loan;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -39,7 +38,7 @@ public class Rule80CCCTest {
 
 	@Test
 	public void test80cccSuperAnnuation() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal superAnnuationAmount = new BigDecimal("40000");
 		
@@ -48,7 +47,7 @@ public class Rule80CCCTest {
 		
 		fPerson.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccc);
 
@@ -74,7 +73,7 @@ public class Rule80CCCTest {
 
 	@Test
 	public void test80cccSuperAnnuationExceedsMax() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal superAnnuationAmount = new BigDecimal("240000");
 		BigDecimal expected80CCCAmount = new BigDecimal("150000");
@@ -84,7 +83,7 @@ public class Rule80CCCTest {
 		
 		fPerson.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccc);
 

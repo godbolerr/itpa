@@ -14,9 +14,8 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Donation;
 
 template "AT G  1 Rules"
@@ -24,7 +23,7 @@ template "AT G  1 Rules"
 
 rule "AT1GG@{row.rowNumber}"
     when
-		$fp : FinPerson() 	 &&
+		$fp : Assessee() 	 &&
         $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ,
          amount.doubleValue() * @{pcDeduction} / 100  <=   $fp.grossTotalIncome.doubleValue() * @{maxOfGTIPct} / 100  ) from $fp.donations
         
@@ -43,7 +42,7 @@ end
 
 rule "AT1GG_1_@{row.rowNumber}"
     when
-		$fp : FinPerson() 	 &&
+		$fp : Assessee() 	 &&
         $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ,
          amount.doubleValue() * @{pcDeduction} / 100  >   $fp.grossTotalIncome.doubleValue() * @{maxOfGTIPct} / 100  ) from $fp.donations
         

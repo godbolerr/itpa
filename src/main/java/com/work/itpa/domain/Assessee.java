@@ -17,7 +17,7 @@ import java.util.List;
  * @author developer
  *
  */
-public class FinPerson implements Serializable {
+public class Assessee implements Serializable {
 
 	/**
 	 * 
@@ -78,7 +78,7 @@ public class FinPerson implements Serializable {
 
 	String hraAvailed;
 
-	public FinPerson() {
+	public Assessee() {
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class FinPerson implements Serializable {
 	 * @param disabilityPercent
 	 * @param disease
 	 */
-	public FinPerson(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode,
+	public Assessee(String name, String residentStatus, Date dateOfBirth, String gender, String relationShipCode,
 			int disabilityPercent, String disease) {
 		// super(name, residentStatus, dateOfBirth, gender, relationShipCode,
 		// disabilityPercent, disease);
@@ -329,7 +329,7 @@ public class FinPerson implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		FinPerson other = (FinPerson) obj;
+		Assessee other = (Assessee) obj;
 		if (aadharNumber == null) {
 			if (other.aadharNumber != null) {
 				return false;

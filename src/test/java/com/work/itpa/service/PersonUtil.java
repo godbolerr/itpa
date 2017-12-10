@@ -1,8 +1,10 @@
 /**
  * 
  */
-package com.work.itpa.utils;
+package com.work.itpa.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
@@ -11,6 +13,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Disability;
@@ -18,8 +22,8 @@ import com.work.itpa.domain.Disease;
 import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.Expense;
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
@@ -41,9 +45,9 @@ public class PersonUtil {
 	public static String PERSON_NAME = "Ram Kumar";
 	public static String PERSON_EMAIL = "rkumartyty@gmail.com";
 
-	public static FinPerson getFinPerson() {
+	public static Assessee getAssessee() {
 
-		FinPerson fPerson = new FinPerson(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
+		Assessee fPerson = new Assessee(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
 				FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF, 0, "");
 
 		fPerson.setEmail(PERSON_EMAIL);
@@ -83,36 +87,36 @@ public class PersonUtil {
 
 	}
 
-	public static void addDonation(FinPerson person, BigDecimal amount, Donation.Type type, String note) {
+	public static void addDonation(Assessee person, BigDecimal amount, Donation.Type type, String note) {
 		person.addDonation(new Donation(amount, type, note));
 	}
 
-	public static void addDonation(FinPerson person, BigDecimal amount, Donation.Type type, String schemeCode,
+	public static void addDonation(Assessee person, BigDecimal amount, Donation.Type type, String schemeCode,
 			String note) {
 		person.addDonation(new Donation(amount, type, schemeCode, note));
 	}
 
-	public static void addDonation(FinPerson person, double amount, Donation.Type type, String schemeCode,
+	public static void addDonation(Assessee person, double amount, Donation.Type type, String schemeCode,
 			String note) {
 		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
 	}
 
-	public static void addExpense(FinPerson person, double amount, String type, String note) {
+	public static void addExpense(Assessee person, double amount, String type, String note) {
 		person.addExpense(new Expense(BigDecimal.valueOf(amount), type, note));
 	}
 
-	public static void addExpense(FinPerson person, double amount, String relationShipCode, String type, String note) {
+	public static void addExpense(Assessee person, double amount, String relationShipCode, String type, String note) {
 		Expense exp = new Expense(BigDecimal.valueOf(amount), type, note);
 		exp.setRelationShipCode(relationShipCode);
 		person.addExpense(exp);
 	}
 
-	public static void addIncome(FinPerson person, BigDecimal amount, Income.Type type, Income.Source source,
+	public static void addIncome(Assessee person, BigDecimal amount, Income.Type type, Income.Source source,
 			String note) {
 		person.addIncome(new Income(amount, type, source, note));
 	}
 
-	public static void addPropertyDetails(FinPerson person, String name, String city, String status,
+	public static void addPropertyDetails(Assessee person, String name, String city, String status,
 			double propertyValue, double loanAmount, double annualInterest, boolean firstProperty) {
 		PropertyDetails details = new PropertyDetails(name, city, status);
 		details.setLoanValue(BigDecimal.valueOf(loanAmount));
@@ -122,13 +126,13 @@ public class PersonUtil {
 
 	}
 
-	public static FinPerson getBachelorMale() {
-		FinPerson person = getFinPerson();
+	public static Assessee getBachelorMale() {
+		Assessee person = getAssessee();
 		return person;
 	}
 
-	public static FinPerson getBachelorMaleWithWard() {
-		FinPerson person = getFinPerson();
+	public static Assessee getBachelorMaleWithWard() {
+		Assessee person = getAssessee();
 		return person;
 	}
 
@@ -151,7 +155,7 @@ public class PersonUtil {
 	 * @param fPerson
 	 * @return
 	 */
-	public static Person getPersonWithRelation(FinPerson fPerson,String relationshipCode) {
+	public static Person getPersonWithRelation(Assessee fPerson,String relationshipCode) {
 
 		Person p = null;
 
@@ -167,8 +171,8 @@ public class PersonUtil {
 
 	}
 
-	public static FinPerson getBachelorMaleWithHUFMember() {
-		FinPerson person = getFinPerson();
+	public static Assessee getBachelorMaleWithHUFMember() {
+		Assessee person = getAssessee();
 		// Person hufMember = new Person("Laxman",
 		// FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
 		// FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
@@ -176,14 +180,14 @@ public class PersonUtil {
 		return person;
 	}
 
-	public static FinPerson getBachelorMaleAbove60() {
-		FinPerson person = getFinPerson();
+	public static Assessee getBachelorMaleAbove60() {
+		Assessee person = getAssessee();
 		// person.setAge(61);
 		return person;
 	}
 
-	public static FinPerson getMarriedMale() {
-		FinPerson finPerson = getFinPerson();
+	public static Assessee getMarriedMale() {
+		Assessee finPerson = getAssessee();
 		finPerson.setMaritalStatus(FiConstants.MARITAL_MARRIED);
 
 		Person wife = new Person();
@@ -196,12 +200,12 @@ public class PersonUtil {
 		return finPerson;
 	}
 
-	public static FinPerson getMarriedMaleWithOneDaughter() {
-		FinPerson person = getMarriedMale();
+	public static Assessee getMarriedMaleWithOneDaughter() {
+		Assessee person = getMarriedMale();
 		return person;
 	}
 
-	public static FinPerson addInvestment(FinPerson person, double amount, String type, String note) {
+	public static Assessee addInvestment(Assessee person, double amount, String type, String note) {
 		person.addInvestment(new Investment(BigDecimal.valueOf(amount), type, note));
 		return person;
 	}
@@ -426,27 +430,27 @@ public class PersonUtil {
 		return false;
 	}
 
-	public static void logTestResult(String testName, FinPerson finPerson, FinPersonResult result) {
+	public static void logTestResult(String testName, Assessee finPerson, Assessment result) {
 
 		String inputJson = testName + "_in.json";
 		String outputJson = testName + "_out.json";
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		// try {
-		// mapper.writeValue(new File(inputJson), finPerson);
-		// mapper.writeValue(new File(outputJson), result);
-		//
-		// } catch (JsonGenerationException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (JsonMappingException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+//		 try {
+//		 mapper.writeValue(new File(inputJson), finPerson);
+//		 mapper.writeValue(new File(outputJson), result);
+//		
+//		 } catch (JsonGenerationException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 } catch (JsonMappingException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 } catch (IOException e) {
+//		 // TODO Auto-generated catch block
+//		 e.printStackTrace();
+//		 }
 
 	}
 

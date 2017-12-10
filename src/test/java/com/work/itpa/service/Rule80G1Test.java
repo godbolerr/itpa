@@ -14,10 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -37,7 +36,7 @@ public class Rule80G1Test {
 		
 		BigDecimal donationAmount = new BigDecimal("20000");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		fPerson.setGrossTotalIncome(grossTotalIncome);
@@ -46,7 +45,7 @@ public class Rule80G1Test {
 
 		fPerson.addDonation(donation);
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -75,7 +74,7 @@ public class Rule80G1Test {
 		
 		BigDecimal eligibleDonation = new BigDecimal("30000");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
@@ -87,7 +86,7 @@ public class Rule80G1Test {
 
 		fPerson.addDonation(donation);
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -118,7 +117,7 @@ public class Rule80G1Test {
 		
 		BigDecimal eligibleDonation = new BigDecimal("30000");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
@@ -133,7 +132,7 @@ public class Rule80G1Test {
 		fPerson.addDonation(donation);
 		fPerson.addDonation(donation2);
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 

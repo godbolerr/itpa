@@ -14,7 +14,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Loan;
 import function com.work.itpa.utils.FiUtil.percentOf;
@@ -23,7 +23,7 @@ template "AT U Rules for disability "
 
 rule "ATU@{row.rowNumber}"
       when
-          $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}", systemFlag.hasDisabilitySelf == true , disablity.percentSelf == "@{disabilityPercentSelf}")
+          $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}", systemFlag.hasDisabilitySelf == true , disablity.percentSelf == "@{disabilityPercentSelf}")
     then
     	Deduction $deduction = new Deduction( 	new BigDecimal(@{maxDeduction})  ,
     											new BigDecimal(@{maxDeduction}) ,

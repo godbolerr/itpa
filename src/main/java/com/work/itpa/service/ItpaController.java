@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 
 
 /**
@@ -26,7 +26,7 @@ public class ItpaController {
 	}
 
 	@RequestMapping(value = "/benefits", method = { RequestMethod.POST })
-	public FinPersonResult getBenefits(@RequestBody FinPerson fPerson) {
+	public Assessment getBenefits(@RequestBody Assessee fPerson) {
 		return tpaService.calculateBenefits(fPerson);
 	}
 }

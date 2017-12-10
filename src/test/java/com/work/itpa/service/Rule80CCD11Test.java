@@ -14,14 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Income;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 import com.work.itpa.domain.SystemFlag;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 
 //TODO Add Summary Section
@@ -41,7 +40,7 @@ public class Rule80CCD11Test {
 	@Test
 	public void test80CCD1PensionSchemeInvestmentEmployee() {
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
@@ -67,7 +66,7 @@ public class Rule80CCD11Test {
 		
 		
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
 
@@ -96,7 +95,7 @@ public class Rule80CCD11Test {
 	@Test
 	public void test80CCD1PensionSchemeInvestmentEmployeeMaxLimit() {
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
@@ -124,7 +123,7 @@ public class Rule80CCD11Test {
 		
 		
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
 

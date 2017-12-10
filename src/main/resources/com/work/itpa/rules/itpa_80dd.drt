@@ -15,7 +15,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Loan;
 import function com.work.itpa.utils.FiUtil.percentOf;
@@ -24,7 +24,7 @@ template "ATDD Rules for disability of Dependents "
 
 rule "ATDD@{row.rowNumber}"
       when
-          $fp : FinPerson( assesseeType == "@{assesseeType}" ,	
+          $fp : Assessee( assesseeType == "@{assesseeType}" ,	
           residentialStatus == "@{residentialStatus}",
           disablity.dependentDisabilityPercent == "@{dependentDisabilityPercent}"
            )

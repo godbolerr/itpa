@@ -14,11 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -35,7 +34,7 @@ public class Rule80CCD1BTest {
 	@Test
 	public void test80CCD1BNPSBelowMax() {
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("40000");
 
@@ -44,7 +43,7 @@ public class Rule80CCD1BTest {
 
 		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 
@@ -70,7 +69,7 @@ public class Rule80CCD1BTest {
 	@Test
 	public void test80CCD1BNPSEqualToMax() {
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("50000");
 
@@ -79,7 +78,7 @@ public class Rule80CCD1BTest {
 
 		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 
@@ -105,7 +104,7 @@ public class Rule80CCD1BTest {
 	@Test
 	public void test80CCD1BNPSGreaterThanMax() {
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("50001");
 		
@@ -116,7 +115,7 @@ public class Rule80CCD1BTest {
 
 		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 

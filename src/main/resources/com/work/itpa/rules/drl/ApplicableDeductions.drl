@@ -4,9 +4,9 @@ import java.util.List;
 import com.work.itpa.domain.FiConstants;
 
 import function com.work.itpa.utils.FiUtil.isAvailable;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Donation;
 import com.work.itpa.domain.SummaryDeduction;
 
@@ -16,7 +16,7 @@ global java.util.List messages
 rule "Get List of all deductions which can be availed"   
     when
         $deduction : Deduction ()
-        $result : FinPersonResult( )
+        $result : Assessment( )
     then
     	//System.out.println("Adding deduction to the rule " + $deduction.sectionType );
     	$result.addDeduction($deduction);

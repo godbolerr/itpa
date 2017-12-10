@@ -15,13 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Expense;
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Insurance;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Loan;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -38,7 +37,7 @@ public class Rule80CTest {
 	@Test
 	public void test80c1InvestmentPpf() {
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal providentFundAmount80c = new BigDecimal("40000");
 		
@@ -47,7 +46,7 @@ public class Rule80CTest {
 		
 		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -73,7 +72,7 @@ public class Rule80CTest {
 	@Test
 	public void test80c1InvestmentPpfExceedingMax() {
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal providentFundAmount80c = new BigDecimal("151000");
 		
@@ -82,7 +81,7 @@ public class Rule80CTest {
 		
 		fPerson.addInvestment(new Investment(providentFundAmount80c,"PPF_CONTRIBUTION","Invest in PPF Funds "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -111,7 +110,7 @@ public class Rule80CTest {
 	public void test80c1PpfAndSCCSInvestment() {
 		
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
@@ -125,7 +124,7 @@ public class Rule80CTest {
 		
 		fPerson.addInvestment(new Investment(scssAmount80c,"SCSS","Invest in SCSS "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -159,7 +158,7 @@ public class Rule80CTest {
 
 	@Test
 	public void test80c2ExpensesTutionFees() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal tutionFeeExpense = new BigDecimal("75000");
 		
@@ -167,7 +166,7 @@ public class Rule80CTest {
 		
 		fPerson.addExpense(new Expense(tutionFeeExpense,"TUTION_FEES","Tution Fee for son "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -194,7 +193,7 @@ public class Rule80CTest {
 
 	@Test
 	public void test80c2ExpensesTutionFeesExceedMax() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal tutionFeeExpense = new BigDecimal("175000");
 		
@@ -202,7 +201,7 @@ public class Rule80CTest {
 		
 		fPerson.addExpense(new Expense(tutionFeeExpense,"TUTION_FEES","Tution Fee for son "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -229,7 +228,7 @@ public class Rule80CTest {
 	
 	@Test
 	public void test80c3LoanPropertyLoanPrincipalRepayment() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal interestRepayment = new BigDecimal("7000");
 		
@@ -239,7 +238,7 @@ public class Rule80CTest {
 		
 		fPerson.addLoan(new Loan("PROPERTY",interestRepayment,principalRepayment,"Property Loan - Repayment of Principal "));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -267,7 +266,7 @@ public class Rule80CTest {
 	
 	@Test
 	public void test80c3ExpensePropertyLoanPrincipalRepaymentExeedsMax() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 	
 		
 		BigDecimal interestRepayment = new BigDecimal("7000");
@@ -278,7 +277,7 @@ public class Rule80CTest {
 		
 		fPerson.addLoan(new Loan("PROPERTY",interestRepayment,principalRepayment,"Property Loan - Repayment of Principal for Big House"));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -307,7 +306,7 @@ public class Rule80CTest {
 
 	@Test
 	public void test80c4InsuranceLifeInsurancePremiumSingle() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
@@ -319,7 +318,7 @@ public class Rule80CTest {
 		
 		fPerson.addInsurance(new Insurance("LIFE",lifeInsurancePremiumPaid,"Life Insurance Premium paid on First Policy"));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -347,7 +346,7 @@ public class Rule80CTest {
 
 	@Test
 	public void test80c4InsuranceLifeInsurancePremiumTwoTimes() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 	
 		
 		BigDecimal lifeInsurancePremiumPaidLic = new BigDecimal("70000");
@@ -360,7 +359,7 @@ public class Rule80CTest {
 
 		fPerson.addInsurance(new Insurance("LIFE",lifeInsurancePremiumPaidMaxLife,"Life Insurance Premium paid on MaxLife Policy"));
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 
@@ -394,7 +393,7 @@ public class Rule80CTest {
 
 	@Test
 	public void test80c4InsuranceLifeInsuranceAndPropertyPremiumExceedsMax() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
@@ -415,7 +414,7 @@ public class Rule80CTest {
 		fPerson.addLoan(new Loan("PROPERTY",interestRepayment,principalRepayment,"Property Loan - Repayment of Principal for Big House"));
 		
 		
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80c);
 

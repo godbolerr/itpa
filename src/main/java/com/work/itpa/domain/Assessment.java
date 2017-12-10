@@ -11,7 +11,7 @@ import java.util.List;
  * @author Developer
  *
  */
-public class FinPersonResult {
+public class Assessment {
 
 	boolean status;
 
@@ -141,7 +141,7 @@ public class FinPersonResult {
 	 */
 	@Override
 	public String toString() {
-		return "FinPersonResult [status=" + status + ", messages=" + messages + "]";
+		return "Assessment [status=" + status + ", messages=" + messages + "]";
 	}
 
 }

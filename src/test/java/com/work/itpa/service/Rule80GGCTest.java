@@ -13,10 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Donation;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -32,12 +31,13 @@ public class Rule80GGCTest {
 
 	@Test
 	public void test80ggcSinglePoliticalDonations() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal amount = new BigDecimal("20000.00");
 		
+		
 		PersonUtil.addDonation(fPerson, amount, Donation.Type.POLITICAL, "Donation to policical party xyz ");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -63,13 +63,13 @@ public class Rule80GGCTest {
 		BigDecimal donation2ggc = new BigDecimal("35000.10");
 		
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		
 		PersonUtil.addDonation(fPerson, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
 		PersonUtil.addDonation(fPerson, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 

@@ -14,7 +14,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Expense;
 import function com.work.itpa.utils.FiUtil.percentOf;
@@ -23,7 +23,7 @@ template "AT GG Rules"
 
 rule "ATGG1@{row.rowNumber}"
       when
-          $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , hraAvailed == "@{hraAvailed}" )
+          $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , hraAvailed == "@{hraAvailed}" )
           $fpExpense :  Expense   (	type == "HOUSE_RENT" ) from $fp.expenses          
     then
     	Deduction $deduction = new Deduction( 	$fpExpense.amount  ,

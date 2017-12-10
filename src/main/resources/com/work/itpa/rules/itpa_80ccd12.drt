@@ -17,9 +17,8 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 
@@ -28,7 +27,7 @@ template "ATCCD12 Rules - Contribution to Pension scheme Not employed "
 
 rule "ATCCD12_1@{row.rowNumber}"
     when
-		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
+		$fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == @{hasSalary}) 
 		$fpPerson :  Person   (	age  >= @{minAge} , 
 										age  <= @{maxAge} ,
 		        		 				relationShipCode == "SELF"  ) from $fp.family 		

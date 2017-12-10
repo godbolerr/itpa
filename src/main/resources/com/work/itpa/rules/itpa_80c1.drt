@@ -14,7 +14,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import function com.work.itpa.utils.FiUtil.lessOf;
 import com.work.itpa.domain.Investment;
@@ -28,7 +28,7 @@ template "ATC 1 Investment related deductions "
 
 rule "ATC1_Investment_@{row.rowNumber}"
        when
-        $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
+        $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
         $pfInvestment :  Investment   (	type == "@{type}") from $fp.investments   
     then
     	Deduction $deduction = new Deduction( 	$pfInvestment.amount,

@@ -14,9 +14,8 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
-import com.work.itpa.domain.FinPersonResult;
 import com.work.itpa.domain.Investment;
 import com.work.itpa.domain.Person;
 
@@ -25,7 +24,7 @@ template "ATCCD2 Rules - Contribution to Pension scheme by Employer "
 
 rule "ATCCD2_@{row.rowNumber}"
     when
-		$fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == true ) 
+		$fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hasSalary == true ) 
   		$fpInvestment: Investment( type == "PS_EMPLOYER" ) from $fp.investments      
 		
     then

@@ -13,10 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.Donation;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -32,13 +31,13 @@ public class Rule80GGATest {
 
 	@Test
 	public void test80ggaSingleDonationToScientificResearch() {
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		
 		BigDecimal donation = new BigDecimal("20000.00");
 		
 		PersonUtil.addDonation(fPerson, donation, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for biology");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80gga, donation);
 
@@ -58,7 +57,7 @@ public class Rule80GGATest {
 		
 		String sectionName80ggagga = "80GGA";
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		BigDecimal donationgga = new BigDecimal("20000.00");
 		
 		PersonUtil.addDonation(fPerson, donationgga, Donation.Type.SCIENTIFIC,
@@ -70,7 +69,7 @@ public class Rule80GGATest {
 		PersonUtil.addDonation(fPerson, donation2gga, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for physics");
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ggagga, donationgga);
 

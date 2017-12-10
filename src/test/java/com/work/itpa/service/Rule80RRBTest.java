@@ -13,11 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Income;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -38,11 +37,11 @@ public class Rule80RRBTest {
 		
 		BigDecimal income = new BigDecimal("20000.00");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -64,12 +63,12 @@ public class Rule80RRBTest {
 		BigDecimal totalIncome = new BigDecimal("42000");
 		
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
 		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -99,12 +98,12 @@ public class Rule80RRBTest {
 		
 		BigDecimal totalIncome = new BigDecimal("42000.27");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
 		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 
@@ -138,12 +137,12 @@ public class Rule80RRBTest {
 		
 		BigDecimal totalIncomeRrb = new BigDecimal("300000.00");
 		
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, incomerrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
 		PersonUtil.addIncome(fPerson, income2rrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		// Verify section and amount deducted
 

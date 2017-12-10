@@ -13,11 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.work.itpa.domain.FiConstants;
-import com.work.itpa.domain.FinPerson;
-import com.work.itpa.domain.FinPersonResult;
+import com.work.itpa.domain.Assessee;
+import com.work.itpa.domain.Assessment;
 import com.work.itpa.domain.Income;
 import com.work.itpa.itparules.ItpaApp;
-import com.work.itpa.utils.PersonUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ItpaApp.class)
@@ -38,11 +37,11 @@ public class Rule80QQBTest {
 
 		BigDecimal income = new BigDecimal("20000.00");
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income);
 
@@ -58,13 +57,13 @@ public class Rule80QQBTest {
 		BigDecimal income1 = new BigDecimal("20000.00");
 		BigDecimal income2 = new BigDecimal("30000.00");
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
 		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 
@@ -93,13 +92,13 @@ public class Rule80QQBTest {
 
 		BigDecimal expectedExemption = new BigDecimal("300000.00");
 
-		FinPerson fPerson = PersonUtil.getBachelorMale();
+		Assessee fPerson = PersonUtil.getBachelorMale();
 		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
 		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		PersonUtil.addIncome(fPerson, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
 		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
 
-		FinPersonResult finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(fPerson);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 

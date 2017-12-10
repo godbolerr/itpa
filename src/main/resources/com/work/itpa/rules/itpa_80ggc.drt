@@ -11,7 +11,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Donation;
 import function com.work.itpa.utils.FiUtil.percentOf;
@@ -21,7 +21,7 @@ template "ATGGC Donation to political parties"
 
 rule "ATGGC@{row.rowNumber}"
     when
-        $fp : FinPerson()
+        $fp : Assessee()
         $pfDonation :  Donation   (	type == Donation.Type.POLITICAL ) from $fp.donations   
     then
     	Deduction $deduction = new Deduction( 	$pfDonation.amount  ,

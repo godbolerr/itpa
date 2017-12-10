@@ -14,7 +14,7 @@ package com.work.itpa.rules;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.work.itpa.domain.FinPerson;
+import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import function com.work.itpa.utils.FiUtil.lessOf;
 import com.work.itpa.domain.Investment;
@@ -27,7 +27,7 @@ template "ATC 2 Expense related deductions"
 
 rule "ATC2_Expenses_@{row.rowNumber}"
        when
-        $fp : FinPerson(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
+        $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
         $fpExpense :  Expense   (	type == "@{type}") from $fp.expenses   
     then
     	Deduction $deduction = new Deduction( 	$fpExpense.amount,
