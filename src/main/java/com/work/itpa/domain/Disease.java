@@ -119,5 +119,59 @@ public class Disease {
 	public void setDependentAge(String dependentAge) {
 		this.dependentAge = dependentAge;
 	}
+	
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((amountRecovered == null) ? 0 : amountRecovered.hashCode());
+		result = prime * result + ((amountSpent == null) ? 0 : amountSpent.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Disease other = (Disease) obj;
+		if (amountRecovered == null) {
+			if (other.amountRecovered != null)
+				return false;
+		} else if (!amountRecovered.equals(other.amountRecovered))
+			return false;
+		if (amountSpent == null) {
+			if (other.amountSpent != null)
+				return false;
+		} else if (!amountSpent.equals(other.amountSpent))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Disease [name=" + name + ", dependentRelation=" + dependentRelation + ", dependentAge=" + dependentAge
+				+ ", amountSpent=" + amountSpent + ", amountRecovered=" + amountRecovered + "]";
+	}
 
 }

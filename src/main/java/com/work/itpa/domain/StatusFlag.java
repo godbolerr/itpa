@@ -26,6 +26,14 @@ public class StatusFlag {
 	public void setRentedAccomodation(Boolean rentedAccomodation) {
 		this.rentedAccomodation = rentedAccomodation;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StatusFlag [rentedAccomodation=" + rentedAccomodation + "]";
+	}
 	
 	
 }

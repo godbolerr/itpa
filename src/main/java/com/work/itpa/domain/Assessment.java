@@ -1,8 +1,6 @@
 package com.work.itpa.domain;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,18 +13,19 @@ public class Assessment {
 
 	boolean status;
 
+	String panNumber;
+
+	String aadharNumber;
+
 	List<String> messages = new ArrayList<String>();
 
 	List<Deduction> deductions = new ArrayList<Deduction>();
 
 	List<SummaryDeduction> summaryDeductions = new ArrayList<SummaryDeduction>();
 
-
 	List<RiskScore> riskScores = new ArrayList<RiskScore>();
 
 	double riskScore = 0.0;
-
-
 
 	public void addMessage(String message) {
 		messages.add(message);
@@ -81,8 +80,6 @@ public class Assessment {
 		this.deductions = deductions;
 	}
 
-
-
 	/**
 	 * @param recoDeductions
 	 *            the recoDeductions to set
@@ -117,8 +114,6 @@ public class Assessment {
 	public void setRiskScore(double riskScore) {
 		this.riskScore = riskScore;
 	}
-	
-	
 
 	/**
 	 * @return the summaryDeductions
@@ -128,10 +123,39 @@ public class Assessment {
 	}
 
 	/**
-	 * @param summaryDeductions the summaryDeductions to set
+	 * @param summaryDeductions
+	 *            the summaryDeductions to set
 	 */
 	public void setSummaryDeductions(List<SummaryDeduction> summaryDeductions) {
 		this.summaryDeductions = summaryDeductions;
+	}
+
+	/**
+	 * @return the panNumber
+	 */
+	public String getPanNumber() {
+		return panNumber;
+	}
+
+	/**
+	 * @param panNumber the panNumber to set
+	 */
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+
+	/**
+	 * @return the aadharNumber
+	 */
+	public String getAadharNumber() {
+		return aadharNumber;
+	}
+
+	/**
+	 * @param aadharNumber the aadharNumber to set
+	 */
+	public void setAadharNumber(String aadharNumber) {
+		this.aadharNumber = aadharNumber;
 	}
 
 	/*

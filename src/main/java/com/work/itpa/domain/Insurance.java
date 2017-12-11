@@ -156,4 +156,65 @@ public class Insurance {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((policyFor == null) ? 0 : policyFor.hashCode());
+		result = prime * result + ((premium == null) ? 0 : premium.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((typeOfPolicy == null) ? 0 : typeOfPolicy.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Insurance other = (Insurance) obj;
+		if (policyFor == null) {
+			if (other.policyFor != null)
+				return false;
+		} else if (!policyFor.equals(other.policyFor))
+			return false;
+		if (premium == null) {
+			if (other.premium != null)
+				return false;
+		} else if (!premium.equals(other.premium))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (typeOfPolicy == null) {
+			if (other.typeOfPolicy != null)
+				return false;
+		} else if (!typeOfPolicy.equals(other.typeOfPolicy))
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Insurance [type=" + type + ", typeOfPolicy=" + typeOfPolicy + ", policyFor=" + policyFor + ", premium="
+				+ premium + ", sumAssured=" + sumAssured + ", healthCover=" + healthCover + ", details=" + details
+				+ "]";
+	}
+	
+	
 }

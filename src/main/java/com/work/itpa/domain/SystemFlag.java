@@ -108,4 +108,14 @@ public class SystemFlag {
 		this.hasDisease = hasDisease;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SystemFlag [hraAvailed=" + hraAvailed + ", hasSalary=" + hasSalary + ", hasDisabilitySelf="
+				+ hasDisabilitySelf + ", hasDisabledDependent=" + hasDisabledDependent + ", hasDisease=" + hasDisease
+				+ "]";
+	}
+
 }

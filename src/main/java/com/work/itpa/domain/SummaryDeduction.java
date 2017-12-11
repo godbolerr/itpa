@@ -205,4 +205,15 @@ public class SummaryDeduction {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SummaryDeduction [sectionType=" + sectionType + ", maxAmount=" + maxAmount + ", eligibleAmount="
+				+ eligibleAmount + ", deductions=" + deductions + ", notes=" + notes + "]";
+	}
+	
+	
+
 }

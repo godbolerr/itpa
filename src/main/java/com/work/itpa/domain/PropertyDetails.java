@@ -137,6 +137,15 @@ public class PropertyDetails {
 		this.propertyValue = propertyValue;
 	}
 	
-	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PropertyDetails [name=" + name + ", city=" + city + ", status=" + status + ", firstProperty="
+				+ firstProperty + ", loanValue=" + loanValue + ", propertyValue=" + propertyValue + ", annualInterest="
+				+ annualInterest + "]";
+	}	
 
 }
