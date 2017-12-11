@@ -73,7 +73,8 @@ public class FiUtil {
 	 */
 	public static BigDecimal percentOf(BigDecimal input, int deductionPercent) {
 
-		return input.multiply(new BigDecimal(deductionPercent)).divide(new BigDecimal(100));
+		BigDecimal result =  input.multiply(new BigDecimal(deductionPercent)).divide(new BigDecimal(100));
+		return result;
 
 	}
 

@@ -39,7 +39,7 @@ public class Rule80GGTest {
 		BigDecimal houseRent80ggAmount = new BigDecimal("50000");
 
 		Assessee assessee = PersonUtil.getBachelorMale();
-		assessee.setHraAvailed(FiConstants.FALSE);
+
 
 		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
@@ -69,7 +69,7 @@ public class Rule80GGTest {
 		BigDecimal atggMaxAllowed = new BigDecimal("60000");
 
 		Assessee assessee = PersonUtil.getBachelorMale();
-		assessee.setHraAvailed(FiConstants.FALSE);
+
 
 		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
@@ -100,7 +100,7 @@ public class Rule80GGTest {
 		BigDecimal atggMaxAllowed = new BigDecimal("60000");
 
 		Assessee assessee = PersonUtil.getBachelorMale();
-		assessee.setHraAvailed(FiConstants.FALSE);
+
 
 		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
@@ -131,7 +131,7 @@ public class Rule80GGTest {
 		BigDecimal atggMaxAllowed = new BigDecimal("0");
 
 		Assessee assessee = PersonUtil.getBachelorMale();
-		assessee.setHraAvailed(FiConstants.TRUE);
+		
 
 		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 

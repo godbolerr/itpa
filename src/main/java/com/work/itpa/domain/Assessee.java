@@ -3,7 +3,6 @@
  */
 package com.work.itpa.domain;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,18 +52,18 @@ public class Assessee {
 	/**
 	 * Residential Status of the Assessee - NonResident, Resident TODO Enum
 	 */
-	public ResidentialStatus residentialStatus;
+	public String residentialStatus;
 
 	/**
 	 * Marital status of the person in the family
 	 */
-	public MaritalStatus maritalStatus;
+	public String maritalStatus;
 
 	/**
 	 * Type of Asssessee - Based on this rules will change.
 	 * 
 	 */
-	AssesseeType assesseeType;
+	String assesseeType;
 
 	/**
 	 * Year for which assessment is required.
@@ -147,7 +146,6 @@ public class Assessee {
 	 */
 	StatusFlag statusFlag;
 
-	String hraAvailed;
 
 	public Assessee() {
 	}
@@ -215,7 +213,7 @@ public class Assessee {
 	/**
 	 * @return the residentialStatus
 	 */
-	public ResidentialStatus getResidentialStatus() {
+	public String getResidentialStatus() {
 		return residentialStatus;
 	}
 
@@ -223,14 +221,14 @@ public class Assessee {
 	 * @param residentialStatus
 	 *            the residentialStatus to set
 	 */
-	public void setResidentialStatus(ResidentialStatus residentialStatus) {
+	public void setResidentialStatus(String residentialStatus) {
 		this.residentialStatus = residentialStatus;
 	}
 
 	/**
 	 * @return the maritalStatus
 	 */
-	public MaritalStatus getMaritalStatus() {
+	public String getMaritalStatus() {
 		return maritalStatus;
 	}
 
@@ -238,14 +236,14 @@ public class Assessee {
 	 * @param maritalStatus
 	 *            the maritalStatus to set
 	 */
-	public void setMaritalStatus(MaritalStatus maritalStatus) {
+	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
 
 	/**
 	 * @return the assesseeType
 	 */
-	public AssesseeType getAssesseeType() {
+	public String getAssesseeType() {
 		return assesseeType;
 	}
 
@@ -253,7 +251,7 @@ public class Assessee {
 	 * @param assesseeType
 	 *            the assesseeType to set
 	 */
-	public void setAssesseeType(AssesseeType assesseeType) {
+	public void setAssesseeType(String assesseeType) {
 		this.assesseeType = assesseeType;
 	}
 
@@ -499,21 +497,6 @@ public class Assessee {
 	}
 
 	/**
-	 * @return the hraAvailed
-	 */
-	public String getHraAvailed() {
-		return hraAvailed;
-	}
-
-	/**
-	 * @param hraAvailed
-	 *            the hraAvailed to set
-	 */
-	public void setHraAvailed(String hraAvailed) {
-		this.hraAvailed = hraAvailed;
-	}
-
-	/**
 	 * Add Person to the family
 	 * 
 	 * @param person
@@ -666,7 +649,7 @@ public class Assessee {
 				+ family + ", disablity=" + disablity + ", disease=" + disease + ", incomes=" + incomes + ", expenses="
 				+ expenses  + ", loans=" + loans + ", capitalAssets="
 				+ capitalAssets + ", investments=" + investments + ", insurances=" + insurances + ", donations="
-				+ donations + ", systemFlag=" + systemFlag + ", statusFlag=" + statusFlag + ", hraAvailed=" + hraAvailed
+				+ donations + ", systemFlag=" + systemFlag + ", statusFlag=" + statusFlag
 				+ "]";
 	}
 

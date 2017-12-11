@@ -79,6 +79,7 @@ TODO:
 	8. Write rules with unit tests for the sections remaining 
 	9. Handle NPE in rules
 	10. 80CCD
+	11. 80G Multiple donations scenario needs to be handled.
 	
 	
 	

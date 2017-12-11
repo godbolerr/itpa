@@ -57,8 +57,11 @@ public class PersonUtil {
 		assessee.setContactNumber(PERSON_CONTACT);
 		assessee.setAadharNumber(PERSON_AADHAR);
 		assessee.setPanNumber(PERSON_PAN);
-		assessee.setAssesseeType(Assessee.AssesseeType.INDIVIDUAL);
-		assessee.setResidentialStatus(Assessee.ResidentialStatus.RESIDENT);
+		assessee.setAssesseeType("INDIVIDUAL");
+		assessee.setResidentialStatus("RESIDENT");
+		assessee.setCurrency("INR");
+		assessee.setLocale("en_IN");
+		assessee.setAssessmentYear("2017-2018");
 
 		Disability disablity = new Disability("", "", "");
 		assessee.setDisablity(disablity);

@@ -17,44 +17,28 @@ import java.math.BigDecimal;
 import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.Donation;
+import function com.work.itpa.utils.FiUtil.percentOf;
+import function com.work.itpa.utils.FiUtil.lessOf;
 
-template "AT G  1 Rules"
-
-
-rule "AT1GG@{row.rowNumber}"
-    when
-		$fp : Assessee() 	 &&
-        $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ,
-         amount.doubleValue() * @{pcDeduction} / 100  <=   $fp.grossTotalIncome.doubleValue() * @{maxOfGTIPct} / 100  ) from $fp.donations
-        
-    then
-        BigDecimal deduction = new BigDecimal(@{pcDeduction});
-        BigDecimal percent = new BigDecimal(100);
-    	Deduction $deduction = new Deduction( 	$pfDonation.amount.multiply(deduction).divide(percent)  ,
-    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
-    											$pfDonation.amount.multiply(deduction).divide(percent)  ,
-    											"NA",
-    											"@{sectionType}",
-    											$pfDonation.details );
-    	insert($deduction);
-end
-
+template "AT G1 Rules"
 
 rule "AT1GG_1_@{row.rowNumber}"
     when
-		$fp : Assessee() 	 &&
-        $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ,
-         amount.doubleValue() * @{pcDeduction} / 100  >   $fp.grossTotalIncome.doubleValue() * @{maxOfGTIPct} / 100  ) from $fp.donations
-        
+		$fp : Assessee() 	
+        $pfDonation :  Donation   (	schemeCode == "@{schemeCode}" ) from $fp.donations
+        $grossTotalIncome :  Income   (	type.name == "GROSS_TOTAL" ) from $fp.incomes
     then
-        BigDecimal deduction = new BigDecimal(@{maxOfGTIPct});
-        BigDecimal percent = new BigDecimal(100);
-    	Deduction $deduction = new Deduction( 	$fp.grossTotalIncome.multiply(deduction).divide(percent)  ,
-    											$fp.grossTotalIncome.multiply(deduction).divide(percent)   ,
-    											$fp.grossTotalIncome.multiply(deduction).divide(percent)   ,
+    
+        BigDecimal $maxDeduction = percentOf($grossTotalIncome.amount, @{maxOfGTIPct});
+        BigDecimal $eligibleDeduction = percentOf($pfDonation.amount, @{pcDeduction});
+        BigDecimal $actualDeduction = lessOf($maxDeduction,$eligibleDeduction);
+    	Deduction $deduction = new Deduction( 	$pfDonation.amount  ,
+    											$actualDeduction  ,
+    											$maxDeduction   ,
     											"NA",
     											"@{sectionType}",
     											$pfDonation.details );
+    	System.out.println($deduction);
     	insert($deduction);
 end
 end template

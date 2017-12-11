@@ -19,3 +19,13 @@ rule "Summarize 80G Specific donations - add donations "
     then
     	$summary.addDeduction($deduction);
 end
+
+
+
+rule "80G - Calculate Max for this deduction ..."   
+salience -100
+    when
+    	$summary : SummaryDeduction( sectionType == "80G"  )
+    then
+    	$summary.setMaxFromDeductions();    	
+end

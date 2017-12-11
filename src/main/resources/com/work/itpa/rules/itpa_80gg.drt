@@ -23,7 +23,7 @@ template "AT GG Rules"
 
 rule "ATGG1@{row.rowNumber}"
       when
-          $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , hraAvailed == "@{hraAvailed}" )
+          $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}" , systemFlag.hraAvailed == "@{hraAvailed}" )
           $fpExpense :  Expense   (	type == "HOUSE_RENT" ) from $fp.expenses          
     then
     	Deduction $deduction = new Deduction( 	$fpExpense.amount  ,
