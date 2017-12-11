@@ -34,17 +34,15 @@ public class Rule80ETest {
 
 	@Test
 	public void test80EEducationLoanInterest() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal interestPaidOnEducationLoan = new BigDecimal("10000");
 		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 		
 		
-		fPerson.addLoan(new Loan("EDUCATION",interestPaidOnEducationLoan));
+		assessee.addLoan(new Loan("EDUCATION",interestPaidOnEducationLoan));
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80e);
 
@@ -62,7 +60,7 @@ public class Rule80ETest {
 
 		assertEquals(true, result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 	

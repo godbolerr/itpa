@@ -26,7 +26,7 @@ public class ItpaController {
 	}
 
 	@RequestMapping(value = "/benefits", method = { RequestMethod.POST })
-	public Assessment getBenefits(@RequestBody Assessee fPerson) {
-		return tpaService.calculateBenefits(fPerson);
+	public Assessment getBenefits(@RequestBody Assessee assessee) {
+		return tpaService.calculateBenefits(assessee);
 	}
 }

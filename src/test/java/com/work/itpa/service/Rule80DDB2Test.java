@@ -41,13 +41,13 @@ public class Rule80DDB2Test {
 
 		BigDecimal amountRecovered = new BigDecimal("10000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 
 		SystemFlag sflag = new SystemFlag();
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
-		Disease disease = fPerson.getDisease();
+		Disease disease = assessee.getDisease();
 
 		disease.setAmountSpent(amountSpent);
 		
@@ -57,10 +57,8 @@ public class Rule80DDB2Test {
 
 		BigDecimal expectedAtDdbAmount = new BigDecimal("10000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ddb);
 
@@ -78,7 +76,7 @@ public class Rule80DDB2Test {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 	
@@ -90,13 +88,13 @@ public class Rule80DDB2Test {
 
 		BigDecimal amountRecovered = new BigDecimal("10000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 
 		SystemFlag sflag = new SystemFlag();
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
-		Disease disease = fPerson.getDisease();
+		Disease disease = assessee.getDisease();
 
 		disease.setAmountSpent(amountSpent);
 		
@@ -105,11 +103,7 @@ public class Rule80DDB2Test {
 		disease.setDependentAge("60_TO_79");
 
 		BigDecimal expectedAtDdbAmount = new BigDecimal("60000");
-
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ddb);
 
@@ -128,7 +122,7 @@ public class Rule80DDB2Test {
 
 		assertTrue(result);		
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 

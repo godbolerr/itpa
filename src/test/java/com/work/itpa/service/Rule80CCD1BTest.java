@@ -34,16 +34,13 @@ public class Rule80CCD1BTest {
 	@Test
 	public void test80CCD1BNPSBelowMax() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("40000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		assessee.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
-
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 
@@ -62,23 +59,21 @@ public class Rule80CCD1BTest {
 
 		assertEquals(true, result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 	
 	@Test
 	public void test80CCD1BNPSEqualToMax() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("50000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
-		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
+		assessee.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 
@@ -97,25 +92,23 @@ public class Rule80CCD1BTest {
 
 		assertEquals(true, result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}	
 	
 	@Test
 	public void test80CCD1BNPSGreaterThanMax() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 		BigDecimal nps80ccd1bAmount = new BigDecimal("50001");
 		
 		BigDecimal nps80ccd1bAmountEligibleMax = new BigDecimal("50000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
 
-		fPerson.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
+		assessee.addInvestment(new Investment(nps80ccd1bAmount, "PF_NPS", "NPS Investments "));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd1b);
 
@@ -134,7 +127,7 @@ public class Rule80CCD1BTest {
 
 		assertEquals(true, result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}		
 

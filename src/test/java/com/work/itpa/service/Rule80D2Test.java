@@ -34,17 +34,15 @@ public class Rule80D2Test {
 
 	@Test
 	public void test80DHealthCheckup() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal healthCheckupExpenses = new BigDecimal("75000");
 		
 		BigDecimal expectedAmount80d = new BigDecimal("5000");
 		
-		fPerson.addExpense(new Expense(healthCheckupExpenses,"PRV_HEALTH_CHK","Prventive Health Checkup "));
+		assessee.addExpense(new Expense(healthCheckupExpenses,"PRV_HEALTH_CHK","Prventive Health Checkup "));
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80d);
 
@@ -63,7 +61,7 @@ public class Rule80D2Test {
 		assertEquals(true, result);
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 		
 
 	}	

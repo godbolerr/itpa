@@ -61,9 +61,7 @@ public class TestAllSections {
 		BigDecimal donation1ggc = new BigDecimal("20000.00");
 		BigDecimal donation2ggc = new BigDecimal("35000.10");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 		BigDecimal providentFundAmount = new BigDecimal("75000");
 
@@ -73,12 +71,12 @@ public class TestAllSections {
 
 		BigDecimal donationgga = new BigDecimal("20000.00");
 
-		PersonUtil.addDonation(fPerson, donationgga, Donation.Type.SCIENTIFIC,
+		PersonUtil.addDonation(assessee, donationgga, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for biology");
 
 		BigDecimal donation2gga = new BigDecimal("30000.00");
 
-		PersonUtil.addDonation(fPerson, donation2gga, Donation.Type.SCIENTIFIC,
+		PersonUtil.addDonation(assessee, donation2gga, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for physics");
 
 		BigDecimal donation180g = new BigDecimal("20000.00");
@@ -86,48 +84,53 @@ public class TestAllSections {
 
 		BigDecimal expectedExemption80g = new BigDecimal("24000.00");
 
-		PersonUtil.addDonation(fPerson, donation180g, Donation.Type.OTHER, "PM_DROUGHT_RELF_FND",
+		PersonUtil.addDonation(assessee, donation180g, Donation.Type.OTHER, "PM_DROUGHT_RELF_FND",
 				"Donation PM_DROUGHT_RELF_FND. 50% exemption expected.");
-		PersonUtil.addDonation(fPerson, donation280g, Donation.Type.OTHER, "NAT_DEF_FUND_CEN_GOVT",
+		PersonUtil.addDonation(assessee, donation280g, Donation.Type.OTHER, "NAT_DEF_FUND_CEN_GOVT",
 				"Donation NAT_DEF_FUND_CEN_GOVT");
 
-		fPerson.addInvestment(new Investment(providentFundAmount, "PPF_CONTRIBUTION", "Invest in PPF Funds "));
+		assessee.addInvestment(new Investment(providentFundAmount, "PPF_CONTRIBUTION", "Invest in PPF Funds "));
 
-		fPerson.addInvestment(new Investment(scssAmount, "SCSS", "Invest in SCSS "));
+		assessee.addInvestment(new Investment(scssAmount, "SCSS", "Invest in SCSS "));
 
-		PersonUtil.addIncome(fPerson, incomeInterest, Income.Type.INTEREST, Income.Source.NA,
+		PersonUtil.addIncome(assessee, incomeInterest, Income.Type.INTEREST, Income.Source.NA,
 				"Interest from savings bank ");
 
-		PersonUtil.addIncome(fPerson, incomerrb, Income.Type.ROYALTY, Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(assessee, incomerrb, Income.Type.ROYALTY, Income.Source.PATENT, "Income from Patent 1");
 
-		PersonUtil.addIncome(fPerson, income2rrb, Income.Type.ROYALTY, Income.Source.PATENT, "Income from Patent 2 ");
+		PersonUtil.addIncome(assessee, income2rrb, Income.Type.ROYALTY, Income.Source.PATENT, "Income from Patent 2 ");
 
-		PersonUtil.addDonation(fPerson, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
+		PersonUtil.addDonation(assessee, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
 
-		PersonUtil.addDonation(fPerson, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
+		PersonUtil.addDonation(assessee, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), section80cName);
 
-//		assertTrue(result);
-//
-//		result = PersonUtil.hasSectionNTimes(finResult.getDeductions(), section80cName, 2);
-//
-//		assertTrue(result);
-//
-//		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), section80cName, providentFundAmount);
-//
-//		assertTrue(result);
-//
-//		result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), section80cName, scssAmount);
-//
-//		assertTrue(result);
-//
-//		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), section80cName,
-//				expectedAmount);
-//
-//		assertEquals(true, result);
+		// assertTrue(result);
+		//
+		// result = PersonUtil.hasSectionNTimes(finResult.getDeductions(),
+		// section80cName, 2);
+		//
+		// assertTrue(result);
+		//
+		// result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(),
+		// section80cName, providentFundAmount);
+		//
+		// assertTrue(result);
+		//
+		// result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(),
+		// section80cName, scssAmount);
+		//
+		// assertTrue(result);
+		//
+		// result =
+		// PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(),
+		// section80cName,
+		// expectedAmount);
+		//
+		// assertEquals(true, result);
 
 		// Verify section and amount deducted
 
@@ -198,7 +201,7 @@ public class TestAllSections {
 
 		assertTrue(totalResult);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 

@@ -28,14 +28,14 @@ public class AtCTest extends BaseTest {
 	public void scientificDonationTest() {
 //		KieSession kSession = createDefaultSession();
 //
-//		FinPerson fPerson = PersonUtil.getBachelorMale();
+//		FinPerson assessee = PersonUtil.getBachelorMale();
 //
 //		BigDecimal donation = new BigDecimal("20000.00");
 //
-//		PersonUtil.addDonation(fPerson, donation, Donation.Type.SCIENTIFIC,
+//		PersonUtil.addDonation(assessee, donation, Donation.Type.SCIENTIFIC,
 //				"Donation to scientific research for biology");
 //
-//		kSession.insert(fPerson);
+//		kSession.insert(assessee);
 //		
 //		int fired = kSession.fireAllRules();
 //		

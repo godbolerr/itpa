@@ -39,51 +39,55 @@ import com.work.itpa.domain.SystemFlag;
  *
  */
 public class PersonUtil {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(PersonUtil.class);
 
 	public static String PERSON_NAME = "Ram Kumar";
 	public static String PERSON_EMAIL = "rkumartyty@gmail.com";
+	public static String PERSON_CONTACT = "+91 998789 8765";
+	public static String PERSON_AADHAR = "34564567890";
+	public static String PERSON_PAN = "OPDID9987A";
+
 
 	public static Assessee getAssessee() {
 
-		Assessee fPerson = new Assessee(PERSON_NAME, FiConstants.RESIDENT_RESIDENT, new Date(),
-				FiConstants.GENDER_MALE, FiConstants.RELATIONSHIP_SELF, 0, "");
+		Assessee assessee = new Assessee();
 
-		fPerson.setEmail(PERSON_EMAIL);
-		fPerson.setContactNumber("+1 998 889 8888");
-		fPerson.setAadharNumber("9998887878");
-		fPerson.setPanNumber("OPDID9987A");
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setGrossTotalIncome(new BigDecimal("200000"));
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		
+		assessee.setEmail(PERSON_EMAIL);
+		assessee.setContactNumber(PERSON_CONTACT);
+		assessee.setAadharNumber(PERSON_AADHAR);
+		assessee.setPanNumber(PERSON_PAN);
+		assessee.setAssesseeType(Assessee.AssesseeType.INDIVIDUAL);
+		assessee.setResidentialStatus(Assessee.ResidentialStatus.RESIDENT);
+
 		Disability disablity = new Disability("", "", "");
-		fPerson.setDisablity(disablity);
-		
+		assessee.setDisablity(disablity);
+
 		Disease disease = new Disease();
-		fPerson.setDisease(disease);
-		
-		
+		assessee.setDisease(disease);
+
 		SystemFlag sflag = new SystemFlag();
 		sflag.setHasSalary(Boolean.FALSE);
 		sflag.setHasDisabilitySelf(Boolean.FALSE);
-		
-		fPerson.setSystemFlag(sflag);
-		
+
+		assessee.setSystemFlag(sflag);
+
 		StatusFlag statusFlag = new StatusFlag();
-		
-		fPerson.setStatusFlag(statusFlag);
+
+		assessee.setStatusFlag(statusFlag);
 
 		Person self = new Person();
-		self.setFirstName("Ram");
-		self.setLastName("Kumar");
+		self.setpId("343545");
+		self.setfName("Ram");
+		self.setlName("Kumar");
 		self.setAge(30);
+		self.setRelationType("SELF");
 		self.setRelationShipCode(FiConstants.RELATIONSHIP_SELF);
-		self.setGender(FiConstants.GENDER_MALE);
-		fPerson.addFamily(self);
+		self.setGender(Person.Gender.MALE);
+		self.setDateOfBirth("1970-10-04");
+		assessee.addFamily(self);
 
-		return fPerson;
+		return assessee;
 
 	}
 
@@ -96,8 +100,7 @@ public class PersonUtil {
 		person.addDonation(new Donation(amount, type, schemeCode, note));
 	}
 
-	public static void addDonation(Assessee person, double amount, Donation.Type type, String schemeCode,
-			String note) {
+	public static void addDonation(Assessee person, double amount, Donation.Type type, String schemeCode, String note) {
 		person.addDonation(new Donation(BigDecimal.valueOf(amount), type, note));
 	}
 
@@ -136,30 +139,17 @@ public class PersonUtil {
 		return person;
 	}
 
-	public static Person getPerson() {
-
-		Person self = new Person();
-		self.setFirstName("Ram");
-		self.setLastName("Kumar");
-		self.setAge(30);
-		self.setRelationShipCode(FiConstants.RELATIONSHIP_SELF);
-
-		self.setGender(FiConstants.GENDER_MALE);
-
-		return self;
-
-	}
-
 	/**
 	 * Return PERSON with relationshipCode
-	 * @param fPerson
+	 * 
+	 * @param assessee
 	 * @return
 	 */
-	public static Person getPersonWithRelation(Assessee fPerson,String relationshipCode) {
+	public static Person getPersonWithRelation(Assessee assessee, String relationshipCode) {
 
 		Person p = null;
 
-		List<Person> family = fPerson.getFamily();
+		List<Person> family = assessee.getFamily();
 
 		for (Iterator<Person> iterator = family.iterator(); iterator.hasNext();) {
 			Person person = iterator.next();
@@ -171,37 +161,8 @@ public class PersonUtil {
 
 	}
 
-	public static Assessee getBachelorMaleWithHUFMember() {
-		Assessee person = getAssessee();
-		// Person hufMember = new Person("Laxman",
-		// FiConstants.RESIDENT_RESIDENT, new Date(), FiConstants.GENDER_FEMALE,
-		// FiConstants.RELATIONSHIP_HUFMEMBER, 0, "");
-		// person.addDependent(hufMember);
-		return person;
-	}
-
 	public static Assessee getBachelorMaleAbove60() {
 		Assessee person = getAssessee();
-		// person.setAge(61);
-		return person;
-	}
-
-	public static Assessee getMarriedMale() {
-		Assessee finPerson = getAssessee();
-		finPerson.setMaritalStatus(FiConstants.MARITAL_MARRIED);
-
-		Person wife = new Person();
-		wife.setFirstName("Lata");
-		wife.setLastName("Kulkarni");
-		wife.setAge(30);
-		// wife.setRelationShipCode(FiConstants.RELATIONSHIP_WIFE);
-		wife.setGender(FiConstants.GENDER_FEMALE);
-		finPerson.addFamily(wife);
-		return finPerson;
-	}
-
-	public static Assessee getMarriedMaleWithOneDaughter() {
-		Assessee person = getMarriedMale();
 		return person;
 	}
 
@@ -247,45 +208,46 @@ public class PersonUtil {
 		return false;
 	}
 
-	public static boolean hasSectionWithAllAmounts(List<Deduction> deductions, String section, BigDecimal amount,BigDecimal eligibleAmount, BigDecimal maxDeduction) {
+	public static boolean hasSectionWithAllAmounts(List<Deduction> deductions, String section, BigDecimal amount,
+			BigDecimal eligibleAmount, BigDecimal maxDeduction) {
 
 		if (deductions == null || deductions.size() == 0) {
 			return false;
 		}
-		
+
 		boolean status = false;
 
 		for (Iterator<Deduction> iterator = deductions.iterator(); iterator.hasNext();) {
 			Deduction deduction = iterator.next();
 
 			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getAmount().equals(amount)) {
-				status =  true;
+				status = true;
 			} else {
 				LOG.error("Amount not matching : " + deduction.getAmount() + " - " + amount);
-				status =  false;
+				status = false;
 			}
 
-			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getEligibleDeduction().equals(eligibleAmount)) {
-				status =  true;
+			if (section.equalsIgnoreCase(deduction.getSectionType())
+					&& deduction.getEligibleDeduction().equals(eligibleAmount)) {
+				status = true;
 			} else {
-				LOG.error("Eligible Amount not matching : " + deduction.getEligibleDeduction() + " - " + eligibleAmount);
-				status =  false;
+				LOG.error(
+						"Eligible Amount not matching : " + deduction.getEligibleDeduction() + " - " + eligibleAmount);
+				status = false;
 			}
-			
-			if (section.equalsIgnoreCase(deduction.getSectionType()) && deduction.getMaxDeduction().equals(maxDeduction)) {
-				status =  true;
+
+			if (section.equalsIgnoreCase(deduction.getSectionType())
+					&& deduction.getMaxDeduction().equals(maxDeduction)) {
+				status = true;
 			} else {
 				LOG.error("Max Amount not matching : " + deduction.getMaxDeduction() + " - " + maxDeduction);
 				status = false;
 			}
-			
+
 		}
 		return status;
 	}
-	
-	
-	
-	
+
 	public static boolean hasSection(List<Deduction> deductions, String section) {
 
 		if (deductions == null || deductions.size() == 0) {
@@ -437,20 +399,26 @@ public class PersonUtil {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-//		 try {
-//		 mapper.writeValue(new File(inputJson), finPerson);
-//		 mapper.writeValue(new File(outputJson), result);
-//		
-//		 } catch (JsonGenerationException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 } catch (JsonMappingException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 } catch (IOException e) {
-//		 // TODO Auto-generated catch block
-//		 e.printStackTrace();
-//		 }
+		String printJson = System.getProperty("print.json");
+
+		if ("y".equalsIgnoreCase(printJson)) {
+
+			try {
+				mapper.writeValue(new File(inputJson), finPerson);
+				mapper.writeValue(new File(outputJson), result);
+
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 
 	}
 

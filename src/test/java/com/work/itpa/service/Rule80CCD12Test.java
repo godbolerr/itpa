@@ -39,25 +39,25 @@ public class Rule80CCD12Test {
 	@Test
 	public void test80CCD1PensionSchemeInvestmentEmployeeSelf() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		Person self = PersonUtil.getPersonWithRelation(assessee, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);		
 		
 		SystemFlag sflag = new SystemFlag();
 		
 		sflag.setHasSalary(Boolean.FALSE);
 		
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 		
 		BigDecimal pensionSchemeCCD1Amount = new BigDecimal("40000");
 		
 		BigDecimal grossTotalIncome = new BigDecimal("500000");
 		
-		fPerson.addIncome(new Income(grossTotalIncome,Income.Type.GROSS_TOTAL,Income.Source.NA,"Gross Total Income"));
+		assessee.addIncome(new Income(grossTotalIncome,Income.Type.GROSS_TOTAL,Income.Source.NA,"Gross Total Income"));
 		
-		fPerson.addInvestment(new Investment(pensionSchemeCCD1Amount, "PS_SELF", "Investment in Pension Scheme by Self employed person "));
+		assessee.addInvestment(new Investment(pensionSchemeCCD1Amount, "PS_SELF", "Investment in Pension Scheme by Self employed person "));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
 
@@ -71,7 +71,7 @@ public class Rule80CCD12Test {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 }

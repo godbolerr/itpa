@@ -37,17 +37,15 @@ public class Rule80QQBTest {
 
 		BigDecimal income = new BigDecimal("20000.00");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		PersonUtil.addIncome(assessee, income, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income);
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 
@@ -57,13 +55,12 @@ public class Rule80QQBTest {
 		BigDecimal income1 = new BigDecimal("20000.00");
 		BigDecimal income2 = new BigDecimal("30000.00");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
-		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
+		Assessee assessee = PersonUtil.getBachelorMale();
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		PersonUtil.addIncome(assessee, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
+		PersonUtil.addIncome(assessee, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
+
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 
@@ -78,7 +75,7 @@ public class Rule80QQBTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 
@@ -92,13 +89,12 @@ public class Rule80QQBTest {
 
 		BigDecimal expectedExemption = new BigDecimal("300000.00");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
-		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
+		Assessee assessee = PersonUtil.getBachelorMale();
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		PersonUtil.addIncome(assessee, income1, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 1");
+		PersonUtil.addIncome(assessee, income2, Income.Type.ROYALTY, Income.Source.BOOK, "Income from Authoring book 2");
+
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80qqb, income1);
 
@@ -113,7 +109,7 @@ public class Rule80QQBTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 

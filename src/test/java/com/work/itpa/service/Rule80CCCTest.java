@@ -38,16 +38,13 @@ public class Rule80CCCTest {
 
 	@Test
 	public void test80cccSuperAnnuation() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal superAnnuationAmount = new BigDecimal("40000");
 		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		assessee.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
 		
-		fPerson.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
-		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccc);
 
@@ -65,7 +62,7 @@ public class Rule80CCCTest {
 
 		assertEquals(true, result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 
@@ -73,17 +70,14 @@ public class Rule80CCCTest {
 
 	@Test
 	public void test80cccSuperAnnuationExceedsMax() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal superAnnuationAmount = new BigDecimal("240000");
 		BigDecimal expected80CCCAmount = new BigDecimal("150000");
 		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		assessee.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
 		
-		fPerson.addInvestment(new Investment(superAnnuationAmount,"SUPERANNUATION","Super Annuation related Investment "));
-		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccc);
 
@@ -101,7 +95,7 @@ public class Rule80CCCTest {
 
 		assertEquals(true, result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 

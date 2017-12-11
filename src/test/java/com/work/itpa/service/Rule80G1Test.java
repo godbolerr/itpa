@@ -36,16 +36,13 @@ public class Rule80G1Test {
 		
 		BigDecimal donationAmount = new BigDecimal("20000");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setGrossTotalIncome(grossTotalIncome);
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		Donation donation = new Donation(donationAmount, Donation.Type.OTHER, "GOVT_APPRVD_FAMLY_PLNG", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
 
-		fPerson.addDonation(donation);
+		assessee.addDonation(donation);
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -59,7 +56,7 @@ public class Rule80G1Test {
 		
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}
@@ -74,19 +71,15 @@ public class Rule80G1Test {
 		
 		BigDecimal eligibleDonation = new BigDecimal("30000");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		
-		fPerson.setGrossTotalIncome(grossTotalIncome);
 		
 		Donation donation = new Donation(donationAmount, Donation.Type.OTHER,"GOVT_APPRVD_FAMLY_PLNG", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
 
-		fPerson.addDonation(donation);
+		assessee.addDonation(donation);
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -99,7 +92,7 @@ public class Rule80G1Test {
 		assertTrue(result);
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}	
 	
@@ -117,22 +110,17 @@ public class Rule80G1Test {
 		
 		BigDecimal eligibleDonation = new BigDecimal("30000");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
-		
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		
-		fPerson.setGrossTotalIncome(grossTotalIncome);
 		
 		Donation donation2 = new Donation(donationAmount2, Donation.Type.OTHER,"PM_NAT_REL_FUND", "Test PM_NAT_REL_FUND Type donations");
 
 		Donation donation = new Donation(donationAmount, Donation.Type.OTHER,"GOVT_APPRVD_FAMLY_PLNG", "Test GOVT_APPRVD_FAMLY_PLNG Type donations");
 
-		fPerson.addDonation(donation);
-		fPerson.addDonation(donation2);
+		assessee.addDonation(donation);
+		assessee.addDonation(donation2);
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -149,7 +137,7 @@ public class Rule80G1Test {
 		assertTrue(result);
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}		
 

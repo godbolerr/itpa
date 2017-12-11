@@ -39,23 +39,21 @@ public class Rule80DDTest {
 
 		BigDecimal disabilityDependentDeduction = new BigDecimal("75000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);		
-
+		Assessee assessee = PersonUtil.getBachelorMale();
+	
 		SystemFlag sflag = new SystemFlag();
 		
 		sflag.setHasDisabledDependent(Boolean.TRUE);
 		
-		Disability disability = fPerson.getDisablity();
+		Disability disability = assessee.getDisablity();
 		
 		disability.setDependentDisabilityPercent("40_TO_79");
 
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
 
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80dd);
 
@@ -74,7 +72,7 @@ public class Rule80DDTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 }

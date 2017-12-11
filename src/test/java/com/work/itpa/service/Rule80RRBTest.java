@@ -37,11 +37,10 @@ public class Rule80RRBTest {
 		
 		BigDecimal income = new BigDecimal("20000.00");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+
+		PersonUtil.addIncome(assessee, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -49,7 +48,7 @@ public class Rule80RRBTest {
 
 		assertTrue(result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 
@@ -63,12 +62,11 @@ public class Rule80RRBTest {
 		BigDecimal totalIncome = new BigDecimal("42000");
 		
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+
+		PersonUtil.addIncome(assessee, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(assessee, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -84,7 +82,7 @@ public class Rule80RRBTest {
 
 		assertTrue(totalResult);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}
@@ -98,12 +96,11 @@ public class Rule80RRBTest {
 		
 		BigDecimal totalIncome = new BigDecimal("42000.27");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+
+		PersonUtil.addIncome(assessee, income, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(assessee, income2, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -119,7 +116,7 @@ public class Rule80RRBTest {
 
 		assertTrue(totalResult);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}
@@ -137,12 +134,11 @@ public class Rule80RRBTest {
 		
 		BigDecimal totalIncomeRrb = new BigDecimal("300000.00");
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, incomerrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
-		PersonUtil.addIncome(fPerson, income2rrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+
+		PersonUtil.addIncome(assessee, incomerrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 1");
+		PersonUtil.addIncome(assessee, income2rrb, Income.Type.ROYALTY,Income.Source.PATENT, "Income from Patent 2 ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -158,7 +154,7 @@ public class Rule80RRBTest {
 
 		assertTrue(totalResult);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}	

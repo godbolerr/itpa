@@ -39,23 +39,20 @@ public class Rule80UTest {
 
 		BigDecimal disabilitySelfDeduction = new BigDecimal("75000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 
 		SystemFlag sflag = new SystemFlag();
 
 		sflag.setHasSalary(Boolean.TRUE);
 		sflag.setHasDisabilitySelf(Boolean.TRUE);
 		
-		Disability disability = fPerson.getDisablity();
+		Disability disability = assessee.getDisablity();
 		
 		disability.setPercentSelf("40_TO_79");
 
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80u);
 
@@ -74,7 +71,7 @@ public class Rule80UTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 }

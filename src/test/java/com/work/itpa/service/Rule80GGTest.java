@@ -38,14 +38,12 @@ public class Rule80GGTest {
 
 		BigDecimal houseRent80ggAmount = new BigDecimal("50000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setHraAvailed(FiConstants.FALSE);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		assessee.setHraAvailed(FiConstants.FALSE);
 
-		fPerson.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
+		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -59,7 +57,7 @@ public class Rule80GGTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 	
@@ -70,14 +68,12 @@ public class Rule80GGTest {
 		
 		BigDecimal atggMaxAllowed = new BigDecimal("60000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setHraAvailed(FiConstants.FALSE);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		assessee.setHraAvailed(FiConstants.FALSE);
 
-		fPerson.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
+		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -91,7 +87,7 @@ public class Rule80GGTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}	
 	
@@ -103,14 +99,12 @@ public class Rule80GGTest {
 		
 		BigDecimal atggMaxAllowed = new BigDecimal("60000");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setHraAvailed(FiConstants.FALSE);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		assessee.setHraAvailed(FiConstants.FALSE);
 
-		fPerson.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
+		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -124,7 +118,7 @@ public class Rule80GGTest {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}	
 	
@@ -136,14 +130,12 @@ public class Rule80GGTest {
 		
 		BigDecimal atggMaxAllowed = new BigDecimal("0");
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		fPerson.setHraAvailed(FiConstants.TRUE);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		assessee.setHraAvailed(FiConstants.TRUE);
 
-		fPerson.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
+		assessee.addExpense(new Expense(houseRent80ggAmount,"HOUSE_RENT","Paid house rent"));
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -157,7 +149,7 @@ public class Rule80GGTest {
 
 		assertThat(true, is(result));
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}		
 }

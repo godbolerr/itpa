@@ -31,13 +31,13 @@ public class Rule80GGCTest {
 
 	@Test
 	public void test80ggcSinglePoliticalDonations() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal amount = new BigDecimal("20000.00");
 		
 		
-		PersonUtil.addDonation(fPerson, amount, Donation.Type.POLITICAL, "Donation to policical party xyz ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		PersonUtil.addDonation(assessee, amount, Donation.Type.POLITICAL, "Donation to policical party xyz ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -51,7 +51,7 @@ public class Rule80GGCTest {
 
 		assertTrue(result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 	}
 	
 	@Test
@@ -63,13 +63,13 @@ public class Rule80GGCTest {
 		BigDecimal donation2ggc = new BigDecimal("35000.10");
 		
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		
-		PersonUtil.addDonation(fPerson, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
-		PersonUtil.addDonation(fPerson, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
+		PersonUtil.addDonation(assessee, donation1ggc, Donation.Type.POLITICAL, "Donation to policical party xyz ");
+		PersonUtil.addDonation(assessee, donation2ggc, Donation.Type.POLITICAL, "Donation to policical party abc ");
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -87,7 +87,7 @@ public class Rule80GGCTest {
 
 		assertTrue(result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}	

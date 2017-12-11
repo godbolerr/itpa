@@ -38,25 +38,22 @@ public class Rule80CCD2Test {
 	@Test
 	public void test80CCD2PensionContributionByEmployer() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
-		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(assessee, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
 		
 		SystemFlag sflag = new SystemFlag();
 		
 		sflag.setHasSalary(Boolean.TRUE);
 		
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
 		BigDecimal pensionSchemeCCD2Amount = new BigDecimal("40000");
 
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
+		assessee.addInvestment(new Investment(pensionSchemeCCD2Amount, "PS_EMPLOYER", "Investment in Pension Scheme by Employer "));
 
-		fPerson.addInvestment(new Investment(pensionSchemeCCD2Amount, "PS_EMPLOYER", "Investment in Pension Scheme by Employer "));
-
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd2);
 
@@ -66,7 +63,7 @@ public class Rule80CCD2Test {
 
 		assertTrue(result);
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 }

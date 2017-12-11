@@ -31,13 +31,13 @@ public class Rule80GGATest {
 
 	@Test
 	public void test80ggaSingleDonationToScientificResearch() {
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
 		BigDecimal donation = new BigDecimal("20000.00");
 		
-		PersonUtil.addDonation(fPerson, donation, Donation.Type.SCIENTIFIC,
+		PersonUtil.addDonation(assessee, donation, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for biology");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80gga, donation);
 
@@ -47,7 +47,7 @@ public class Rule80GGATest {
 
 		assertTrue(result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}
@@ -57,19 +57,19 @@ public class Rule80GGATest {
 		
 		String sectionName80ggagga = "80GGA";
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		BigDecimal donationgga = new BigDecimal("20000.00");
 		
-		PersonUtil.addDonation(fPerson, donationgga, Donation.Type.SCIENTIFIC,
+		PersonUtil.addDonation(assessee, donationgga, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for biology");
 
 		
 		BigDecimal donation2gga = new BigDecimal("30000.00");
 		
-		PersonUtil.addDonation(fPerson, donation2gga, Donation.Type.SCIENTIFIC,
+		PersonUtil.addDonation(assessee, donation2gga, Donation.Type.SCIENTIFIC,
 				"Donation to scientific research for physics");
 
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSectionWithAmount(finResult.getDeductions(), sectionName80ggagga, donationgga);
 
@@ -84,7 +84,7 @@ public class Rule80GGATest {
 		assertTrue(result);
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}	

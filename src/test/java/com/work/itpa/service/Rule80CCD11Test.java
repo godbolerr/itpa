@@ -40,16 +40,16 @@ public class Rule80CCD11Test {
 	@Test
 	public void test80CCD1PensionSchemeInvestmentEmployee() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
-		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(assessee, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
 		
 		SystemFlag sflag = new SystemFlag();
 		
 		sflag.setHasSalary(Boolean.TRUE);
 		
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
 		BigDecimal basicIncome = new BigDecimal("40000");
 		BigDecimal daIncome = new BigDecimal("10000");
@@ -57,16 +57,16 @@ public class Rule80CCD11Test {
 		BigDecimal pensionSchemeContribution = new BigDecimal("3000");
 		
 
-		fPerson.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
+		assessee.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
 		
-		fPerson.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
+		assessee.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
 		
-		fPerson.addInvestment(new Investment(pensionSchemeContribution, "PS_EMPLOYEE", "Investment in Pension Scheme by Employee "));
-		
-		
+		assessee.addInvestment(new Investment(pensionSchemeContribution, "PS_EMPLOYEE", "Investment in Pension Scheme by Employee "));
 		
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		
+		
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
 
@@ -86,7 +86,7 @@ public class Rule80CCD11Test {
 
 		assertEquals(true, result);		
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}
 	
@@ -95,16 +95,16 @@ public class Rule80CCD11Test {
 	@Test
 	public void test80CCD1PensionSchemeInvestmentEmployeeMaxLimit() {
 
-		Assessee fPerson = PersonUtil.getBachelorMale();
+		Assessee assessee = PersonUtil.getBachelorMale();
 		
-		Person self = PersonUtil.getPersonWithRelation(fPerson, FiConstants.RELATIONSHIP_SELF);
+		Person self = PersonUtil.getPersonWithRelation(assessee, FiConstants.RELATIONSHIP_SELF);
 		self.setAge(20);
 		
 		SystemFlag sflag = new SystemFlag();
 		
 		sflag.setHasSalary(Boolean.TRUE);
 		
-		fPerson.setSystemFlag(sflag);
+		assessee.setSystemFlag(sflag);
 
 		BigDecimal basicIncome = new BigDecimal("40000");
 		BigDecimal daIncome = new BigDecimal("10000");
@@ -114,16 +114,16 @@ public class Rule80CCD11Test {
 		BigDecimal expectedDeduction = new BigDecimal("5000");
 		
 
-		fPerson.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
+		assessee.addIncome(new Income(basicIncome,Income.Type.BASIC_SALARY,Income.Source.NA,"Basic Income"));
 		
-		fPerson.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
+		assessee.addIncome(new Income(daIncome,Income.Type.DEARNESS_ALLOWANCE,Income.Source.NA,"Dearness Income"));
 		
-		fPerson.addInvestment(new Investment(pensionSchemeContribution, "PS_EMPLOYEE", "Investment in Pension Scheme by Employee more than Max"));
-		
-		
+		assessee.addInvestment(new Investment(pensionSchemeContribution, "PS_EMPLOYEE", "Investment in Pension Scheme by Employee more than Max"));
 		
 		
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		
+		
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		boolean result = PersonUtil.hasSection(finResult.getDeductions(), sectionName80ccd11);
 
@@ -143,7 +143,7 @@ public class Rule80CCD11Test {
 		assertEquals(true, result);
 		
 
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 	}	
 }

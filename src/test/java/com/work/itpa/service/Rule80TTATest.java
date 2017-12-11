@@ -36,11 +36,9 @@ public class Rule80TTATest {
 		BigDecimal income = new BigDecimal("9000.00");
 		
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		PersonUtil.addIncome(assessee, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -53,7 +51,7 @@ public class Rule80TTATest {
 		assertEquals(true, result);
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}
@@ -64,11 +62,9 @@ public class Rule80TTATest {
 		BigDecimal income = new BigDecimal("10000.00");
 		
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		PersonUtil.addIncome(assessee, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -82,7 +78,7 @@ public class Rule80TTATest {
 		
 		
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);		
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);		
 	}
 
 	@Test
@@ -95,11 +91,9 @@ public class Rule80TTATest {
 		BigDecimal expected = new BigDecimal("10000.00");
 		
 		
-		Assessee fPerson = PersonUtil.getBachelorMale();
-		fPerson.setResidentialStatus(FiConstants.RESIDENT_RESIDENT);
-		fPerson.setAssesseeType(FiConstants.ASSESSEE_INDIVIDUAL);
-		PersonUtil.addIncome(fPerson, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
-		Assessment finResult = dService.calculateBenefits(fPerson);
+		Assessee assessee = PersonUtil.getBachelorMale();
+		PersonUtil.addIncome(assessee, income, Income.Type.INTEREST,Income.Source.NA, "Interest from savings bank ");
+		Assessment finResult = dService.calculateBenefits(assessee);
 
 		// Verify section and amount deducted
 
@@ -111,7 +105,7 @@ public class Rule80TTATest {
 
 		assertEquals(true, result);
 		
-		PersonUtil.logTestResult(testName.getMethodName(), fPerson, finResult);
+		PersonUtil.logTestResult(testName.getMethodName(), assessee, finResult);
 
 
 	}

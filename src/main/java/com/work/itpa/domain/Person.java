@@ -3,145 +3,104 @@
  */
 package com.work.itpa.domain;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * Details about an individual
  * 
  * @author Developer
  *
  */
-public class Person implements Serializable {
+public class Person  {
+	
+	
+	public enum Gender {
+		MALE, FEMALE, OTHER, NA
+	};
 	
 	/**
-	 * Uniuqe identifier for a person.
+	 * unique id of the person
 	 */
-	String id = "";
-	
-	
-	String firstName;
-	
-	String lastName;
-	
-	String name;
+	public String pid ;
 	
 	/**
-	 * LocalDate of birth for a person
+	 * First Name
 	 */
-
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	Date dateOfBirth;
-	
+	public String fName;
 	
 	/**
-	 * Age of the person. 
-	 * This is derived field.
+	 * Last Name
+	 */
+	public String lName;
+		
+	/**
+	 * Age of the person.
+	 * Ideally this should be derived from date of birth.
+	 * As of now there is no requirement.
 	 */
 	public int age;
 	
 	/**
-	 * Gender of a person. [ Male/Female ]
-	 * 
-	 * TODO Make this enum
-	 * 
+	 * Gender of the person
 	 */
-	String gender;
+	public Gender gender;
 	
 	/**
-	 * Relationship of the person with the container entity
-	 * 
-	 * 
-	 * 
+	 * Relationship of the person with respect to Assessee
 	 */
-	
 	String relationShipCode;
+	
+	/**
+	 * Relation type - used by UI only
+	 */
+	String relationType;
+
+
+	/**
+	 * Date of birth of the person. - Not mandatory
+	 */
+	public String dateOfBirth;
 	
 	
 	/**
 	 * @return the id
 	 */
-	public String getId() {
-		return id;
+	public String getPid() {
+		return pid;
 	}
-
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setpId(String pid) {
+		this.pid = pid;
 	}
-
 
 	/**
-	 * @return the firstName
+	 * @return the fName
 	 */
-	public String getFirstName() {
-		return firstName;
+	public String getfName() {
+		return fName;
 	}
-
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param fName the fName to set
 	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
-
 
 	/**
-	 * @return the lastName
+	 * @return the lName
 	 */
-	public String getLastName() {
-		return lastName;
+	public String getlName() {
+		return lName;
 	}
-
 
 	/**
-	 * @param lastName the lastName to set
+	 * @param lName the lName to set
 	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
-
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	/**
-	 * @return the dateOfBirth
-	 */
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-
-	/**
-	 * @param dateOfBirth the dateOfBirth to set
-	 */
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
 
 	/**
 	 * @return the age
@@ -150,7 +109,6 @@ public class Person implements Serializable {
 		return age;
 	}
 
-
 	/**
 	 * @param age the age to set
 	 */
@@ -158,22 +116,19 @@ public class Person implements Serializable {
 		this.age = age;
 	}
 
-
 	/**
 	 * @return the gender
 	 */
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
-
 
 	/**
 	 * @param gender the gender to set
 	 */
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-
 
 	/**
 	 * @return the relationShipCode
@@ -182,7 +137,6 @@ public class Person implements Serializable {
 		return relationShipCode;
 	}
 
-
 	/**
 	 * @param relationShipCode the relationShipCode to set
 	 */
@@ -190,7 +144,88 @@ public class Person implements Serializable {
 		this.relationShipCode = relationShipCode;
 	}
 
-	
-	
+	/**
+	 * @return the relationType
+	 */
+	public String getRelationType() {
+		return relationType;
+	}
+
+	/**
+	 * @param relationType the relationType to set
+	 */
+	public void setRelationType(String relationType) {
+		this.relationType = relationType;
+	}
+
+	/**
+	 * @return the dateOfBirth
+	 */
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	/**
+	 * @param dateOfBirth the dateOfBirth to set
+	 */
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
+		result = prime * result + ((pid == null) ? 0 : pid.hashCode());
+		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (age != other.age)
+			return false;
+		if (fName == null) {
+			if (other.fName != null)
+				return false;
+		} else if (!fName.equals(other.fName))
+			return false;
+		if (pid == null) {
+			if (other.pid != null)
+				return false;
+		} else if (!pid.equals(other.pid))
+			return false;
+		if (lName == null) {
+			if (other.lName != null)
+				return false;
+		} else if (!lName.equals(other.lName))
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Person [pid=" + pid + ", fName=" + fName + ", lName=" + lName + ", age=" + age + ", gender=" + gender
+				+ ", relationShipCode=" + relationShipCode + ", relationType=" + relationType + ", dateOfBirth=" + dateOfBirth + "]";
+	}
+		
 	
 }
