@@ -68,6 +68,7 @@ public class TestAllSections {
 		BigDecimal scssAmount = new BigDecimal("100000");
 
 		BigDecimal expectedAmount = new BigDecimal("150000");
+		
 
 		BigDecimal donationgga = new BigDecimal("20000.00");
 
