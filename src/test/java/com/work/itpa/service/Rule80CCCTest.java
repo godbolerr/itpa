@@ -58,7 +58,7 @@ public class Rule80CCCTest {
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80cCombined, superAnnuationAmount);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80ccc, superAnnuationAmount);
 
 		assertEquals(true, result);
 		
@@ -91,7 +91,7 @@ public class Rule80CCCTest {
 
 		assertTrue(result);
 		
-		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80cCombined, expected80CCCAmount);
+		result = PersonUtil.hasSummarySectionWithAmount(finResult.getSummaryDeductions(), sectionName80ccc, expected80CCCAmount);
 
 		assertEquals(true, result);
 		

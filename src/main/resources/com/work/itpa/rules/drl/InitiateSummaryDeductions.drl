@@ -9,6 +9,18 @@ rule "Initiate Summary Deductions"
 		not (SummaryDeduction())
 		$config: ItpaConfig()
 	then		
+	
+		
+		SummaryDeduction atc = new SummaryDeduction("80C");
+		atc.setMaxAmount($config.getBigDecimal("atc.maxAmount"));
+		insert(atc);
+		
+		SummaryDeduction atccc = new SummaryDeduction("80CCC");
+		atccc.setMaxAmount($config.getBigDecimal("atccc.maxAmount"));
+		insert(atccc);
+	
+	
+	
 		SummaryDeduction qqb = new SummaryDeduction("80QQB");
 		qqb.setMaxAmount($config.getBigDecimal("atqqb.maxAmount"));
 		insert(qqb);
@@ -39,11 +51,6 @@ rule "Initiate Summary Deductions"
 		
 		SummaryDeduction gg = new SummaryDeduction("80GG");
 		insert(gg);				
-		
-		SummaryDeduction atc = new SummaryDeduction("80C");
-		atc.setMaxAmount($config.getBigDecimal("atc.maxAmount"));
-		insert(atc);
-		
 		SummaryDeduction ate = new SummaryDeduction("80E");
 		insert(ate);			
 				

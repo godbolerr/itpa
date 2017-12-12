@@ -10,12 +10,12 @@ import com.work.itpa.domain.SummaryDeduction;
 global java.util.List messages
 
 
-// 80C related Summary Deduction
+// 80CCC related Summary Deduction
 
-rule "Summarize 80C Specific donations - add donations "   
+rule "Summarize 80CCC Specific donations - add donations "   
     when
-        $summary : SummaryDeduction( sectionType == "80C")
- 		$deduction : Deduction ( sectionType == "80C" )        
+        $summary : SummaryDeduction( sectionType == "80CCC")
+ 		$deduction : Deduction ( sectionType == "80CCC" )        
     then
     	$summary.addDeduction($deduction);
 end
@@ -25,10 +25,10 @@ end
 // Find way to extrat it out.
 
 
-rule "80C Decide max limit"   
+rule "80CCC Decide max limit"   
 salience -100
     when
-    	$summary : SummaryDeduction( sectionType == "80C"  )
+    	$summary : SummaryDeduction( sectionType == "80CCC"  )
     then
     	$summary.setEligibleAmountForMaxLimit();    	
 end

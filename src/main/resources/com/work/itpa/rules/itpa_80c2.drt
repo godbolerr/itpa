@@ -28,7 +28,7 @@ template "ATC 2 Expense related deductions"
 rule "ATC2_Expenses_@{row.rowNumber}"
        when
         $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
-        $fpExpense :  Expense   (	type == "@{type}") from $fp.expenses   
+        $fpExpense :  Expense   ( type == "@{type}" ) from $fp.expenses   
     then
     	Deduction $deduction = new Deduction( 	$fpExpense.amount,
     											lessOf(new BigDecimal(""+@{maxDeduction}),$fpExpense.amount)  ,

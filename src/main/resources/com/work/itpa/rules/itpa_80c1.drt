@@ -29,7 +29,7 @@ template "ATC 1 Investment related deductions "
 rule "ATC1_Investment_@{row.rowNumber}"
        when
         $fp : Assessee(assesseeType == "@{assesseeType}" ,	residentialStatus == "@{residentialStatus}")
-        $pfInvestment :  Investment   (	type == "@{type}") from $fp.investments   
+        $pfInvestment :  Investment   (	type == "@{type}" ) from $fp.investments   
     then
     	Deduction $deduction = new Deduction( 	$pfInvestment.amount,
     											lessOf(new BigDecimal(""+@{maxDeduction}),$pfInvestment.amount)  ,
