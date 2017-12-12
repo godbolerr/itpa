@@ -1,29 +1,31 @@
 package com.work.itpa.rules;
 
 import com.work.itpa.domain.SummaryDeduction;
+import com.work.itpa.domain.ItpaConfig;
 
 
 rule "Initiate Summary Deductions"
 	when
 		not (SummaryDeduction())
+		$config: ItpaConfig()
 	then		
 		SummaryDeduction qqb = new SummaryDeduction("80QQB");
-		qqb.setMaxAmount(new BigDecimal("300000"));
+		qqb.setMaxAmount($config.getBigDecimal("atqqb.maxAmount"));
 		insert(qqb);
 		
 		SummaryDeduction rrb = new SummaryDeduction("80RRB");
-		rrb.setMaxAmount(new BigDecimal("300000"));
+		rrb.setMaxAmount($config.getBigDecimal("atrrb.maxAmount"));
 		insert(rrb);
 		
 		SummaryDeduction tta = new SummaryDeduction("80TTA");
-		tta.setMaxAmount(new BigDecimal("10000"));
+		tta.setMaxAmount($config.getBigDecimal("attta.maxAmount"));
 		insert(tta);
 		
 		SummaryDeduction ccd1 = new SummaryDeduction("80CCD1");
 		insert(ccd1);				
 		
 		SummaryDeduction ccd1b = new SummaryDeduction("80CCD1B");
-		ccd1b.setMaxAmount(new BigDecimal("50000"));
+		ccd1b.setMaxAmount($config.getBigDecimal("atccd1b.maxAmount"));
 		insert(ccd1b);		
 		
 		SummaryDeduction gga = new SummaryDeduction("80GGA");
@@ -39,7 +41,7 @@ rule "Initiate Summary Deductions"
 		insert(gg);				
 		
 		SummaryDeduction atc = new SummaryDeduction("80C");
-		atc.setMaxAmount(new BigDecimal("150000"));
+		atc.setMaxAmount($config.getBigDecimal("atc.maxAmount"));
 		insert(atc);
 		
 		SummaryDeduction ate = new SummaryDeduction("80E");

@@ -3,15 +3,9 @@
  */
 package com.work.itpa.service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.drools.core.event.DebugAgendaEventListener;
-import org.drools.core.event.DebugRuleRuntimeEventListener;
-import org.kie.api.KieServices;
-import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.QueryResults;
@@ -23,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Assessment;
+import com.work.itpa.domain.ItpaConfig;
 import com.work.itpa.domain.SummaryDeduction;
 
 /**
@@ -38,6 +33,9 @@ public class ItpaService {
 
 	@Autowired
 	private KieContainer kc;
+	
+	@Autowired
+	private ItpaConfig config;	
 
 	/**
 	 * 
@@ -55,10 +53,8 @@ public class ItpaService {
 
 		kSession.insert(assessee);
 		kSession.insert(result);
-
+		kSession.insert(config);
 		kSession.fireAllRules();
-
-		
 		
 		List<SummaryDeduction> sDeductions = new ArrayList<SummaryDeduction>();
 		
