@@ -72,7 +72,7 @@ TODO:
 	1. Work with logging
 	2. Fractions in amount
 	3. Rounding
-	4. Config Service
+	4. Config Service - Done
 	5. KJAR implementation in Drools
 	6. Equals,hashcode and toString for each domain object.
 	7. Add Unit Tests to Cover all the data scenarios for all sections. 
