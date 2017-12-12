@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.work.itpa.domain.Assessee;
 import com.work.itpa.domain.Assessment;
+import com.work.itpa.domain.Deduction;
 import com.work.itpa.domain.ItpaConfig;
 import com.work.itpa.domain.SummaryDeduction;
 
@@ -57,12 +58,21 @@ public class ItpaService {
 		kSession.fireAllRules();
 		
 		List<SummaryDeduction> sDeductions = new ArrayList<SummaryDeduction>();
+		List<Deduction> deductions = new ArrayList<Deduction>();
 		
 		QueryResults results = kSession.getQueryResults( "Get Summary Deductions" ); 
 		for ( QueryResultsRow row : results ) {
-		    SummaryDeduction sDeduction  = ( SummaryDeduction ) row.get( "$sd" ); //you can retrieve all the bounded variables here
+		    SummaryDeduction sDeduction  = ( SummaryDeduction ) row.get( "$summaryDeduction" ); //you can retrieve all the bounded variables here
 		    sDeductions.add(sDeduction);
 		}
+
+		QueryResults deductionResult = kSession.getQueryResults( "Get All Deductions" ); 
+		for ( QueryResultsRow row : deductionResult ) {
+		    Deduction deduction  = ( Deduction ) row.get( "$deduction" ); 
+		    deductions.add(deduction);
+		}
+		
+		result.setDeductions(deductions);
 		
 		// Dispose the session and release memory
 		kSession.dispose();
